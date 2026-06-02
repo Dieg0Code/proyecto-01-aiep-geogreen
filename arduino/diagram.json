@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "GeoGreen - AIEP Osorno",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "sr04", "top": -120, "left": 100, "attrs": { "distance": "20" } },
+    { "type": "wokwi-led", "id": "led_v", "top": -40, "left": 250, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led_a", "top": -40, "left": 300, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "led_r", "top": -40, "left": 350, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r_v", "top": 60, "left": 250, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_a", "top": 60, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_r", "top": 60, "left": 350, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "bz", "top": 100, "left": 150, "attrs": { "volume": "0.1" } }
+  ],
+  "connections": [
+    [ "sr04:VCC", "uno:5V", "red", [] ],
+    [ "sr04:GND", "uno:GND.1", "black", [] ],
+    [ "sr04:TRIG", "uno:9", "blue", [] ],
+    [ "sr04:ECHO", "uno:10", "green", [] ],
+
+    [ "uno:4", "r_v:1", "green", [] ],
+    [ "r_v:2", "led_v:A", "green", [] ],
+    [ "led_v:C", "uno:GND.2", "black", [] ],
+
+    [ "uno:3", "r_a:1", "gold", [] ],
+    [ "r_a:2", "led_a:A", "gold", [] ],
+    [ "led_a:C", "led_v:C", "black", [] ],
+
+    [ "uno:2", "r_r:1", "orange", [] ],
+    [ "r_r:2", "led_r:A", "orange", [] ],
+    [ "led_r:C", "led_a:C", "black", [] ],
+
+    [ "uno:8", "bz:1", "purple", [] ],
+    [ "bz:2", "uno:GND.3", "black", [] ]
+  ]
+}

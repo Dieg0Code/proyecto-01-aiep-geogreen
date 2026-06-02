@@ -1,0 +1,11 @@
+# Secretos (nunca subir)
+.wokwi_token
+*.token
+
+# Artefactos de compilacion PlatformIO
+.pio/
+
+# Salidas de simulacion (regenerables)
+arduino/run.png
+serial.log
+.diagram.*.json

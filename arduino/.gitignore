@@ -1,0 +1,4 @@
+.pio/
+*.png
+serial.log
+.diagram.*.json

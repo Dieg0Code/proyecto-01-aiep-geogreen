@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Componentes Arduino para GeoGreen - Elias</title>
+<style>
+  @page { size: A4; margin: 16mm; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #1f2937; margin: 0; line-height: 1.38; }
+  .top { border-left: 10px solid #d71920; padding-left: 18px; margin-bottom: 14px; }
+  h1 { color: #0b2f6b; font-size: 24px; margin: 0 0 7px; }
+  h2 { color: #0b2f6b; font-size: 16px; margin-top: 18px; margin-bottom: 8px; }
+  p { font-size: 12px; margin: 7px 0 11px; }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-top: 8px; }
+  th { background: #0b2f6b; color: white; text-align: left; padding: 8px; }
+  td { border: 1px solid #d8dee9; padding: 7px; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+  .qty { text-align: center; white-space: nowrap; font-weight: bold; color: #0b2f6b; }
+  .box { background: #eef4ff; border-left: 6px solid #d71920; padding: 10px 14px; margin-top: 6px; }
+  .projection { background: #f7f9fc; border-left: 6px solid #0b2f6b; padding: 10px 14px; margin-top: 6px; }
+  ul { margin: 6px 0 0 18px; padding: 0; font-size: 12px; }
+  li { margin: 4px 0; }
+  .note { background: #fff7f7; border: 1px solid #f0c7c7; padding: 10px 14px; border-radius: 6px; font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <h1>Componentes mínimos para prototipo GeoGreen con Arduino</h1>
+    <p>Don Elías, para armar una maqueta funcional del proyecto GeoGreen con Arduino necesitamos confirmar o conseguir estos componentes:</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Componente</th><th>Cantidad mínima</th><th>Para qué sirve</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Arduino UNO o Arduino Nano</td><td class="qty">1</td><td>Es el controlador principal del prototipo. Lee el sensor y activa las alertas.</td></tr>
+      <tr><td>Sensor ultrasónico HC-SR04</td><td class="qty">1</td><td>Mide la distancia entre la tapa y el contenido del contenedor. Con eso se calcula el nivel de llenado.</td></tr>
+      <tr><td>Protoboard</td><td class="qty">1</td><td>Permite armar el circuito sin soldar, ideal para taller y pruebas.</td></tr>
+      <tr><td>Cables jumper</td><td class="qty">1 pack</td><td>Conectan Arduino, sensor, luces y buzzer.</td></tr>
+      <tr><td>LED verde, amarillo y rojo</td><td class="qty">1 de cada uno</td><td>Funcionan como semáforo: bajo, medio y alto nivel de llenado.</td></tr>
+      <tr><td>Resistencias 220 ohm o 330 ohm</td><td class="qty">3</td><td>Protegen los LED para que no se quemen.</td></tr>
+      <tr><td>Buzzer activo 5V</td><td class="qty">1</td><td>Emite una alerta sonora cuando el contenedor está lleno.</td></tr>
+      <tr><td>Cable USB Arduino</td><td class="qty">1</td><td>Sirve para programar y alimentar el Arduino.</td></tr>
+      <tr><td>Contenedor pequeño o maqueta</td><td class="qty">1</td><td>Representa el basurero/contenedor donde se probará el sensor.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Resultado esperado</h2>
+  <div class="box">
+    <ul>
+      <li>Mida el nivel de llenado de un contenedor.</li>
+      <li>Muestre el estado con luces verde, amarilla y roja.</li>
+      <li>Active una alarma cuando el contenedor esté lleno.</li>
+      <li>Sirva como demostración práctica para estudiantes.</li>
+    </ul>
+  </div>
+
+  <h2>Proyección del prototipo</h2>
+  <div class="projection">En una segunda etapa, el prototipo puede escalarse hacia una aplicación o tablero donde se registren los contenedores, su ubicación y su estado de llenado. Para eso se podría trabajar una georreferenciación simple de los puntos de reciclaje y una visualización tipo mapa.</div>
+
+  <h2>Opcional recomendado</h2>
+  <div class="note">Si está disponible, agregar una pantalla LCD u OLED para mostrar el porcentaje de llenado en pantalla. No es obligatorio, pero mejora mucho la presentación del prototipo.</div>
+</body>
+</html>

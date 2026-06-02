@@ -1,0 +1,6 @@
+# Configuracion para la extension "Wokwi for VS Code".
+# Apunta a los binarios que genera PlatformIO al compilar (pio run).
+[wokwi]
+version = 1
+firmware = ".pio/build/uno/firmware.hex"
+elf = ".pio/build/uno/firmware.elf"
