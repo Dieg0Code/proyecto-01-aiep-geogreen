@@ -8,14 +8,14 @@ informa con un **semáforo de LEDs** y una **alerta sonora**. La versión comple
 proyecta enviar el dato por WiFi a un tablero con la ubicación de cada punto de
 reciclaje (de ahí *Geo* + *Green*).
 
+<p align="center">
+  <img src="componenetes-arduino.png" alt="Componentes del prototipo GeoGreen con Arduino" width="360">
+</p>
+
 ## Estado actual
 
 El **track Arduino** ya está implementado y se puede **simular 100 % por terminal**,
 sin placa física ni VS Code, usando PlatformIO + Wokwi CLI.
-
-![Simulación del prototipo en Wokwi](docs/simulacion-arduino.png)
-
-*Arduino UNO simulado headless desde el CLI (sensor a 20 cm → 89 % de llenado → estado rojo).*
 
 ## Qué hace el prototipo
 
