@@ -79,6 +79,21 @@ openscad -o docs/carcasa-3d.png --viewall --autocenter arduino/3d/carcasa.scad
 openscad -D 'parte="tapa"' -o arduino/3d/tapa.stl arduino/3d/carcasa.scad
 ```
 
+## Visualización web 3D
+
+Demo interactiva en [`web/index.html`](web/index.html) (Three.js, sin build):
+un contenedor 3D que se llena y enciende el semáforo usando **la misma lógica
+del firmware**. Arrastra para rotar, mueve el slider de distancia.
+
+<p align="center">
+  <img src="docs/web3d.png" alt="Visualización web 3D del llenado (estado lleno)" width="520">
+</p>
+
+```bash
+python -m http.server 8099 --directory web
+# abrir http://localhost:8099   (o http://localhost:8099/?dist=15 para verlo lleno)
+```
+
 ## Estructura
 
 ```
@@ -88,8 +103,11 @@ openscad -D 'parte="tapa"' -o arduino/3d/tapa.stl arduino/3d/carcasa.scad
 │   ├── diagram.json         # Circuito virtual de Wokwi
 │   ├── platformio.ini       # Configuración de compilación
 │   ├── sim.sh / test.sh     # Scripts de simulación y test por CLI
+│   ├── wiring.yml           # Fuente del diagrama de cableado (WireViz)
+│   ├── 3d/carcasa.scad      # Carcasa imprimible (OpenSCAD) + STL exportados
 │   └── README.md
-├── docs/                    # Imágenes del proyecto
+├── web/index.html           # Visualización web 3D (Three.js)
+├── docs/                    # Imágenes generadas (cableado, render 3D, web)
 ├── *.md / *.docx / *.pdf    # Documentación: postulación y listas de componentes
 └── componentes-*.png        # Fotos de los componentes
 ```

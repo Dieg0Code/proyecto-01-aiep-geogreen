@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoGreen · Visualización 3D del llenado</title>
+  <style>
+    :root {
+      --bg0: #06241a;
+      --bg1: #0c3a28;
+      --verde: #27c93f;
+      --amarillo: #f5c542;
+      --rojo: #ff4d4d;
+      --txt: #eafff3;
+      --muted: #8fcaa9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--txt);
+      background: radial-gradient(circle at 30% 20%, var(--bg1), var(--bg0) 70%);
+      overflow: hidden;
+    }
+    #app { position: fixed; inset: 0; }
+    canvas { display: block; }
+
+    .panel {
+      position: fixed;
+      top: 24px; left: 24px;
+      width: 320px;
+      padding: 22px 24px;
+      background: rgba(8, 30, 22, 0.62);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(140, 220, 170, 0.18);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+    .brand { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+    .brand h1 { font-size: 26px; letter-spacing: -0.5px; }
+    .brand .leaf { color: var(--verde); }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
+
+    .readout { display: flex; gap: 10px; margin-bottom: 18px; }
+    .stat {
+      flex: 1; text-align: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(140,220,170,0.12);
+      border-radius: 12px; padding: 10px 6px;
+    }
+    .stat .v { font-size: 22px; font-weight: 700; }
+    .stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .estado {
+      text-align: center; font-weight: 700; font-size: 15px;
+      padding: 10px; border-radius: 12px; margin-bottom: 20px;
+      transition: background .3s, color .3s;
+    }
+
+    label.ctl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+    input[type=range] {
+      width: 100%; margin: 10px 0 4px; accent-color: var(--verde); cursor: pointer;
+    }
+    .hint { font-size: 11px; color: var(--muted); }
+
+    .semaforo-leyenda { display: flex; gap: 14px; margin-top: 18px; font-size: 12px; color: var(--muted); }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+    .foot { position: fixed; bottom: 16px; right: 20px; font-size: 11px; color: var(--muted); opacity: .8; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <div class="panel">
+    <div class="brand"><h1>Geo<span class="leaf">Green</span></h1></div>
+    <div class="sub">Monitor de llenado — simulación 3D</div>
+
+    <div class="readout">
+      <div class="stat"><div class="v" id="dist">—</div><div class="l">Distancia</div></div>
+      <div class="stat"><div class="v" id="pct">—</div><div class="l">Llenado</div></div>
+    </div>
+
+    <div class="estado" id="estado">—</div>
+
+    <label class="ctl">Distancia del sensor al contenido (cm)</label>
+    <input type="range" id="slider" min="10" max="100" value="70" step="0.5" />
+    <div class="hint">Acerca el contenido (menos cm) para llenar el contenedor.</div>
+
+    <div class="semaforo-leyenda">
+      <span><span class="dot" style="background:var(--verde)"></span>&lt;40%</span>
+      <span><span class="dot" style="background:var(--amarillo)"></span>40–79%</span>
+      <span><span class="dot" style="background:var(--rojo)"></span>≥80% 🔊</span>
+    </div>
+  </div>
+
+  <div class="foot">Arrastra para rotar · rueda para zoom</div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ---- Misma lógica que el firmware (main.cpp) ----
+    const DIST_VACIO = 100, DIST_LLENO = 10;
+    const UMBRAL_MEDIO = 40, UMBRAL_ALTO = 80;
+    const calcularLlenado = d =>
+      Math.round(Math.min(100, Math.max(0, (DIST_VACIO - d) * 100 / (DIST_VACIO - DIST_LLENO))));
+
+    const COL = { verde: 0x27c93f, amarillo: 0xf5c542, rojo: 0xff4d4d };
+
+    // ---- Escena ----
+    const app = document.getElementById('app');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x06241a, 18, 45);
+
+    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
+    camera.position.set(9, 8, 12);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    app.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 2.5, 0);
+    controls.minDistance = 8; controls.maxDistance = 30;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    const key = new THREE.DirectionalLight(0xffffff, 1.1);
+    key.position.set(6, 12, 8); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x7fffc0, 0.4);
+    rim.position.set(-8, 4, -6); scene.add(rim);
+
+    // Piso
+    const floor = new THREE.Mesh(
+      new THREE.CircleGeometry(16, 64),
+      new THREE.MeshStandardMaterial({ color: 0x0a3324, roughness: 1 })
+    );
+    floor.rotation.x = -Math.PI / 2; floor.position.y = -0.01; scene.add(floor);
+
+    // Dimensiones del contenedor (unidades de escena)
+    const W = 5, D = 5, H = 7;
+
+    // Paredes translúcidas
+    const glass = new THREE.MeshPhysicalMaterial({
+      color: 0x3fae7a, transparent: true, opacity: 0.16,
+      roughness: 0.1, metalness: 0, transmission: 0.6, side: THREE.DoubleSide
+    });
+    const walls = new THREE.Mesh(new THREE.BoxGeometry(W, H, D), glass);
+    walls.position.y = H / 2; scene.add(walls);
+    const edges = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.BoxGeometry(W, H, D)),
+      new THREE.LineBasicMaterial({ color: 0x6fe6a8 })
+    );
+    edges.position.y = H / 2; scene.add(edges);
+
+    // Contenido (lo que sube según el %)
+    const fillMat = new THREE.MeshStandardMaterial({ color: 0x2f8f5d, roughness: 0.85 });
+    const fill = new THREE.Mesh(new THREE.BoxGeometry(W - 0.3, 1, D - 0.3), fillMat);
+    scene.add(fill);
+
+    // Tapa con sensor
+    const lid = new THREE.Mesh(
+      new THREE.BoxGeometry(W + 0.4, 0.4, D + 0.4),
+      new THREE.MeshStandardMaterial({ color: 0xcfd8d3, roughness: 0.6 })
+    );
+    lid.position.y = H + 0.2; scene.add(lid);
+    const sensor = new THREE.Mesh(
+      new THREE.BoxGeometry(1.8, 0.5, 0.9),
+      new THREE.MeshStandardMaterial({ color: 0x10263a })
+    );
+    sensor.position.set(0, H - 0.1, 0); scene.add(sensor);
+
+    // Semáforo (3 esferas emisivas sobre la tapa)
+    const luces = {};
+    ['verde', 'amarillo', 'rojo'].forEach((c, i) => {
+      const m = new THREE.Mesh(
+        new THREE.SphereGeometry(0.42, 24, 24),
+        new THREE.MeshStandardMaterial({ color: COL[c], emissive: COL[c], emissiveIntensity: 0 })
+      );
+      m.position.set(-1.2 + i * 1.2, H + 0.9, D / 2 - 0.6);
+      scene.add(m); luces[c] = m;
+    });
+
+    // ---- Estado / UI ----
+    const $ = id => document.getElementById(id);
+    const estadoBox = $('estado');
+    let nivelActual = 0, beepArmado = false, audioCtx = null;
+
+    function beep() {
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.frequency.value = 880; o.connect(g); g.connect(audioCtx.destination);
+        g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.18);
+        o.start(); o.stop(audioCtx.currentTime + 0.2);
+      } catch (e) {}
+    }
+
+    function actualizar(dist) {
+      const pct = calcularLlenado(dist);
+      $('dist').textContent = dist.toFixed(0) + ' cm';
+      $('pct').textContent = pct + ' %';
+
+      let estado, col;
+      if (pct < UMBRAL_MEDIO) { estado = 'BAJO'; col = 'verde'; }
+      else if (pct < UMBRAL_ALTO) { estado = 'MEDIO'; col = 'amarillo'; }
+      else { estado = 'LLENO 🔊'; col = 'rojo'; }
+
+      ['verde', 'amarillo', 'rojo'].forEach(c => luces[c].material.emissiveIntensity = c === col ? 1.4 : 0.04);
+      estadoBox.textContent = 'Nivel ' + estado;
+      estadoBox.style.background = 'rgba(' + (col === 'verde' ? '39,201,63' : col === 'amarillo' ? '245,197,66' : '255,77,77') + ',0.18)';
+      estadoBox.style.color = COL[col] ? '#' + COL[col].toString(16).padStart(6, '0') : '#fff';
+
+      // beep al cruzar a LLENO
+      if (col === 'rojo' && !beepArmado) { beep(); beepArmado = true; }
+      if (col !== 'rojo') beepArmado = false;
+
+      nivelActual = pct; // objetivo de animación
+    }
+
+    $('slider').addEventListener('input', e => actualizar(parseFloat(e.target.value)));
+    const _p = new URLSearchParams(location.search);
+    if (_p.has('dist')) $('slider').value = _p.get('dist');
+    actualizar(parseFloat($('slider').value));
+
+    // ---- Loop ----
+    let h = 0.01, t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.03;
+      const objetivo = Math.max(0.02, (nivelActual / 100) * (H - 0.2));
+      h += (objetivo - h) * 0.12;                 // animación suave del nivel
+      fill.geometry.dispose();
+      fill.geometry = new THREE.BoxGeometry(W - 0.3, h, D - 0.3);
+      fill.position.y = h / 2;
+
+      // pulso del LED rojo cuando está lleno
+      if (luces.rojo.material.emissiveIntensity > 1)
+        luces.rojo.material.emissiveIntensity = 1.0 + Math.abs(Math.sin(t * 4)) * 1.2;
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+</body>
+</html>

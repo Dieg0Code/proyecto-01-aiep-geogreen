@@ -5,23 +5,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Current state
 
 The repository root holds **planning and specification documents** (the grant
-application and component lists). The first firmware lives in `arduino/` — a
-PlatformIO + Wokwi project that simulates the Arduino track entirely in software
-(no physical board or arduino-cli required). The ESP32 track and any dashboard
-are not implemented yet. It is not a git repository.
+application and component lists). The Arduino track is implemented in `arduino/`
+and is fully simulable/automatable **from the CLI — no VS Code, no arduino-cli,
+no physical board**. There is also a 3D enclosure (`arduino/3d/`) and a web 3D
+visualization (`web/`). The ESP32 track is not implemented yet.
 
-### Build / simulate the Arduino track
+### Toolchain (all installed, all CLI-driven)
 
-From `arduino/` (requires the PlatformIO IDE + Wokwi Simulator VS Code
-extensions — PlatformIO bundles its own AVR compiler, no arduino-cli needed):
+- **PlatformIO** (`pio`) installed via `uv tool` → `~/.local/bin/pio.exe`. Compiles the firmware (bundles its own AVR compiler).
+- **Wokwi CLI** (`wokwi-cli`) → `~/.local/bin/wokwi-cli.exe`. Headless simulation. Needs a free token in `~/.wokwi_token` (read by the scripts; never commit it).
+- **WireViz** (`uv tool`) + **Graphviz** (`scoop`, on `~/scoop/shims`) → wiring diagram from `arduino/wiring.yml`.
+- **OpenSCAD** (`scoop`, extras bucket) → 3D render/STL from `arduino/3d/carcasa.scad`. NOTE: call the real path `~/scoop/apps/openscad/2021.01/openscad.exe`; the `current` symlink crashes OpenSCAD on Windows.
+- Use **uv** for any Python, not pip (system Python can't write to its Scripts dir).
+
+### Common commands
 
 ```
-pio run                     # compile -> .pio/build/uno/firmware.hex
+bash arduino/sim.sh            # compile + headless simulate, prints serial
+bash arduino/test.sh           # asserts the 3 semaforo states (verde/amarillo/rojo)
+wireviz arduino/wiring.yml     # regenerate the wiring diagram
+openscad ... arduino/3d/carcasa.scad   # regenerate render/STL (see arduino/3d header)
+python -m http.server 8099 --directory web   # serve the Three.js viz
 ```
 
-Then run **Wokwi: Start Simulator** in VS Code (uses `wokwi.toml` + `diagram.json`).
-Zero-install alternative: paste `src/main.cpp` and `diagram.json` into a new
-Arduino Uno project at wokwi.com. There is no test suite. See `arduino/README.md`.
+`test.sh` is the closest thing to a test suite (Wokwi `--expect-text` assertions).
+Zero-install alternative for the sim: paste `src/main.cpp` + `diagram.json` into a
+new Arduino Uno project at wokwi.com. See `arduino/README.md`.
 
 ## What GeoGreen is
 
