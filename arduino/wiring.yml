@@ -1,5 +1,5 @@
 metadata:
-  title: GeoGreen - Cableado del prototipo Arduino UNO
+  title: GeoGreen - Cableado del modulo (Arduino Nano + 3xAAA)
 
 options:
   bgcolor: WH
@@ -7,8 +7,14 @@ options:
 
 connectors:
   ARDUINO:
-    type: Arduino UNO
-    pinlabels: [5V, GND, D2, D3, D4, D8, D9, D10]
+    type: Arduino Nano
+    pinlabels: [VIN, 5V, GND, D2, D3, D4, D8, D9, D10]
+  BATERIA:
+    type: Porta-pilas 3xAAA (4.5V)
+    pinlabels: ['+', '-']
+  SW:
+    type: Interruptor ON/OFF
+    pinlabels: ['1', '2']
   SENSOR:
     type: HC-SR04
     pinlabels: [VCC, TRIG, ECHO, GND]
@@ -48,8 +54,26 @@ cables:
     colors: [GN, BK]
   W_BZ:
     colors: [VT, BK]
+  W_PWR:
+    colors: [RD, BK]
+  W_SW:
+    colors: [RD]
 
 connections:
+  # Alimentacion: bateria -> interruptor -> VIN, y retorno GND
+  -
+    - BATERIA: ['+']
+    - W_SW: [1]
+    - SW: ['1']
+  -
+    - SW: ['2']
+    - W_PWR: [1]
+    - ARDUINO: [VIN]
+  -
+    - BATERIA: ['-']
+    - W_PWR: [2]
+    - ARDUINO: [GND]
+  # Sensor (alimentado desde 5V del Nano)
   -
     - ARDUINO: [5V, D9, D10, GND]
     - W_SENSOR: [1, 2, 3, 4]

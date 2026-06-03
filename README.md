@@ -50,34 +50,52 @@ Salida esperada de `test.sh`:
 TODOS LOS CASOS PASARON ✓
 ```
 
-### Cableado
+### Cableado (planos para armar)
 
-Diagrama generado por CLI con [WireViz](https://github.com/wireviz/WireViz)
+Mapa de conexiones generado por CLI con [WireViz](https://github.com/wireviz/WireViz)
 (fuente: [`arduino/wiring.yml`](arduino/wiring.yml), regenerar con `wireviz arduino/wiring.yml`):
+Arduino Nano + HC-SR04 + semáforo + buzzer, alimentado con 3×AAA y un interruptor.
 
 <p align="center">
-  <img src="docs/cableado.png" alt="Diagrama de cableado del prototipo Arduino" width="420">
+  <img src="docs/cableado.png" alt="Diagrama de cableado del módulo GeoGreen" width="640">
 </p>
 
-Detalle del circuito, mapa de pines y calibración: [`arduino/README.md`](arduino/README.md).
+¿Prefieres el pictórico clásico (Arduino + protoboard + cablecitos)? Guía paso a
+paso para armarlo en Fritzing: [`arduino/GUIA-FRITZING.md`](arduino/GUIA-FRITZING.md).
+Mapa de pines y calibración: [`arduino/README.md`](arduino/README.md).
 
-## Maqueta 3D (imprimible)
+## Módulo clip-on (el diseño físico)
 
-Carcasa diseñada por código con [OpenSCAD](https://openscad.org/): un contenedor
-y una tapa con los huecos para los dos transductores del HC-SR04, la fila de
-3 LEDs y el buzzer. Fuente: [`arduino/3d/carcasa.scad`](arduino/3d/carcasa.scad).
+La idea: una **cajita sellada que se pega con adhesivo 3M a la cara interior de
+la tapa de cualquier basurero** — sin cableado expuesto, sin perforar, sin
+fabricar basureros especiales. El sensor mira hacia abajo al contenido. Adentro
+van el Arduino Nano, las pilas 3×AAA, el buzzer y el semáforo.
+
+Plano 3D explosionado (OpenSCAD, [`arduino/3d/modulo.scad`](arduino/3d/modulo.scad)):
 
 <p align="center">
-  <img src="docs/carcasa-3d.png" alt="Render 3D de la carcasa de la maqueta" width="440">
+  <img src="docs/modulo-3d.png" alt="Plano explosionado del módulo clip-on" width="420">
 </p>
 
-STL listos para imprimir: [`contenedor.stl`](arduino/3d/contenedor.stl) ·
-[`tapa.stl`](arduino/3d/tapa.stl). Regenerar:
+**Plano interactivo** (rotable, con etiquetas y slider de explosión):
+[`web/plano.html`](web/plano.html) — `python -m http.server 8099 --directory web`
+y abre `http://localhost:8099/plano.html`.
+
+<p align="center">
+  <img src="docs/plano-web.png" alt="Plano 3D interactivo del módulo" width="640">
+</p>
+
+STL listos para imprimir: [`modulo-base.stl`](arduino/3d/modulo-base.stl) ·
+[`modulo-tapa.stl`](arduino/3d/modulo-tapa.stl). Regenerar:
 
 ```bash
-openscad -o docs/carcasa-3d.png --viewall --autocenter arduino/3d/carcasa.scad
-openscad -D 'parte="tapa"' -o arduino/3d/tapa.stl arduino/3d/carcasa.scad
+openscad -o docs/modulo-3d.png --viewall --autocenter arduino/3d/modulo.scad
+openscad -D 'vista="tapa"' -o arduino/3d/modulo-tapa.stl arduino/3d/modulo.scad
 ```
+
+> También está la maqueta demostrativa tipo contenedor completo en
+> [`arduino/3d/carcasa.scad`](arduino/3d/carcasa.scad) (`docs/carcasa-3d.png`),
+> útil para mostrar el concepto en la presentación.
 
 ## Visualización web 3D
 
@@ -98,16 +116,18 @@ python -m http.server 8099 --directory web
 
 ```
 .
-├── arduino/                 # Track Arduino UNO (firmware + simulación CLI)
+├── arduino/                 # Track Arduino (firmware + simulación CLI + 3D)
 │   ├── src/main.cpp         # Lógica de llenado + semáforo + buzzer
 │   ├── diagram.json         # Circuito virtual de Wokwi
 │   ├── platformio.ini       # Configuración de compilación
 │   ├── sim.sh / test.sh     # Scripts de simulación y test por CLI
 │   ├── wiring.yml           # Fuente del diagrama de cableado (WireViz)
-│   ├── 3d/carcasa.scad      # Carcasa imprimible (OpenSCAD) + STL exportados
-│   └── README.md
-├── web/index.html           # Visualización web 3D (Three.js)
-├── docs/                    # Imágenes generadas (cableado, render 3D, web)
+│   ├── GUIA-FRITZING.md     # Guía para el pictórico en Fritzing
+│   └── 3d/                  # OpenSCAD: modulo.scad (clip-on) + carcasa.scad + STL
+├── web/
+│   ├── index.html           # Visualización web 3D del llenado (Three.js)
+│   └── plano.html           # Plano 3D explosionado interactivo del módulo
+├── docs/                    # Imágenes generadas (cableado, renders 3D, web)
 ├── *.md / *.docx / *.pdf    # Documentación: postulación y listas de componentes
 └── componentes-*.png        # Fotos de los componentes
 ```

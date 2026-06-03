@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoGreen · Plano 3D del módulo</title>
+  <style>
+    :root { --bg0:#06241a; --bg1:#0c3a28; --verde:#27c93f; --txt:#eafff3; --muted:#8fcaa9; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html,body { height:100%; }
+    body {
+      font-family:"Segoe UI",system-ui,sans-serif; color:var(--txt);
+      background:radial-gradient(circle at 30% 20%,var(--bg1),var(--bg0) 70%);
+      overflow:hidden;
+    }
+    #app { position:fixed; inset:0; }
+    canvas { display:block; }
+    .panel {
+      position:fixed; top:22px; left:22px; width:300px; padding:20px 22px;
+      background:rgba(8,30,22,.62); backdrop-filter:blur(14px);
+      border:1px solid rgba(140,220,170,.18); border-radius:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+    }
+    .panel h1 { font-size:24px; letter-spacing:-.5px; }
+    .panel h1 span { color:var(--verde); }
+    .sub { color:var(--muted); font-size:13px; margin:2px 0 18px; }
+    label.ctl { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+    input[type=range] { width:100%; margin:10px 0 16px; accent-color:var(--verde); cursor:pointer; }
+    .bom { list-style:none; font-size:12.5px; }
+    .bom li { padding:4px 0; display:flex; align-items:center; gap:8px; color:var(--muted); }
+    .sw { width:11px; height:11px; border-radius:3px; flex:0 0 auto; }
+    .label {
+      color:#eafff3; font-size:12px; font-weight:600; padding:3px 8px;
+      background:rgba(6,30,20,.78); border:1px solid rgba(140,220,170,.25);
+      border-radius:8px; white-space:nowrap; pointer-events:none; text-shadow:0 1px 2px #000;
+    }
+    .foot { position:fixed; bottom:16px; right:20px; font-size:11px; color:var(--muted); opacity:.8; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div class="panel">
+    <h1>Geo<span>Green</span> · plano</h1>
+    <div class="sub">Módulo clip-on — vista explosionada</div>
+    <label class="ctl">Explosión</label>
+    <input type="range" id="exp" min="0" max="1" value="1" step="0.01" />
+    <label class="ctl">Componentes (de arriba hacia abajo)</label>
+    <ul class="bom">
+      <li><span class="sw" style="background:#d8d83a"></span>Adhesivo 3M → pega a la tapa</li>
+      <li><span class="sw" style="background:#cfd8d3"></span>Tapa impresa (LEDs + buzzer)</li>
+      <li><span class="sw" style="background:#555"></span>Pilas 3×AAA</li>
+      <li><span class="sw" style="background:#0aa"></span>Arduino Nano</li>
+      <li><span class="sw" style="background:#2f8f5d"></span>Caja impresa 3D</li>
+      <li><span class="sw" style="background:#3a6bd8"></span>HC-SR04 (mira al contenido)</li>
+    </ul>
+  </div>
+  <div class="foot">Arrastra para rotar · slider para explotar/armar</div>
+
+  <script type="importmap">
+  { "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  } }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+    const app = document.getElementById('app');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 200);
+    camera.position.set(13, 6, 19);
+
+    const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    app.appendChild(renderer.domElement);
+
+    const labelRenderer = new CSS2DRenderer();
+    labelRenderer.setSize(innerWidth, innerHeight);
+    labelRenderer.domElement.style.position = 'fixed';
+    labelRenderer.domElement.style.top = '0';
+    labelRenderer.domElement.style.pointerEvents = 'none';
+    app.appendChild(labelRenderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; controls.target.set(0, 2.2, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(6,12,8); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x7fffc0, 0.4); rim.position.set(-8,4,-6); scene.add(rim);
+
+    const S = 0.1;                       // 1 unidad = 10 mm
+    const LX=72*S, LY=54*S, LZ=34*S, t=2.5*S, tapa=2.5*S;
+    const mat = (c, o={}) => new THREE.MeshStandardMaterial({ color:c, roughness:0.7, ...o });
+
+    function addLabel(obj, text, dx) {
+      const d = document.createElement('div'); d.className='label'; d.textContent=text;
+      const l = new CSS2DObject(d); l.position.set(dx, 0, 0); obj.add(l);
+    }
+
+    // parte: malla, y ensamblada (a) y explosionada (b); el slider interpola
+    const partes = [];
+    function parte(mesh, a, b, label, lx) {
+      scene.add(mesh); addLabel(mesh, label, lx ?? (LX/2+0.4));
+      partes.push({ mesh, a, b }); return mesh;
+    }
+
+    // caja abierta (piso + 4 paredes)
+    function cajaAbierta(w, h, d, wall, color) {
+      const g = new THREE.Group(), m = mat(color);
+      const piso = new THREE.Mesh(new THREE.BoxGeometry(w, wall, d), m);
+      piso.position.y = -h/2 + wall/2; g.add(piso);
+      const fb = new THREE.BoxGeometry(w, h, wall);
+      for (const z of [d/2-wall/2, -d/2+wall/2]) { const p=new THREE.Mesh(fb,m); p.position.z=z; g.add(p); }
+      const lr = new THREE.BoxGeometry(wall, h, d);
+      for (const x of [w/2-wall/2, -w/2+wall/2]) { const p=new THREE.Mesh(lr,m); p.position.x=x; g.add(p); }
+      return g;
+    }
+
+    // ---- Caja (ancla, no se mueve) ----
+    parte(cajaAbierta(LX+2*t, LZ, LY+2*t, t, 0x2f8f5d), 1.5, 1.5, 'Caja impresa 3D');
+
+    // ---- Sensor HC-SR04 (transductores hacia abajo) ----
+    const sensor = new THREE.Group();
+    sensor.add(new THREE.Mesh(new THREE.BoxGeometry(45*S, 1.5*S, 20*S), mat(0x3a6bd8)));
+    for (const s of [-1,1]) {
+      const oj = new THREE.Mesh(new THREE.CylinderGeometry(8*S,8*S,12*S,24), mat(0x16245a));
+      oj.position.set(s*13*S, -7*S, 0); sensor.add(oj);
+    }
+    parte(sensor, -0.4, -2.8, 'HC-SR04 → mira al contenido', 45*S/2+0.4);
+
+    // ---- Arduino Nano ----
+    const nano = new THREE.Group();
+    nano.add(new THREE.Mesh(new THREE.BoxGeometry(45*S, 8*S, 18*S), mat(0x00a0a0)));
+    const usb = new THREE.Mesh(new THREE.BoxGeometry(16*S,3*S,8*S), mat(0xc8c8c8));
+    usb.position.set(-16*S, 5.5*S, 0); nano.add(usb);
+    parte(nano, 0.4, 3.9, 'Arduino Nano', 45*S/2+0.4);
+
+    // ---- Pilas 3xAAA ----
+    const bats = new THREE.Group();
+    bats.add(new THREE.Mesh(new THREE.BoxGeometry(58*S, 14*S, 24*S), mat(0x4a4a4a)));
+    for (const s of [-1,0,1]) {
+      const c = new THREE.Mesh(new THREE.CylinderGeometry(5*S,5*S,44*S,20), mat(0xc0392b));
+      c.rotation.z = Math.PI/2; c.position.set(0, 8*S, s*7*S); bats.add(c);
+    }
+    parte(bats, 1.5, 5.2, 'Pilas 3×AAA', 58*S/2+0.4);
+
+    // ---- Tapa impresa (LEDs + buzzer) ----
+    const cubierta = new THREE.Group();
+    cubierta.add(new THREE.Mesh(new THREE.BoxGeometry(LX+2*t, tapa, LY+2*t), mat(0xcfd8d3)));
+    [0x27c93f, 0xf5c542, 0xff4d4d].forEach((c,i) => {
+      const led = new THREE.Mesh(new THREE.CylinderGeometry(2.5*S,2.5*S,2*S,16),
+        new THREE.MeshStandardMaterial({ color:c, emissive:c, emissiveIntensity:0.7 }));
+      led.position.set((i-1)*11*S, tapa, 12*S); cubierta.add(led);
+    });
+    const bz = new THREE.Mesh(new THREE.CylinderGeometry(6*S,6*S,3*S,24), mat(0x222));
+    bz.position.set(0, tapa, -12*S); cubierta.add(bz);
+    parte(cubierta, 3.4, 6.5, 'Tapa: semáforo + buzzer');
+
+    // ---- Adhesivo 3M ----
+    const adh = new THREE.Mesh(new THREE.BoxGeometry(LX, 1*S, LY),
+      new THREE.MeshStandardMaterial({ color:0xd8d83a, transparent:true, opacity:0.7 }));
+    parte(adh, 3.7, 7.6, 'Adhesivo 3M → tapa del basurero');
+
+    function aplicarExplosion(k) {
+      for (const p of partes) p.mesh.position.y = p.a + (p.b - p.a) * k;
+    }
+    document.getElementById('exp').addEventListener('input', e => aplicarExplosion(parseFloat(e.target.value)));
+    aplicarExplosion(1);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+      labelRenderer.render(scene, camera);
+    }
+    animate();
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+      labelRenderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+</body>
+</html>

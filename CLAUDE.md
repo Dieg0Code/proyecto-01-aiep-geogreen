@@ -7,8 +7,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 The repository root holds **planning and specification documents** (the grant
 application and component lists). The Arduino track is implemented in `arduino/`
 and is fully simulable/automatable **from the CLI — no VS Code, no arduino-cli,
-no physical board**. There is also a 3D enclosure (`arduino/3d/`) and a web 3D
-visualization (`web/`). The ESP32 track is not implemented yet.
+no physical board**. The intended physical product is a **clip-on module**
+(`arduino/3d/modulo.scad`): a sealed box that sticks with 3M adhesive to the
+underside of any existing bin lid (sensor faces down; no drilling), holding an
+Arduino Nano + HC-SR04 + 3xAAA + buzzer + LED traffic light. `carcasa.scad` is a
+separate demo-container maquette. `web/index.html` is a fill-level 3D viz;
+`web/plano.html` is an interactive exploded assembly plano. ESP32 track not done.
 
 ### Toolchain (all installed, all CLI-driven)
 
