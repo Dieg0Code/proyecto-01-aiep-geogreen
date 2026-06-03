@@ -61,6 +61,24 @@ Diagrama generado por CLI con [WireViz](https://github.com/wireviz/WireViz)
 
 Detalle del circuito, mapa de pines y calibración: [`arduino/README.md`](arduino/README.md).
 
+## Maqueta 3D (imprimible)
+
+Carcasa diseñada por código con [OpenSCAD](https://openscad.org/): un contenedor
+y una tapa con los huecos para los dos transductores del HC-SR04, la fila de
+3 LEDs y el buzzer. Fuente: [`arduino/3d/carcasa.scad`](arduino/3d/carcasa.scad).
+
+<p align="center">
+  <img src="docs/carcasa-3d.png" alt="Render 3D de la carcasa de la maqueta" width="440">
+</p>
+
+STL listos para imprimir: [`contenedor.stl`](arduino/3d/contenedor.stl) ·
+[`tapa.stl`](arduino/3d/tapa.stl). Regenerar:
+
+```bash
+openscad -o docs/carcasa-3d.png --viewall --autocenter arduino/3d/carcasa.scad
+openscad -D 'parte="tapa"' -o arduino/3d/tapa.stl arduino/3d/carcasa.scad
+```
+
 ## Estructura
 
 ```
