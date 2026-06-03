@@ -50,6 +50,15 @@ Salida esperada de `test.sh`:
 TODOS LOS CASOS PASARON ✓
 ```
 
+### Cableado
+
+Diagrama generado por CLI con [WireViz](https://github.com/wireviz/WireViz)
+(fuente: [`arduino/wiring.yml`](arduino/wiring.yml), regenerar con `wireviz arduino/wiring.yml`):
+
+<p align="center">
+  <img src="docs/cableado.png" alt="Diagrama de cableado del prototipo Arduino" width="420">
+</p>
+
 Detalle del circuito, mapa de pines y calibración: [`arduino/README.md`](arduino/README.md).
 
 ## Estructura

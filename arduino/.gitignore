@@ -2,3 +2,8 @@
 *.png
 serial.log
 .diagram.*.json
+
+# Salidas generadas por WireViz (la fuente es wiring.yml)
+wiring.html
+wiring.svg
+wiring.bom.tsv

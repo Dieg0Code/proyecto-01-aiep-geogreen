@@ -1,0 +1,72 @@
+metadata:
+  title: GeoGreen - Cableado del prototipo Arduino UNO
+
+options:
+  bgcolor: WH
+  fontname: Arial
+
+connectors:
+  ARDUINO:
+    type: Arduino UNO
+    pinlabels: [5V, GND, D2, D3, D4, D8, D9, D10]
+  SENSOR:
+    type: HC-SR04
+    pinlabels: [VCC, TRIG, ECHO, GND]
+  LED_R:
+    type: LED rojo
+    notes: nivel alto / lleno
+    pinlabels: [A, C]
+    additional_components:
+      - type: Resistencia
+        subtype: 220 ohm
+  LED_A:
+    type: LED amarillo
+    notes: nivel medio
+    pinlabels: [A, C]
+    additional_components:
+      - type: Resistencia
+        subtype: 220 ohm
+  LED_V:
+    type: LED verde
+    notes: nivel bajo
+    pinlabels: [A, C]
+    additional_components:
+      - type: Resistencia
+        subtype: 220 ohm
+  BUZZER:
+    type: Buzzer activo 5V
+    pinlabels: ['+', '-']
+
+cables:
+  W_SENSOR:
+    colors: [RD, BU, GN, BK]
+  W_R:
+    colors: [OG, BK]
+  W_A:
+    colors: [YE, BK]
+  W_V:
+    colors: [GN, BK]
+  W_BZ:
+    colors: [VT, BK]
+
+connections:
+  -
+    - ARDUINO: [5V, D9, D10, GND]
+    - W_SENSOR: [1, 2, 3, 4]
+    - SENSOR: [VCC, TRIG, ECHO, GND]
+  -
+    - ARDUINO: [D2, GND]
+    - W_R: [1, 2]
+    - LED_R: [A, C]
+  -
+    - ARDUINO: [D3, GND]
+    - W_A: [1, 2]
+    - LED_A: [A, C]
+  -
+    - ARDUINO: [D4, GND]
+    - W_V: [1, 2]
+    - LED_V: [A, C]
+  -
+    - ARDUINO: [D8, GND]
+    - W_BZ: [1, 2]
+    - BUZZER: ['+', '-']
