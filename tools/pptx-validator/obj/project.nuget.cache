@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "WrOtp6CRfYM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Diego Obando\\dev\\pro301-taller-de-aplicaciones-para-internet\\tools\\pptx-validator\\pptx-validator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Diego Obando\\.nuget\\packages\\documentformat.openxml\\3.5.1\\documentformat.openxml.3.5.1.nupkg.sha512",
+    "C:\\Users\\Diego Obando\\.nuget\\packages\\documentformat.openxml.framework\\3.5.1\\documentformat.openxml.framework.3.5.1.nupkg.sha512",
+    "C:\\Users\\Diego Obando\\.nuget\\packages\\system.io.packaging\\8.0.1\\system.io.packaging.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

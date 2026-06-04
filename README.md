@@ -14,6 +14,7 @@ usando el dispositivo como caso central.
 
 - Resumen completo de la postulación: **[`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md)**
 - Plan de ejecución y roadmap: **[`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md)**
+- Cronograma del programa: **[`cronograma/README.md`](cronograma/README.md)**
 
 <p align="center">
   <img src="componenetes-arduino.png" alt="Componentes del prototipo GeoGreen con Arduino" width="360">

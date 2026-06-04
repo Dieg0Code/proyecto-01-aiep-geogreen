@@ -1,0 +1,15 @@
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\bin\Debug\net8.0\pbip-validator.exe
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\bin\Debug\net8.0\pbip-validator.deps.json
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\bin\Debug\net8.0\pbip-validator.runtimeconfig.json
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\bin\Debug\net8.0\pbip-validator.dll
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\bin\Debug\net8.0\pbip-validator.pdb
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.AssemblyInfoInputs.cache
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.AssemblyInfo.cs
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.csproj.CoreCompileInputs.cache
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.sourcelink.json
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.dll
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\refint\pbip-validator.dll
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.pdb
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\pbip-validator.genruntimeconfig.cache
+C:\Users\Diego Obando\dev\pro301-taller-de-aplicaciones-para-internet\tools\pbip-validator\obj\Debug\net8.0\ref\pbip-validator.dll
