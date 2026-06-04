@@ -9,3 +9,20 @@
 arduino/run.png
 serial.log
 .diagram.*.json
+
+# Dependencias / entornos (workspaces de slides y tools)
+**/node_modules/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# Artefactos de build (.NET, bundlers)
+**/bin/
+**/obj/
+**/dist/
+*.bak
+
+# Ruido de SO/editor
+.DS_Store
+Thumbs.db
+~$*
