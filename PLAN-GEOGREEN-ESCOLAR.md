@@ -3,6 +3,8 @@
 > One-pager para alinear el equipo. Proyecto de **continuidad**, Fondo Concursable
 > VCM 2026, AIEP Osorno. Líder de ejecución: **Diego Obando** (Programación y
 > Análisis de Sistemas).
+>
+> Resumen completo de la postulación: [`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md).
 
 ## En una frase
 

@@ -10,8 +10,10 @@ georreferenciada de cada punto de reciclaje (de ahí *Geo* + *Green*).
 
 En esta etapa (continuidad) el proyecto es un **programa educativo — GeoGreen
 Escolar**: talleres + demostraciones STEM + un desafío final dictados a un colegio,
-usando el dispositivo como caso central. Plan de ejecución y roadmap:
-**[`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md)**.
+usando el dispositivo como caso central.
+
+- Resumen completo de la postulación: **[`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md)**
+- Plan de ejecución y roadmap: **[`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md)**
 
 <p align="center">
   <img src="componenetes-arduino.png" alt="Componentes del prototipo GeoGreen con Arduino" width="360">
