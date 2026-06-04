@@ -48,6 +48,21 @@ int calcularLlenado(float distancia) {
 }
 
 // Enciende el LED correspondiente y activa el buzzer si esta lleno.
+// --- Alerta sonora: "pip pip" y luego silencio largo (no molesta) ---
+const unsigned long INTERVALO_ALERTA_MS = 15UL * 60UL * 1000UL;  // repetir cada 15 min
+unsigned long ultimaAlerta = 0;
+bool alertaArmada = true;   // suena apenas se detecta "lleno"
+
+// Emite dos beeps cortos: "pip pip".
+void pipPip() {
+  for (int i = 0; i < 2; i++) {
+    tone(PIN_BUZZER, 2000);
+    delay(120);
+    noTone(PIN_BUZZER);
+    delay(120);
+  }
+}
+
 void mostrarEstado(int porcentaje) {
   bool amarillo = (porcentaje >= UMBRAL_MEDIO) && (porcentaje < UMBRAL_ALTO);
   bool rojo     = (porcentaje >= UMBRAL_ALTO);
@@ -57,10 +72,18 @@ void mostrarEstado(int porcentaje) {
   digitalWrite(PIN_AMARILLO, amarillo ? HIGH : LOW);
   digitalWrite(PIN_ROJO,     rojo     ? HIGH : LOW);
 
-  // tone() genera una senal oscilante: suena en el buzzer de Wokwi (pasivo)
-  // y tambien en un buzzer activo real. digitalWrite(HIGH) NO suena en Wokwi.
-  if (rojo) tone(PIN_BUZZER, 2000);   // 2 kHz cuando esta lleno
-  else      noTone(PIN_BUZZER);
+  // Lleno: "pip pip" al detectarlo y luego cada 15 min. Al vaciarse se rearma.
+  // tone() suena en Wokwi (buzzer pasivo) y en un buzzer activo real.
+  if (rojo) {
+    if (alertaArmada || (millis() - ultimaAlerta >= INTERVALO_ALERTA_MS)) {
+      pipPip();
+      ultimaAlerta = millis();
+      alertaArmada = false;
+    }
+  } else {
+    noTone(PIN_BUZZER);
+    alertaArmada = true;
+  }
 }
 
 void setup() {
