@@ -5,8 +5,13 @@ al Fondo Concursable VCM 2026, **AIEP Osorno** (Chile).
 
 Un sensor ultrasónico mide cuánto le falta a un contenedor para llenarse y lo
 informa con un **semáforo de LEDs** y una **alerta sonora**. La versión completa
-proyecta enviar el dato por WiFi a un tablero con la ubicación de cada punto de
-reciclaje (de ahí *Geo* + *Green*).
+proyecta enviar el dato por **WiFi o LoRa** a un tablero con la ubicación
+georreferenciada de cada punto de reciclaje (de ahí *Geo* + *Green*).
+
+En esta etapa (continuidad) el proyecto es un **programa educativo — GeoGreen
+Escolar**: talleres + demostraciones STEM + un desafío final dictados a un colegio,
+usando el dispositivo como caso central. Plan de ejecución y roadmap:
+**[`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md)**.
 
 <p align="center">
   <img src="componenetes-arduino.png" alt="Componentes del prototipo GeoGreen con Arduino" width="360">
