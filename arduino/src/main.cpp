@@ -49,7 +49,7 @@ int calcularLlenado(float distancia) {
 
 // Enciende el LED correspondiente y activa el buzzer si esta lleno.
 // --- Alerta sonora: "pip pip" y luego silencio largo (no molesta) ---
-const unsigned long INTERVALO_ALERTA_MS = 15UL * 60UL * 1000UL;  // repetir cada 15 min
+const unsigned long INTERVALO_ALERTA_MS = 5UL * 60UL * 1000UL;   // repetir cada 5 min
 unsigned long ultimaAlerta = 0;
 bool alertaArmada = true;   // suena apenas se detecta "lleno"
 
