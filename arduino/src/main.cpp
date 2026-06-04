@@ -56,7 +56,11 @@ void mostrarEstado(int porcentaje) {
   digitalWrite(PIN_VERDE,    verde    ? HIGH : LOW);
   digitalWrite(PIN_AMARILLO, amarillo ? HIGH : LOW);
   digitalWrite(PIN_ROJO,     rojo     ? HIGH : LOW);
-  digitalWrite(PIN_BUZZER,   rojo     ? HIGH : LOW);
+
+  // tone() genera una senal oscilante: suena en el buzzer de Wokwi (pasivo)
+  // y tambien en un buzzer activo real. digitalWrite(HIGH) NO suena en Wokwi.
+  if (rojo) tone(PIN_BUZZER, 2000);   // 2 kHz cuando esta lleno
+  else      noTone(PIN_BUZZER);
 }
 
 void setup() {
