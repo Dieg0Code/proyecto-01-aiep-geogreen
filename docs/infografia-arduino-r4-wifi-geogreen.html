@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infografía Arduino UNO R4 WiFi GeoGreen</title>
+  <style>
+    :root {
+      --red: #D62027;
+      --navy: #102A43;
+      --ink: #243B53;
+      --slate: #52606D;
+      --paper: #F8F3EC;
+      --soft: #EDE6DA;
+      --line: #D8CFC4;
+      --green: #3FAE6A;
+      --green-soft: #E9F6EE;
+      --gold: #E0BC5A;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #ddd;
+      font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      width: 1200px;
+      height: 1600px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 16%, rgba(63, 174, 106, 0.10), transparent 24%),
+        linear-gradient(180deg, #fffaf3 0%, var(--paper) 44%, #ffffff 100%);
+      padding: 58px 64px 52px;
+    }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      border: 2px solid rgba(214, 32, 39, .22);
+      color: var(--navy);
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, .74);
+      font-size: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 74px;
+      line-height: .96;
+      letter-spacing: 0;
+      max-width: 990px;
+    }
+
+    .subtitle {
+      margin: 20px 0 34px;
+      max-width: 940px;
+      color: var(--slate);
+      font-size: 30px;
+      line-height: 1.22;
+      font-weight: 600;
+    }
+
+    .accent-line {
+      height: 6px;
+      width: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--red) 0 18%, var(--navy) 18% 70%, var(--green) 70% 100%);
+      margin-bottom: 34px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 452px;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .board-wrap {
+      min-height: 650px;
+      border: 1px solid rgba(216, 207, 196, .9);
+      border-radius: 22px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 18px 45px rgba(16,42,67,.12);
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+    }
+
+    .board-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 2px dashed rgba(16,42,67,.18);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .board {
+      width: 108%;
+      margin-left: -4%;
+      margin-top: 132px;
+      display: block;
+      filter: drop-shadow(0 22px 28px rgba(16,42,67,.18));
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .mini {
+      min-height: 88px;
+      border-radius: 16px;
+      border: 1px solid rgba(216,207,196,.8);
+      background: rgba(255,255,255,.78);
+      padding: 14px 12px;
+    }
+
+    .mini b {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      line-height: 1.05;
+      margin-bottom: 5px;
+    }
+
+    .mini span {
+      display: block;
+      color: var(--slate);
+      font-size: 14px;
+      line-height: 1.15;
+      font-weight: 650;
+    }
+
+    .plate-label {
+      position: absolute;
+      left: 34px;
+      top: 34px;
+      right: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .plate-label strong {
+      display: block;
+      color: var(--navy);
+      font-size: 32px;
+      line-height: 1.05;
+    }
+
+    .plate-label span {
+      display: block;
+      color: var(--slate);
+      font-size: 20px;
+      margin-top: 4px;
+      font-weight: 650;
+    }
+
+    .wifi-chip {
+      min-width: 154px;
+      text-align: center;
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--white);
+      background: var(--navy);
+      font-size: 19px;
+      line-height: 1.1;
+      font-weight: 850;
+      box-shadow: 0 12px 25px rgba(16,42,67,.20);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 116px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 10px 24px rgba(16,42,67,.08);
+      padding: 18px 20px 16px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .num {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--red);
+      color: white;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .card h2 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 19px;
+      line-height: 1.23;
+      font-weight: 580;
+    }
+
+    .card.green .num { background: var(--green); }
+    .card.gold .num { background: #C98A1A; }
+    .card.green { background: linear-gradient(180deg, #fff, var(--green-soft)); }
+    .card.gold { background: linear-gradient(180deg, #fff, #FFF7DE); }
+
+    .flow {
+      margin-top: 34px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 14px 32px rgba(16,42,67,.10);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .step {
+      min-height: 118px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(216,207,196,.75);
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 8px;
+      position: relative;
+      padding: 14px 10px;
+    }
+
+    .step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -23px;
+      top: 39px;
+      color: var(--red);
+      font-size: 38px;
+      font-weight: 900;
+      z-index: 2;
+    }
+
+    .icon {
+      color: var(--navy);
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .step b {
+      color: var(--navy);
+      font-size: 22px;
+    }
+
+    .step span {
+      color: var(--slate);
+      font-size: 15px;
+      text-align: center;
+      font-weight: 650;
+    }
+
+    .note {
+      margin-top: 24px;
+      border: 2px solid var(--gold);
+      border-left: 14px solid var(--gold);
+      border-radius: 18px;
+      background: #FFFBEC;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .note .warn {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .note p {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.25;
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .footer {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topline">
+      <div class="eyebrow">GeoGreen Escolar · Hardware</div>
+      <div class="tag">Vibe AIEP · sin logos</div>
+    </div>
+
+    <h1>Arduino pro para GeoGreen</h1>
+    <p class="subtitle">Ruta conectada basada en <b>Arduino UNO R4 WiFi</b>: mantiene formato Arduino, suma WiFi/BLE integrado y deja LoRa como extensión futura.</p>
+    <div class="accent-line"></div>
+
+    <section class="main">
+      <div class="board-wrap">
+        <div class="plate-label">
+          <div>
+            <strong>Arduino UNO R4 WiFi</strong>
+            <span>RA4M1 32-bit · lógica 5V · formato UNO</span>
+          </div>
+          <div class="wifi-chip">WiFi/BLE<br>integrado</div>
+        </div>
+        <img class="board" src="arduino-uno-r4-wifi-dibujo-digital-crop.png" alt="Dibujo digital de placa Arduino UNO R4 WiFi">
+        <div class="mini-row">
+          <div class="mini"><b>Formato UNO</b><span>Cómodo para taller y prototipado</span></div>
+          <div class="mini"><b>USB-C / 5V</b><span>Alimentación simple para demo</span></div>
+          <div class="mini"><b>Radio integrado</b><span>WiFi/BLE sin módulo aparte</span></div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="num">1</div>
+          <div><h2>Controlador</h2><p>Lee sensores, calcula llenado y coordina pantalla, luces, buzzer y envío de datos.</p></div>
+        </article>
+        <article class="card green">
+          <div class="num">2</div>
+          <div><h2>Conectividad</h2><p>El radio ESP32-S3 integrado permite enviar lecturas por WiFi al dashboard.</p></div>
+        </article>
+        <article class="card">
+          <div class="num">3</div>
+          <div><h2>HC-SR04</h2><p>Sensor ultrasónico: mide distancia desde la tapa hasta el contenido del contenedor.</p></div>
+        </article>
+        <article class="card">
+          <div class="num">4</div>
+          <div><h2>OLED I2C</h2><p>Pantalla local para mostrar porcentaje de llenado y estado operativo.</p></div>
+        </article>
+        <article class="card">
+          <div class="num">5</div>
+          <div><h2>LEDs + buzzer</h2><p>Semáforo verde, amarillo y rojo; alerta sonora cuando supera el umbral lleno.</p></div>
+        </article>
+        <article class="card gold">
+          <div class="num">6</div>
+          <div><h2>LoRa opcional</h2><p>Módulo externo tipo SX1276/RFM95 solo si se necesita mayor alcance que WiFi.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="flow" aria-label="Flujo GeoGreen">
+      <div class="step"><div class="icon">⌁</div><b>Sensar</b><span>distancia con HC-SR04</span></div>
+      <div class="step"><div class="icon">%</div><b>Calcular</b><span>porcentaje de llenado</span></div>
+      <div class="step"><div class="icon">▣</div><b>Mostrar</b><span>OLED y semáforo</span></div>
+      <div class="step"><div class="icon">!</div><b>Alertar</b><span>buzzer y estado rojo</span></div>
+      <div class="step"><div class="icon">⌁</div><b>Enviar</b><span>WiFi al tablero</span></div>
+    </section>
+
+    <section class="note">
+      <div class="warn">!</div>
+      <p><b>Precisión técnica:</b> la opción base conectada es Arduino UNO R4 WiFi. Si se usa Arduino UNO/Nano clásico, la conectividad se agrega con un módulo WiFi o LoRa externo.</p>
+    </section>
+
+    <div class="footer">
+      <span>Fuente: guía Arduino GeoGreen + roadmap del proyecto</span>
+      <span>AIEP Osorno · Coordinación interna</span>
+    </div>
+  </main>
+</body>
+</html>

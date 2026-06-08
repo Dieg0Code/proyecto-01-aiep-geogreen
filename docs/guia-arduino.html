@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guía de Arduino — Manual pedagógico (GeoGreen / AIEP)</title>
+<style>
+  :root{
+    --navy:#102A43; --ink:#243B53; --slate:#52606D; --mute:#7A8794;
+    --red:#D62027; --green:#2E8B57; --green2:#3FAE6A; --gold:#C98A1A; --gold2:#E0BC5A;
+    --blue:#2E6F9E; --purple:#7A4FB0;
+    --paper:#ffffff; --soft:#F4F1EA; --soft2:#EAF3EE; --soft3:#EAF0F7;
+    --line:#D8CFC4; --line2:#E7E1D6; --code:#0E2438;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"Segoe UI", Calibri, system-ui, Arial, sans-serif;
+    color:var(--ink); line-height:1.55; font-size:11.2pt;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    background:var(--paper);
+  }
+  @page{ size:A4; margin:17mm 15mm 16mm 15mm; }
+
+  h1,h2,h3,h4{ color:var(--navy); line-height:1.2; }
+  h2{ font-size:20pt; margin:0 0 4px; border-bottom:3px solid var(--green2); padding-bottom:6px; }
+  h3{ font-size:14pt; margin:18px 0 4px; color:var(--ink); }
+  h4{ font-size:12pt; margin:12px 0 2px; color:var(--slate); }
+  p{ margin:7px 0; }
+  ul,ol{ margin:6px 0 8px; padding-left:22px; }
+  li{ margin:3px 0; }
+  b,strong{ color:var(--ink); }
+  code{ font-family:"Consolas","Courier New",monospace; background:var(--soft); padding:1px 5px; border-radius:4px; font-size:.92em; color:#0c2d20; }
+  a{ color:var(--blue); text-decoration:none; }
+
+  .chapter{ break-before:page; padding-top:2px; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.14em; font-size:8.5pt; font-weight:700; color:var(--red); }
+  .lead{ font-size:11.8pt; color:var(--slate); }
+
+  /* Cover */
+  .cover{ height:262mm; display:flex; flex-direction:column; justify-content:space-between;
+    background:linear-gradient(160deg,#0c2236 0%, #16395a 60%, #1f6f5c 130%); color:#fff;
+    margin:-17mm -15mm 0; padding:30mm 24mm; }
+  .cover .kicker{ letter-spacing:.2em; text-transform:uppercase; font-size:10pt; color:#9fe3bf; font-weight:700; }
+  .cover h1{ color:#fff; font-size:42pt; line-height:1.05; margin:14px 0 6px; }
+  .cover .sub{ font-size:15pt; color:#cfe0ee; max-width:150mm; }
+  .cover .badges span{ display:inline-block; border:1px solid rgba(255,255,255,.35); border-radius:20px;
+    padding:5px 14px; margin:6px 8px 0 0; font-size:10pt; color:#eaf3ee; }
+  .cover .foot{ font-size:10pt; color:#bcd0e0; border-top:1px solid rgba(255,255,255,.25); padding-top:12px; }
+  .cover .chip3{ display:flex; gap:8px; margin-top:10px; }
+  .cover .chip3 i{ width:26px; height:26px; border-radius:50%; display:inline-block; }
+
+  /* TOC */
+  .toc{ break-before:page; }
+  .toc ol{ list-style:none; padding:0; counter-reset:toc; }
+  .toc li{ counter-increment:toc; display:flex; align-items:baseline; gap:10px; padding:5px 0; border-bottom:1px dotted var(--line); }
+  .toc li::before{ content:counter(toc); width:26px; height:26px; flex:0 0 26px; background:var(--navy); color:#fff;
+    border-radius:6px; font-weight:700; font-size:10pt; display:inline-flex; align-items:center; justify-content:center; }
+  .toc .t{ font-weight:600; color:var(--ink); }
+  .toc .d{ color:var(--mute); font-size:9.5pt; }
+
+  /* Boxes */
+  .box{ border:1px solid var(--line); border-radius:10px; padding:10px 14px; margin:12px 0; break-inside:avoid; background:#fff; }
+  .nota{ background:var(--soft3); border-color:#cdddee; border-left:5px solid var(--blue); }
+  .ojo{ background:#FBEDED; border-color:#f1c9cb; border-left:5px solid var(--red); }
+  .tip{ background:var(--soft2); border-color:#cfe6d8; border-left:5px solid var(--green2); }
+  .geo{ background:#F3F7EE; border:1px dashed #b9cf9e; border-left:5px solid var(--green); }
+  .box .tag{ font-weight:700; font-size:9pt; text-transform:uppercase; letter-spacing:.08em; }
+  .nota .tag{ color:var(--blue);} .ojo .tag{ color:var(--red);} .tip .tag{ color:var(--green);} .geo .tag{ color:var(--green); }
+
+  .ej{ break-inside:avoid; margin-top:14px; background:#FCFAF5; border:1px solid var(--line2); border-radius:10px; padding:8px 14px; }
+  .ej h4{ margin:2px 0 4px; color:var(--gold); }
+  .ej ol{ margin:4px 0; }
+
+  /* Tables */
+  table{ width:100%; border-collapse:collapse; margin:10px 0; font-size:9.8pt; break-inside:avoid; }
+  th,td{ border:1px solid var(--line); padding:5px 8px; text-align:left; vertical-align:top; }
+  th{ background:var(--navy); color:#fff; font-weight:600; }
+  tr:nth-child(even) td{ background:var(--soft); }
+
+  /* Code */
+  pre{ background:var(--code); color:#e8f0f7; border-radius:9px; padding:12px 14px; overflow:auto;
+    font-family:"Consolas","Courier New",monospace; font-size:9.4pt; line-height:1.45; margin:10px 0; break-inside:avoid; }
+  pre .c{ color:#7fa7c4; } pre .k{ color:#7fd0a0; } pre .s{ color:#e6c07b; } pre .n{ color:#d19a66; }
+
+  figure{ margin:12px 0; break-inside:avoid; }
+  figure svg{ width:100%; height:auto; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  figcaption{ font-size:9pt; color:var(--mute); margin-top:5px; text-align:center; }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .pill{ display:inline-block; padding:1px 8px; border-radius:20px; font-size:8.5pt; font-weight:700; color:#fff; }
+  .pill.dig{ background:var(--navy);} .pill.ana{ background:var(--green);} .pill.bus{ background:var(--purple);} .pill.pwr{ background:var(--red);}
+  .formula{ text-align:center; font-size:14pt; background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:8px; margin:10px 0; }
+  .formula b{ color:var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ====================== PORTADA ====================== -->
+<section class="cover">
+  <div>
+    <div class="kicker">Proyecto GeoGreen · AIEP Osorno</div>
+    <h1>Arduino<br/>de cero a sólido</h1>
+    <div class="sub">Manual pedagógico para entender placas, sensores, protoboard,
+      resistencias y electrónica — con todo lo necesario para construir y enseñar
+      el prototipo GeoGreen.</div>
+    <div class="badges">
+      <span>★ Tipos de placas</span>
+      <span>★ Sensores</span>
+      <span>★ Protoboard</span>
+      <span>★ Resistencias</span>
+      <span>★ Programación</span>
+      <span>★ IoT/ESP32 (intro)</span>
+    </div>
+    <div class="chip3">
+      <i style="background:#3FAE6A"></i><i style="background:#E0BC5A"></i><i style="background:#D62027"></i>
+    </div>
+  </div>
+  <div class="foot">
+    Guía de estudio · escrita para Diego Obando · Escuela de Programación y Análisis de Sistemas.<br/>
+    Hardware abierto · todos los ejemplos son simulables en Wokwi sin placa física.
+  </div>
+</section>
+
+<!-- ====================== INDICE ====================== -->
+<section class="toc">
+  <h2>Índice</h2>
+  <ol>
+    <li><div><div class="t">¿Qué es Arduino?</div><div class="d">Microcontrolador, hardware abierto y ecosistema</div></div></li>
+    <li><div><div class="t">Tipos de placas Arduino</div><div class="d">UNO, Nano, Mega, R4, ESP32… cuál elegir</div></div></li>
+    <li><div><div class="t">Anatomía de la placa (UNO)</div><div class="d">El chip, las memorias y todos los pines</div></div></li>
+    <li><div><div class="t">Electricidad esencial</div><div class="d">Voltaje, corriente, resistencia y Ley de Ohm</div></div></li>
+    <li><div><div class="t">La protoboard a fondo</div><div class="d">Cómo conecta por dentro y cómo cablear</div></div></li>
+    <li><div><div class="t">Resistencias</div><div class="d">Para qué sirven, cálculo y código de colores</div></div></li>
+    <li><div><div class="t">Componentes básicos</div><div class="d">LED, botón, potenciómetro, transistor, relé, buzzer</div></div></li>
+    <li><div><div class="t">Sensores</div><div class="d">El catálogo: qué miden y cómo se conectan</div></div></li>
+    <li><div><div class="t">Actuadores</div><div class="d">Motores, servos, relés y pantallas</div></div></li>
+    <li><div><div class="t">Protocolos de comunicación</div><div class="d">Serial, I2C y SPI</div></div></li>
+    <li><div><div class="t">Programación de Arduino</div><div class="d">setup/loop y ejemplos comentados</div></div></li>
+    <li><div><div class="t">IoT y ESP32 (introducción)</div><div class="d">WiFi, 3,3V y dashboards</div></div></li>
+    <li><div><div class="t">Caso práctico: GeoGreen</div><div class="d">El circuito completo integrado</div></div></li>
+    <li><div><div class="t">Seguridad y buenas prácticas</div><div class="d">Para no quemar nada</div></div></li>
+    <li><div><div class="t">Glosario y recursos</div><div class="d">Términos clave y dónde seguir</div></div></li>
+  </ol>
+  <div class="box tip"><span class="tag">Cómo leer esta guía</span>
+    <p style="margin:4px 0 0">Cada capítulo arranca con la idea grande, usa <b>analogías</b> para lo
+    abstracto, y cierra con <b>mini-ejercicios</b>. Los recuadros verdes
+    (<b>GeoGreen</b>) conectan la teoría con nuestro prototipo. No necesitas placa
+    física: todo se puede probar en <a>wokwi.com</a>.</p></div>
+</section>
+
+<!-- ====================== 1 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 1</div>
+  <h2>¿Qué es Arduino?</h2>
+  <p class="lead">Arduino es una <b>plataforma de electrónica de hardware abierto</b>
+  pensada para que cualquiera pueda crear objetos que sienten y controlan el mundo
+  físico, sin ser ingeniero electrónico.</p>
+
+  <p>Cuando alguien dice "Arduino" puede referirse a tres cosas que trabajan juntas:</p>
+  <ul>
+    <li><b>La placa</b> (hardware): una tarjeta con un <b>microcontrolador</b> y conectores (pines).</li>
+    <li><b>El IDE</b> (software): el programa donde escribes el código y lo "subes" a la placa por USB.</li>
+    <li><b>El lenguaje</b>: una versión simplificada de <b>C/C++</b>, con funciones fáciles como <code>digitalWrite()</code>.</li>
+  </ul>
+
+  <h3>Microcontrolador vs. microprocesador</h3>
+  <p>Tu PC tiene un <b>microprocesador</b>: muy potente, pero necesita memoria,
+  disco, sistema operativo… Un <b>microcontrolador</b> (el corazón del Arduino) es
+  un "computador completo en un solo chip": trae CPU + memoria + entradas/salidas,
+  es barato y consume poquísimo. No corre Windows; corre <b>un único programa</b>
+  que tú le grabas, una y otra vez, para siempre.</p>
+
+  <div class="box nota"><span class="tag">Analogía</span>
+    <p style="margin:4px 0 0">El microprocesador es un <b>cerebro de oficinista</b>
+    (hace mil cosas, necesita escritorio, café y archivos). El microcontrolador es un
+    <b>cerebro de reflejo</b>: hace una tarea concreta, rapidísimo, sin distraerse y
+    casi sin gastar energía. Para "leer un sensor y prender un LED", el reflejo sobra.</p>
+  </div>
+
+  <h3>¿Por qué "hardware abierto"?</h3>
+  <p>Los planos de las placas son públicos: cualquiera puede fabricarlas o mejorarlas.
+  Por eso existen miles de placas "compatibles con Arduino" más baratas, y una enorme
+  comunidad con tutoriales, librerías y ejemplos gratis. Para enseñar, esto es oro:
+  hay material para todo.</p>
+
+  <div class="box geo"><span class="tag">GeoGreen</span>
+    <p style="margin:4px 0 0">Nuestro prototipo usa un Arduino para <b>leer un sensor
+    de distancia</b>, calcular el <b>% de llenado</b> de un contenedor y encender un
+    <b>semáforo</b> (verde/amarillo/rojo) + un <b>buzzer</b> de alerta. Todo lo de esta
+    guía existe para que entiendas ese circuito por dentro.</p></div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Explica con tus palabras la diferencia entre microcontrolador y microprocesador.</li>
+      <li>Nombra las tres cosas que componen "Arduino" (hardware, software, lenguaje).</li>
+      <li>¿Por qué crees que para GeoGreen conviene un microcontrolador y no un PC?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 2 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 2</div>
+  <h2>Tipos de placas Arduino</h2>
+  <p class="lead">Todas comparten la misma idea (un microcontrolador con pines), pero
+  cambian en <b>tamaño, potencia, cantidad de pines y conectividad</b>. Elegir bien
+  es la mitad del proyecto.</p>
+
+  <p>Arduino agrupa sus placas en tres familias:</p>
+  <ul>
+    <li><b>Entrada (Entry):</b> para aprender y prototipar — <b>UNO, Nano, Mega</b>.</li>
+    <li><b>IoT:</b> traen WiFi/Bluetooth — <b>UNO R4 WiFi, Nano ESP32, MKR, Nano 33 IoT, GIGA</b>.</li>
+    <li><b>IA / Pro:</b> potentes, para visión y machine learning — <b>Portenta, Nicla</b>.</li>
+  </ul>
+
+  <h3>Comparativa de las placas más usadas</h3>
+  <table>
+    <tr><th>Placa</th><th>Tamaño</th><th>Chip / Lógica</th><th>Pines (dig/ana)</th><th>Conectividad</th><th>Ideal para…</th></tr>
+    <tr><td><b>UNO R3</b></td><td>Grande<br/>(7×5,3 cm)</td><td>ATmega328P · 5V</td><td>14 / 6</td><td>USB (no red)</td><td>Aprender, talleres</td></tr>
+    <tr><td><b>UNO R4 Minima</b></td><td>Grande</td><td>Renesas RA4M1 32-bit · 5V</td><td>14 / 6</td><td>USB-C (no red)</td><td>UNO moderno, más memoria</td></tr>
+    <tr><td><b>UNO R4 WiFi</b></td><td>Grande</td><td>RA4M1 + ESP32-S3 · 5V</td><td>14 / 6</td><td>WiFi + BLE + matriz LED</td><td>IoT con formato UNO</td></tr>
+    <tr><td><b>Leonardo</b></td><td>Grande</td><td>ATmega32u4 · 5V</td><td>20 / 12</td><td>USB nativo (teclado/mouse)</td><td>Emular HID</td></tr>
+    <tr><td><b>Nano</b></td><td>Chica<br/>(4,5×1,8 cm)</td><td>ATmega328P · 5V</td><td>14 / 8</td><td>USB (no red)</td><td>Proyectos compactos</td></tr>
+    <tr><td><b>Nano ESP32</b></td><td>Chica</td><td>ESP32-S3 · 3,3V</td><td>~14 / 8</td><td>WiFi + BLE</td><td>IoT compacto</td></tr>
+    <tr><td><b>Mega 2560</b></td><td>Muy grande</td><td>ATmega2560 · 5V</td><td>54 / 16</td><td>USB (no red)</td><td>Muchos pines (robótica)</td></tr>
+    <tr><td><b>MKR / Nano 33 IoT</b></td><td>Chica</td><td>SAMD21 · 3,3V</td><td>~22 / 7</td><td>WiFi/LoRa/GSM</td><td>IoT a batería</td></tr>
+  </table>
+
+  <div class="box nota"><span class="tag">Dato clave: 5V vs 3,3V</span>
+    <p style="margin:4px 0 0">La UNO/Nano clásicas trabajan a <b>5 voltios</b>; las
+    placas IoT modernas (ESP32, SAMD) a <b>3,3 voltios</b>. Esto importa porque un
+    sensor de 5V puede <b>dañar</b> un pin de 3,3V. Lo vemos en el Cap. 12.</p>
+  </div>
+
+  <div class="box geo"><span class="tag">GeoGreen: cuál usar</span>
+    <p style="margin:4px 0 0"><b>UNO R3</b> para el <b>taller</b> (grande, robusta, fácil de
+    ver y conectar). <b>Nano</b> para el <b>módulo clip-on real</b> (chica, entra en la
+    cajita bajo la tapa). Si más adelante queremos enviar datos por WiFi a un mapa,
+    saltamos a <b>ESP32</b>.</p></div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>¿Qué placa elegirías para un robot con 30 motores y sensores? ¿Por qué?</li>
+      <li>¿Cuál es la diferencia práctica entre la UNO y la Nano?</li>
+      <li>¿Qué ventaja da una placa IoT frente a la UNO clásica?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 3 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 3</div>
+  <h2>Anatomía de la placa (UNO)</h2>
+  <p class="lead">Usaremos la UNO como referencia porque es la más didáctica. Conocer
+  cada parte te permite leer cualquier tutorial sin perderte.</p>
+
+  <h3>Las partes físicas</h3>
+  <ul>
+    <li><b>Microcontrolador (ATmega328P):</b> el cerebro. Guarda y ejecuta tu programa.</li>
+    <li><b>Conector USB:</b> sube el código desde el PC y alimenta la placa (5V).</li>
+    <li><b>Jack de alimentación:</b> permite alimentar con 7–12V (pila/fuente).</li>
+    <li><b>Regulador de voltaje:</b> convierte esa entrada a los 5V estables que usa todo.</li>
+    <li><b>Cristal (16 MHz):</b> el "metrónomo" que marca el ritmo del chip.</li>
+    <li><b>Botón Reset:</b> reinicia el programa desde cero.</li>
+    <li><b>LED integrado (pin 13 / LED_BUILTIN):</b> un LED en la placa para probar sin cablear nada.</li>
+  </ul>
+
+  <h3>Las memorias del chip</h3>
+  <table>
+    <tr><th>Memoria</th><th>Tamaño (UNO)</th><th>Qué guarda</th><th>Se borra al apagar?</th></tr>
+    <tr><td><b>Flash</b></td><td>32 KB</td><td>Tu programa</td><td>No</td></tr>
+    <tr><td><b>SRAM</b></td><td>2 KB</td><td>Variables mientras corre</td><td>Sí</td></tr>
+    <tr><td><b>EEPROM</b></td><td>1 KB</td><td>Datos que deben sobrevivir al apagado</td><td>No</td></tr>
+  </table>
+
+  <h3>El mapa de pines</h3>
+  <figure>
+    <svg viewBox="0 0 760 230" role="img" aria-label="Pinout simplificado del Arduino UNO">
+      <rect x="120" y="40" width="520" height="150" rx="12" fill="#1f7a8c"/>
+      <rect x="96" y="70" width="26" height="44" rx="3" fill="#9aa7b2"/>
+      <text x="380" y="120" text-anchor="middle" fill="#fff" font-size="22" font-weight="800" font-family="Segoe UI">ARDUINO UNO</text>
+      <text x="380" y="146" text-anchor="middle" fill="#bfe7ee" font-size="12" font-family="Segoe UI">ATmega328P · 16 MHz · 5V</text>
+      <!-- top header: digital -->
+      <g font-family="Consolas" font-size="11" fill="#0e3b46" text-anchor="middle">
+        <rect x="140" y="34" width="480" height="10" rx="2" fill="#0e3b46" opacity=".5"/>
+        <text x="150" y="28">D13</text><text x="190" y="28">~D11</text><text x="230" y="28">~D10</text>
+        <text x="270" y="28">~D9</text><text x="320" y="28">D8</text><text x="370" y="28">D7</text>
+        <text x="420" y="28">~D6</text><text x="470" y="28">~D5</text><text x="510" y="28">D4</text>
+        <text x="550" y="28">~D3</text><text x="600" y="28">D2</text>
+      </g>
+      <text x="635" y="28" font-family="Consolas" font-size="10" fill="#243B53">TX/RX→D1/D0</text>
+      <!-- bottom header: power + analog -->
+      <g font-family="Consolas" font-size="11" fill="#0e3b46" text-anchor="middle">
+        <rect x="140" y="186" width="200" height="10" rx="2" fill="#0e3b46" opacity=".5"/>
+        <rect x="380" y="186" width="240" height="10" rx="2" fill="#0e3b46" opacity=".5"/>
+        <text x="160" y="212" fill="#D62027">VIN</text><text x="200" y="212" fill="#D62027">GND</text>
+        <text x="240" y="212" fill="#D62027">5V</text><text x="290" y="212" fill="#D62027">3V3</text>
+        <text x="410" y="212" fill="#2E8B57">A0</text><text x="445" y="212" fill="#2E8B57">A1</text>
+        <text x="480" y="212" fill="#2E8B57">A2</text><text x="515" y="212" fill="#2E8B57">A3</text>
+        <text x="550" y="212" fill="#7A4FB0">A4/SDA</text><text x="610" y="212" fill="#7A4FB0">A5/SCL</text>
+      </g>
+    </svg>
+    <figcaption>Pinout simplificado de la UNO. <b>~</b> = pin con PWM. A4/A5 sirven también como bus I2C (SDA/SCL).</figcaption>
+  </figure>
+
+  <p>Los pines se agrupan por función:</p>
+  <ul>
+    <li><span class="pill pwr">ENERGÍA</span> <b>5V / 3V3</b> entregan voltaje; <b>GND</b> es el retorno (negativo); <b>VIN</b> alimenta la placa desde fuera.</li>
+    <li><span class="pill dig">DIGITAL</span> <b>D0–D13</b>: leen o escriben dos estados (5V/0V). Los marcados con <b>~</b> hacen PWM.</li>
+    <li><span class="pill ana">ANALÓGICO</span> <b>A0–A5</b>: leen voltajes variables (0–5V) → números 0 a 1023.</li>
+    <li><span class="pill bus">COMUNICACIÓN</span> <b>D0/D1</b> (Serial), <b>A4/A5</b> (I2C), <b>D10–D13</b> (SPI). Cap. 10.</li>
+  </ul>
+
+  <div class="box ojo"><span class="tag">Cuidado</span>
+    <p style="margin:4px 0 0">Cada pin entrega como máximo <b>~20–40 mA</b>. Sirve para
+    LEDs y señales, <b>no</b> para motores o tiras LED (esos necesitan alimentación
+    aparte + un transistor/relé). Forzarlo quema el pin o el chip.</p>
+  </div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>¿Qué memoria guarda tu programa y cuál las variables temporales?</li>
+      <li>¿Para qué sirve el símbolo <code>~</code> junto a algunos pines?</li>
+      <li>¿En qué pines conectarías el bus I2C? ¿Y por qué no usar A0 para un LED de potencia?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 4 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 4</div>
+  <h2>Electricidad esencial</h2>
+  <p class="lead">Tres conceptos explican el 90% de la electrónica de hobby:
+  <b>voltaje</b>, <b>corriente</b> y <b>resistencia</b>. La mejor forma de entenderlos
+  es con agua.</p>
+
+  <figure>
+    <svg viewBox="0 0 720 210" role="img" aria-label="Analogía del agua para voltaje, corriente y resistencia">
+      <rect x="0" y="0" width="720" height="210" fill="#EAF0F7"/>
+      <!-- tank -->
+      <rect x="40" y="30" width="90" height="120" fill="#9cc4e6" stroke="#2E6F9E"/>
+      <rect x="40" y="30" width="90" height="40" fill="#cfe2f3" stroke="#2E6F9E"/>
+      <text x="85" y="170" text-anchor="middle" font-size="11" fill="#102A43" font-family="Segoe UI">Altura = VOLTAJE</text>
+      <text x="85" y="185" text-anchor="middle" font-size="9" fill="#52606D" font-family="Segoe UI">(presión, en voltios)</text>
+      <!-- pipe -->
+      <rect x="130" y="120" width="430" height="22" fill="#7fb0da" stroke="#2E6F9E"/>
+      <!-- narrowing = resistor -->
+      <polygon points="330,120 360,131 330,142" fill="#C98A1A"/>
+      <polygon points="390,120 360,131 390,142" fill="#C98A1A"/>
+      <text x="360" y="108" text-anchor="middle" font-size="11" fill="#8a5a00" font-family="Segoe UI">estrechamiento = RESISTENCIA</text>
+      <text x="360" y="170" text-anchor="middle" font-size="11" fill="#102A43" font-family="Segoe UI">Caudal = CORRIENTE (amperios)</text>
+      <!-- arrows water -->
+      <g fill="#2E6F9E"><polygon points="200,131 215,124 215,138"/><polygon points="470,131 485,124 485,138"/></g>
+      <rect x="560" y="120" width="60" height="60" fill="#9cc4e6" stroke="#2E6F9E"/>
+      <text x="640" y="135" font-size="11" fill="#102A43" font-family="Segoe UI">carga</text>
+      <text x="640" y="150" font-size="9" fill="#52606D" font-family="Segoe UI">(LED, motor…)</text>
+    </svg>
+    <figcaption>Voltaje = presión · Corriente = caudal · Resistencia = qué tan angosta es la cañería.</figcaption>
+  </figure>
+
+  <ul>
+    <li><b>Voltaje (V), en voltios:</b> la "presión" que empuja la electricidad. La UNO trabaja a 5V.</li>
+    <li><b>Corriente (I), en amperios (A):</b> cuánta electricidad fluye. En electrónica suele medirse en miliamperios (mA).</li>
+    <li><b>Resistencia (R), en ohmios (Ω):</b> cuánto se opone un material al paso de la corriente.</li>
+  </ul>
+
+  <h3>La Ley de Ohm</h3>
+  <p>La relación entre los tres es una sola fórmula, la herramienta más usada de toda la electrónica:</p>
+  <div class="formula"><b>V</b> = <b>I</b> × <b>R</b> &nbsp;&nbsp;→&nbsp;&nbsp; I = V / R &nbsp;&nbsp;→&nbsp;&nbsp; R = V / I</div>
+  <p>Y la <b>potencia</b> (calor/energía por segundo), en vatios (W): <b>P = V × I</b>.
+  Por eso una resistencia que disipa mucho se calienta.</p>
+
+  <h3>Digital vs. analógico</h3>
+  <p><b>Digital</b> = dos estados (encendido/apagado, 1/0, 5V/0V). <b>Analógico</b> =
+  infinitos valores intermedios (como un dimmer). El Arduino lee analógico con
+  <code>analogRead()</code> y lo convierte a un número de <b>0 a 1023</b>.</p>
+
+  <h3>PWM: "fingir" lo analógico desde lo digital</h3>
+  <p>Los pines digitales solo dan 0V o 5V, pero con <b>PWM</b> (modulación por ancho de
+  pulso) encienden y apagan miles de veces por segundo. Si está "encendido" el 30%
+  del tiempo, el LED brilla al 30%. Se usa <code>analogWrite(pin, 0..255)</code>.</p>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Si tienes 5V y una resistencia de 1000 Ω, ¿cuánta corriente circula? (usa I = V/R)</li>
+      <li>Da un ejemplo cotidiano de señal digital y uno de señal analógica.</li>
+      <li>¿Cómo logra un pin digital atenuar un LED si solo sabe prender/apagar?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 5 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 5</div>
+  <h2>La protoboard a fondo</h2>
+  <p class="lead">La protoboard (breadboard) es una tabla para armar circuitos
+  <b>sin soldar</b>: metes las patitas en los huecos y por dentro ya están conectadas
+  de cierta forma. Entender ese "por dentro" es lo único que necesitas.</p>
+
+  <figure>
+    <svg viewBox="0 0 720 250" role="img" aria-label="Conexiones internas de una protoboard">
+      <rect x="0" y="0" width="720" height="250" fill="#f3efe6" stroke="#d8cfc4"/>
+      <!-- power rails -->
+      <rect x="30" y="20" width="660" height="16" fill="#fde6e6"/>
+      <rect x="30" y="40" width="660" height="16" fill="#e6edfb"/>
+      <text x="20" y="33" font-size="12" fill="#D62027" text-anchor="end" font-family="Segoe UI">+</text>
+      <text x="20" y="53" font-size="12" fill="#2E6F9E" text-anchor="end" font-family="Segoe UI">–</text>
+      <text x="360" y="14" font-size="10" fill="#7A8794" text-anchor="middle" font-family="Segoe UI">RIELES DE ENERGÍA — toda la fila va unida en HORIZONTAL</text>
+      <g fill="#D62027"><circle cx="60" cy="28" r="3"/><circle cx="90" cy="28" r="3"/><circle cx="120" cy="28" r="3"/><circle cx="150" cy="28" r="3"/></g>
+      <g fill="#2E6F9E"><circle cx="60" cy="48" r="3"/><circle cx="90" cy="48" r="3"/><circle cx="120" cy="48" r="3"/><circle cx="150" cy="48" r="3"/></g>
+      <!-- columns top -->
+      <text x="20" y="92" font-size="11" fill="#52606D" font-family="Consolas">a b c d e</text>
+      <g fill="#102A43">
+        <!-- draw 8 columns x 5 holes top -->
+        <g>
+          <!-- column highlight -->
+          <rect x="150" y="78" width="20" height="78" fill="#cfe2cf" opacity=".7"/>
+        </g>
+      </g>
+      <g fill="#0e3b46">
+        <!-- top block rows 78..150 (a-e) -->
+        <g id="top">
+          <!-- columns at x=60,90,...,660 -->
+        </g>
+      </g>
+      <!-- generate holes via explicit circles -->
+      <g fill="#34506a">
+        <!-- top half a-e (y 86,104,122,140 ... 5 rows: 86,103,120,137,154) -->
+        <g>
+          <!-- We'll place 12 columns -->
+        </g>
+      </g>
+      <g fill="#34506a">
+        <!-- rows top -->
+        <g>
+          <!-- col loop done manually -->
+        </g>
+      </g>
+      <!-- Manual holes top -->
+      <g fill="#3a566f">
+        <!-- y rows: 88,106,124,142,160 -->
+        <g>
+          <!-- columns x:60..660 step 50 -->
+        </g>
+      </g>
+      <!-- Because SVG can't loop, draw representative columns -->
+      <g fill="#41607a">
+        <!-- top group -->
+        <g>
+          <!-- 5 holes per column for a few columns -->
+        </g>
+      </g>
+      <!-- Representative columns (drawn explicitly) -->
+      <g fill="#3c5870">
+        <!-- col1 -->
+        <circle cx="60" cy="90" r="3.4"/><circle cx="60" cy="108" r="3.4"/><circle cx="60" cy="126" r="3.4"/><circle cx="60" cy="144" r="3.4"/><circle cx="60" cy="162" r="3.4"/>
+        <circle cx="110" cy="90" r="3.4"/><circle cx="110" cy="108" r="3.4"/><circle cx="110" cy="126" r="3.4"/><circle cx="110" cy="144" r="3.4"/><circle cx="110" cy="162" r="3.4"/>
+        <circle cx="160" cy="90" r="3.4"/><circle cx="160" cy="108" r="3.4"/><circle cx="160" cy="126" r="3.4"/><circle cx="160" cy="144" r="3.4"/><circle cx="160" cy="162" r="3.4"/>
+        <circle cx="210" cy="90" r="3.4"/><circle cx="210" cy="108" r="3.4"/><circle cx="210" cy="126" r="3.4"/><circle cx="210" cy="144" r="3.4"/><circle cx="210" cy="162" r="3.4"/>
+        <circle cx="260" cy="90" r="3.4"/><circle cx="260" cy="108" r="3.4"/><circle cx="260" cy="126" r="3.4"/><circle cx="260" cy="144" r="3.4"/><circle cx="260" cy="162" r="3.4"/>
+      </g>
+      <text x="160" y="74" font-size="9" fill="#2E8B57" text-anchor="middle" font-family="Segoe UI">columna unida ↕</text>
+      <!-- center channel -->
+      <rect x="30" y="170" width="660" height="14" fill="#e3ddd0"/>
+      <text x="360" y="180" font-size="9.5" fill="#7A8794" text-anchor="middle" font-family="Segoe UI">CANAL CENTRAL — separa el lado de arriba del de abajo</text>
+      <!-- bottom holes f-j -->
+      <g fill="#3c5870">
+        <circle cx="60" cy="196" r="3.4"/><circle cx="60" cy="214" r="3.4"/><circle cx="60" cy="232" r="3.4"/>
+        <circle cx="110" cy="196" r="3.4"/><circle cx="110" cy="214" r="3.4"/><circle cx="110" cy="232" r="3.4"/>
+        <circle cx="160" cy="196" r="3.4"/><circle cx="160" cy="214" r="3.4"/><circle cx="160" cy="232" r="3.4"/>
+        <circle cx="210" cy="196" r="3.4"/><circle cx="210" cy="214" r="3.4"/><circle cx="210" cy="232" r="3.4"/>
+        <circle cx="260" cy="196" r="3.4"/><circle cx="260" cy="214" r="3.4"/><circle cx="260" cy="232" r="3.4"/>
+      </g>
+      <text x="20" y="216" font-size="11" fill="#52606D" font-family="Consolas">f g h i j</text>
+    </svg>
+    <figcaption>Por dentro: los rieles (+/–) van en horizontal; las columnas de 5 huecos van en vertical; el canal central separa ambos lados.</figcaption>
+  </figure>
+
+  <h3>Las dos reglas de oro</h3>
+  <ol>
+    <li><b>Las 5 columnas (a–e) están unidas en VERTICAL.</b> Dos patitas en la misma
+    columna quedan conectadas (mismo "nodo"). Lo mismo abajo (f–j).</li>
+    <li><b>El canal central separa arriba de abajo</b>, y los <b>rieles de los bordes</b>
+    (+ y –) van en horizontal: sirven para repartir energía por toda la placa.</li>
+  </ol>
+
+  <h3>Cómo se cablea</h3>
+  <p>Conectas <b>una sola vez</b> el 5V del Arduino al riel <b>+</b> y el GND al riel
+  <b>–</b>. Desde ahí "tomas" energía donde quieras con <b>jumpers</b> (cables puente):
+  macho-macho para protoboard, macho-hembra para ir a un sensor.</p>
+
+  <div class="box ojo"><span class="tag">Errores típicos</span>
+    <ul style="margin:4px 0 0">
+      <li>Poner las dos patitas de un componente en la <b>misma columna</b> → lo cortocircuitas.</li>
+      <li>Olvidar el <b>GND común</b>: si el sensor y el Arduino no comparten tierra, nada funciona.</li>
+      <li>Conectar al riel equivocado (+ en vez de –).</li>
+    </ul>
+  </div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Si metes un LED en la columna 4 (huecos a y c), ¿están conectados sus extremos? Explica.</li>
+      <li>¿Para qué sirven los rieles rojo y azul de los bordes?</li>
+      <li>Dibuja cómo llevarías 5V y GND del Arduino a la protoboard.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 6 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 6</div>
+  <h2>Resistencias</h2>
+  <p class="lead">Una resistencia <b>limita la corriente</b>. Es el componente que más
+  asusta al principio y el más simple cuando lo entiendes: solo aplica la Ley de Ohm.</p>
+
+  <h3>¿Por qué un LED necesita resistencia?</h3>
+  <p>Un LED es "glotón": conectado directo a 5V deja pasar toda la corriente posible y
+  <b>se quema</b>. La resistencia actúa como una llave que solo deja pasar lo seguro
+  (~20 mA). Va <b>en serie</b> con el LED (uno detrás del otro).</p>
+
+  <h3>El cálculo (de dónde sale el 220 Ω)</h3>
+  <p>El LED "consume" parte del voltaje (un LED rojo ~2V) y quiere ~20 mA. La resistencia
+  se come el resto del voltaje:</p>
+  <div class="formula">R = (V<sub>fuente</sub> − V<sub>LED</sub>) / I = (5 − 2) / 0,02 = <b>150 Ω</b></div>
+  <p>150 Ω sería el mínimo; se usa <b>220 Ω</b> (valor muy común) para ir holgados: el
+  LED queda <b>brillante pero seguro</b>. Por eso GeoGreen usa 220 Ω en cada LED.</p>
+
+  <h3>El código de colores</h3>
+  <p>Las resistencias no traen el número impreso, sino <b>bandas de colores</b>. Para 4
+  bandas: 1ª y 2ª = dígitos, 3ª = multiplicador (×10ⁿ), 4ª = tolerancia.</p>
+  <figure>
+    <svg viewBox="0 0 720 140" role="img" aria-label="Código de colores de una resistencia de 220 ohm">
+      <rect x="0" y="0" width="720" height="140" fill="#fff"/>
+      <line x1="40" y1="70" x2="680" y2="70" stroke="#9a8f7c" stroke-width="6"/>
+      <rect x="250" y="40" width="220" height="60" rx="18" fill="#e9dcc2" stroke="#c9b894"/>
+      <rect x="285" y="40" width="14" height="60" fill="#D62027"/>
+      <rect x="315" y="40" width="14" height="60" fill="#D62027"/>
+      <rect x="345" y="40" width="14" height="60" fill="#7a4a12"/>
+      <rect x="425" y="40" width="14" height="60" fill="#C98A1A"/>
+      <text x="292" y="120" text-anchor="middle" font-size="10" fill="#243B53" font-family="Segoe UI">rojo=2</text>
+      <text x="322" y="120" text-anchor="middle" font-size="10" fill="#243B53" font-family="Segoe UI">rojo=2</text>
+      <text x="352" y="132" text-anchor="middle" font-size="10" fill="#243B53" font-family="Segoe UI">marrón ×10</text>
+      <text x="432" y="120" text-anchor="middle" font-size="10" fill="#243B53" font-family="Segoe UI">dorado ±5%</text>
+      <text x="360" y="28" text-anchor="middle" font-size="13" fill="#102A43" font-weight="700" font-family="Segoe UI">22 × 10 = 220 Ω</text>
+    </svg>
+    <figcaption>220 Ω = rojo · rojo · marrón · dorado. (rojo=2, rojo=2 → "22"; marrón=×10 → 220 Ω; dorado = tolerancia ±5%)</figcaption>
+  </figure>
+  <table>
+    <tr><th>Color</th><th>Negro</th><th>Marrón</th><th>Rojo</th><th>Naranjo</th><th>Amarillo</th><th>Verde</th><th>Azul</th><th>Violeta</th></tr>
+    <tr><td><b>Dígito</b></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+  </table>
+
+  <h3>Serie, paralelo y divisor de voltaje</h3>
+  <div class="grid2">
+    <div>
+      <p><b>En serie</b> (una tras otra) las resistencias se <b>suman</b>: 100 + 220 = 320 Ω.
+      <b>En paralelo</b> el total <b>baja</b>. Y combinando dos en serie obtienes un
+      <b>divisor de voltaje</b>: una forma de bajar un voltaje (por ejemplo, de 5V a 3,3V
+      para proteger un ESP32 — Cap. 12).</p>
+    </div>
+    <figure style="margin:0">
+      <svg viewBox="0 0 300 150" aria-label="Divisor de voltaje">
+        <line x1="40" y1="20" x2="260" y2="20" stroke="#243B53" stroke-width="2"/>
+        <text x="20" y="24" font-size="11" fill="#D62027" font-family="Segoe UI">5V</text>
+        <rect x="135" y="30" width="30" height="34" fill="#e9dcc2" stroke="#c9b894"/>
+        <rect x="135" y="86" width="30" height="34" fill="#e9dcc2" stroke="#c9b894"/>
+        <line x1="150" y1="20" x2="150" y2="30" stroke="#243B53" stroke-width="2"/>
+        <line x1="150" y1="64" x2="150" y2="86" stroke="#243B53" stroke-width="2"/>
+        <line x1="150" y1="120" x2="150" y2="135" stroke="#243B53" stroke-width="2"/>
+        <text x="35" y="138" font-size="11" fill="#2E6F9E" font-family="Segoe UI">GND</text>
+        <line x1="40" y1="135" x2="260" y2="135" stroke="#243B53" stroke-width="2"/>
+        <line x1="150" y1="75" x2="240" y2="75" stroke="#2E8B57" stroke-width="2"/>
+        <text x="245" y="79" font-size="10" fill="#2E8B57" font-family="Segoe UI">salida</text>
+      </svg>
+      <figcaption>Divisor: el punto medio entrega un voltaje menor.</figcaption>
+    </figure>
+  </div>
+
+  <div class="box tip"><span class="tag">Resistencia pull-up / pull-down</span>
+    <p style="margin:4px 0 0">Cuando un pin "queda al aire" lee valores basura. Una
+    resistencia <b>pull-up</b> (a 5V) o <b>pull-down</b> (a GND) lo fija en un estado
+    estable. Los botones siempre la necesitan; la UNO trae pull-ups internas
+    (<code>INPUT_PULLUP</code>).</p>
+  </div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Calcula la resistencia para un LED azul (Vled≈3V) a 20 mA con fuente de 5V.</li>
+      <li>¿Qué valor tiene una resistencia con bandas marrón-negro-rojo?</li>
+      <li>¿Por qué un botón necesita resistencia pull-up o pull-down?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 7 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 7</div>
+  <h2>Componentes básicos</h2>
+  <p class="lead">Antes de los sensores, estos son los "ladrillos" que aparecen en casi
+  todos los proyectos.</p>
+
+  <h3>LED (diodo emisor de luz)</h3>
+  <p>Tiene polaridad: la <b>patita larga</b> es el <b>ánodo (+)</b>, la <b>corta</b> el
+  <b>cátodo (−)</b>. Siempre con su resistencia en serie. Si lo conectas al revés, no prende.</p>
+
+  <h3>Botón / interruptor</h3>
+  <p>Conecta o corta el paso de corriente. Problema clásico: el <b>rebote</b> (un toque
+  registra varios) → se corrige con un pequeño retardo o por software. Necesita pull-up/down.</p>
+
+  <h3>Potenciómetro</h3>
+  <p>Una resistencia variable (la perilla del volumen). Da un voltaje de 0 a 5V según la
+  posición → ideal para practicar <code>analogRead()</code>.</p>
+
+  <h3>Transistor y relé (para cargas grandes)</h3>
+  <p>El Arduino no puede alimentar un motor o una ampolleta directo. El <b>transistor</b>
+  es un "interruptor electrónico": una señal chica del Arduino controla una corriente
+  grande. El <b>relé</b> es un interruptor mecánico que permite manejar incluso 220V
+  (con cuidado). Regla: <b>señal por el Arduino, potencia por una fuente aparte</b>.</p>
+
+  <h3>Buzzer (zumbador)</h3>
+  <ul>
+    <li><b>Activo:</b> suena con solo darle corriente (un tono fijo).</li>
+    <li><b>Pasivo:</b> necesita una señal que oscile (<code>tone()</code>) y puede hacer melodías.</li>
+  </ul>
+  <div class="box geo"><span class="tag">GeoGreen</span>
+    <p style="margin:4px 0 0">Nuestro buzzer usa <code>tone()</code> con un patrón
+    "pip-pip" cada 5 minutos cuando el contenedor está lleno, en vez de un tono continuo
+    (molestaba hasta a los perros 🐶). Eso vive en el código del firmware.</p>
+  </div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>¿Cómo identificas el + de un LED nuevo (sin medir)?</li>
+      <li>¿Por qué no conectar un motor directo a un pin del Arduino?</li>
+      <li>¿Qué diferencia hay entre un buzzer activo y uno pasivo?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 8 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 8</div>
+  <h2>Sensores: el catálogo</h2>
+  <p class="lead">Un sensor traduce algo del mundo físico (distancia, luz, temperatura…)
+  a una señal eléctrica que el Arduino entiende. Lo importante de cada uno: <b>qué mide</b>,
+  <b>qué tipo de salida da</b> y <b>cómo se conecta</b>.</p>
+
+  <p>Por su salida, los sensores son de tres tipos:</p>
+  <ul>
+    <li><span class="pill ana">ANALÓGICA</span> entregan un voltaje variable → se leen con <code>analogRead()</code> (LDR, micrófono, MQ…).</li>
+    <li><span class="pill dig">DIGITAL</span> entregan 0/1 (¿hay movimiento? sí/no) → <code>digitalRead()</code> (PIR, sensor de línea…).</li>
+    <li><span class="pill bus">BUS</span> hablan por un protocolo (I2C/SPI/1-wire) y entregan datos ya procesados (DHT, MPU6050, BME280, RFID).</li>
+  </ul>
+
+  <h3>Distancia y proximidad</h3>
+  <ul>
+    <li><b>HC-SR04 (ultrasónico):</b> manda un "ping" de sonido y mide cuánto tarda el eco
+      → calcula distancia (2 cm a 4 m). Pines: VCC, GND, TRIG (dispara), ECHO (recibe). <i>El de GeoGreen.</i></li>
+    <li><b>IR de línea (TCRT5000):</b> detecta blanco/negro → sigue líneas (robots).</li>
+    <li><b>PIR (HC-SR501):</b> detecta movimiento de cuerpos calientes (personas). Salida digital.</li>
+  </ul>
+
+  <h3>Ambientales</h3>
+  <ul>
+    <li><b>DHT11 / DHT22:</b> temperatura + humedad del aire (el DHT22 es más preciso). Salida por bus propio.</li>
+    <li><b>DS18B20:</b> temperatura (incluso sumergible), por 1-wire.</li>
+    <li><b>BME280:</b> temperatura, humedad y <b>presión</b> (altímetro). Por I2C.</li>
+    <li><b>LM35:</b> temperatura como voltaje analógico simple.</li>
+  </ul>
+
+  <h3>Luz y sonido</h3>
+  <ul>
+    <li><b>LDR (fotorresistencia):</b> su resistencia cambia con la luz → con un divisor, da un valor analógico.</li>
+    <li><b>Micrófono (LM393):</b> detecta nivel de sonido (aplausos, ruido).</li>
+  </ul>
+
+  <h3>Gas, humo y fuego</h3>
+  <ul>
+    <li><b>Serie MQ (MQ-2, MQ-135…):</b> humo, gas, calidad de aire. Salida analógica.</li>
+    <li><b>Sensor de flama:</b> detecta luz infrarroja de una llama.</li>
+  </ul>
+
+  <h3>Agua</h3>
+  <ul>
+    <li><b>Humedad de suelo:</b> riego automático (¿la planta tiene sed?).</li>
+    <li><b>Sensor de lluvia / de nivel:</b> detecta agua o cuánta hay.</li>
+  </ul>
+
+  <h3>Movimiento, orientación y magnetismo</h3>
+  <ul>
+    <li><b>MPU6050:</b> acelerómetro + giroscopio (inclinación, vibración, drones). Por I2C.</li>
+    <li><b>Sensor de inclinación (tilt):</b> ¿está derecho o volcado? Digital.</li>
+    <li><b>Sensor Hall:</b> detecta campos magnéticos (cuentavueltas, finales de carrera).</li>
+  </ul>
+
+  <h3>Identificación</h3>
+  <ul>
+    <li><b>RFID RC522:</b> lee tarjetas/llaveros → control de acceso. Por SPI.</li>
+  </ul>
+
+  <h3>Tabla resumen</h3>
+  <table>
+    <tr><th>Sensor</th><th>Mide</th><th>Salida</th><th>Pines clave</th><th>Librería típica</th></tr>
+    <tr><td>HC-SR04</td><td>Distancia</td><td>Digital (pulso)</td><td>VCC·GND·TRIG·ECHO</td><td>NewPing</td></tr>
+    <tr><td>PIR HC-SR501</td><td>Movimiento</td><td>Digital</td><td>VCC·GND·OUT</td><td>—</td></tr>
+    <tr><td>DHT11/22</td><td>Temp + humedad</td><td>Bus 1-hilo</td><td>VCC·GND·DATA</td><td>DHT</td></tr>
+    <tr><td>BME280</td><td>Temp/hum/presión</td><td>I2C</td><td>SDA·SCL</td><td>Adafruit_BME280</td></tr>
+    <tr><td>LDR</td><td>Luz</td><td>Analógica</td><td>A0 (+ divisor)</td><td>—</td></tr>
+    <tr><td>MQ-2/135</td><td>Gas/humo</td><td>Analógica</td><td>A0 / DO</td><td>—</td></tr>
+    <tr><td>Humedad suelo</td><td>Agua en tierra</td><td>Analógica</td><td>A0</td><td>—</td></tr>
+    <tr><td>MPU6050</td><td>Aceleración/giro</td><td>I2C</td><td>SDA·SCL</td><td>MPU6050</td></tr>
+    <tr><td>RFID RC522</td><td>Tarjetas</td><td>SPI</td><td>MOSI·MISO·SCK·SS·RST</td><td>MFRC522</td></tr>
+  </table>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Clasifica por salida (analógica/digital/bus): LDR, PIR, BME280.</li>
+      <li>¿Qué sensor usarías para un riego automático? ¿Y para una alarma de movimiento?</li>
+      <li>El HC-SR04: ¿qué hace el pin TRIG y qué hace ECHO?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 9 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 9</div>
+  <h2>Actuadores</h2>
+  <p class="lead">Si el sensor es el "sentido", el actuador es el "músculo": convierte
+  las decisiones del Arduino en acciones físicas.</p>
+  <table>
+    <tr><th>Actuador</th><th>Hace</th><th>Cómo se controla</th><th>Ojo con…</th></tr>
+    <tr><td><b>LED / semáforo</b></td><td>Luz</td><td>digitalWrite / PWM</td><td>siempre con resistencia</td></tr>
+    <tr><td><b>Buzzer</b></td><td>Sonido</td><td>digitalWrite / tone()</td><td>activo vs pasivo</td></tr>
+    <tr><td><b>Motor DC</b></td><td>Girar (rueda)</td><td>driver L298N / L293D</td><td>fuente aparte</td></tr>
+    <tr><td><b>Servo motor</b></td><td>Girar a un ángulo (0–180°)</td><td>librería Servo (PWM)</td><td>consumo en arranque</td></tr>
+    <tr><td><b>Motor paso a paso</b></td><td>Girar con precisión</td><td>driver (ULN2003/A4988)</td><td>cableado de bobinas</td></tr>
+    <tr><td><b>Relé</b></td><td>Encender cargas grandes/220V</td><td>digitalWrite + transistor</td><td>¡alto voltaje!</td></tr>
+    <tr><td><b>LCD 16×2 (I2C)</b></td><td>Mostrar texto</td><td>librería LiquidCrystal_I2C</td><td>2 cables (SDA/SCL)</td></tr>
+    <tr><td><b>OLED SSD1306</b></td><td>Mostrar gráficos</td><td>I2C / SPI</td><td>librería + memoria</td></tr>
+  </table>
+  <div class="box geo"><span class="tag">GeoGreen</span>
+    <p style="margin:4px 0 0">La versión Arduino usa <b>3 LEDs (semáforo)</b> + <b>buzzer</b>.
+    La versión ESP32 agrega una <b>pantalla OLED</b> para mostrar el % localmente.</p>
+  </div>
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>¿Qué actuador usarías para mover una compuerta a un ángulo exacto?</li>
+      <li>¿Por qué un relé necesita una fuente de poder aparte?</li>
+      <li>¿Cuántos cables de datos necesita una pantalla LCD por I2C?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 10 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 10</div>
+  <h2>Protocolos de comunicación</h2>
+  <p class="lead">Muchos sensores no entregan un simple voltaje: "conversan" con el
+  Arduino por un protocolo. Conocer cuál usan te dice <b>en qué pines van</b> y cuántos
+  caben.</p>
+  <table>
+    <tr><th>Protocolo</th><th>Cables</th><th>Pines en UNO</th><th>Velocidad</th><th>Bueno para</th></tr>
+    <tr><td><b>GPIO</b> (digital/analógico)</td><td>1</td><td>cualquiera</td><td>—</td><td>LED, botón, sensores simples</td></tr>
+    <tr><td><b>UART / Serial</b></td><td>2 (TX/RX)</td><td>D0/D1 (+ USB)</td><td>media</td><td>hablar con el PC, GPS, Bluetooth</td></tr>
+    <tr><td><b>I2C</b></td><td>2 (SDA/SCL)</td><td>A4/A5</td><td>media</td><td><b>muchos</b> sensores en 2 cables</td></tr>
+    <tr><td><b>SPI</b></td><td>4 (MOSI/MISO/SCK/SS)</td><td>D11/D12/D13/D10</td><td>alta</td><td>pantallas, RFID, tarjetas SD</td></tr>
+  </table>
+  <div class="box nota"><span class="tag">La ventaja de I2C</span>
+    <p style="margin:4px 0 0">Con <b>solo 2 cables</b> puedes conectar <b>varios</b>
+    sensores a la vez (cada uno tiene una "dirección" única). Por eso es el favorito
+    cuando el proyecto crece. <b>Serial</b> es el que usas siempre para depurar:
+    <code>Serial.print()</code> manda mensajes a tu PC.</p>
+  </div>
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Quieres 4 sensores ambientales sin quedarte sin pines. ¿Qué protocolo eliges?</li>
+      <li>¿Qué protocolo usas, sin darte cuenta, cada vez que ves mensajes en el Monitor Serie?</li>
+      <li>¿Cuántos cables necesita SPI y para qué tipo de dispositivos conviene?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 11 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 11</div>
+  <h2>Programación de Arduino</h2>
+  <p class="lead">El código de Arduino siempre tiene la misma esqueleto: una función que
+  corre <b>una vez</b> y otra que corre <b>para siempre</b>.</p>
+
+  <pre><code><span class="c">// Estructura mínima de TODO sketch de Arduino</span>
+<span class="k">void</span> setup() {        <span class="c">// corre 1 vez al encender</span>
+  pinMode(13, OUTPUT);  <span class="c">// configura el pin 13 como salida</span>
+}
+
+<span class="k">void</span> loop() {         <span class="c">// se repite infinitamente</span>
+  digitalWrite(13, HIGH); <span class="c">// prende</span>
+  delay(500);             <span class="c">// espera 0,5 s</span>
+  digitalWrite(13, LOW);  <span class="c">// apaga</span>
+  delay(500);
+}</code></pre>
+
+  <h3>Las funciones que más usarás</h3>
+  <table>
+    <tr><th>Función</th><th>Qué hace</th></tr>
+    <tr><td><code>pinMode(pin, MODO)</code></td><td>define un pin como <code>INPUT</code> / <code>OUTPUT</code> / <code>INPUT_PULLUP</code></td></tr>
+    <tr><td><code>digitalWrite(pin, HIGH/LOW)</code></td><td>prende/apaga un pin digital</td></tr>
+    <tr><td><code>digitalRead(pin)</code></td><td>lee 0/1 de un pin</td></tr>
+    <tr><td><code>analogRead(A0)</code></td><td>lee 0–1023 de un pin analógico</td></tr>
+    <tr><td><code>analogWrite(pin, 0–255)</code></td><td>salida PWM (atenuar, velocidad)</td></tr>
+    <tr><td><code>Serial.begin/print()</code></td><td>habla con el PC (depurar)</td></tr>
+    <tr><td><code>delay(ms)</code> / <code>millis()</code></td><td>esperar / contar tiempo sin bloquear</td></tr>
+  </table>
+
+  <div class="box ojo"><span class="tag">delay() vs millis()</span>
+    <p style="margin:4px 0 0"><code>delay()</code> <b>congela</b> todo el programa mientras
+    espera. Para que el Arduino haga varias cosas "a la vez" (medir y sonar y parpadear),
+    se usa <code>millis()</code> (un cronómetro que no detiene nada). GeoGreen usa
+    <code>millis()</code> para el patrón del buzzer.</p>
+  </div>
+
+  <h3>Ejemplo: leer el HC-SR04</h3>
+  <pre><code><span class="k">const int</span> TRIG = 9, ECHO = 10;
+
+<span class="k">void</span> setup() {
+  Serial.begin(9600);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+}
+
+<span class="k">void</span> loop() {
+  <span class="c">// 1) disparar el pulso ultrasónico</span>
+  digitalWrite(TRIG, LOW);  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH); delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+  <span class="c">// 2) medir cuánto tarda el eco y pasarlo a cm</span>
+  <span class="k">long</span> us = pulseIn(ECHO, HIGH);
+  <span class="k">float</span> cm = us / 58.0;
+  Serial.print(<span class="s">"Distancia: "</span>); Serial.print(cm); Serial.println(<span class="s">" cm"</span>);
+  delay(300);
+}</code></pre>
+
+  <h3>Ejemplo: el semáforo por % (idea de GeoGreen)</h3>
+  <pre><code><span class="c">// distancia -> % de llenado -> semáforo</span>
+<span class="k">int</span> pct = map(cm, 100, 10, 0, 100); <span class="c">// 100cm=vacío, 10cm=lleno</span>
+pct = constrain(pct, 0, 100);
+
+digitalWrite(4, pct &lt; 40);              <span class="c">// verde: bajo</span>
+digitalWrite(3, pct &gt;= 40 &amp;&amp; pct &lt; 80);  <span class="c">// amarillo: medio</span>
+digitalWrite(2, pct &gt;= 80);             <span class="c">// rojo: lleno</span>
+<span class="k">if</span> (pct &gt;= 80) tone(8, 2000); <span class="k">else</span> noTone(8); <span class="c">// buzzer</span></code></pre>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Modifica el Blink para que parpadee cada 2 segundos.</li>
+      <li>¿Qué hace <code>map()</code> en el ejemplo del semáforo?</li>
+      <li>Explica por qué <code>millis()</code> es mejor que <code>delay()</code> cuando el Arduino debe vigilar y avisar a la vez.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 12 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 12</div>
+  <h2>IoT y ESP32 (introducción)</h2>
+  <p class="lead">"IoT" (Internet de las Cosas) = objetos cotidianos conectados a la red
+  que <b>envían datos</b> y se pueden controlar a distancia. Aquí solo lo presentamos;
+  el foco de esta guía es Arduino clásico.</p>
+
+  <h3>¿Qué cambia con el ESP32?</h3>
+  <p>El ESP32 es un microcontrolador con <b>WiFi y Bluetooth integrados</b> y más
+  potencia, a un precio similar. Programa casi igual que un Arduino (mismo IDE), pero
+  trabaja a <b>3,3 voltios</b>. Permite que GeoGreen <b>suba el % de llenado a un
+  dashboard</b> en internet.</p>
+
+  <div class="box ojo"><span class="tag">El detalle que quema placas: 5V vs 3,3V</span>
+    <p style="margin:4px 0 0">El HC-SR04 entrega su señal <b>Echo en 5V</b>, pero un pin
+    del ESP32 aguanta máximo <b>3,3V</b>. Conectarlo directo puede <b>dañar la placa</b>.
+    La solución es un <b>divisor de voltaje</b> (dos resistencias, Cap. 6) que baja esos
+    5V a ~3,3V. En la UNO no hace falta porque ya trabaja a 5V.</p>
+  </div>
+
+  <h3>Cómo viajan los datos</h3>
+  <ul>
+    <li><b>HTTP:</b> la placa "visita" una web/API y deja el dato (simple).</li>
+    <li><b>MQTT:</b> protocolo liviano para IoT: la placa "publica" lecturas y un servidor las reparte (eficiente para muchos dispositivos).</li>
+  </ul>
+
+  <table>
+    <tr><th></th><th>Arduino UNO/Nano</th><th>ESP32</th></tr>
+    <tr><td>Voltaje</td><td>5V</td><td>3,3V</td></tr>
+    <tr><td>WiFi/Bluetooth</td><td>No</td><td>Sí</td></tr>
+    <tr><td>Potencia</td><td>Básica</td><td>Alta (doble núcleo)</td></tr>
+    <tr><td>Ideal para</td><td>aprender, control local</td><td>proyectos conectados (IoT)</td></tr>
+  </table>
+
+  <div class="box geo"><span class="tag">GeoGreen: las dos pistas</span>
+    <p style="margin:4px 0 0"><b>Pista Arduino</b> (Don Elías): demo local con semáforo
+    + buzzer, sin red. <b>Pista ESP32</b> (Diego): agrega OLED + envío del % a un
+    dashboard, y a futuro georreferenciar puntos de reciclaje en un mapa — el "Geo" de
+    GeoGreen.</p>
+  </div>
+
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>¿Por qué hay que poner un divisor de voltaje al Echo del HC-SR04 en un ESP32?</li>
+      <li>Da un ejemplo de proyecto que necesite ESP32 y uno al que le baste una UNO.</li>
+      <li>¿Qué ventaja tiene MQTT sobre HTTP cuando hay muchos dispositivos?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 13 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 13</div>
+  <h2>Caso práctico: el circuito GeoGreen</h2>
+  <p class="lead">Juntemos todo. Este es el circuito completo del prototipo, con los
+  pines reales del firmware.</p>
+
+  <figure>
+    <svg viewBox="0 0 720 300" role="img" aria-label="Circuito GeoGreen">
+      <rect x="0" y="0" width="720" height="300" fill="#fff"/>
+      <!-- wires -->
+      <g fill="none" stroke-width="3" stroke-linecap="round">
+        <path d="M250 70 C250 110 150 110 150 150" stroke="#D62027"/>
+        <path d="M280 70 C280 120 250 120 250 150" stroke="#2E6F9E"/>
+        <path d="M310 70 C310 120 290 120 290 150" stroke="#2E8B57"/>
+        <path d="M340 70 C340 110 430 110 430 150" stroke="#243B53"/>
+        <path d="M330 175 C420 175 470 175 500 210" stroke="#2E8B57"/>
+        <path d="M330 195 C420 195 560 195 590 210" stroke="#E0BC5A"/>
+        <path d="M330 215 C420 230 640 215 650 210" stroke="#D62027"/>
+        <path d="M300 230 C300 260 220 260 210 270" stroke="#7A4FB0"/>
+      </g>
+      <!-- HC-SR04 -->
+      <rect x="240" y="34" width="120" height="36" rx="6" fill="#16324a"/>
+      <circle cx="270" cy="52" r="12" fill="#9aa7b2"/><circle cx="330" cy="52" r="12" fill="#9aa7b2"/>
+      <text x="300" y="26" text-anchor="middle" font-size="11" fill="#243B53" font-family="Segoe UI">HC-SR04 (TRIG D9 · ECHO D10)</text>
+      <!-- Arduino -->
+      <rect x="120" y="150" width="220" height="80" rx="8" fill="#1f7a8c"/>
+      <text x="230" y="195" text-anchor="middle" font-size="15" fill="#fff" font-weight="800" font-family="Segoe UI">ARDUINO UNO</text>
+      <!-- LEDs -->
+      <circle cx="500" cy="220" r="13" fill="#3FAE6A"/><circle cx="590" cy="220" r="13" fill="#E0BC5A"/><circle cx="650" cy="220" r="13" fill="#D62027"/>
+      <text x="500" y="250" text-anchor="middle" font-size="9" fill="#243B53" font-family="Segoe UI">Verde D4</text>
+      <text x="590" y="250" text-anchor="middle" font-size="9" fill="#243B53" font-family="Segoe UI">Amar. D3</text>
+      <text x="650" y="250" text-anchor="middle" font-size="9" fill="#243B53" font-family="Segoe UI">Rojo D2</text>
+      <!-- buzzer -->
+      <circle cx="210" cy="272" r="15" fill="#15191c"/>
+      <text x="210" y="296" text-anchor="middle" font-size="9" fill="#243B53" font-family="Segoe UI">Buzzer D8</text>
+    </svg>
+    <figcaption>Sensor → Arduino → semáforo + buzzer. Cada LED lleva su resistencia de 220 Ω (no dibujadas para simplificar).</figcaption>
+  </figure>
+
+  <p><b>La lógica completa:</b></p>
+  <ol>
+    <li>El <b>HC-SR04</b> mide la distancia del tope del contenedor a la basura.</li>
+    <li>El <b>Arduino</b> convierte distancia → <b>% de llenado</b> (<code>map()</code>).</li>
+    <li>El <b>semáforo</b> muestra el estado: verde (&lt;40%), amarillo (40–80%), rojo (≥80%).</li>
+    <li>El <b>buzzer</b> avisa cuando está lleno (patrón pip-pip, sin molestar de más).</li>
+    <li>(Pista ESP32) Se envía el % a un <b>dashboard</b> por WiFi.</li>
+  </ol>
+
+  <div class="box tip"><span class="tag">Pruébalo sin placa</span>
+    <p style="margin:4px 0 0">Todo esto corre en <a>wokwi.com</a> (simulador): pegas el
+    código y el diagrama, le das Play y arrastras el control de distancia del sensor para
+    ver cambiar el semáforo. Es lo que mostramos en el taller.</p>
+  </div>
+</section>
+
+<!-- ====================== 14 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 14</div>
+  <h2>Seguridad y buenas prácticas</h2>
+  <ul>
+    <li><b>GND común:</b> todo lo que se conecte debe compartir la tierra del Arduino. Es el error #1.</li>
+    <li><b>Límite por pin (~20–40 mA):</b> LEDs y señales sí; motores/tiras LED no (usa fuente + transistor/relé).</li>
+    <li><b>Siempre resistencia al LED:</b> sin ella, se quema (y a veces el pin con él).</li>
+    <li><b>Respeta el voltaje:</b> no metas 5V a un pin de 3,3V (ESP32) sin divisor.</li>
+    <li><b>Conecta con la placa apagada:</b> arma el circuito, revisa, y recién alimenta.</li>
+    <li><b>No cruces + y –:</b> un cortocircuito puede dañar la placa o el USB del PC.</li>
+    <li><b>Cuidado con 220V:</b> los relés que manejan red eléctrica son para gente con experiencia.</li>
+  </ul>
+  <div class="box tip"><span class="tag">Checklist antes de dar energía</span>
+    <p style="margin:4px 0 0">¿GND común? ¿LEDs con resistencia? ¿+ y – en los rieles
+    correctos? ¿Ningún componente cortocircuitado en la misma columna? ✔ Recién ahí, USB.</p>
+  </div>
+  <div class="ej"><h4>Ejercicios</h4>
+    <ol>
+      <li>Enumera 3 cosas que revisarías antes de alimentar un circuito nuevo.</li>
+      <li>¿Por qué un motor no se conecta directo a un pin?</li>
+      <li>¿Qué pasa si el sensor y el Arduino no comparten GND?</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ====================== 15 ====================== -->
+<section class="chapter">
+  <div class="eyebrow">Capítulo 15</div>
+  <h2>Glosario y recursos</h2>
+  <h3>Glosario</h3>
+  <table>
+    <tr><th>Término</th><th>Significado</th></tr>
+    <tr><td><b>Microcontrolador</b></td><td>Computador completo en un chip; el cerebro del Arduino.</td></tr>
+    <tr><td><b>Pin / GPIO</b></td><td>Conector de la placa para entrada/salida de señales.</td></tr>
+    <tr><td><b>Sketch</b></td><td>El programa que escribes y subes al Arduino.</td></tr>
+    <tr><td><b>Digital / Analógico</b></td><td>Dos estados (0/1) vs. valores variables.</td></tr>
+    <tr><td><b>PWM</b></td><td>Encender/apagar rápido para simular niveles intermedios.</td></tr>
+    <tr><td><b>Ley de Ohm</b></td><td>V = I × R. Relaciona voltaje, corriente y resistencia.</td></tr>
+    <tr><td><b>Protoboard</b></td><td>Tablero para armar circuitos sin soldar.</td></tr>
+    <tr><td><b>Jumper</b></td><td>Cable puente para conectar componentes.</td></tr>
+    <tr><td><b>Pull-up / pull-down</b></td><td>Resistencia que fija un pin en un estado estable.</td></tr>
+    <tr><td><b>I2C / SPI / UART</b></td><td>Protocolos para que los sensores "conversen" con la placa.</td></tr>
+    <tr><td><b>Actuador</b></td><td>Componente que ejecuta una acción física (motor, LED, buzzer).</td></tr>
+    <tr><td><b>IoT</b></td><td>Objetos conectados a internet que envían/reciben datos.</td></tr>
+  </table>
+
+  <h3>Para seguir aprendiendo</h3>
+  <ul>
+    <li><b>arduino.cc</b> — documentación oficial, referencia del lenguaje y de placas.</li>
+    <li><b>wokwi.com</b> — simulador online: arma y corre circuitos sin placa física.</li>
+    <li><b>Random Nerd Tutorials</b> — guías gratuitas de sensores y módulos (Arduino y ESP32).</li>
+    <li><b>CircuitDigest / Electronics Hub</b> — comparativas de placas y proyectos.</li>
+    <li>El repositorio <b>GeoGreen</b> — código, diagrama Wokwi y la viz 3D del proyecto.</li>
+  </ul>
+
+  <div class="box geo"><span class="tag">Cierre</span>
+    <p style="margin:4px 0 0">Con esto tienes el mapa completo: qué es Arduino, cómo
+    elegir placa, cómo funciona la electricidad y la protoboard, qué sensores existen y
+    cómo se programan. Lo demás es <b>practicar</b> — y para eso, GeoGreen es el mejor
+    pretexto. 🌱</p>
+  </div>
+</section>
+
+</body>
+</html>
