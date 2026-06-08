@@ -3,104 +3,595 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeoGreen · Visualización 3D del llenado</title>
+  <title>GeoGreen - Simulador 3D para Taller 3</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23102A43'/%3E%3Cpath d='M7 18c7-1 11-6 18-10-1 9-6 15-15 17 2-3 4-5 8-8-5 2-8 5-11 1z' fill='%233FAE6A'/%3E%3C/svg%3E" />
   <style>
     :root {
-      --bg0: #06241a;
-      --bg1: #0c3a28;
-      --verde: #27c93f;
-      --amarillo: #f5c542;
-      --rojo: #ff4d4d;
-      --txt: #eafff3;
-      --muted: #8fcaa9;
+      --aiep-red: #D62027;
+      --navy: #102A43;
+      --ink: #243B53;
+      --slate: #52606D;
+      --border: #D8CFC4;
+      --paper: #F8F3EC;
+      --soft: #EDE6DA;
+      --soft-blue: #E6EEF7;
+      --pale-red: #F8E4E5;
+      --gold: #E0BC5A;
+      --green: #3FAE6A;
+      --green-soft: #E9F6EE;
+      --white: #FFFFFF;
+      --shadow: rgba(16, 42, 67, .18);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+
+    * { box-sizing: border-box; }
+
+    html,
     body {
-      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      color: var(--txt);
-      background: radial-gradient(circle at 30% 20%, var(--bg1), var(--bg0) 70%);
+      width: 100%;
+      height: 100%;
+      margin: 0;
       overflow: hidden;
+      max-width: 100%;
     }
-    #app { position: fixed; inset: 0; }
-    canvas { display: block; }
+
+    body {
+      font-family: Aptos, "Segoe UI", Calibri, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(214, 32, 39, .08) 0 1px, transparent 1px 120px),
+        linear-gradient(0deg, rgba(16, 42, 67, .06) 0 1px, transparent 1px 120px),
+        radial-gradient(circle at 70% 16%, rgba(63, 174, 106, .16), transparent 32%),
+        var(--paper);
+    }
+
+    #app {
+      position: fixed;
+      inset: 0;
+    }
+
+    canvas {
+      display: block;
+    }
 
     .panel {
       position: fixed;
-      top: 24px; left: 24px;
-      width: 320px;
-      padding: 22px 24px;
-      background: rgba(8, 30, 22, 0.62);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(140, 220, 170, 0.18);
-      border-radius: 18px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      z-index: 5;
+      width: min(360px, calc(100vw - 32px));
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid rgba(216, 207, 196, .9);
+      box-shadow: 0 22px 70px var(--shadow);
+      backdrop-filter: blur(18px);
+      border-radius: 8px;
     }
-    .brand { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
-    .brand h1 { font-size: 26px; letter-spacing: -0.5px; }
-    .brand .leaf { color: var(--verde); }
-    .sub { color: var(--muted); font-size: 13px; margin-bottom: 22px; }
 
-    .readout { display: flex; gap: 10px; margin-bottom: 18px; }
+    .dashboard {
+      top: 20px;
+      left: 20px;
+      padding: 20px;
+    }
+
+    .controls {
+      right: 20px;
+      top: 20px;
+      padding: 18px;
+    }
+
+    .flow-panel {
+      left: 20px;
+      bottom: 18px;
+      width: min(780px, calc(100vw - 40px));
+      padding: 14px 16px;
+      transform: translateY(0);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .flow-panel[hidden] {
+      display: block;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+
+    .eyebrow {
+      color: var(--aiep-red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.35;
+      margin: 8px 0 16px;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
     .stat {
-      flex: 1; text-align: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(140,220,170,0.12);
-      border-radius: 12px; padding: 10px 6px;
-    }
-    .stat .v { font-size: 22px; font-weight: 700; }
-    .stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-
-    .estado {
-      text-align: center; font-weight: 700; font-size: 15px;
-      padding: 10px; border-radius: 12px; margin-bottom: 20px;
-      transition: background .3s, color .3s;
+      min-height: 82px;
+      padding: 12px;
+      background: var(--soft-blue);
+      border: 1px solid rgba(16, 42, 67, .08);
+      border-radius: 6px;
     }
 
-    label.ctl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
-    input[type=range] {
-      width: 100%; margin: 10px 0 4px; accent-color: var(--verde); cursor: pointer;
+    .stat .value {
+      color: var(--navy);
+      font-size: 28px;
+      font-weight: 850;
+      line-height: 1;
     }
-    .hint { font-size: 11px; color: var(--muted); }
 
-    .semaforo-leyenda { display: flex; gap: 14px; margin-top: 18px; font-size: 12px; color: var(--muted); }
-    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    .stat .label {
+      color: var(--slate);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
 
-    .foot { position: fixed; bottom: 16px; right: 20px; font-size: 11px; color: var(--muted); opacity: .8; }
+    .state {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+      background: var(--green-soft);
+    }
+
+    .light {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(63, 174, 106, .14);
+    }
+
+    .state strong {
+      display: block;
+      color: var(--navy);
+      font-size: 15px;
+      line-height: 1.15;
+    }
+
+    .state span {
+      display: block;
+      color: var(--slate);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .meter {
+      height: 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 14px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      transition: width .35s ease, background .35s ease;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 6px;
+      min-height: 44px;
+      padding: 10px 12px;
+      font: inherit;
+      font-weight: 800;
+      color: var(--navy);
+      background: var(--soft-blue);
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(16, 42, 67, .12);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    button.primary {
+      color: var(--white);
+      background: var(--aiep-red);
+    }
+
+    button.green {
+      color: #123D29;
+      background: var(--green-soft);
+    }
+
+    button.gold {
+      background: #F5E9C3;
+    }
+
+    button.neutral {
+      color: var(--slate);
+      background: var(--soft);
+    }
+
+    .button-wide {
+      grid-column: 1 / -1;
+    }
+
+    .hint {
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.35;
+      margin: 12px 0 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .flow-step {
+      min-height: 78px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--aiep-red);
+      border-radius: 6px;
+      background: var(--white);
+    }
+
+    .flow-step strong {
+      display: block;
+      color: var(--navy);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .flow-step span {
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 18px;
+      z-index: 6;
+      max-width: 360px;
+      padding: 14px 16px;
+      color: var(--navy);
+      background: var(--pale-red);
+      border: 1px solid rgba(214, 32, 39, .24);
+      border-left: 6px solid var(--aiep-red);
+      border-radius: 8px;
+      box-shadow: 0 18px 46px var(--shadow);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .foot {
+      position: fixed;
+      right: 22px;
+      bottom: 12px;
+      z-index: 3;
+      color: rgba(82, 96, 109, .8);
+      font-size: 11px;
+    }
+
+    @media (max-width: 920px) {
+      body {
+        overflow: auto;
+        overflow-x: hidden;
+      }
+
+      #app {
+        position: relative;
+        width: 100vw;
+        overflow: hidden;
+        height: 58vh;
+        min-height: 420px;
+      }
+
+      .panel {
+        position: relative;
+        inset: auto;
+        width: min(340px, calc(100vw - 48px));
+        max-width: none;
+        margin: 14px auto;
+      }
+
+      .controls,
+      .dashboard,
+      .flow-panel {
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+      }
+
+      .flow {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .foot {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      h1 {
+        font-size: 25px;
+      }
+
+      p,
+      span,
+      button {
+        overflow-wrap: anywhere;
+      }
+
+      .readout,
+      .actions,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .button-wide {
+        grid-column: auto;
+      }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(16, 42, 67, .42);
+      backdrop-filter: blur(3px);
+      animation: fade .18s ease;
+    }
+    .modal-backdrop[hidden] { display: none; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      position: relative;
+      width: min(720px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--aiep-red);
+      border-radius: 16px;
+      padding: 26px 30px 22px;
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+    .modal h2 { margin: 2px 0 8px; color: var(--navy); }
+    .modal-lead { margin: 0 0 14px; color: var(--slate); font-size: 14px; line-height: 1.5; }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--soft);
+      font-size: 22px;
+      line-height: 1;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .modal-close:hover { background: var(--pale-red); border-color: var(--aiep-red); color: var(--aiep-red); }
+    .circuit {
+      width: 100%;
+      height: 330px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(63, 174, 106, .08), transparent 60%),
+        var(--soft-blue);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+    }
+    .circuit-stage {
+      position: relative;
+      width: 860px;
+      height: 430px;
+      transform: scale(.74);
+      transform-origin: top left;
+    }
+    .circuit-stage > * { position: absolute; }
+    .circuit-wires {
+      left: 0; top: 0;
+      width: 860px; height: 430px;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .circuit-stage wokwi-arduino-uno,
+    .circuit-stage wokwi-hc-sr04,
+    .circuit-stage wokwi-led,
+    .circuit-stage wokwi-resistor,
+    .circuit-stage wokwi-buzzer { z-index: 2; }
+    .bb-board {
+      z-index: 0;
+      background-color: #ece6d8;
+      background-image: radial-gradient(#c9c0b0 1.1px, transparent 1.4px);
+      background-size: 13px 13px;
+      border: 1px solid #d3cabb;
+      border-radius: 7px;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+    @media (max-width: 620px) { .circuit-stage { transform: scale(.5); } .circuit { height: 230px; } }
+    .bom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 18px;
+      margin: 16px 0 6px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+    .bom span { padding: 4px 0; border-bottom: 1px dashed var(--border); }
+    .modal-foot { margin: 8px 0 0; font-size: 12px; color: var(--slate); }
+    .modal-foot code { background: var(--soft); padding: 1px 6px; border-radius: 5px; }
+    @media (max-width: 620px) { .bom { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app" aria-label="Simulador 3D de contenedor GeoGreen"></div>
 
-  <div class="panel">
-    <div class="brand"><h1>Geo<span class="leaf">Green</span></h1></div>
-    <div class="sub">Monitor de llenado — simulación 3D</div>
+  <section class="panel dashboard" aria-live="polite">
+    <div class="eyebrow">GeoGreen Escolar Osorno - Taller 3</div>
+    <h1>Simulador de llenado</h1>
+    <p class="sub">Demo offline para explicar como un contenedor puede medirse, visualizarse y activar una alerta sin prototipo fisico.</p>
 
     <div class="readout">
-      <div class="stat"><div class="v" id="dist">—</div><div class="l">Distancia</div></div>
-      <div class="stat"><div class="v" id="pct">—</div><div class="l">Llenado</div></div>
+      <div class="stat">
+        <div class="value" id="pct">0%</div>
+        <div class="label">Llenado</div>
+      </div>
+      <div class="stat">
+        <div class="value" id="dist">100 cm</div>
+        <div class="label">Distancia sensor</div>
+      </div>
     </div>
 
-    <div class="estado" id="estado">—</div>
+    <div class="state" id="stateBox">
+      <div class="light" id="stateLight"></div>
+      <div>
+        <strong id="stateTitle">Nivel bajo</strong>
+        <span id="stateAction">Seguir monitoreando.</span>
+      </div>
+    </div>
 
-    <label class="ctl">Distancia del sensor al contenido (cm)</label>
-    <input type="range" id="slider" min="10" max="100" value="70" step="0.5" />
-    <div class="hint">Acerca el contenido (menos cm) para llenar el contenedor.</div>
+    <div class="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div>
+  </section>
 
-    <div class="semaforo-leyenda">
-      <span><span class="dot" style="background:var(--verde)"></span>&lt;40%</span>
-      <span><span class="dot" style="background:var(--amarillo)"></span>40–79%</span>
-      <span><span class="dot" style="background:var(--rojo)"></span>≥80% 🔊</span>
+  <section class="panel controls">
+    <div class="eyebrow">Control de la demo</div>
+    <h2>Agregar residuos</h2>
+    <div class="actions">
+      <button class="green" data-trash="plastic">Plastico</button>
+      <button class="green" data-trash="paper">Papel / carton</button>
+      <button class="gold" data-trash="glass">Vidrio / metal</button>
+      <button class="neutral" data-trash="organic">Residuo mixto</button>
+      <button class="primary button-wide" id="quickFill">Simular llenado rapido</button>
+      <button class="neutral button-wide" id="toggleLid">Abrir tapa</button>
+      <button class="neutral" id="resetBin">Vaciar contenedor</button>
+      <button class="neutral" id="toggleFlow">Mostrar / ocultar flujo</button>
+    </div>
+    <p class="hint">Toma los residuos del suelo, levantalos y echalos por la tapa. Clic en la tapa para abrirla; clic en el modulo negro para ver el circuito.</p>
+  </section>
+
+  <section class="panel flow-panel" id="flowPanel">
+    <div class="eyebrow">Logica GeoGreen</div>
+    <div class="flow">
+      <div class="flow-step"><strong>1. Sensar</strong><span>El sensor estima distancia hasta los residuos.</span></div>
+      <div class="flow-step"><strong>2. Enviar</strong><span>La lectura podria transmitirse por WiFi o LoRa.</span></div>
+      <div class="flow-step"><strong>3. Visualizar</strong><span>El tablero transforma datos en una decision simple.</span></div>
+      <div class="flow-step"><strong>4. Alertar</strong><span>Si el nivel es alto, se recomienda programar retiro.</span></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"><strong>Alerta de retiro:</strong> contenedor lleno. Programar retiro.</div>
+  <div class="foot">Arrastra para rotar - rueda para zoom - clic en la tapa para abrirla - clic en el modulo para ver el circuito</div>
+
+  <div class="modal-backdrop" id="circuitModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">&times;</button>
+      <div class="eyebrow">Modulo GeoGreen</div>
+      <h2 id="modalTitle">El circuito por dentro</h2>
+      <p class="modal-lead">La caja negra que va bajo la tapa: un Arduino lee el sensor de
+        distancia, convierte la lectura en porcentaje y enciende el semaforo. Al llenarse,
+        el buzzer avisa.</p>
+
+      <div class="circuit">
+        <div class="circuit-stage" id="circuitStage">
+          <svg class="circuit-wires" id="circuitWires" viewBox="0 0 860 430" preserveAspectRatio="none"></svg>
+          <div class="bb-board" style="left:496px; top:150px; width:344px; height:150px;"></div>
+          <wokwi-arduino-uno data-el="uno" style="left:24px; top:150px;"></wokwi-arduino-uno>
+          <wokwi-hc-sr04 data-el="sr04" style="left:330px; top:8px;"></wokwi-hc-sr04>
+          <wokwi-resistor data-el="r_v" value="220" style="left:520px; top:182px;"></wokwi-resistor>
+          <wokwi-resistor data-el="r_a" value="220" style="left:520px; top:222px;"></wokwi-resistor>
+          <wokwi-resistor data-el="r_r" value="220" style="left:520px; top:262px;"></wokwi-resistor>
+          <wokwi-led data-el="led_v" color="green" style="left:690px; top:176px;"></wokwi-led>
+          <wokwi-led data-el="led_a" color="yellow" style="left:744px; top:176px;"></wokwi-led>
+          <wokwi-led data-el="led_r" color="red" style="left:798px; top:176px;"></wokwi-led>
+          <wokwi-buzzer data-el="bz" style="left:150px; top:316px;"></wokwi-buzzer>
+        </div>
+      </div>
+
+      <div class="bom">
+        <span><b>HC-SR04</b> sensor ultrasonico - TRIG D9 / ECHO D10</span>
+        <span><b>Arduino UNO</b> controlador</span>
+        <span><b>LED verde</b> D4 - nivel bajo</span>
+        <span><b>LED amarillo</b> D3 - nivel medio</span>
+        <span><b>LED rojo</b> D2 - lleno</span>
+        <span><b>Buzzer</b> D8 - alerta</span>
+        <span><b>3 x AAA</b> alimentacion</span>
+      </div>
+      <p class="modal-foot">Detalle real en <code>arduino/wiring.yml</code> y simulable en Wokwi.</p>
     </div>
   </div>
 
-  <div class="foot">Arrastra para rotar · rueda para zoom</div>
+  <script src="./vendor/wokwi/wokwi-elements.bundle.min.js"></script>
 
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/addons/"
     }
   }
   </script>
@@ -108,158 +599,1027 @@
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-    // ---- Misma lógica que el firmware (main.cpp) ----
-    const DIST_VACIO = 100, DIST_LLENO = 10;
-    const UMBRAL_MEDIO = 40, UMBRAL_ALTO = 80;
-    const calcularLlenado = d =>
-      Math.round(Math.min(100, Math.max(0, (DIST_VACIO - d) * 100 / (DIST_VACIO - DIST_LLENO))));
+    const DIST_EMPTY = 100;
+    const DIST_FULL = 10;
+    const MAX_FILL = 100;
+    const LOW_LIMIT = 40;
+    const HIGH_LIMIT = 80;
 
-    const COL = { verde: 0x27c93f, amarillo: 0xf5c542, rojo: 0xff4d4d };
+    const COLORS = {
+      navy: 0x102A43,
+      ink: 0x243B53,
+      slate: 0x52606D,
+      red: 0xD62027,
+      green: 0x3FAE6A,
+      gold: 0xE0BC5A,
+      paper: 0xF8F3EC,
+      soft: 0xEDE6DA,
+      blueSoft: 0xE6EEF7,
+      bin: 0x2f5f7f,
+      binDark: 0x17384d,
+      rubber: 0x15191c
+    };
 
-    // ---- Escena ----
+    const TRASH = {
+      plastic: { label: 'Plastico', volume: 6, color: 0x3FAE6A, shape: 'bottle' },
+      paper: { label: 'Papel / carton', volume: 7, color: 0xC99755, shape: 'box' },
+      glass: { label: 'Vidrio / metal', volume: 5, color: 0x79B9C9, shape: 'can' },
+      organic: { label: 'Residuo mixto', volume: 8, color: 0x7D6A4F, shape: 'bag' }
+    };
+
     const app = document.getElementById('app');
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x06241a, 18, 45);
+    scene.background = new THREE.Color(0xF8F3EC);
+    scene.fog = new THREE.Fog(0xF8F3EC, 26, 48);
 
-    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 100);
-    camera.position.set(9, 8, 12);
+    const camera = new THREE.PerspectiveCamera(42, app.clientWidth / app.clientHeight, 0.1, 100);
+    camera.position.set(4.2, 6.8, 13.6);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(innerWidth, innerHeight);
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(app.clientWidth, app.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     app.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.target.set(0, 2.5, 0);
-    controls.minDistance = 8; controls.maxDistance = 30;
+    controls.target.set(0, 2.2, 0);
+    controls.minDistance = 8;
+    controls.maxDistance = 16;
+    controls.zoomSpeed = 0.55;
+    controls.maxPolarAngle = Math.PI * 0.48;
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    const key = new THREE.DirectionalLight(0xffffff, 1.1);
-    key.position.set(6, 12, 8); scene.add(key);
-    const rim = new THREE.DirectionalLight(0x7fffc0, 0.4);
-    rim.position.set(-8, 4, -6); scene.add(rim);
+    const ambient = new THREE.HemisphereLight(0xffffff, 0xC9B9A6, 1.35);
+    scene.add(ambient);
 
-    // Piso
-    const floor = new THREE.Mesh(
-      new THREE.CircleGeometry(16, 64),
-      new THREE.MeshStandardMaterial({ color: 0x0a3324, roughness: 1 })
-    );
-    floor.rotation.x = -Math.PI / 2; floor.position.y = -0.01; scene.add(floor);
+    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    key.position.set(8, 12, 8);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.camera.near = 1;
+    key.shadow.camera.far = 35;
+    key.shadow.camera.left = -12;
+    key.shadow.camera.right = 12;
+    key.shadow.camera.top = 12;
+    key.shadow.camera.bottom = -12;
+    scene.add(key);
 
-    // Dimensiones del contenedor (unidades de escena)
-    const W = 5, D = 5, H = 7;
+    const redAccent = new THREE.PointLight(COLORS.red, 1.1, 9);
+    redAccent.position.set(-4.8, 4.6, 3.8);
+    scene.add(redAccent);
 
-    // Paredes translúcidas
-    const glass = new THREE.MeshPhysicalMaterial({
-      color: 0x3fae7a, transparent: true, opacity: 0.16,
-      roughness: 0.1, metalness: 0, transmission: 0.6, side: THREE.DoubleSide
+    const mat = (color, opts = {}) => new THREE.MeshStandardMaterial({
+      color,
+      roughness: 0.68,
+      metalness: 0.05,
+      ...opts
     });
-    const walls = new THREE.Mesh(new THREE.BoxGeometry(W, H, D), glass);
-    walls.position.y = H / 2; scene.add(walls);
-    const edges = new THREE.LineSegments(
-      new THREE.EdgesGeometry(new THREE.BoxGeometry(W, H, D)),
-      new THREE.LineBasicMaterial({ color: 0x6fe6a8 })
-    );
-    edges.position.y = H / 2; scene.add(edges);
 
-    // Contenido (lo que sube según el %)
-    const fillMat = new THREE.MeshStandardMaterial({ color: 0x2f8f5d, roughness: 0.85 });
-    const fill = new THREE.Mesh(new THREE.BoxGeometry(W - 0.3, 1, D - 0.3), fillMat);
-    scene.add(fill);
+    const mats = {
+      bin: mat(COLORS.bin, { roughness: 0.55, metalness: 0.12 }),
+      binFront: mat(COLORS.bin, { roughness: 0.48, metalness: 0.08, transparent: true, opacity: .28 }),
+      binDark: mat(COLORS.binDark, { roughness: 0.65, metalness: 0.08 }),
+      rib: mat(0x1F4B66, { roughness: 0.58, metalness: 0.1 }),
+      rubber: mat(COLORS.rubber, { roughness: 0.9 }),
+      lid: mat(0xDDE4E8, { roughness: 0.42, metalness: 0.16 }),
+      lidEdge: mat(0xB8C4CA, { roughness: 0.5, metalness: 0.12 }),
+      module: mat(COLORS.navy, { roughness: 0.5 }),
+      sensor: mat(0x1C2632, { roughness: 0.42, metalness: 0.22 }),
+      sensorFace: mat(0xAAB7C2, { roughness: 0.25, metalness: 0.45 }),
+      pcb: mat(0x14775A, { roughness: .5, metalness: .08 }),
+      copper: mat(0xE0BC5A, { roughness: .38, metalness: .35 }),
+      battery: mat(0x2B2F33, { roughness: .7 }),
+      wireRed: mat(0xD62027, { roughness: .45 }),
+      wireGreen: mat(0x3FAE6A, { roughness: .45 }),
+      wireBlue: mat(0x2E6F9E, { roughness: .45 }),
+      fill: mat(0x8C7A5F, { roughness: 0.96 }),
+      floor: mat(0xEDE6DA, { roughness: 0.82 }),
+      moduleBox: mat(0x16191d, { roughness: 0.45, metalness: 0.22 }),
+      moduleEdge: mat(0x2b3138, { roughness: 0.55, metalness: 0.14 })
+    };
+    [mats.bin, mats.binFront, mats.rib].forEach(material => {
+      material.side = THREE.DoubleSide;
+    });
 
-    // Tapa con sensor
-    const lid = new THREE.Mesh(
-      new THREE.BoxGeometry(W + 0.4, 0.4, D + 0.4),
-      new THREE.MeshStandardMaterial({ color: 0xcfd8d3, roughness: 0.6 })
-    );
-    lid.position.y = H + 0.2; scene.add(lid);
-    const sensor = new THREE.Mesh(
-      new THREE.BoxGeometry(1.8, 0.5, 0.9),
-      new THREE.MeshStandardMaterial({ color: 0x10263a })
-    );
-    sensor.position.set(0, H - 0.1, 0); scene.add(sensor);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(36, 28), mats.floor);
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
 
-    // Semáforo (3 esferas emisivas sobre la tapa)
-    const luces = {};
-    ['verde', 'amarillo', 'rojo'].forEach((c, i) => {
-      const m = new THREE.Mesh(
-        new THREE.SphereGeometry(0.42, 24, 24),
-        new THREE.MeshStandardMaterial({ color: COL[c], emissive: COL[c], emissiveIntensity: 0 })
+    const stage = new THREE.Group();
+    scene.add(stage);
+
+    // Proporciones afinadas al contenedor real (ancho:alto:fondo ~ 1 : 0.83 : 0.52),
+    // asi el GLB se escala casi sin deformarse y el resto sigue calzando.
+    const BIN = { w: 5.4, d: 2.85, bottomW: 4.4, bottomD: 2.05, h: 4.5, wall: 0.14 };
+    const fillGroup = new THREE.Group();
+    const wasteGroup = new THREE.Group();
+    const floorTrashGroup = new THREE.Group();
+    const falling = [];
+    const draggableTrash = [];
+    let fillPct = 0;
+    let visibleFillHeight = 0.05;
+    let enteredHigh = false;
+    let autoTimer = null;
+    let lidOpen = false;
+    let lidTarget = 0;
+    let selectedTrash = null;
+
+    function box(w, h, d, material, x, y, z) {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+      mesh.position.set(x, y, z);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      return mesh;
+    }
+
+    function cyl(rTop, rBottom, h, material, x, y, z, rot = [0, 0, 0], segments = 32) {
+      const mesh = new THREE.Mesh(new THREE.CylinderGeometry(rTop, rBottom, h, segments), material);
+      mesh.position.set(x, y, z);
+      mesh.rotation.set(rot[0], rot[1], rot[2]);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      return mesh;
+    }
+
+    function torus(radius, tube, material, x, y, z, rot = [0, 0, 0]) {
+      const mesh = new THREE.Mesh(new THREE.TorusGeometry(radius, tube, 16, 48), material);
+      mesh.position.set(x, y, z);
+      mesh.rotation.set(rot[0], rot[1], rot[2]);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      return mesh;
+    }
+
+    function quadPanel(points, material) {
+      const geometry = new THREE.BufferGeometry();
+      const vertices = new Float32Array(points.flatMap(p => [p.x, p.y, p.z]));
+      geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+      geometry.setIndex([0, 1, 2, 0, 2, 3]);
+      geometry.computeVertexNormals();
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      return mesh;
+    }
+
+    function roundedBinBody() {
+      const body = new THREE.Group();
+      const top = { w: BIN.w, d: BIN.d };
+      const bottom = { w: BIN.bottomW, d: BIN.bottomD };
+      const y0 = .08;
+      const y1 = BIN.h;
+      const zFrontTop = top.d / 2;
+      const zBackTop = -top.d / 2;
+      const zFrontBottom = bottom.d / 2;
+      const zBackBottom = -bottom.d / 2;
+      const xTop = top.w / 2;
+      const xBottom = bottom.w / 2;
+
+      body.add(quadPanel([
+        { x: -xBottom, y: y0, z: zFrontBottom },
+        { x: xBottom, y: y0, z: zFrontBottom },
+        { x: xTop, y: y1, z: zFrontTop },
+        { x: -xTop, y: y1, z: zFrontTop }
+      ], mats.binFront));
+      body.add(quadPanel([
+        { x: xBottom, y: y0, z: zBackBottom },
+        { x: -xBottom, y: y0, z: zBackBottom },
+        { x: -xTop, y: y1, z: zBackTop },
+        { x: xTop, y: y1, z: zBackTop }
+      ], mats.bin));
+      body.add(quadPanel([
+        { x: -xBottom, y: y0, z: zBackBottom },
+        { x: -xBottom, y: y0, z: zFrontBottom },
+        { x: -xTop, y: y1, z: zFrontTop },
+        { x: -xTop, y: y1, z: zBackTop }
+      ], mats.bin));
+      body.add(quadPanel([
+        { x: xBottom, y: y0, z: zFrontBottom },
+        { x: xBottom, y: y0, z: zBackBottom },
+        { x: xTop, y: y1, z: zBackTop },
+        { x: xTop, y: y1, z: zFrontTop }
+      ], mats.bin));
+      body.add(box(BIN.bottomW, .16, BIN.bottomD, mats.binDark, 0, .08, 0));
+
+      const topLip = [
+        box(BIN.w + .48, .3, .3, mats.binDark, 0, BIN.h + .06, BIN.d / 2 + .05),
+        box(BIN.w + .48, .3, .3, mats.binDark, 0, BIN.h + .06, -BIN.d / 2 - .05),
+        box(.3, .3, BIN.d + .48, mats.binDark, -BIN.w / 2 - .05, BIN.h + .06, 0),
+        box(.3, .3, BIN.d + .48, mats.binDark, BIN.w / 2 + .05, BIN.h + .06, 0)
+      ];
+      body.add(...topLip);
+
+      for (const x of [-1.65, 0, 1.65]) {
+        const rib = box(.16, BIN.h - .9, .12, mats.rib, x, BIN.h / 2, BIN.d / 2 + .13);
+        rib.rotation.z = x * .025;
+        body.add(rib);
+      }
+      for (const y of [1.25, 3.15, 5.05]) {
+        const rib = box(BIN.w - .9, .13, .14, mats.rib, 0, y, BIN.d / 2 + .16);
+        body.add(rib);
+      }
+
+      const frontWindowFrame = box(BIN.w - .72, .09, .12, mats.binDark, 0, 5.65, BIN.d / 2 + .21);
+      const lowerFrame = box(BIN.w - .9, .1, .12, mats.binDark, 0, .7, BIN.d / 2 + .21);
+      body.add(frontWindowFrame, lowerFrame);
+
+      const rearHandle = cyl(.09, .09, BIN.w + .35, mats.binDark, 0, 4.9, -BIN.d / 2 - .52, [0, 0, Math.PI / 2], 20);
+      body.add(rearHandle);
+      for (const x of [-2.15, 2.15]) {
+        const handleArm = cyl(.08, .08, .9, mats.binDark, x, 4.65, -BIN.d / 2 - .18, [Math.PI / 2, 0, 0], 16);
+        body.add(handleArm);
+      }
+
+      const wheelZ = -BIN.d / 2 - .12;
+      const wheelY = .55;
+      const wheelX = BIN.bottomW / 2 + .26;
+      const axle = cyl(.09, .09, BIN.w + .78, mats.rubber, 0, wheelY, wheelZ, [0, 0, Math.PI / 2], 18);
+      body.add(axle);
+
+      for (const side of [-1, 1]) {
+        const x = side * wheelX;
+        const wheel = cyl(.58, .58, .34, mats.rubber, x, wheelY, wheelZ, [0, 0, Math.PI / 2], 56);
+        const hub = cyl(.25, .25, .39, mat(0xC4CDD3, { roughness: .35, metalness: .38 }), x, wheelY, wheelZ, [0, 0, Math.PI / 2], 36);
+        const cap = cyl(.11, .11, .43, mats.binDark, x, wheelY, wheelZ, [0, 0, Math.PI / 2], 24);
+        const tireLip = torus(.46, .055, mats.rubber, x + side * .18, wheelY, wheelZ, [0, Math.PI / 2, 0]);
+        const hubRing = torus(.2, .025, mats.binDark, x + side * .205, wheelY, wheelZ, [0, Math.PI / 2, 0]);
+        const bracket = box(.16, .72, .18, mats.binDark, side * (BIN.bottomW / 2 - .15), .78, wheelZ + .12);
+        const fork = box(.14, .16, .72, mats.binDark, side * (BIN.bottomW / 2 - .16), .42, wheelZ + .08);
+        body.add(wheel, hub, cap, tireLip, hubRing, bracket, fork);
+      }
+
+      for (const x of [-1.42, 1.42]) {
+        const frontFoot = box(.5, .2, .36, mats.binDark, x, .2, BIN.d / 2 + .16);
+        const rubberPad = box(.42, .08, .3, mats.rubber, x, .08, BIN.d / 2 + .19);
+        body.add(frontFoot, rubberPad);
+      }
+      return body;
+    }
+
+    function createLidAndModule() {
+      const group = new THREE.Group();
+      const hingeWorld = new THREE.Vector3(0, BIN.h + .32, -BIN.d / 2 - .46);
+      const pivot = new THREE.Group();
+      pivot.position.copy(hingeWorld);
+      group.add(pivot);
+
+      function addToPivot(mesh) {
+        mesh.position.sub(hingeWorld);
+        pivot.add(mesh);
+        return mesh;
+      }
+
+      const lid = box(BIN.w + .8, .28, BIN.d + .62, mats.lid, 0, BIN.h + .54, -.12);
+      lid.rotation.x = -0.06;
+      const frontRoll = cyl(.17, .17, BIN.w + .72, mats.lidEdge, 0, BIN.h + .43, BIN.d / 2 + .24, [0, 0, Math.PI / 2], 32);
+      const rearRoll = cyl(.13, .13, BIN.w + .55, mats.lidEdge, 0, BIN.h + .45, -BIN.d / 2 - .35, [0, 0, Math.PI / 2], 32);
+      const lidRib1 = box(BIN.w + .25, .07, .08, mats.lidEdge, 0, BIN.h + .73, .7);
+      const lidRib2 = box(BIN.w + .05, .07, .08, mats.lidEdge, 0, BIN.h + .74, -.72);
+      [lid, frontRoll, rearRoll, lidRib1, lidRib2].forEach(m => { m.userData.procLid = true; addToPivot(m); });
+
+      const hinge = cyl(.09, .09, BIN.w + .45, mats.binDark, 0, BIN.h + .32, -BIN.d / 2 - .46, [0, 0, Math.PI / 2], 18);
+      hinge.userData.procLid = true;
+      group.add(hinge);
+
+      // === Modulo GeoGreen: caja CHICA pegada bajo la tapa (clip-on real) ===
+      // Va escondido dentro de la boca; al abrir la tapa se ve colgando de ella.
+      // Sensor mirando hacia abajo; semaforo chico al frente. Click -> modal.
+      const moduleParts = [];
+      const my = BIN.h - .5;                                   // altura del modulo (bajo la tapa, oculto al cerrar)
+      // plaquita de montaje contra la cara inferior de la tapa
+      moduleParts.push(box(1.04, .05, .7, mats.moduleEdge, 0, my + .21, .02));
+      const moduleBody = box(.92, .26, .6, mats.moduleBox, 0, my, .02);
+      moduleBody.name = 'geoModule';
+      moduleParts.push(moduleBody);
+      // sensor HC-SR04 (dos ojitos) en la cara inferior, mirando hacia adentro/abajo
+      for (const x of [-.2, .2]) {
+        moduleParts.push(cyl(.1, .1, .1, mats.sensorFace, x, my - .17, .02, [0, 0, 0], 24));
+      }
+      // semaforo chico en la cara frontal del modulo (se ve al abrir la tapa)
+      const ledColors = [COLORS.green, COLORS.gold, COLORS.red];
+      ledColors.forEach((color, index) => {
+        const ledMat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: .12, roughness: .35 });
+        const led = cyl(.05, .05, .09, ledMat, -.2 + index * .2, my + .02, .33, [Math.PI / 2, 0, 0], 20);
+        led.name = ['ledGreen', 'ledYellow', 'ledRed'][index];
+        moduleParts.push(led);
+      });
+      // buzzer chico a un costado
+      moduleParts.push(cyl(.07, .07, .08, mats.binDark, .34, my + .02, -.2, [Math.PI / 2, 0, 0], 18));
+
+      moduleParts.forEach(part => { part.userData.moduleBox = true; addToPivot(part); });
+      group.userData.moduleMesh = moduleBody;
+      group.userData.moduleParts = moduleParts;
+
+      group.userData.pivot = pivot;
+      return group;
+    }
+
+    const binBody = new THREE.Group();
+    const lidModule = createLidAndModule();
+    stage.add(binBody, lidModule, fillGroup, wasteGroup, floorTrashGroup);
+
+    // El cuerpo se carga desde un modelo 3D real (GLB, contenedor CC0 de Quaternius).
+    // Si el GLB no carga, caemos al modelo procedural para no romper la demo.
+    let proceduralBody = null;
+    function useProceduralBody() {
+      if (proceduralBody) return;
+      proceduralBody = roundedBinBody();
+      binBody.add(proceduralBody);
+    }
+    function setProcLidVisible(visible) {
+      lidModule.traverse(child => {
+        if (child.userData && child.userData.procLid) child.visible = visible;
+      });
+    }
+
+    // Dimensiones reales del contenedor cargado (se rellenan tras el GLB).
+    // Quedan disponibles para colocar componentes a futuro (modulo, circuito...).
+    const dims = { topY: BIN.h, openW: BIN.w, openD: BIN.d };
+
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load('./vendor/models/contenedor.glb', (gltf) => {
+      try {
+        const model = gltf.scene;
+        // El nodo del GLB (FBX2glTF) YA trae su rotacion Z-up -> Y-up y su escala.
+        // No re-orientar a mano: solo medir, escalar uniforme y apoyar en el piso.
+        model.updateMatrixWorld(true);
+        let bbox = new THREE.Box3().setFromObject(model);
+        const size = bbox.getSize(new THREE.Vector3());
+        const glb = new THREE.Group();
+        glb.add(model);
+        // Escala UNIFORME (sin deformar). BIN ya esta afinado a la proporcion del
+        // modelo, asi ancho/fondo quedan ~ BIN.w/BIN.d y todo lo demas sigue calzando.
+        glb.scale.setScalar(BIN.h / size.y);
+        glb.updateMatrixWorld(true);
+        bbox = new THREE.Box3().setFromObject(glb);
+        const center = bbox.getCenter(new THREE.Vector3());
+        glb.position.x -= center.x;                        // centrar en X
+        glb.position.z -= center.z;                        // centrar en Z
+        glb.position.y -= bbox.min.y;                      // apoyar la base en y=0
+        binBody.add(glb);
+        model.traverse(o => {
+          if (o.isMesh) {
+            o.castShadow = true;
+            o.receiveShadow = true;
+            if (o.material) o.material.side = THREE.DoubleSide;
+          }
+        });
+
+        // Registrar dimensiones reales ya colocadas.
+        binBody.updateMatrixWorld(true);
+        const placed = new THREE.Box3().setFromObject(glb);
+        const placedSize = placed.getSize(new THREE.Vector3());
+        dims.topY = placed.max.y;
+        dims.openW = placedSize.x;
+        dims.openD = placedSize.z;
+
+        // Separar la tapa (primitive DarkGrey) y colgarla del pivote animado,
+        // para conservar el "Abrir tapa / ver circuito".
+        const pivot = lidModule.userData.pivot;
+        let lidMesh = null;
+        model.traverse(o => {
+          if (o.isMesh && o.material && /dark/i.test(o.material.name || '')) lidMesh = o;
+        });
+        if (lidMesh && pivot) {
+          // Recolocar el pivote en el borde trasero-superior real de la tapa,
+          // para que abra limpio hacia atras/arriba sobre el eje X.
+          lidMesh.updateMatrixWorld(true);
+          const lidBox = new THREE.Box3().setFromObject(lidMesh);
+          const hinge = new THREE.Vector3(0, lidBox.min.y, lidBox.min.z);
+          const delta = hinge.clone().sub(pivot.position);   // mover sin desarmar el modulo
+          pivot.position.copy(hinge);
+          pivot.children.forEach(child => child.position.sub(delta));
+          pivot.updateMatrixWorld(true);
+          pivot.attach(lidMesh);
+          lidMesh.userData.glbLid = true;
+          lidModule.userData.glbLidMesh = lidMesh;        // ref para click -> abrir/cerrar tapa
+          setProcLidVisible(false);                       // ocultar tapa procedural, dejar el circuito
+        }
+      } catch (err) {
+        console.error('GLB cargado pero el post-proceso fallo; uso modelo procedural', err);
+        useProceduralBody();
+      }
+    }, undefined, (err) => {
+      console.warn('No se pudo cargar contenedor.glb; uso modelo procedural', err);
+      useProceduralBody();
+    });
+
+    const fillBase = new THREE.Mesh(
+      new THREE.BoxGeometry(BIN.bottomW - .5, 1, BIN.bottomD - .5),
+      mats.fill
+    );
+    fillBase.position.set(0, .05, 0);
+    fillBase.castShadow = true;
+    fillBase.receiveShadow = true;
+    fillGroup.add(fillBase);
+
+    const scanLineMat = new THREE.MeshBasicMaterial({ color: COLORS.red, transparent: true, opacity: .38 });
+    const scanLine = new THREE.Mesh(new THREE.RingGeometry(1.05, 1.14, 64), scanLineMat);
+    scanLine.rotation.x = -Math.PI / 2;
+    scanLine.position.set(0, BIN.h - .45, .12);
+    stage.add(scanLine);
+
+    function createTrashMesh(typeKey) {
+      const spec = TRASH[typeKey];
+      const material = mat(spec.color, { roughness: .78, metalness: spec.shape === 'can' ? .28 : .05 });
+      let mesh;
+
+      if (spec.shape === 'bottle') {
+        const group = new THREE.Group();
+        group.add(cyl(.16, .2, .7, material, 0, 0, 0, [0, 0, Math.PI / 2], 18));
+        group.add(cyl(.08, .08, .22, material, .42, 0, 0, [0, 0, Math.PI / 2], 14));
+        mesh = group;
+      } else if (spec.shape === 'box') {
+        mesh = new THREE.Mesh(new THREE.BoxGeometry(.52, .36, .42), material);
+      } else if (spec.shape === 'can') {
+        mesh = cyl(.18, .18, .5, material, 0, 0, 0, [0, 0, Math.PI / 2], 24);
+      } else {
+        mesh = new THREE.Mesh(new THREE.DodecahedronGeometry(.32, 0), material);
+      }
+
+      mesh.traverse?.(child => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+      if (mesh.isMesh) {
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+      }
+      mesh.userData.type = typeKey;
+      return mesh;
+    }
+
+    function randomInBin() {
+      return {
+        x: (Math.random() - .5) * (BIN.w - .9),
+        z: (Math.random() - .5) * (BIN.d - .9)
+      };
+    }
+
+    function spawnTrash(typeKey, animated = true) {
+      const mesh = createTrashMesh(typeKey);
+      const target = randomInBin();
+      const layer = Math.max(.25, (fillPct / 100) * (BIN.h - .6));
+      const endY = Math.min(BIN.h - .45, .38 + layer + Math.random() * .5);
+      mesh.position.set(target.x, animated ? BIN.h + 3.1 : endY, target.z);
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+      mesh.scale.setScalar(.85 + Math.random() * .35);
+      wasteGroup.add(mesh);
+
+      if (animated) {
+        falling.push({
+          mesh,
+          startY: mesh.position.y,
+          endY,
+          startTime: performance.now(),
+          duration: 650 + Math.random() * 260,
+          spin: new THREE.Vector3(Math.random() * .07, Math.random() * .09, Math.random() * .06)
+        });
+      }
+    }
+
+    function createFloorTrash(typeKey, slot) {
+      const mesh = createTrashMesh(typeKey);
+      const hitbox = new THREE.Mesh(
+        new THREE.SphereGeometry(.55, 16, 12),
+        new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
       );
-      m.position.set(-1.2 + i * 1.2, H + 0.9, D / 2 - 0.6);
-      scene.add(m); luces[c] = m;
-    });
+      hitbox.userData.hitbox = true;
+      mesh.add(hitbox);
+      mesh.position.copy(slot.position);
+      mesh.rotation.set(slot.rotation.x, slot.rotation.y, slot.rotation.z);
+      mesh.scale.setScalar(slot.scale);
+      mesh.userData.floorTrash = true;
+      mesh.userData.type = typeKey;
+      mesh.userData.slot = slot;
+      floorTrashGroup.add(mesh);
+      draggableTrash.push(mesh);
+      return mesh;
+    }
 
-    // ---- Estado / UI ----
-    const $ = id => document.getElementById(id);
-    const estadoBox = $('estado');
-    let nivelActual = 0, beepArmado = false, audioCtx = null;
+    const floorSlots = [
+      { type: 'plastic', position: new THREE.Vector3(-4.2, .32, 3.2), rotation: new THREE.Vector3(.2, 0, .4), scale: 1.05 },
+      { type: 'paper', position: new THREE.Vector3(-3.0, .24, 4.0), rotation: new THREE.Vector3(.1, .7, .1), scale: .95 },
+      { type: 'glass', position: new THREE.Vector3(3.75, .3, 3.35), rotation: new THREE.Vector3(.2, .4, 1.2), scale: 1 },
+      { type: 'organic', position: new THREE.Vector3(4.85, .32, 2.3), rotation: new THREE.Vector3(.3, .2, .1), scale: .95 },
+      { type: 'plastic', position: new THREE.Vector3(-4.9, .32, .95), rotation: new THREE.Vector3(.4, .5, .2), scale: .9 },
+      { type: 'paper', position: new THREE.Vector3(4.35, .24, .85), rotation: new THREE.Vector3(.1, -.5, .35), scale: .85 }
+    ];
+    floorSlots.forEach(slot => createFloorTrash(slot.type, slot));
+
+    function removeDraggable(mesh) {
+      const index = draggableTrash.indexOf(mesh);
+      if (index >= 0) draggableTrash.splice(index, 1);
+      floorTrashGroup.remove(mesh);
+    }
+
+    function respawnFloorTrash(typeKey, slot) {
+      setTimeout(() => createFloorTrash(typeKey, slot), 900);
+    }
+
+    function isOverBinOpening(position) {
+      return Math.abs(position.x) < BIN.w / 2 + .25 && Math.abs(position.z) < BIN.d / 2 + .25;
+    }
+
+    function pruneWaste() {
+      const max = 110;
+      while (wasteGroup.children.length > max) {
+        const old = wasteGroup.children[0];
+        wasteGroup.remove(old);
+      }
+    }
+
+    function setFill(next, options = {}) {
+      const previous = fillPct;
+      fillPct = Math.max(0, Math.min(MAX_FILL, Math.round(next)));
+      updateDashboard(previous, options.silent);
+    }
+
+    function addTrash(typeKey, count = 1) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          spawnTrash(typeKey, true);
+          setFill(fillPct + TRASH[typeKey].volume);
+          pruneWaste();
+        }, i * 130);
+      }
+    }
+
+    function resetBin() {
+      fillPct = 0;
+      visibleFillHeight = 0.05;
+      enteredHigh = false;
+      wasteGroup.clear();
+      fillBase.scale.y = .05;
+      fillBase.position.y = .05;
+      updateDashboard(0, true);
+      showToast(false);
+    }
+
+    function seedInitialWaste(targetPct) {
+      resetBin();
+      fillPct = Math.max(0, Math.min(100, Math.round(targetPct)));
+      const pieces = Math.min(90, Math.max(0, Math.round(fillPct / 3)));
+      const keys = Object.keys(TRASH);
+      for (let i = 0; i < pieces; i++) {
+        spawnTrash(keys[i % keys.length], false);
+      }
+      updateDashboard(0, true);
+    }
+
+    function getStatus(pct) {
+      if (pct < LOW_LIMIT) {
+        return {
+          title: 'Nivel bajo',
+          action: 'Seguir monitoreando.',
+          color: '#3FAE6A',
+          bg: '#E9F6EE',
+          shadow: 'rgba(63, 174, 106, .16)',
+          led: 'ledGreen'
+        };
+      }
+      if (pct < HIGH_LIMIT) {
+        return {
+          title: 'Nivel medio',
+          action: 'Revisar pronto.',
+          color: '#E0BC5A',
+          bg: '#F5E9C3',
+          shadow: 'rgba(224, 188, 90, .2)',
+          led: 'ledYellow'
+        };
+      }
+      return {
+        title: 'Nivel lleno',
+        action: 'Programar retiro.',
+        color: '#D62027',
+        bg: '#F8E4E5',
+        shadow: 'rgba(214, 32, 39, .18)',
+        led: 'ledRed'
+      };
+    }
+
+    function updateDashboard(previousPct = 0, silent = false) {
+      const pct = fillPct;
+      const dist = Math.round(DIST_EMPTY - (pct / 100) * (DIST_EMPTY - DIST_FULL));
+      const status = getStatus(pct);
+
+      document.getElementById('pct').textContent = pct + '%';
+      document.getElementById('dist').textContent = dist + ' cm';
+      document.getElementById('stateTitle').textContent = status.title;
+      document.getElementById('stateAction').textContent = status.action;
+      document.getElementById('meterFill').style.width = pct + '%';
+      document.getElementById('meterFill').style.background = status.color;
+
+      const stateBox = document.getElementById('stateBox');
+      stateBox.style.background = status.bg;
+      stateBox.style.borderColor = status.color;
+      const light = document.getElementById('stateLight');
+      light.style.background = status.color;
+      light.style.boxShadow = '0 0 0 6px ' + status.shadow;
+
+      lidModule.traverse(child => {
+        if (!child.name || !child.material) return;
+        child.material.emissiveIntensity = child.name === status.led ? 1.65 : .08;
+      });
+
+      if (pct >= HIGH_LIMIT && previousPct < HIGH_LIMIT && !silent) {
+        showToast(true);
+        beep();
+      } else if (pct < HIGH_LIMIT) {
+        showToast(false);
+      }
+      enteredHigh = pct >= HIGH_LIMIT;
+    }
+
+    function showToast(show) {
+      document.getElementById('toast').classList.toggle('show', show);
+    }
 
     function beep() {
       try {
-        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-        const o = audioCtx.createOscillator(), g = audioCtx.createGain();
-        o.frequency.value = 880; o.connect(g); g.connect(audioCtx.destination);
-        g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.01);
-        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.18);
-        o.start(); o.stop(audioCtx.currentTime + 0.2);
-      } catch (e) {}
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 880;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        gain.gain.setValueAtTime(.0001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(.22, ctx.currentTime + .02);
+        gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + .22);
+        osc.start();
+        osc.stop(ctx.currentTime + .25);
+      } catch (error) {
+        // Audio can be blocked by the browser; visual alert remains the source of truth.
+      }
     }
 
-    function actualizar(dist) {
-      const pct = calcularLlenado(dist);
-      $('dist').textContent = dist.toFixed(0) + ' cm';
-      $('pct').textContent = pct + ' %';
-
-      let estado, col;
-      if (pct < UMBRAL_MEDIO) { estado = 'BAJO'; col = 'verde'; }
-      else if (pct < UMBRAL_ALTO) { estado = 'MEDIO'; col = 'amarillo'; }
-      else { estado = 'LLENO 🔊'; col = 'rojo'; }
-
-      ['verde', 'amarillo', 'rojo'].forEach(c => luces[c].material.emissiveIntensity = c === col ? 1.4 : 0.04);
-      estadoBox.textContent = 'Nivel ' + estado;
-      estadoBox.style.background = 'rgba(' + (col === 'verde' ? '39,201,63' : col === 'amarillo' ? '245,197,66' : '255,77,77') + ',0.18)';
-      estadoBox.style.color = COL[col] ? '#' + COL[col].toString(16).padStart(6, '0') : '#fff';
-
-      // beep al cruzar a LLENO
-      if (col === 'rojo' && !beepArmado) { beep(); beepArmado = true; }
-      if (col !== 'rojo') beepArmado = false;
-
-      nivelActual = pct; // objetivo de animación
+    function quickFill() {
+      const sequence = ['paper', 'plastic', 'organic', 'glass', 'paper', 'plastic', 'organic', 'glass', 'paper', 'organic', 'plastic', 'paper'];
+      sequence.forEach((type, index) => setTimeout(() => addTrash(type), index * 220));
     }
 
-    $('slider').addEventListener('input', e => actualizar(parseFloat(e.target.value)));
-    const _p = new URLSearchParams(location.search);
-    if (_p.has('dist')) $('slider').value = _p.get('dist');
-    actualizar(parseFloat($('slider').value));
+    function startAutoMode() {
+      let index = 0;
+      const keys = ['paper', 'plastic', 'glass', 'organic'];
+      autoTimer = setInterval(() => {
+        if (fillPct >= 100) {
+          clearInterval(autoTimer);
+          return;
+        }
+        addTrash(keys[index % keys.length]);
+        index += 1;
+      }, 720);
+    }
 
-    // ---- Loop ----
-    let h = 0.01, t = 0;
-    function animate() {
+    function setLidOpen(next) {
+      lidOpen = next;
+      lidTarget = lidOpen ? -.78 : 0;
+      document.getElementById('toggleLid').textContent = lidOpen ? 'Cerrar tapa' : 'Abrir tapa';
+    }
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const CARRY_Y = 3.4;                                   // altura de transporte (en el aire)
+    const dragPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -CARRY_Y);
+    const planeHit = new THREE.Vector3();
+    let pointerDownAt = null;                              // distinguir click de arrastre/orbita
+    let pointerMoved = false;
+    const grabOffset = new THREE.Vector2();                // evita el "salto" al tomar un objeto
+    const thrown = [];                                     // objetos en caida libre (fisica simple)
+    const GRAVITY = 26;                                    // unidades/s^2
+
+    function updatePointer(event) {
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    }
+
+    function findDraggable(object) {
+      let current = object;
+      while (current) {
+        if (current.userData?.floorTrash) return current;
+        current = current.parent;
+      }
+      return null;
+    }
+
+    function onPointerDown(event) {
+      pointerDownAt = { x: event.clientX, y: event.clientY };
+      pointerMoved = false;
+      updatePointer(event);
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(draggableTrash, true);
+      if (!hits.length) return;
+      const picked = findDraggable(hits[0].object);
+      if (!picked) return;
+      selectedTrash = picked;
+      selectedTrash.userData.dragging = true;
+      // offset entre el objeto y el rayo en el plano de transporte -> sin salto al tomarlo
+      if (raycaster.ray.intersectPlane(dragPlane, planeHit)) {
+        grabOffset.set(picked.position.x - planeHit.x, picked.position.z - planeHit.z);
+      } else {
+        grabOffset.set(0, 0);
+      }
+      controls.enabled = false;
+      renderer.domElement.setPointerCapture?.(event.pointerId);
+      document.body.style.cursor = 'grabbing';
+    }
+
+    function onPointerMove(event) {
+      if (pointerDownAt && !pointerMoved &&
+          Math.hypot(event.clientX - pointerDownAt.x, event.clientY - pointerDownAt.y) > 5) {
+        pointerMoved = true;
+      }
+      if (!selectedTrash) {
+        if (!pointerDownAt) {                              // afford: cursor sobre lo interactivo
+          updatePointer(event);
+          raycaster.setFromCamera(pointer, camera);
+          const clickables = (lidModule.userData.moduleParts || []).slice();
+          if (lidModule.userData.glbLidMesh) clickables.push(lidModule.userData.glbLidMesh);
+          const over = raycaster.intersectObjects(draggableTrash, true).length > 0 ||
+            (clickables.length && raycaster.intersectObjects(clickables, true).length > 0);
+          document.body.style.cursor = over ? 'pointer' : '';
+        }
+        return;
+      }
+      updatePointer(event);
+      raycaster.setFromCamera(pointer, camera);
+      if (raycaster.ray.intersectPlane(dragPlane, planeHit)) {
+        selectedTrash.position.x = THREE.MathUtils.clamp(planeHit.x + grabOffset.x, -6.4, 6.4);
+        selectedTrash.position.z = THREE.MathUtils.clamp(planeHit.z + grabOffset.y, -1.0, 5.2);
+        selectedTrash.rotation.y += .03;                   // la altura la sube animate() suavemente
+        if (isOverBinOpening(selectedTrash.position)) setLidOpen(true);   // abre la tapa para echarlo
+      }
+    }
+
+    function onPointerUp(event) {
+      if (selectedTrash) {
+        const dropped = selectedTrash;
+        controls.enabled = true;
+        renderer.domElement.releasePointerCapture?.(event.pointerId);
+        document.body.style.cursor = '';
+        selectedTrash = null;
+
+        dropped.userData.dragging = false;
+        if (isOverBinOpening(dropped.position)) {
+          setLidOpen(true);
+          tossIntoBin(dropped);                            // cae de verdad por la tapa (gravedad)
+        } else {
+          dropToFloor(dropped);                            // cae al piso donde lo soltaste
+        }
+        pointerDownAt = null;
+        return;
+      }
+      // No habia objeto agarrado: si fue un click limpio, interpretar el 3D.
+      if (pointerDownAt && !pointerMoved) handleSceneClick(event);
+      pointerDownAt = null;
+    }
+
+    function handleSceneClick(event) {
+      updatePointer(event);
+      raycaster.setFromCamera(pointer, camera);
+      // 1) Modulo negro -> modal del circuito
+      const modParts = lidModule.userData.moduleParts || [];
+      if (modParts.length && raycaster.intersectObjects(modParts, true).length) {
+        openCircuitModal();
+        return;
+      }
+      // 2) Tapa -> abrir / cerrar (mas intuitivo que el boton)
+      const lidTargets = [];
+      if (lidModule.userData.glbLidMesh) lidTargets.push(lidModule.userData.glbLidMesh);
+      lidModule.traverse(c => { if (c.userData && c.userData.procLid && c.visible) lidTargets.push(c); });
+      if (lidTargets.length && raycaster.intersectObjects(lidTargets, true).length) {
+        setLidOpen(!lidOpen);
+      }
+    }
+
+    function tossIntoBin(mesh) {
+      const type = mesh.userData.type;
+      const slot = mesh.userData.slot;
+      const di = draggableTrash.indexOf(mesh);
+      if (di >= 0) draggableTrash.splice(di, 1);
+      floorTrashGroup.remove(mesh);
+      wasteGroup.add(mesh);                                  // pasa a ser parte del monton
+      mesh.position.x = THREE.MathUtils.clamp(mesh.position.x, -(BIN.w / 2 - .8), (BIN.w / 2 - .8));
+      mesh.position.z = THREE.MathUtils.clamp(mesh.position.z, -(BIN.d / 2 - .55), (BIN.d / 2 - .55));
+      thrown.push({
+        mesh,
+        vel: new THREE.Vector3((Math.random() - .5) * .8, -1.5, (Math.random() - .5) * .5),
+        spin: new THREE.Vector3((Math.random() - .5) * .25, (Math.random() - .5) * .25, (Math.random() - .5) * .25),
+        intoBin: true,
+        type
+      });
+      respawnFloorTrash(type, slot);                         // repone uno en el suelo
+    }
+
+    function dropToFloor(mesh) {
+      const di = draggableTrash.indexOf(mesh);
+      if (di >= 0) draggableTrash.splice(di, 1);             // no arrastrable mientras cae (sigue en escena)
+      thrown.push({
+        mesh,
+        vel: new THREE.Vector3(0, -.4, 0),
+        spin: new THREE.Vector3(0, .02, 0),
+        intoBin: false,
+        restY: mesh.userData.slot.position.y
+      });
+    }
+
+    document.querySelectorAll('[data-trash]').forEach(button => {
+      button.addEventListener('click', () => addTrash(button.dataset.trash));
+    });
+    document.getElementById('quickFill').addEventListener('click', quickFill);
+    document.getElementById('toggleLid').addEventListener('click', () => setLidOpen(!lidOpen));
+    document.getElementById('resetBin').addEventListener('click', resetBin);
+    document.getElementById('toggleFlow').addEventListener('click', () => {
+      const panel = document.getElementById('flowPanel');
+      panel.hidden = !panel.hidden;
+    });
+
+    const circuitModal = document.getElementById('circuitModal');
+    let circuitWired = false;
+    // Conexiones reales (de arduino/diagram.json). [elA, pinA, elB, pinB, color]
+    const CIRCUIT_CONNS = [
+      ['sr04', 'VCC', 'uno', '5V', '#D62027'],
+      ['sr04', 'GND', 'uno', 'GND.1', '#243B53'],
+      ['sr04', 'TRIG', 'uno', '9', '#2E6F9E'],
+      ['sr04', 'ECHO', 'uno', '10', '#3FAE6A'],
+      ['uno', '4', 'r_v', '1', '#3FAE6A'],
+      ['r_v', '2', 'led_v', 'A', '#3FAE6A'],
+      ['led_v', 'C', 'uno', 'GND.2', '#243B53'],
+      ['uno', '3', 'r_a', '1', '#E0BC5A'],
+      ['r_a', '2', 'led_a', 'A', '#E0BC5A'],
+      ['led_a', 'C', 'uno', 'GND.2', '#243B53'],
+      ['uno', '2', 'r_r', '1', '#E07A2E'],
+      ['r_r', '2', 'led_r', 'A', '#E07A2E'],
+      ['led_r', 'C', 'uno', 'GND.2', '#243B53'],
+      ['uno', '8', 'bz', '1', '#7A4FB0'],
+      ['bz', '2', 'uno', 'GND.3', '#243B53']
+    ];
+
+    function pinAt(elKey, pinName) {
+      const el = circuitModal.querySelector(`[data-el="${elKey}"]`);
+      if (!el) return null;
+      const pins = el.pinInfo || (el.constructor && el.constructor.pinInfo) || [];
+      let p = pins.find(x => x.name === pinName);
+      if (!p && /^GND/.test(pinName)) p = pins.find(x => /^GND/i.test(x.name));
+      if (!p) p = pins.find(x => String(x.name).replace(/^D/i, '') === pinName);
+      const left = parseFloat(el.style.left) || 0;
+      const top = parseFloat(el.style.top) || 0;
+      if (!p) return { x: left + 10, y: top + 10 };
+      return { x: left + p.x, y: top + p.y };
+    }
+
+    function buildCircuitWires() {
+      if (circuitWired) return;
+      const svg = document.getElementById('circuitWires');
+      if (!svg || typeof customElements === 'undefined') return;
+      const NS = 'http://www.w3.org/2000/svg';
+      let drawn = 0;
+      CIRCUIT_CONNS.forEach(([ea, pa, eb, pb, color]) => {
+        const a = pinAt(ea, pa);
+        const b = pinAt(eb, pb);
+        if (!a || !b) return;
+        const dx = (b.x - a.x) * 0.4;
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', `M ${a.x} ${a.y} C ${a.x + dx} ${a.y + 18}, ${b.x - dx} ${b.y + 18}, ${b.x} ${b.y}`);
+        path.setAttribute('stroke', color);
+        path.setAttribute('stroke-width', '3');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(path);
+        drawn++;
+      });
+      if (drawn) circuitWired = true;   // reintentar si los componentes aun no estaban listos
+    }
+
+    function openCircuitModal() {
+      circuitModal.hidden = false;
+      buildCircuitWires();
+      if (!circuitWired) setTimeout(buildCircuitWires, 120);   // esperar upgrade de los wokwi-elements
+    }
+    function closeCircuitModal() { circuitModal.hidden = true; }
+    document.getElementById('modalClose').addEventListener('click', closeCircuitModal);
+    circuitModal.addEventListener('click', (e) => { if (e.target === circuitModal) closeCircuitModal(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCircuitModal(); });
+    // pre-construir el cableado cuando los wokwi-elements esten definidos
+    if (window.customElements && customElements.whenDefined) {
+      Promise.all(['wokwi-arduino-uno', 'wokwi-hc-sr04', 'wokwi-led', 'wokwi-resistor', 'wokwi-buzzer']
+        .map(t => customElements.whenDefined(t))).then(() => setTimeout(buildCircuitWires, 60));
+    } else {
+      setTimeout(buildCircuitWires, 400);
+    }
+    renderer.domElement.addEventListener('pointerdown', onPointerDown);
+    renderer.domElement.addEventListener('pointermove', onPointerMove);
+    renderer.domElement.addEventListener('pointerup', onPointerUp);
+    renderer.domElement.addEventListener('pointercancel', onPointerUp);
+
+    const params = new URLSearchParams(location.search);
+    const initialFill = params.has('fill') ? Number(params.get('fill')) : 0;
+    if (Number.isFinite(initialFill) && initialFill > 0) seedInitialWaste(initialFill);
+    else updateDashboard(0, true);
+    if (params.get('mode') === 'auto') {
+      resetBin();
+      setTimeout(startAutoMode, 800);
+    }
+
+    let lastNow = performance.now();
+    function animate(now) {
       requestAnimationFrame(animate);
-      t += 0.03;
-      const objetivo = Math.max(0.02, (nivelActual / 100) * (H - 0.2));
-      h += (objetivo - h) * 0.12;                 // animación suave del nivel
-      fill.geometry.dispose();
-      fill.geometry = new THREE.BoxGeometry(W - 0.3, h, D - 0.3);
-      fill.position.y = h / 2;
+      const dt = Math.min(.05, (now - lastNow) / 1000);
+      lastNow = now;
 
-      // pulso del LED rojo cuando está lleno
-      if (luces.rojo.material.emissiveIntensity > 1)
-        luces.rojo.material.emissiveIntensity = 1.0 + Math.abs(Math.sin(t * 4)) * 1.2;
+      const targetHeight = Math.max(.05, (fillPct / 100) * (BIN.h - .55));
+      visibleFillHeight += (targetHeight - visibleFillHeight) * .12;
+      fillBase.scale.y = visibleFillHeight;
+      fillBase.position.y = visibleFillHeight / 2;
+
+      for (let i = falling.length - 1; i >= 0; i--) {
+        const item = falling[i];
+        const k = Math.min(1, (now - item.startTime) / item.duration);
+        const eased = 1 - Math.pow(1 - k, 3);
+        item.mesh.position.y = item.startY + (item.endY - item.startY) * eased;
+        item.mesh.rotation.x += item.spin.x;
+        item.mesh.rotation.y += item.spin.y;
+        item.mesh.rotation.z += item.spin.z;
+        if (k >= 1) falling.splice(i, 1);
+      }
+
+      scanLine.scale.setScalar(1 + Math.sin(now * .004) * .06);
+      scanLine.position.y = Math.max(.6, BIN.h - .45 - visibleFillHeight * .22);
+      scanLine.material.opacity = fillPct >= HIGH_LIMIT ? .7 : .32;
+
+      const lidPivot = lidModule.userData.pivot;
+      if (lidPivot) {
+        lidPivot.rotation.x += (lidTarget - lidPivot.rotation.x) * .12;
+      }
+
+      // levantar suavemente el objeto que se esta cargando (sin salto)
+      if (selectedTrash) {
+        selectedTrash.position.y += (CARRY_Y - selectedTrash.position.y) * .22;
+      }
+
+      // fisica simple de los objetos lanzados (gravedad + asentar)
+      for (let i = thrown.length - 1; i >= 0; i--) {
+        const t = thrown[i];
+        t.vel.y -= GRAVITY * dt;
+        t.mesh.position.x += t.vel.x * dt;
+        t.mesh.position.y += t.vel.y * dt;
+        t.mesh.position.z += t.vel.z * dt;
+        t.mesh.rotation.x += t.spin.x;
+        t.mesh.rotation.y += t.spin.y;
+        t.mesh.rotation.z += t.spin.z;
+        const restY = t.intoBin
+          ? Math.max(.45, (fillPct / 100) * (BIN.h - .6) + .45)
+          : t.restY;
+        if (t.mesh.position.y <= restY) {
+          t.mesh.position.y = restY;
+          if (t.intoBin) {
+            pruneWaste();
+            setFill(fillPct + (TRASH[t.type] ? TRASH[t.type].volume : 6));
+          } else {
+            const slot = t.mesh.userData.slot;
+            slot.position.set(t.mesh.position.x, restY, t.mesh.position.z);
+            t.mesh.userData.dragging = false;
+            draggableTrash.push(t.mesh);                     // vuelve a ser arrastrable
+          }
+          thrown.splice(i, 1);
+        }
+      }
+
+      draggableTrash.forEach((mesh, index) => {
+        if (mesh.userData.dragging) return;
+        mesh.position.y = mesh.userData.slot.position.y + Math.sin(now * .003 + index) * .025;
+      });
+
+      if (enteredHigh) {
+        const pulse = 1 + Math.abs(Math.sin(now * .008)) * 1.4;
+        lidModule.traverse(child => {
+          if (child.name === 'ledRed') child.material.emissiveIntensity = pulse;
+        });
+      }
 
       controls.update();
       renderer.render(scene, camera);
     }
-    animate();
 
-    addEventListener('resize', () => {
-      camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-      renderer.setSize(innerWidth, innerHeight);
-    });
+    function resize() {
+      const w = app.clientWidth;
+      const h = app.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(animate);
   </script>
 </body>
 </html>

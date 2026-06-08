@@ -26,3 +26,6 @@ serial.log
 .DS_Store
 Thumbs.db
 ~$*
+
+# Capturas temporales de verificacion
+.playwright-cli/
