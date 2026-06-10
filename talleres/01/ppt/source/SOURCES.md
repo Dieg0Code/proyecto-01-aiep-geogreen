@@ -12,3 +12,5 @@ Imágenes usadas como base visual del PPT del Taller 1. Se guardan localmente en
 | `poor-recycling-education-sydney.jpg` | https://commons.wikimedia.org/wiki/File:Example_of_poor_recycling_education_in_sydney,_australia.jpg | Quellatizia · CC BY-SA 4.0 |
 | `poor-recycling-education-sydney-crop.jpg` | Recorte local de `poor-recycling-education-sydney.jpg` | Mismo origen y licencia |
 | `recycling-sorting-audit.jpg` | https://commons.wikimedia.org/wiki/File:Greenville_Public_Works,_ECVC_Recycling_Sorting_facility_-_02.jpg | Greenville, NC · dominio público según Wikimedia Commons |
+| `ross-waste-audit-education-day.jpg` | https://commons.wikimedia.org/wiki/File:Ross_Waste_Audit_%26_Education_Day_(16511488895).jpg | licencia CC BY 2.0 indicada en Wikimedia Commons |
+| `auraria-campus-waste-audit.jpg` | https://commons.wikimedia.org/wiki/File:November_15,_2013_-_Auraria_Campus,_Denver,_CO_(11859763596).jpg | dominio público según Wikimedia Commons |
