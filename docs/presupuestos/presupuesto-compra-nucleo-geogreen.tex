@@ -1,0 +1,198 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1.65cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen Escolar Osorno · Presupuesto de compra núcleo}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt}
+\renewcommand{\arraystretch}{1.28}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPInk}}{}{0pt}{}
+
+\newtcolorbox{infobox}[2][]{
+  enhanced,
+  colback=#2!6,
+  colframe=#2,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=3mm,
+  right=3mm,
+  top=2.5mm,
+  bottom=2.5mm,
+  #1
+}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newcommand{\money}[1]{\textbf{\$#1}}
+\newcommand{\budgettag}[2]{%
+  \tcbox[
+    on line,
+    colback=#1!10,
+    colframe=#1,
+    boxrule=0.35pt,
+    arc=1.2mm,
+    left=2mm,
+    right=2mm,
+    top=0.5mm,
+    bottom=0.5mm
+  ]{\scriptsize\bfseries\textcolor{#1}{#2}}%
+}
+
+\begin{document}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  arc=0mm,
+  boxrule=0pt,
+  left=5mm,
+  right=5mm,
+  top=5mm,
+  bottom=5mm
+]
+{\color{white}\Huge\bfseries Presupuesto compra núcleo}\\[2mm]
+{\color{white}\Large GeoGreen Escolar 2026}\\[3mm]
+{\color{AIEPSoftBlue} Propuesta referencial para adquisición de Arduino UNO R4 WiFi y kit de sensores}
+\end{tcolorbox}
+
+\section{Resumen Ejecutivo}
+
+\begin{infobox}{AIEPSoftBlue}
+Se propone comprometer una compra inicial acotada para sostener el trabajo por equipos del proyecto GeoGreen Escolar: cinco placas Arduino UNO R4 WiFi y un kit de 37 sensores. Esta compra permite iniciar el componente tecnológico del concurso sin duplicar materiales que ya existen en el banco de componentes AIEP.
+\end{infobox}
+
+\begin{multicols}{3}
+\begin{infobox}{AIEPNavy}
+\textbf{Presupuesto observado}\\
+Monto total disponible: \money{420.000}.
+\end{infobox}
+
+\begin{infobox}{AIEPRed}
+\textbf{Meta al 30 de julio}\\
+50\% a ejecutar o comprometer: \money{210.000}.
+\end{infobox}
+
+\begin{infobox}{AIEPGreen}
+\textbf{Compra propuesta}\\
+Total referencial: \money{249.553}.
+\end{infobox}
+\end{multicols}
+
+\section{Compra Propuesta}
+
+\begin{tabularx}{\textwidth}{L{3.4cm}L{2cm}Y L{3cm}}
+\hline
+\textbf{Ítem} & \textbf{Cantidad} & \textbf{Uso proyectado} & \textbf{Valor referencial} \\
+\hline
+Arduino UNO R4 WiFi & 5 unidades & Placa principal para trabajo por equipos. Permite mantener formato Arduino, USB-C, matriz LED y conectividad WiFi/BLE para proyectos de sostenibilidad. & \money{45.990} c/u \newline \money{229.950} total \\
+\hline
+Kit de 37 sensores & 1 unidad & Ampliación del banco común de exploración. Los equipos seleccionan sensores según su idea; no se reparte el kit completo por grupo. & \money{19.603} total \\
+\hline
+\textbf{Total compra núcleo} & \textbf{6 productos} & Compra mínima para habilitar el componente tecnológico del concurso. & \money{249.553} \\
+\hline
+\end{tabularx}
+
+\section{Proyección Frente al Presupuesto}
+
+\begin{tabularx}{\textwidth}{L{5cm}Y L{3cm}}
+\hline
+\textbf{Concepto} & \textbf{Lectura presupuestaria} & \textbf{Monto} \\
+\hline
+Presupuesto total observado & Suma de las líneas disponibles para kits educativos y materiales de prototipado escolar. & \money{420.000} \\
+\hline
+50\% mínimo a ejecutar o comprometer & Umbral informado para evitar recorte presupuestario al 30 de julio. & \money{210.000} \\
+\hline
+Compra núcleo propuesta & 5 Arduino UNO R4 WiFi + 1 kit de 37 sensores. & \money{249.553} \\
+\hline
+Diferencia sobre el 50\% & La compra propuesta supera el umbral mínimo requerido. & \money{39.553} \\
+\hline
+Porcentaje del presupuesto total & Proporción aproximada que representa la compra núcleo. & \textbf{59,4\%} \\
+\hline
+Saldo proyectado & Monto referencial restante para reposiciones menores, insumos de prototipado o apoyo al evento final. & \money{170.447} \\
+\hline
+\end{tabularx}
+
+\section{Imputación Sugerida}
+
+\begin{tabularx}{\textwidth}{L{4.3cm}Y L{3cm}}
+\hline
+\textbf{Línea presupuestaria} & \textbf{Uso sugerido} & \textbf{Monto referencial} \\
+\hline
+Kits educativos de reciclaje y ciencia simple & Kit de 37 sensores y apoyo a exploración de fenómenos, materiales, clasificación y medición. & \money{19.603} \\
+\hline
+Materiales de prototipado escolar & Placas Arduino UNO R4 WiFi para desarrollo de soluciones tecnológicas por equipo. & \money{229.950} \\
+\hline
+\end{tabularx}
+
+\begin{infobox}{AIEPGold}
+\textbf{Validación administrativa.}
+La imputación final debe ajustarse al criterio administrativo de AIEP. Si la línea de prototipado escolar requiere un tope específico por categoría, la compra puede presentarse como adquisición tecnológica núcleo para el concurso de innovación sostenible, asociada al trabajo práctico de ambos talleres y mentorías.
+\end{infobox}
+
+\section{Justificación Pedagógica}
+
+\begin{tabularx}{\textwidth}{L{4.1cm}Y}
+\hline
+\textbf{Criterio} & \textbf{Justificación} \\
+\hline
+Trabajo por equipos & Cinco Arduino UNO R4 WiFi permiten organizar un bloque ideal de cinco equipos, manteniendo una placa base equivalente por grupo. \\
+\hline
+Exploración flexible & El kit de 37 sensores amplía el banco común para que los equipos elijan componentes según su problema ambiental y no trabajen todos la misma solución. \\
+\hline
+Continuidad técnica & La placa UNO R4 WiFi mantiene compatibilidad con el formato Arduino y agrega conectividad, lo que facilita proyectar soluciones más completas. \\
+\hline
+Uso eficiente del inventario & La compra complementa el material ya observado en AIEP: placas, protoboards, jumpers, LEDs, buzzer, pantallas, servos, motores y sensores. \\
+\hline
+Riesgo controlado & La solicitud evita comprar kits duplicados o componentes avanzados innecesarios antes de revisar el inventario real disponible. \\
+\hline
+\end{tabularx}
+
+\section{Observaciones}
+
+\begin{itemize}
+  \item Los valores son referenciales y pueden variar por stock, despacho, proveedor, descuentos o compra institucional.
+  \item Los precios fueron contrastados con publicaciones de MercadoLibre Chile y con el documento interno de planificación de compra elaborado el 09-06-2026.
+  \item La ficha técnica Arduino identifica el UNO R4 WiFi como placa con microcontrolador Renesas RA4M1 y módulo ESP32-S3 para WiFi/Bluetooth.
+  \item Antes de emitir la compra, conviene confirmar disponibilidad, despacho, factura y condiciones administrativas del proveedor.
+\end{itemize}
+
+\begin{infobox}{AIEPGreen}
+\textbf{Recomendación.}
+Aprobar la compra núcleo como primera adquisición del proyecto: permite comprometer más del 50\% del presupuesto informado antes del 30 de julio y deja margen para ajustes posteriores según inventario, asistencia real y necesidades del concurso.
+\end{infobox}
+
+\end{document}

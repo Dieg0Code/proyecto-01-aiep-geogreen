@@ -1,0 +1,243 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1.65cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen Escolar Osorno · Coordinación interna}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt}
+\renewcommand{\arraystretch}{1.28}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPInk}}{}{0pt}{}
+
+\newcommand{\pill}[2]{%
+  \tcbox[
+    on line,
+    colback=#1!10,
+    colframe=#1,
+    boxrule=0.35pt,
+    arc=1.2mm,
+    left=2.2mm,
+    right=2.2mm,
+    top=0.6mm,
+    bottom=0.6mm
+  ]{\scriptsize\bfseries\textcolor{#1}{#2}}%
+}
+
+\newtcolorbox{infobox}[2][]{
+  enhanced,
+  colback=#2!6,
+  colframe=#2,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=3mm,
+  right=3mm,
+  top=2.5mm,
+  bottom=2.5mm,
+  #1
+}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  arc=0mm,
+  boxrule=0pt,
+  left=5mm,
+  right=5mm,
+  top=5mm,
+  bottom=5mm
+]
+{\color{white}\Huge\bfseries Lineamientos transversales}\\[2mm]
+{\color{white}\Large GeoGreen Escolar 2026}\\[3mm]
+{\color{AIEPSoftBlue} Equipos, talleres, mentorías y entregables mínimos · Versión de coordinación interna}
+\end{tcolorbox}
+
+\vspace{1mm}
+
+\begin{infobox}{AIEPSoftBlue}
+\textbf{\textcolor{AIEPNavy}{Propósito del documento.}}
+Ordenar la progresión pedagógica del proyecto GeoGreen Escolar para que cada taller, mentoría y hito final deje una evidencia concreta por equipo. El documento fija una base común de trabajo; los equipos docentes pueden adaptar metodologías y materiales siempre que se mantengan los productos definidos.
+\end{infobox}
+
+\section{Objetivo Transversal}
+
+Que los estudiantes, organizados en equipos, identifiquen una problemática ambiental concreta, comprendan sus causas materiales y sociales, exploren herramientas tecnológicas aplicables y desarrollen una propuesta sostenible que puedan presentar y justificar.
+
+\begin{multicols}{2}
+\begin{infobox}{AIEPGreen}
+\textbf{Lógica formativa}\\
+El proyecto avanza desde la observación del problema hacia una propuesta explicable. GeoGreen funciona como caso guía, no como solución obligatoria para todos los equipos.
+\end{infobox}
+
+\begin{infobox}{AIEPRed}
+\textbf{Criterio de evaluación}\\
+Cada etapa debe producir una evidencia simple, revisable y acumulativa. La calidad del proceso importa tanto como el resultado final.
+\end{infobox}
+\end{multicols}
+
+\section{Organización de Estudiantes}
+
+\begin{tabularx}{\textwidth}{L{4.2cm}Y}
+\hline
+\textbf{Proyección de participantes} & 60 estudiantes en total, distribuidos en dos bloques de 30 estudiantes. \\
+\hline
+\textbf{Estructura ideal por bloque} & 5 equipos de 6 estudiantes. Esta distribución permite trabajo colaborativo, rotación de roles y seguimiento manejable. \\
+\hline
+\textbf{Ajuste por asistencia real} & Si asisten menos estudiantes, se forman equipos más pequeños. Si la cantidad es impar, se permite que un equipo tenga un integrante adicional. \\
+\hline
+\textbf{Unidad de trabajo} & Los entregables se desarrollan por equipo, no de forma individual. Cada equipo debe conservar una línea de continuidad desde el Taller 1 hasta el evento final. \\
+\hline
+\end{tabularx}
+
+\section{Progresión de Talleres y Mentorías}
+
+\begin{tabularx}{\textwidth}{L{2.6cm}L{4.6cm}Y}
+\hline
+\textbf{Etapa} & \textbf{Foco} & \textbf{Continuidad esperada} \\
+\hline
+Taller 1 & Conciencia ambiental local, residuos, hábitos y separación en origen. & Forma los equipos y define una problemática ambiental concreta. \\
+\hline
+Taller 2 & Ciencia del reciclaje, materiales, clasificación y trazabilidad básica del residuo. & Mejora la comprensión del residuo o material asociado al problema elegido. \\
+\hline
+Taller 3 & Arduino, sensores, actuadores, simulación y GeoGreen como caso demostrativo. & Abre posibilidades tecnológicas para responder al problema con una solución inicial. \\
+\hline
+Mentorías & Revisión breve, semanal y guiada del avance de cada equipo. & Convierte la idea en una propuesta presentable y defendible. \\
+\hline
+Pitch final & Comunicación del problema, solución, evidencia y aprendizaje. & Permite comparar propuestas y reconocer el proceso de innovación sostenible. \\
+\hline
+\end{tabularx}
+
+\section{Responsabilidades por Etapa}
+
+\begin{tabularx}{\textwidth}{L{2.45cm}Y L{3.25cm}}
+\hline
+\textbf{Etapa} & \textbf{Producto mínimo} & \textbf{Responsable principal} \\
+\hline
+Taller 1 & Equipos formados + frase de problema ambiental concreto por equipo. & \pill{AIEPRed}{Desarrollo Social} \\
+\hline
+Taller 2 & Ficha de análisis del residuo o material asociado al problema. & \pill{AIEPRed}{Desarrollo Social} \\
+\hline
+Taller 3 & Ficha de idea tecnológica inicial, con componentes posibles y lógica de funcionamiento. & \pill{AIEPNavy}{Prog./Sistemas} \\
+\hline
+Mentoría 1 & Problema validado + usuario, comunidad o contexto afectado. & \pill{AIEPRed}{Desarrollo Social} \\
+\hline
+Mentoría 2 & Solución propuesta + componentes, materiales o recursos definidos. & \pill{AIEPNavy}{Prog./Sistemas} \\
+\hline
+Mentoría 3 & Evidencia de avance: maqueta, simulación, diagrama, prototipo o storyboard. & \pill{AIEPNavy}{Prog./Sistemas} \\
+\hline
+Mentoría 4 & Guion de pitch + soporte visual listo para ensayo. & \pill{AIEPRed}{Desarrollo Social} \\
+\hline
+Ensayo de pitch & Presentación corregida con retroalimentación. & \pill{AIEPRed}{Desarrollo Social} \quad \pill{AIEPNavy}{Apoyo técnico} \\
+\hline
+Evento final & Propuesta presentada por equipo + premiación. & \pill{AIEPInk}{Equipo conjunto} \\
+\hline
+Devolución y cierre & Informe final, recomendaciones y set de materiales reutilizables. & \pill{AIEPInk}{Equipo conjunto} \\
+\hline
+\end{tabularx}
+
+\vspace{1mm}
+
+\begin{infobox}{AIEPGold}
+\textbf{Criterio de reparto.}
+Desarrollo Social lidera las etapas centradas en problema, contexto, comunidad, hábitos y comunicación. Programación/Sistemas lidera las etapas de solución técnica, componentes, simulación y evidencia de funcionamiento. El trabajo conjunto se reserva para los hitos donde ambas miradas deben integrarse.
+\end{infobox}
+
+\newpage
+
+\section{Cronograma Base Post Vacaciones}
+
+Los estudiantes del Liceo Comercial retornan de vacaciones el lunes 27 de julio de 2026. La propuesta se organiza desde esa semana, manteniendo los talleres concentrados y las mentorías como seguimiento semanal de una hora.
+
+\begin{tabularx}{\textwidth}{L{2.6cm}Y L{4.1cm}}
+\hline
+\textbf{Fecha sugerida} & \textbf{Actividad} & \textbf{Producto de continuidad} \\
+\hline
+Lun 27 jul & \textbf{Taller 1:} conciencia ambiental local y formación de equipos. & Equipos + problema ambiental por equipo. \\
+\hline
+Mar 28 jul & \textbf{Taller 2:} ciencia del reciclaje, materiales y clasificación. & Ficha de residuo/material. \\
+\hline
+Mié 29 jul & \textbf{Taller 3:} Arduino, sensores, actuadores y GeoGreen como caso. & Ficha de idea tecnológica inicial. \\
+\hline
+Lun 3 ago & \textbf{Mentoría 1:} problema y contexto afectado. & Problema validado. \\
+\hline
+Lun 10 ago & \textbf{Mentoría 2:} solución y componentes/materiales. & Solución propuesta y recursos definidos. \\
+\hline
+Lun 17 ago & \textbf{Mentoría 3:} avance de maqueta, simulación, diagrama o prototipo. & Evidencia de avance. \\
+\hline
+Lun 24 ago & \textbf{Mentoría 4:} guion y soporte visual. & Pitch listo para ensayo. \\
+\hline
+Septiembre & \textbf{Ensayo y preparación final:} ajustes de pitch, coordinación de jurado y reconocimientos. & Presentaciones listas para evento. \\
+\hline
+Lun 5 oct & \textbf{Evento final y premiación:} muestra de propuestas en el marco del Mes del Medio Ambiente. & Propuestas presentadas + reconocimientos. \\
+\hline
+Octubre & \textbf{Devolución y cierre:} informe, recomendaciones y materiales reutilizables. & Informe final y set de continuidad. \\
+\hline
+\end{tabularx}
+
+\section{Lectura Pedagógica de la Secuencia}
+
+\begin{tabularx}{\textwidth}{L{3.1cm}Y}
+\hline
+\textbf{Del problema a la propuesta} & El Taller 1 instala una lectura social y ambiental del entorno. El equipo no parte desde una tecnología, sino desde una situación concreta que vale la pena mejorar. \\
+\hline
+\textbf{Del residuo al material} & El Taller 2 evita que la solución sea genérica. Cada equipo debe comprender qué residuo, material o hábito está asociado a su problema. \\
+\hline
+\textbf{De la idea a la tecnología} & El Taller 3 muestra que sensores, placas, actuadores y simuladores son herramientas para probar una respuesta, no fines en sí mismos. \\
+\hline
+\textbf{De la tecnología al relato} & Las mentorías ayudan a que la propuesta tenga coherencia: problema claro, solución viable, evidencia suficiente y presentación comprensible. \\
+\hline
+\textbf{Del evento al cierre} & La premiación reconoce el proceso, pero el cierre debe dejar evidencia institucional, aprendizajes y materiales reutilizables para futuras versiones. \\
+\hline
+\end{tabularx}
+
+\section{Criterios Operativos}
+
+\begin{multicols}{2}
+\begin{itemize}
+  \item Cada sesión con estudiantes se trabaja en dos bloques.
+  \item Cada bloque replica la misma actividad con su grupo de estudiantes.
+  \item Las mentorías duran una hora y se realizan semanalmente.
+  \item Los productos son breves, revisables y acumulativos.
+  \item El tamaño de los equipos se ajusta según asistencia real.
+  \item El evento final debe mostrar proceso, no solo resultado.
+  \item La metodología técnica del Taller 3 se desarrolla en documento específico.
+\end{itemize}
+\end{multicols}
+
+\end{document}

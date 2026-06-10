@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Lineamientos transversales, equipos y entregables GeoGreen Escolar</title>
+  <style>
+    :root {
+      --red: #D62027;
+      --navy: #102A43;
+      --ink: #243B53;
+      --slate: #52606D;
+      --line: #D8CFC4;
+      --paper: #F8F3EC;
+      --soft: #EDE6DA;
+      --soft-blue: #E6EEF7;
+      --soft-red: #F8E4E5;
+      --green: #3FAE6A;
+      --soft-green: #E9F6EE;
+      --gold: #E0BC5A;
+      --white: #FFFFFF;
+    }
+
+    @page {
+      size: A4;
+      margin: 15mm 14mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: 9.6pt;
+      line-height: 1.34;
+    }
+
+    .sheet {
+      min-height: 267mm;
+      position: relative;
+      break-after: page;
+    }
+
+    .sheet:last-child { break-after: auto; }
+
+    .mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 17px;
+      color: var(--red);
+      font-size: 7.8pt;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mark::before {
+      content: "";
+      width: 46px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--red);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 165mm;
+      color: var(--navy);
+      font-size: 29pt;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 18pt;
+      line-height: 1.08;
+    }
+
+    h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 11.3pt;
+      line-height: 1.15;
+    }
+
+    p { margin: 0; }
+
+    .subtitle {
+      margin: 12px 0 18px;
+      max-width: 166mm;
+      color: var(--slate);
+      font-size: 11.5pt;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .statement {
+      padding: 18px 20px;
+      border-radius: 8px;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 91mm;
+    }
+
+    .statement .eyebrow {
+      margin-bottom: 13px;
+      color: var(--gold);
+      font-size: 8pt;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .statement strong {
+      display: block;
+      font-size: 18.5pt;
+      line-height: 1.18;
+      margin-bottom: 14px;
+    }
+
+    .statement p {
+      color: #E6EEF7;
+      font-size: 10.6pt;
+    }
+
+    .facts {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fact {
+      min-height: 25mm;
+      padding: 12px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .fact span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--slate);
+      font-size: 7.2pt;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--navy);
+      font-size: 15pt;
+      line-height: 1.05;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--red);
+      background: var(--soft-red);
+      color: var(--ink);
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .step {
+      min-height: 31mm;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .step .num {
+      display: inline-block;
+      margin-bottom: 7px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--soft-red);
+      color: var(--red);
+      font-size: 7pt;
+      font-weight: 900;
+    }
+
+    .step p {
+      color: var(--slate);
+      font-size: 8.1pt;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    th {
+      padding: 8px 9px;
+      background: var(--navy);
+      color: var(--white);
+      text-align: left;
+      font-size: 7.4pt;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 8px 9px;
+      border-top: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) td { background: #FBF8F2; }
+
+    .stage {
+      width: 33mm;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .deliverable {
+      width: 61mm;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .responsibility {
+      width: 30mm;
+      color: var(--slate);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--navy);
+      font-size: 7.2pt;
+      font-weight: 900;
+    }
+
+    .tag.green {
+      background: var(--soft-green);
+      color: var(--green);
+    }
+
+    .tag.red {
+      background: var(--soft-red);
+      color: var(--red);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 13px;
+    }
+
+    .card {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      min-height: 42mm;
+    }
+
+    ul {
+      margin: 7px 0 0 18px;
+      padding: 0;
+    }
+
+    li { margin: 4px 0; }
+
+    footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 9px;
+      border-top: 1px solid var(--line);
+      color: var(--slate);
+      font-size: 7.6pt;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 58px;
+      border-top: 2px solid var(--red);
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="mark">GeoGreen Escolar · Coordinación interna</div>
+    <h1>Lineamientos transversales, equipos y entregables</h1>
+    <p class="subtitle">Documento breve para alinear la secuencia de talleres, mentorías y cierre del programa escolar después de vacaciones.</p>
+
+    <section class="hero">
+      <div class="statement">
+        <div class="eyebrow">Objetivo transversal</div>
+        <strong>Que los estudiantes, organizados en equipos, identifiquen una problemática ambiental concreta, comprendan sus causas materiales y sociales, exploren herramientas tecnológicas aplicables y desarrollen una propuesta sostenible que puedan presentar y justificar.</strong>
+        <p>La secuencia no busca talleres aislados. Busca que cada equipo avance desde una observación situada hacia una propuesta defendible.</p>
+      </div>
+
+      <div>
+        <div class="facts">
+          <div class="fact"><span>Participantes proyectados</span><strong>60 estudiantes</strong></div>
+          <div class="fact"><span>Organización base</span><strong>2 bloques de 30</strong></div>
+          <div class="fact"><span>Grupos por bloque</span><strong>5 equipos de 6</strong></div>
+          <div class="fact"><span>Modalidad de trabajo</span><strong>entregables por equipo</strong></div>
+        </div>
+        <p class="note">Si asisten menos estudiantes, se forman grupos más pequeños. Si la cantidad es impar, puede quedar un equipo con un integrante adicional.</p>
+      </div>
+    </section>
+
+    <section class="flow">
+      <div class="step"><span class="num">01</span><h3>Taller 1</h3><p>Forma equipos y define el problema.</p></div>
+      <div class="step"><span class="num">02</span><h3>Taller 2</h3><p>Comprende el residuo y el material.</p></div>
+      <div class="step"><span class="num">03</span><h3>Taller 3</h3><p>Explora herramientas tecnológicas.</p></div>
+      <div class="step"><span class="num">04</span><h3>Mentorías</h3><p>Transforman la idea en propuesta.</p></div>
+      <div class="step"><span class="num">05</span><h3>Pitch</h3><p>Comunica problema, solución e impacto.</p></div>
+      <div class="step"><span class="num">06</span><h3>Cierre</h3><p>Deja evidencia, mejoras y continuidad.</p></div>
+    </section>
+
+    <footer>
+      <span>GeoGreen Escolar Osorno · Lineamientos internos</span>
+      <span>1 / 3</span>
+    </footer>
+  </main>
+
+  <main class="sheet">
+    <div class="mark">Matriz de entregables mínimos</div>
+    <h2>Qué debe producir cada etapa</h2>
+    <p class="subtitle">Los entregables son mínimos y por equipo. Sirven para mantener continuidad entre talleres, mentorías y pitch final.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Etapa</th>
+          <th>Propósito</th>
+          <th>Entregable mínimo</th>
+          <th>Responsable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stage">Taller 1</td>
+          <td>Formar equipos y observar el entorno.</td>
+          <td class="deliverable">Equipos formados + frase de problema ambiental concreto.</td>
+          <td class="responsibility"><span class="tag red">DSE</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Taller 2</td>
+          <td>Comprender el residuo, material y condiciones de reciclaje.</td>
+          <td class="deliverable">Ficha de análisis del residuo/material asociado al problema.</td>
+          <td class="responsibility"><span class="tag">DSE + I/E/T</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Taller 3</td>
+          <td>Explorar Arduino, sensores, actuadores y datos como herramientas posibles.</td>
+          <td class="deliverable">Ficha de idea tecnológica inicial con componentes posibles y lógica de funcionamiento.</td>
+          <td class="responsibility"><span class="tag green">I/E/T</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Mentoría 1</td>
+          <td>Revisar si el problema está claro y situado.</td>
+          <td class="deliverable">Problema validado + usuario o contexto afectado.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Mentoría 2</td>
+          <td>Ajustar la solución y los recursos necesarios.</td>
+          <td class="deliverable">Solución propuesta + componentes o materiales definidos.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Mentoría 3</td>
+          <td>Construir o representar evidencia de avance.</td>
+          <td class="deliverable">Maqueta, simulación, diagrama, prototipo o storyboard.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Mentoría 4</td>
+          <td>Preparar comunicación para presentación final.</td>
+          <td class="deliverable">Guion de pitch + soporte visual listo para ensayo.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Ensayo</td>
+          <td>Corregir claridad, tiempo y relato.</td>
+          <td class="deliverable">Presentación ensayada con retroalimentación.</td>
+          <td class="responsibility"><span class="tag red">DSE</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Evento final</td>
+          <td>Presentar las propuestas ante comisión o equipo evaluador, con cierre de concurso y reconocimiento.</td>
+          <td class="deliverable">Propuesta presentada por equipo + premiación.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+        <tr>
+          <td class="stage">Cierre</td>
+          <td>Sistematizar aprendizajes y dejar continuidad.</td>
+          <td class="deliverable">Informe final, recomendaciones y set de materiales reutilizables.</td>
+          <td class="responsibility"><span class="tag">Ambos</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      <span>GeoGreen Escolar Osorno · Entregables por equipo</span>
+      <span>2 / 3</span>
+    </footer>
+  </main>
+
+  <main class="sheet">
+    <div class="mark">Cronograma base post vacaciones</div>
+    <h2>Secuencia desde el 27 de julio de 2026</h2>
+    <p class="subtitle">La reunión con dirección actualiza el inicio: los estudiantes vuelven a clases el lunes 27 de julio. La propuesta se organiza desde esa semana en adelante.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha sugerida</th>
+          <th>Actividad</th>
+          <th>Producto de continuidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stage">Lun 27 jul</td>
+          <td><strong>Taller 1:</strong> conciencia ambiental local y formación de equipos.</td>
+          <td class="deliverable">Equipos + problema ambiental por equipo.</td>
+        </tr>
+        <tr>
+          <td class="stage">Mar 28 jul</td>
+          <td><strong>Taller 2:</strong> ciencia del reciclaje, materiales y clasificación.</td>
+          <td class="deliverable">Ficha de residuo/material.</td>
+        </tr>
+        <tr>
+          <td class="stage">Mié 29 jul</td>
+          <td><strong>Taller 3:</strong> Arduino, sensores, actuadores y GeoGreen como caso.</td>
+          <td class="deliverable">Ficha de idea tecnológica inicial.</td>
+        </tr>
+        <tr>
+          <td class="stage">Lun 3 ago</td>
+          <td><strong>Mentoría 1:</strong> problema y contexto afectado.</td>
+          <td class="deliverable">Problema validado.</td>
+        </tr>
+        <tr>
+          <td class="stage">Lun 10 ago</td>
+          <td><strong>Mentoría 2:</strong> solución y componentes/materiales.</td>
+          <td class="deliverable">Solución propuesta y recursos definidos.</td>
+        </tr>
+        <tr>
+          <td class="stage">Lun 17 ago</td>
+          <td><strong>Mentoría 3:</strong> avance de maqueta, simulación, diagrama o prototipo.</td>
+          <td class="deliverable">Evidencia de avance.</td>
+        </tr>
+        <tr>
+          <td class="stage">Lun 24 ago</td>
+          <td><strong>Mentoría 4:</strong> guion y soporte visual.</td>
+          <td class="deliverable">Pitch listo para ensayo.</td>
+        </tr>
+        <tr>
+          <td class="stage">Por definir</td>
+          <td><strong>Ensayo de pitch:</strong> presentación corregida con retroalimentación.</td>
+          <td class="deliverable">Presentación ajustada.</td>
+        </tr>
+        <tr>
+          <td class="stage">Septiembre</td>
+          <td><strong>Preparación final:</strong> ensayo, ajustes de pitch, coordinación de jurado y reconocimientos.</td>
+          <td class="deliverable">Presentaciones listas para evento.</td>
+        </tr>
+        <tr>
+          <td class="stage">Lun 5 oct</td>
+          <td><strong>Evento final y premiación:</strong> muestra de propuestas en el marco del Mes del Medio Ambiente.</td>
+          <td class="deliverable">Propuestas presentadas + reconocimientos.</td>
+        </tr>
+        <tr>
+          <td class="stage">Octubre</td>
+          <td><strong>Devolución y cierre:</strong> informe, recomendaciones y materiales reutilizables.</td>
+          <td class="deliverable">Informe final y set de continuidad.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <section class="grid-2">
+      <div class="card">
+        <h3>Criterio operativo</h3>
+        <ul>
+          <li>Los talleres trabajan en dos bloques de estudiantes.</li>
+          <li>La estructura ideal es 5 equipos de 6 por bloque.</li>
+          <li>La asistencia real puede ajustar tamaño de equipos.</li>
+          <li>Todos los productos se registran por equipo.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Nota para Taller 3</h3>
+        <p>El detalle metodológico de Arduino, Wokwi, sensores, actuadores y experimentación técnica se desarrollará en un documento específico. En este lineamiento solo se fija su rol dentro de la secuencia.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>GeoGreen Escolar Osorno · Cronograma base post vacaciones</span>
+      <span>3 / 3</span>
+    </footer>
+  </main>
+</body>
+</html>

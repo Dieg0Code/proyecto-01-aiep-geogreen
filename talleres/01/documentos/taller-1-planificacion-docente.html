@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taller 1 - Planificacion docente GeoGreen Escolar</title>
+  <style>
+    :root {
+      --red: #D62027;
+      --navy: #102A43;
+      --ink: #243B53;
+      --slate: #52606D;
+      --border: #D8CFC4;
+      --paper: #F8F3EC;
+      --soft: #EDE6DA;
+      --blue-soft: #E6EEF7;
+      --red-soft: #F8E4E5;
+      --green: #3FAE6A;
+      --green-soft: #E9F6EE;
+      --gold: #E0BC5A;
+      --white: #FFFFFF;
+    }
+
+    @page {
+      size: A4;
+      margin: 15mm 14mm 14mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.38;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 165mm;
+      color: var(--navy);
+      font-size: 31pt;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 20pt;
+      line-height: 1.12;
+      margin-bottom: 8mm;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 12pt;
+      line-height: 1.2;
+      margin-bottom: 2.6mm;
+      letter-spacing: 0;
+    }
+
+    p { margin-bottom: 3mm; }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 5mm;
+    }
+
+    li { margin-bottom: 2mm; }
+
+    .page {
+      min-height: 268mm;
+      position: relative;
+      break-after: page;
+      page-break-after: always;
+    }
+
+    .page:last-child {
+      break-after: auto;
+      page-break-after: auto;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 3mm;
+      color: var(--red);
+      font-size: 8pt;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 5mm;
+    }
+
+    .kicker::before {
+      content: "";
+      display: inline-block;
+      width: 13mm;
+      height: 1.4mm;
+      background: var(--red);
+      border-radius: 2mm;
+    }
+
+    .lead {
+      max-width: 164mm;
+      color: var(--slate);
+      font-size: 12.5pt;
+      line-height: 1.35;
+      margin-top: 6mm;
+    }
+
+    .small {
+      color: var(--slate);
+      font-size: 8.8pt;
+      line-height: 1.35;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4mm;
+    }
+
+    .card, .meta-card, .callout {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3mm;
+      padding: 5mm;
+    }
+
+    .card.blue { background: var(--blue-soft); }
+    .card.green { background: var(--green-soft); }
+    .card.red { background: var(--red-soft); }
+    .card.soft { background: var(--soft); }
+
+    .label, .meta-card small {
+      display: block;
+      color: var(--slate);
+      font-size: 7.4pt;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1.6mm;
+    }
+
+    .meta-card b {
+      display: block;
+      color: var(--navy);
+      font-size: 15.5pt;
+      line-height: 1.08;
+    }
+
+    .meta-card span {
+      display: block;
+      color: var(--slate);
+      font-size: 8.6pt;
+      margin-top: 1.5mm;
+    }
+
+    .band {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 7mm;
+      margin-top: 12mm;
+      padding: 7mm;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 2mm;
+    }
+
+    .band h3,
+    .band p,
+    .band .label {
+      color: var(--white);
+    }
+
+    .band .label { opacity: .74; }
+
+    .section-rule {
+      width: 100%;
+      height: 1px;
+      margin: 0 0 7mm;
+      background: linear-gradient(90deg, var(--red), var(--border));
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3mm;
+      overflow: hidden;
+    }
+
+    .table th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 7.8pt;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-align: left;
+      text-transform: uppercase;
+      padding: 3mm;
+    }
+
+    .table td {
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+      padding: 3.1mm;
+    }
+
+    .table td:first-child {
+      color: var(--red);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-top: 3mm;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 7mm;
+      padding: 1.2mm 2.5mm;
+      border: 1px solid var(--border);
+      border-radius: 20mm;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 8pt;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 3mm;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 24mm 1fr;
+      gap: 4mm;
+      padding: 4mm;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3mm;
+    }
+
+    .time {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--slate);
+      border-top: 1px solid var(--border);
+      padding-top: 3mm;
+      font-size: 7.6pt;
+    }
+
+    .no-break { break-inside: avoid; page-break-inside: avoid; }
+    .mb-4 { margin-bottom: 4mm; }
+    .mb-6 { margin-bottom: 6mm; }
+    .mb-8 { margin-bottom: 8mm; }
+    .mt-6 { margin-top: 6mm; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="kicker">GeoGreen Escolar Osorno</div>
+    <h1>Taller 1 · Conciencia ambiental local</h1>
+    <p class="lead">Planificación lectiva para el/la docente de Desarrollo Social o Trabajo Social a cargo de facilitar la primera sesión con estudiantes.</p>
+
+    <div class="grid-3 mt-6">
+      <div class="meta-card">
+        <small>Duración por bloque</small>
+        <b>90 minutos</b>
+        <span>Sesión práctica, participativa y situada.</span>
+      </div>
+      <div class="meta-card">
+        <small>Horario sugerido</small>
+        <b>A 09:00-10:30</b>
+        <span>B 10:45-12:15, con 15 minutos de ajuste entre bloques.</span>
+      </div>
+      <div class="meta-card">
+        <small>Participantes</small>
+        <b>2 bloques</b>
+        <span>30 estudiantes por bloque, organizados en equipos de trabajo.</span>
+      </div>
+    </div>
+
+    <div class="band">
+      <div>
+        <span class="label">Sentido de la sesión</span>
+        <h3>Antes de diseñar soluciones tecnológicas, los equipos deben comprender el problema ambiental y social que buscan abordar.</h3>
+        <p>El Taller 1 abre la secuencia GeoGreen desde la observación del entorno: residuos cotidianos, hábitos de separación, barreras para reciclar y puntos críticos del establecimiento o la comunidad.</p>
+      </div>
+      <div>
+        <span class="label">Verificadores mínimos</span>
+        <ul>
+          <li>Lista de asistencia por bloque.</li>
+          <li>Fotografías de trabajo grupal.</li>
+          <li>Mapa de problemas o ficha por equipo.</li>
+          <li>Problema ambiental definido al cierre.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2 mt-6">
+      <div class="card">
+        <span class="label">Responsable sugerido</span>
+        <h3>Desarrollo Social / Trabajo Social</h3>
+        <p>Facilita la reflexión, promueve participación equilibrada y orienta a los equipos para mirar el residuo como un problema comunitario, no solo como un objeto a clasificar.</p>
+      </div>
+      <div class="card green">
+        <span class="label">Enfoque</span>
+        <h3>Ambiental, social y participativo</h3>
+        <p>GeoGreen se presenta como marco general del proyecto. La sesión no requiere explicar electrónica, programación ni sensores.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Planificación docente · Taller 1</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Propósito formativo</div>
+    <h2>Objetivos y aprendizajes esperados</h2>
+    <div class="section-rule"></div>
+
+    <div class="card blue mb-6">
+      <span class="label">Objetivo transversal de la secuencia GeoGreen</span>
+      <h3>Formar estudiantes capaces de observar un problema ambiental de su entorno, comprender sus causas sociales y materiales, y transformarlo progresivamente en una propuesta de innovación sostenible.</h3>
+      <p>La secuencia completa avanza desde la conciencia ambiental hacia la exploración de materiales, el uso de tecnología y la presentación de soluciones. El caso GeoGreen articula ese proceso mediante una lógica simple: observar, medir, decidir y comunicar una acción.</p>
+    </div>
+
+    <div class="grid-2 mb-6">
+      <div class="card">
+        <span class="label">Objetivo del Taller 1</span>
+        <p>Introducir a los/las estudiantes en los principales problemas asociados a los residuos, la separación en origen y los hábitos de reciclaje, situando la conversación en el contexto del establecimiento, sus hogares y la comuna.</p>
+      </div>
+      <div class="card red">
+        <span class="label">Resultado central de la sesión</span>
+        <p>Cada equipo identifica un problema ambiental concreto que pueda ser trabajado posteriormente desde información, organización, educación ambiental o tecnología.</p>
+      </div>
+    </div>
+
+    <h3>Resultados de aprendizaje esperados</h3>
+    <table class="table mb-6">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Dimensión</th>
+          <th>Al finalizar el taller, se espera que el/la estudiante pueda...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Comprensión</td>
+          <td>Reconocer residuos frecuentes en su vida cotidiana y distinguir problemas asociados a su generación, mezcla o mala disposición.</td>
+        </tr>
+        <tr>
+          <td>Contexto local</td>
+          <td>Relacionar hábitos de separación, puntos limpios, contenedores llenos y frecuencia de retiro con situaciones observables en su establecimiento o comunidad.</td>
+        </tr>
+        <tr>
+          <td>Trabajo colaborativo</td>
+          <td>Participar en un equipo, registrar observaciones y construir un mapa simple de problemas ambientales.</td>
+        </tr>
+        <tr>
+          <td>Continuidad</td>
+          <td>Formular un problema inicial que pueda conectarse con los talleres posteriores de reciclaje, sensores, prototipado y pitch escolar.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="label">Idea fuerza para transmitir</span>
+      <p>La gestión de residuos no depende solo de tener más contenedores. También requiere hábitos, información clara, organización comunitaria y decisiones oportunas.</p>
+    </div>
+
+    <div class="footer">
+      <span>Objetivos y resultados</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Rol docente</div>
+    <h2>Enfoque metodológico y mediación</h2>
+    <div class="section-rule"></div>
+
+    <div class="grid-2 mb-6">
+      <div class="card">
+        <span class="label">Principios de trabajo</span>
+        <ul>
+          <li>Aprender desde problemas reales y cercanos.</li>
+          <li>Usar lenguaje claro y ejemplos cotidianos.</li>
+          <li>Promover participación de todos los integrantes.</li>
+          <li>Registrar acuerdos, observaciones y evidencias simples.</li>
+          <li>Cuidar un ambiente respetuoso, inclusivo y colaborativo.</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <span class="label">Rol del/de la docente</span>
+        <ul>
+          <li>Facilitar la conversación ambiental y social.</li>
+          <li>Conectar respuestas estudiantiles con el contexto local.</li>
+          <li>Mediar diferencias de opinión entre equipos.</li>
+          <li>Evitar que la sesión se vuelva técnica antes de tiempo.</li>
+          <li>Asegurar que cada equipo cierre con un problema definido.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card red mb-6">
+      <span class="label">Nota institucional</span>
+      <p>El/la docente puede adaptar la mediación, incorporar ejemplos locales, usar materiales propios o desarrollar recursos adicionales para la sesión. La adaptación debe mantener el objetivo del Taller 1, la duración de 90 minutos, el trabajo participativo y los verificadores definidos.</p>
+    </div>
+
+    <h3>Materiales sugeridos</h3>
+    <div class="grid-3 mb-6">
+      <div class="card">
+        <span class="label">Para activar</span>
+        <ul>
+          <li>Pizarra o papelógrafo.</li>
+          <li>Plumones.</li>
+          <li>Notas adhesivas.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="label">Para clasificar</span>
+        <ul>
+          <li>Tarjetas de residuos.</li>
+          <li>Ejemplos limpios de envases.</li>
+          <li>Etiquetas: reciclable, no reciclable, manejo especial.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="label">Para evidenciar</span>
+        <ul>
+          <li>Lista de asistencia.</li>
+          <li>Ficha de mapa de problemas.</li>
+          <li>Registro fotográfico.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="label">Organización sugerida</span>
+      <p>Trabajar con equipos de 5 a 6 estudiantes. Asignar roles breves: coordinación, registro, vocería, observación del entorno y cuidado de materiales. Los roles pueden rotar en talleres posteriores.</p>
+    </div>
+
+    <div class="footer">
+      <span>Enfoque metodológico</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Secuencia de aula</div>
+    <h2>Plan minuto a minuto</h2>
+    <div class="section-rule"></div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 17%;">Tiempo</th>
+          <th style="width: 20%;">Momento</th>
+          <th>Actividad docente y estudiantil</th>
+          <th style="width: 24%;">Producto o señal de avance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0-10 min</td>
+          <td>Bienvenida y encuadre</td>
+          <td>Presentar el propósito de GeoGreen Escolar: comprender un problema ambiental local para luego proponer soluciones. Explicar que este primer taller se enfoca en residuos, hábitos y comunidad.</td>
+          <td>Estudiantes reconocen el marco general y la dinámica participativa.</td>
+        </tr>
+        <tr>
+          <td>10-20 min</td>
+          <td>Activación inicial</td>
+          <td>Preguntar qué residuos aparecen en casa, colegio y espacios públicos. Registrar ejemplos visibles en pizarra o papelógrafo.</td>
+          <td>Listado inicial de residuos y situaciones frecuentes.</td>
+        </tr>
+        <tr>
+          <td>20-35 min</td>
+          <td>Conversación guiada</td>
+          <td>Conducir diálogo sobre separación, hábitos, puntos limpios, contenedores llenos, señalética, retiro y barreras para reciclar.</td>
+          <td>Problemas locales agrupados por tema.</td>
+        </tr>
+        <tr>
+          <td>35-55 min</td>
+          <td>Mapa de problemas</td>
+          <td>Equipos identifican lugares, conductas o momentos donde se generan problemas de residuos en el establecimiento o comunidad.</td>
+          <td>Mapa o ficha de problema por equipo.</td>
+        </tr>
+        <tr>
+          <td>55-70 min</td>
+          <td>Clasificación breve</td>
+          <td>Realizar dinámica con tarjetas o ejemplos de residuos para distinguir reciclables, no reciclables y residuos de manejo especial.</td>
+          <td>Equipos justifican al menos tres decisiones de clasificación.</td>
+        </tr>
+        <tr>
+          <td>70-82 min</td>
+          <td>Definición de problema</td>
+          <td>Cada equipo transforma su mapa en un problema ambiental concreto, redactado en una frase clara.</td>
+          <td>Problema formulado: qué ocurre, dónde ocurre y a quién afecta.</td>
+        </tr>
+        <tr>
+          <td>82-90 min</td>
+          <td>Cierre reflexivo</td>
+          <td>Compartir una selección de problemas. Aplicar salida breve: qué problema merece solución y por qué.</td>
+          <td>Registro de salida y continuidad hacia Taller 2.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout mt-6">
+      <span class="label">Manejo del tiempo</span>
+      <p>Si el grupo requiere más contención, reducir la conversación guiada y proteger los últimos 20 minutos. El cierre con problema definido es el insumo clave para la continuidad del programa.</p>
+    </div>
+
+    <div class="footer">
+      <span>Secuencia minuto a minuto</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Desarrollo de actividades</div>
+    <h2>Guía práctica para facilitar la sesión</h2>
+    <div class="section-rule"></div>
+
+    <div class="timeline">
+      <div class="step no-break">
+        <div class="time">Inicio</div>
+        <div>
+          <h3>Activación sobre residuos cotidianos</h3>
+          <p>Solicitar ejemplos concretos: envases de colación, botellas, papel, cartón, residuos orgánicos, latas, envoltorios y desechos que aparecen al final de la jornada escolar.</p>
+          <div class="pill-row">
+            <span class="pill">¿Qué residuo vemos todos los días?</span>
+            <span class="pill">¿Dónde termina?</span>
+            <span class="pill">¿Quién se hace cargo?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step no-break">
+        <div class="time">Diálogo</div>
+        <div>
+          <h3>Problemas locales de gestión de residuos</h3>
+          <p>Orientar la conversación hacia causas y consecuencias. Evitar quedarse solo en “la gente no recicla”; buscar condiciones que dificultan la separación: información insuficiente, contenedores sin señalética, poca claridad sobre horarios de retiro, falta de costumbre o mezcla de materiales.</p>
+          <div class="pill-row">
+            <span class="pill">Separación</span>
+            <span class="pill">Hábitos</span>
+            <span class="pill">Puntos limpios</span>
+            <span class="pill">Contenedores llenos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step no-break">
+        <div class="time">Equipos</div>
+        <div>
+          <h3>Mapa de problemas</h3>
+          <p>Cada equipo elige un lugar o situación: patio, casino, sala, entrada, ruta casa-colegio, barrio o punto limpio cercano. Luego registra qué problema ocurre, quiénes participan, qué se observa y qué podría mejorar.</p>
+          <p class="small">Formato mínimo sugerido: lugar · residuo frecuente · conducta observada · consecuencia · oportunidad de mejora.</p>
+        </div>
+      </div>
+
+      <div class="step no-break">
+        <div class="time">Dinámica</div>
+        <div>
+          <h3>Clasificación de residuos</h3>
+          <p>Usar tarjetas o ejemplos limpios. Pedir que los equipos clasifiquen y justifiquen. Corregir con criterio formativo: la respuesta importa, pero más importante es que expliquen por qué un residuo puede contaminar a otro o requerir tratamiento especial.</p>
+        </div>
+      </div>
+
+      <div class="step no-break">
+        <div class="time">Cierre</div>
+        <div>
+          <h3>Problema ambiental concreto</h3>
+          <p>Guiar a los equipos para redactar un problema en una frase simple. Debe evitar soluciones anticipadas y describir una situación observable.</p>
+          <p class="small">Ejemplo de formulación: “En el patio se mezclan botellas y restos de comida durante los recreos, lo que dificulta separar materiales reciclables y aumenta el volumen de basura común”.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Guía de facilitación</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="kicker">Cierre y continuidad</div>
+    <h2>Evidencias, verificadores y próximo paso</h2>
+    <div class="section-rule"></div>
+
+    <div class="grid-2 mb-6">
+      <div class="card">
+        <span class="label">Evidencias a recoger</span>
+        <ul>
+          <li>Lista de asistencia del Bloque A y Bloque B.</li>
+          <li>Fotografías de la activación, trabajo grupal y cierre.</li>
+          <li>Mapa de problemas o ficha por equipo.</li>
+          <li>Problema ambiental formulado por cada equipo.</li>
+          <li>Registro breve de observaciones docentes.</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <span class="label">Criterios de cierre</span>
+        <ul>
+          <li>El problema es observable y concreto.</li>
+          <li>Indica dónde ocurre y a quién afecta.</li>
+          <li>Se vincula con residuos, hábitos o separación.</li>
+          <li>Puede abrir una investigación o propuesta posterior.</li>
+          <li>Fue construido con participación del equipo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card blue mb-6">
+      <span class="label">Salida breve sugerida</span>
+      <h3>Antes de finalizar, cada estudiante o equipo responde:</h3>
+      <ol>
+        <li>¿Qué problema ambiental merece atención en nuestro entorno?</li>
+        <li>¿Por qué ese problema afecta la vida diaria del establecimiento o la comunidad?</li>
+        <li>¿Qué información sería útil para entenderlo mejor?</li>
+      </ol>
+    </div>
+
+    <table class="table mb-6">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Continuidad</th>
+          <th>Cómo se conecta este taller con la secuencia GeoGreen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Taller 2</td>
+          <td>Los problemas definidos permitirán estudiar materiales, reciclaje, clasificación, contaminación de residuos y decisiones de separación en origen.</td>
+        </tr>
+        <tr>
+          <td>Taller 3</td>
+          <td>Los equipos podrán explorar cómo sensores, placas, alertas o tableros ayudan a observar un problema y tomar decisiones informadas.</td>
+        </tr>
+        <tr>
+          <td>Mentorías</td>
+          <td>Cada equipo retomará su problema para transformarlo en una propuesta de solución, maqueta, simulación o pitch de innovación sostenible.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="label">Mensaje de cierre para estudiantes</span>
+      <p>Una solución sostenible parte por observar bien. Mientras más claro sea el problema, más sentido tendrá cualquier tecnología, campaña, señalética, prototipo o mejora que se proponga después.</p>
+    </div>
+
+    <div class="footer">
+      <span>Evidencias y continuidad</span>
+      <span>GeoGreen Escolar Osorno</span>
+    </div>
+  </section>
+</body>
+</html>

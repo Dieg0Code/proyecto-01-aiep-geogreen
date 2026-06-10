@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoGreen Escolar Osorno - Talleres y mentorías</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm 14mm 18mm;
+    }
+
+    :root {
+      --aiep-red: #D62027;
+      --navy: #102A43;
+      --ink: #243B53;
+      --muted: #52606D;
+      --line: #D8CFC4;
+      --paper: #F8F3EC;
+      --soft: #EDE6DA;
+      --soft-blue: #E6EEF7;
+      --green: #3FAE6A;
+      --green-soft: #E9F6EE;
+      --red-soft: #F8E4E5;
+      --amber: #E0BC5A;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", Calibri, sans-serif;
+      font-size: 10.6pt;
+      line-height: 1.45;
+      background: white;
+    }
+
+    .page {
+      break-after: page;
+      min-height: 265mm;
+      position: relative;
+    }
+
+    .page:last-child {
+      break-after: auto;
+    }
+
+    .cover {
+      min-height: 265mm;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      border-top: 8mm solid var(--aiep-red);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 9mm;
+    }
+
+    .brand {
+      font-size: 10pt;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .tag {
+      color: var(--muted);
+      font-size: 9pt;
+      text-align: right;
+    }
+
+    .cover-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18mm 0 8mm;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 35pt;
+      line-height: 1;
+      letter-spacing: 0;
+      color: var(--navy);
+    }
+
+    .subtitle {
+      margin-top: 8mm;
+      max-width: 150mm;
+      font-size: 15pt;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .cover-panel {
+      margin-top: 15mm;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 6mm;
+      align-items: stretch;
+    }
+
+    .statement {
+      border-left: 5px solid var(--aiep-red);
+      background: var(--paper);
+      padding: 7mm;
+      font-size: 12.5pt;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .logic {
+      background: var(--green-soft);
+      border: 1px solid #b9decf;
+      padding: 7mm;
+    }
+
+    .logic .label {
+      color: var(--green);
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .logic .flow {
+      margin-top: 4mm;
+      font-size: 13pt;
+      font-weight: 800;
+      color: #1F6F49;
+    }
+
+    .cover-meta {
+      border-top: 1px solid var(--line);
+      padding-top: 6mm;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4mm;
+      color: var(--muted);
+      font-size: 9pt;
+    }
+
+    .cover-meta strong {
+      display: block;
+      color: var(--navy);
+      font-size: 10.5pt;
+      margin-top: 1mm;
+    }
+
+    header.doc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--aiep-red);
+      padding-bottom: 4mm;
+      margin-bottom: 7mm;
+    }
+
+    header.doc-header .small-brand {
+      color: var(--aiep-red);
+      font-weight: 800;
+      font-size: 12pt;
+    }
+
+    header.doc-header .doc-title {
+      color: var(--muted);
+      font-size: 9pt;
+      text-align: right;
+    }
+
+    h2 {
+      margin: 0 0 4mm;
+      color: var(--navy);
+      font-size: 20pt;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 7mm 0 2mm;
+      font-size: 13.5pt;
+      color: var(--aiep-red);
+      letter-spacing: 0;
+    }
+
+    h4 {
+      margin: 4mm 0 1.5mm;
+      font-size: 10.5pt;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    p {
+      margin: 0 0 3.2mm;
+    }
+
+    ul, ol {
+      margin: 1.5mm 0 4mm 5mm;
+      padding-left: 4mm;
+    }
+
+    li {
+      margin-bottom: 1.4mm;
+    }
+
+    .lead {
+      font-size: 11.8pt;
+      color: var(--muted);
+      max-width: 172mm;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+      margin: 4mm 0 6mm;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 5mm;
+      background: white;
+    }
+
+    .card.soft {
+      background: var(--soft);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin: 3mm 0 5mm;
+    }
+
+    .pill {
+      border: 1px solid #bfdacc;
+      background: var(--green-soft);
+      color: #0f5f3b;
+      border-radius: 999px;
+      padding: 1.6mm 3mm;
+      font-size: 8.8pt;
+      font-weight: 700;
+    }
+
+    .workshop {
+      border-left: 4px solid var(--aiep-red);
+      padding-left: 5mm;
+      margin: 5mm 0 7mm;
+      break-inside: avoid;
+    }
+
+    .workshop .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+      margin: 3mm 0;
+      color: var(--muted);
+      font-size: 9.3pt;
+    }
+
+    .highlight {
+      background: var(--red-soft);
+      border: 1px solid #ffd4d8;
+      padding: 4mm;
+      margin: 4mm 0;
+      border-radius: 4px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 28mm 1fr;
+      column-gap: 5mm;
+      row-gap: 4mm;
+      margin-top: 5mm;
+    }
+
+    .month {
+      color: white;
+      background: var(--aiep-red);
+      border-radius: 4px;
+      padding: 3mm;
+      font-weight: 800;
+      text-align: center;
+      align-self: start;
+    }
+
+    .event {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3.5mm;
+    }
+
+    .event strong {
+      display: block;
+      font-size: 11.5pt;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 4mm 0 6mm;
+      font-size: 9.3pt;
+    }
+
+    th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 2.5mm;
+      font-weight: 800;
+    }
+
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 2.6mm;
+      vertical-align: top;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 3mm;
+      color: var(--muted);
+      font-size: 8pt;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .avoid-break {
+      break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <div class="brand-row">
+      <div class="brand">Coordinación interna · AIEP Osorno</div>
+      <div class="tag">Fondo VCM 2026<br>Coordinación interna</div>
+    </div>
+
+    <main class="cover-main">
+      <h1>GeoGreen<br>Escolar Osorno</h1>
+      <div class="subtitle">Desarrollo de talleres y mentorías para el programa de innovación, sostenibilidad y tecnología aplicada.</div>
+
+      <div class="cover-panel">
+        <div class="statement">
+          Documento de apoyo para alinear qué se trabajará con estudiantes del Instituto Comercial Liceo Bicentenario, a partir del cronograma de la postulación.
+        </div>
+        <div class="logic">
+          <div class="label">Lógica del caso GeoGreen</div>
+          <div class="flow">sensar -> enviar -> visualizar -> alertar</div>
+        </div>
+      </div>
+    </main>
+
+    <div class="cover-meta">
+      <div>Periodo<strong>Mayo a septiembre 2026</strong></div>
+      <div>Modalidad<strong>Talleres + mentorías + pitch</strong></div>
+      <div>Socio comunitario<strong>Instituto Comercial Liceo Bicentenario</strong></div>
+      <div>Beneficiarios<strong>60 estudiantes</strong></div>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="doc-header">
+      <div class="small-brand">AIEP Osorno</div>
+      <div class="doc-title">GeoGreen Escolar Osorno · Talleres y mentorías</div>
+    </header>
+
+    <h2>1. Propósito general</h2>
+    <p class="lead">GeoGreen Escolar Osorno busca acercar a estudiantes del Instituto Comercial Liceo Bicentenario a la sostenibilidad, la economía circular y la innovación tecnológica, usando como caso central el sistema GeoGreen.</p>
+    <p>GeoGreen se presenta como una solución de bajo costo para monitorear el nivel de llenado de contenedores, visualizar datos y activar alertas que permitan mejorar la gestión de residuos. La secuencia formativa se organiza en tres talleres, un periodo de mentorías, un ensayo de pitch y un evento final.</p>
+
+    <div class="highlight">
+      <strong>Idea fuerza:</strong> el foco no está solamente en mostrar un prototipo, sino en que los estudiantes comprendan el problema, exploren cómo la tecnología puede aportar y propongan sus propias ideas o miniprototipos.
+    </div>
+
+    <h2>2. Enfoque metodológico</h2>
+    <p>Los talleres se plantean como experiencias breves, prácticas y participativas. Cada sesión combina explicación simple, demostración, trabajo grupal y cierre reflexivo. La idea es que los estudiantes puedan conectar los contenidos con su propio entorno escolar y barrial.</p>
+
+    <div class="grid-2">
+      <div class="card soft">
+        <h4>Principios de trabajo</h4>
+        <ul>
+          <li>Aprender haciendo, con ejemplos visibles y materiales concretos.</li>
+          <li>Usar lenguaje claro, evitando tecnicismos innecesarios.</li>
+          <li>Relacionar sostenibilidad, tecnología y vida cotidiana.</li>
+          <li>Promover equipos mixtos con rotación de roles.</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <h4>Evidencias simples</h4>
+        <ul>
+          <li>Listas de asistencia.</li>
+          <li>Fotografías de actividades.</li>
+          <li>Fichas de trabajo por equipo.</li>
+          <li>Registros de mentoría y rúbricas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>3. Secuencia de trabajo</h2>
+    <div class="timeline">
+      <div class="month">Mayo</div>
+      <div class="event"><strong>Alistamiento y codiseño</strong> Reunión con el establecimiento, calendarización, levantamiento de expectativas, cierre de temario y materiales.</div>
+      <div class="month">Junio</div>
+      <div class="event"><strong>Talleres formativos</strong> Conciencia ambiental local, ciencia del reciclaje e innovación con propósito usando GeoGreen como caso.</div>
+      <div class="month">Jul-Ago</div>
+      <div class="event"><strong>Acompañamiento</strong> Mentorías breves por equipos escolares y revisión de ideas o miniprototipos.</div>
+      <div class="month">Agosto</div>
+      <div class="event"><strong>Ensayo de pitch</strong> Entrenamiento de presentación y preparación de soporte visual.</div>
+      <div class="month">Sept.</div>
+      <div class="event"><strong>Cierre</strong> Evento final, retroalimentación, reconocimientos, devolución e informe.</div>
+    </div>
+
+    <div class="footer">
+      <span>Fuente: postulación GeoGreen · Fondo VCM 2026</span>
+      <span>1</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="doc-header">
+      <div class="small-brand">AIEP Osorno</div>
+      <div class="doc-title">Talleres formativos</div>
+    </header>
+
+    <h2>4. Talleres formativos</h2>
+
+    <div class="workshop">
+      <h3>Taller 1: Conciencia ambiental local</h3>
+      <div class="meta">
+        <div><strong>Periodo:</strong> junio</div>
+        <div><strong>Responsable sugerido:</strong> Desarrollo Social y Educación</div>
+        <div><strong>Verificadores:</strong> lista, fotografías y material</div>
+        <div><strong>Foco:</strong> problema ambiental y hábitos</div>
+      </div>
+      <h4>Objetivo</h4>
+      <p>Introducir a los estudiantes en los principales problemas asociados a los residuos, la separación en origen y los hábitos de reciclaje, situando la conversación en el contexto de Osorno y del propio establecimiento.</p>
+      <h4>¿De qué se trata?</h4>
+      <p>Este taller abre el programa desde la pregunta ambiental y social: qué residuos generamos, qué pasa cuando se mezclan, por qué cuesta reciclar bien y cómo los hábitos cotidianos afectan la gestión de residuos.</p>
+      <h4>Actividades sugeridas</h4>
+      <ol>
+        <li>Conversación guiada sobre residuos generados en el colegio y en la casa.</li>
+        <li>Mapa de problemas: basureros llenos, mala separación, baja señalética o retiro insuficiente.</li>
+        <li>Dinámica de clasificación de residuos reciclables, no reciclables y de manejo especial.</li>
+        <li>Cierre reflexivo: cada equipo define un problema ambiental concreto.</li>
+      </ol>
+      <h4>Resultado esperado</h4>
+      <p>Los estudiantes reconocen que la gestión de residuos requiere hábitos, información, coordinación y decisiones oportunas.</p>
+    </div>
+
+    <div class="workshop">
+      <h3>Taller 2: Ciencia del reciclaje</h3>
+      <div class="meta">
+        <div><strong>Periodo:</strong> junio</div>
+        <div><strong>Responsable sugerido:</strong> DSE + I/E/T</div>
+        <div><strong>Verificadores:</strong> lista, fotografías y fichas</div>
+        <div><strong>Foco:</strong> materiales, ciclo de vida y separación</div>
+      </div>
+      <h4>Objetivo</h4>
+      <p>Explicar de forma simple cómo las propiedades de los materiales, su ciclo de vida y su correcta separación influyen en la posibilidad de reciclarlos.</p>
+      <h4>¿De qué se trata?</h4>
+      <p>Este taller conecta la educación ambiental con nociones científicas básicas. Se trabaja la idea de que no todos los residuos se comportan igual: algunos se recuperan con facilidad, otros se contaminan si se mezclan y otros requieren procesos específicos.</p>
+      <h4>Actividades sugeridas</h4>
+      <ol>
+        <li>Exploración de materiales: plástico, papel, cartón, vidrio, metal y orgánicos.</li>
+        <li>Discusión sobre peso, volumen, limpieza, compactación y contaminación del material.</li>
+        <li>Representación del ciclo de vida de un residuo.</li>
+        <li>Mini desafío: mejora para reducir, reutilizar o separar mejor un residuo frecuente.</li>
+      </ol>
+      <h4>Resultado esperado</h4>
+      <p>Los estudiantes comprenden que la separación correcta en origen mejora la recuperación de materiales y reduce residuos mal dispuestos.</p>
+    </div>
+
+    <div class="footer">
+      <span>GeoGreen Escolar Osorno · AIEP Osorno</span>
+      <span>2</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="doc-header">
+      <div class="small-brand">AIEP Osorno</div>
+      <div class="doc-title">GeoGreen como caso de innovación</div>
+    </header>
+
+    <div class="workshop">
+      <h3>Taller 3: Innovación con propósito, GeoGreen como caso</h3>
+      <div class="meta">
+        <div><strong>Periodo:</strong> junio</div>
+        <div><strong>Responsable sugerido:</strong> Ingeniería, Energía y Tecnología</div>
+        <div><strong>Verificadores:</strong> lista, fotografías y guía del desafío</div>
+        <div><strong>Foco:</strong> sensores, datos y alertas</div>
+      </div>
+      <h4>Objetivo</h4>
+      <p>Mostrar cómo una problemática ambiental puede transformarse en un desafío de innovación mediante sensores, microcontroladores, datos, visualización y alertas.</p>
+      <h4>¿De qué se trata?</h4>
+      <p>GeoGreen aparece como caso central. Se explica cómo un sensor puede medir el nivel de llenado de un contenedor y cómo esa información ayuda a tomar mejores decisiones. La sesión no busca formar especialistas en electrónica, sino que los estudiantes entiendan el principio del sistema y puedan imaginar soluciones propias.</p>
+
+      <div class="pill-row">
+        <span class="pill">Sensor de nivel</span>
+        <span class="pill">Microcontrolador</span>
+        <span class="pill">Semáforo o buzzer</span>
+        <span class="pill">WiFi o LoRa</span>
+        <span class="pill">Tablero o mapa</span>
+        <span class="pill">Pensamiento computacional</span>
+      </div>
+
+      <h4>Actividades sugeridas</h4>
+      <ol>
+        <li>Demostración GeoGreen con prototipo o simulación de llenado.</li>
+        <li>Desarme conceptual del sistema en cuatro pasos: sensar, enviar, visualizar y alertar.</li>
+        <li>Ideación guiada: cada equipo elige un problema de residuos y propone una solución.</li>
+        <li>Ficha de idea: problema, usuario, solución, datos necesarios y alerta esperada.</li>
+      </ol>
+      <h4>Resultado esperado</h4>
+      <p>Cada equipo cuenta con una idea inicial para desarrollar durante las mentorías, ya sea como maqueta, miniprototipo, simulación o propuesta visual.</p>
+    </div>
+
+    <h2>5. Mentorías a equipos escolares</h2>
+    <p class="lead">Las mentorías son espacios breves de revisión y mejora. No reemplazan los talleres; acompañan a cada equipo para convertir su idea inicial en una propuesta clara, viable y presentable.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Objetivo</h4>
+        <p>Acompañar a los equipos para transformar sus ideas iniciales en propuestas más claras, viables y presentables para el desafío final.</p>
+      </div>
+      <div class="card">
+        <h4>Periodo y evidencia</h4>
+        <p><strong>Julio a agosto.</strong> El verificador principal será un registro de mentorías por equipo, con avances y próximos pasos.</p>
+      </div>
+    </div>
+
+    <h4>Estructura sugerida de cada mentoría</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Momento</th>
+          <th>Qué se revisa</th>
+          <th>Resultado esperado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Problema</td>
+          <td>Qué quiere resolver el equipo y a quién afecta.</td>
+          <td>Problema acotado y comprensible.</td>
+        </tr>
+        <tr>
+          <td>Solución</td>
+          <td>Si la propuesta responde al problema detectado.</td>
+          <td>Idea ajustada y coherente.</td>
+        </tr>
+        <tr>
+          <td>Lógica GeoGreen</td>
+          <td>Cómo la idea sensa, envía, visualiza o alerta.</td>
+          <td>Diagrama simple del funcionamiento.</td>
+        </tr>
+        <tr>
+          <td>Viabilidad</td>
+          <td>Materiales, tiempo, seguridad y nivel escolar.</td>
+          <td>Alcance realista para el evento final.</td>
+        </tr>
+        <tr>
+          <td>Próximo paso</td>
+          <td>Qué debe avanzar el equipo antes de la siguiente revisión.</td>
+          <td>Tarea concreta y registrable.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <span>GeoGreen Escolar Osorno · AIEP Osorno</span>
+      <span>3</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="doc-header">
+      <div class="small-brand">AIEP Osorno</div>
+      <div class="doc-title">Mentorías, pitch y cierre</div>
+    </header>
+
+    <h2>6. Preguntas guía para mentorías</h2>
+    <div class="grid-2">
+      <div class="card soft">
+        <ul>
+          <li>¿Qué problema de residuos queremos resolver?</li>
+          <li>¿Dónde ocurre y a quién afecta?</li>
+          <li>¿Qué información necesitamos medir u observar?</li>
+          <li>¿Cómo se avisaría que hay un problema?</li>
+        </ul>
+      </div>
+      <div class="card soft">
+        <ul>
+          <li>¿Quién usaría la solución?</li>
+          <li>¿Cómo sabríamos que funcionó?</li>
+          <li>¿Qué podemos mostrar en el evento final?</li>
+          <li>¿Qué parte corresponde a sensar, enviar, visualizar o alertar?</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>7. Roles durante las mentorías</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Área</th>
+          <th>Aporte principal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ingeniería, Energía y Tecnología</strong></td>
+          <td>Orientar el componente técnico, explicar límites simples de sensores/datos/energía, ayudar a convertir ideas en diagramas o prototipos comprensibles y revisar seguridad básica.</td>
+        </tr>
+        <tr>
+          <td><strong>Desarrollo Social y Educación</strong></td>
+          <td>Facilitar participación, cuidar la claridad del problema social o ambiental, apoyar inclusión y distribución de roles, y preparar la comunicación de la propuesta para el pitch.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>8. Ensayo de pitch escolar</h2>
+    <p><strong>Periodo:</strong> agosto. <strong>Responsable sugerido:</strong> Desarrollo Social y Educación. <strong>Verificadores:</strong> listas de asistencia y rúbricas.</p>
+    <p>El ensayo de pitch ayuda a ordenar la presentación de cada equipo. Se busca que los estudiantes puedan explicar el problema, la solución, el uso de tecnología y el impacto esperado sin depender de una exposición larga o demasiado técnica.</p>
+
+    <h4>Estructura sugerida del pitch</h4>
+    <ol>
+      <li>Problema detectado.</li>
+      <li>A quién afecta.</li>
+      <li>Solución propuesta.</li>
+      <li>Cómo aplica la lógica sensar -> enviar -> visualizar -> alertar.</li>
+      <li>Beneficio ambiental o comunitario.</li>
+      <li>Qué mostrarán: maqueta, simulación, afiche, diagrama o prototipo.</li>
+    </ol>
+
+    <h2>9. Evento final y cierre</h2>
+    <p><strong>Periodo:</strong> septiembre. <strong>Responsable sugerido:</strong> trabajo conjunto entre DSE e I/E/T. <strong>Verificadores:</strong> programa, jurado, fotografías e informe final.</p>
+    <p>El evento final funciona como cierre pedagógico y comunitario. Permite mostrar los aprendizajes del proceso, destacar buenas ideas y recoger evidencia para el informe de cierre.</p>
+
+    <h4>Criterios sugeridos de retroalimentación</h4>
+    <div class="pill-row">
+      <span class="pill">Claridad del problema</span>
+      <span class="pill">Sostenibilidad</span>
+      <span class="pill">Uso de tecnología</span>
+      <span class="pill">Lógica GeoGreen</span>
+      <span class="pill">Viabilidad</span>
+      <span class="pill">Trabajo colaborativo</span>
+      <span class="pill">Claridad de presentación</span>
+    </div>
+
+    <div class="footer">
+      <span>GeoGreen Escolar Osorno · AIEP Osorno</span>
+      <span>4</span>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="doc-header">
+      <div class="small-brand">AIEP Osorno</div>
+      <div class="doc-title">Evidencias y coordinación</div>
+    </header>
+
+    <h2>10. Productos y evidencias esperadas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Evidencia</th>
+          <th>Uso esperado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Listas de asistencia por taller</td>
+          <td>Respaldar participación y cobertura.</td>
+        </tr>
+        <tr>
+          <td>Fotografías de talleres, mentorías y evento final</td>
+          <td>Registro visual para informe, difusión y memoria del proyecto.</td>
+        </tr>
+        <tr>
+          <td>Fichas de trabajo de los equipos</td>
+          <td>Mostrar evolución de problemas, ideas y propuestas.</td>
+        </tr>
+        <tr>
+          <td>Registro de mentorías</td>
+          <td>Dar seguimiento a avances, acuerdos y próximos pasos.</td>
+        </tr>
+        <tr>
+          <td>Rúbrica o pauta del pitch</td>
+          <td>Entregar retroalimentación formativa y criterios comunes.</td>
+        </tr>
+        <tr>
+          <td>Materiales reutilizables</td>
+          <td>Guías, infografías, plantillas o presentaciones para continuidad.</td>
+        </tr>
+        <tr>
+          <td>Informe final</td>
+          <td>Sistematizar aprendizajes, recomendaciones y posibilidades de continuidad.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>11. Observaciones para coordinación</h2>
+    <ul>
+      <li>Confirmar con el establecimiento fechas, horarios y cantidad de estudiantes por sesión.</li>
+      <li>Definir si los talleres se harán con un curso completo, grupos paralelos o equipos seleccionados.</li>
+      <li>Ajustar el nivel técnico según edad, especialidad y experiencia previa de los estudiantes.</li>
+      <li>Preparar una demo GeoGreen simple y robusta antes del Taller 3.</li>
+      <li>Acordar con DSE el formato de fichas, rúbricas y registro de mentorías.</li>
+      <li>Mantener el foco en que GeoGreen Escolar es una experiencia formativa: el prototipo inspira, pero el aprendizaje y las propuestas estudiantiles son el centro del programa.</li>
+    </ul>
+
+    <div class="highlight avoid-break">
+      <strong>Para alinear con Don Elías:</strong> esta propuesta desarrolla el cronograma de la postulación y puede servir como base para coordinar materiales, responsables técnicos, tiempos de talleres y alcance de la demostración GeoGreen.
+    </div>
+
+    <div class="footer">
+      <span>Fuente: Carta Gantt y postulación GeoGreen · Fondo VCM 2026</span>
+      <span>5</span>
+    </div>
+  </section>
+</body>
+</html>
