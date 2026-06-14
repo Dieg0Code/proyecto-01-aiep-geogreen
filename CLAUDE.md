@@ -14,6 +14,19 @@ Arduino Nano + HC-SR04 + 3xAAA + buzzer + LED traffic light. `carcasa.scad` is a
 separate demo-container maquette. `web/index.html` is a fill-level 3D viz;
 `web/plano.html` is an interactive exploded assembly plano. ESP32 track not done.
 
+A **third track lives in `arduino-r4/`** for the physical **Arduino UNO R4 WiFi**
+Diego now owns (Renesas RA4M1 at 5V + onboard ESP32-S3 WiFi + integrated 12x8 LED
+matrix). Built/flashed with **PlatformIO** (`pio`, platform `renesas-ra`, board
+`uno_r4_wifi`) — **each sketch is its own pio project folder** with a
+`platformio.ini`, because each `.ino` is a standalone program. USB-only demos on the
+built-in matrix — no external parts. Sketches: `geogreen_show/` (cinematic ~25-30s
+demo; uses Binary Code Modulation for 8 brightness levels), `geogreen_matrix/`
+(simpler fallback), `hacker_show/` (personal cyberpunk reel, not GeoGreen). Flash
+with `pio run -d arduino-r4/<sketch> -t upload` (auto-detects the COM port); see
+`arduino-r4/README.md`. The `.ino` files are kept so the Arduino IDE still works.
+Being 5V, this board connects HC-SR04 Echo direct with **no voltage divider**
+(unlike the 3.3V ESP32 DevKit track).
+
 ### Toolchain (all installed, all CLI-driven)
 
 - **PlatformIO** (`pio`) installed via `uv tool` → `~/.local/bin/pio.exe`. Compiles the firmware (bundles its own AVR compiler).
