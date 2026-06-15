@@ -42,6 +42,7 @@ const IMG = {
   t3: path.join(repoRoot, "talleres/03/infografias/infografia-taller-3-innovacion-proposito.png"),
   arduino: path.join(repoRoot, "docs/infografias/infografia-arduino-r4-wifi-geogreen.png"),
   sensores: path.join(repoRoot, "docs/infografias/infografia-sensores-arduino.png"),
+  app: path.join(__dirname, "assets/app-geogreen-mapa-osorno.png"),
 };
 
 const A = {
@@ -390,22 +391,27 @@ function slide04() {
   addLogo(slide);
   header(slide, "Avance disponible", "Qué hemos desarrollado", "Ya existe una base de materiales para revisar y ajustar con el equipo.");
   const cards = [
-    ["Taller 1", "PPT, planificación docente e infografías de producto esperado."],
-    ["Taller 2", "PPT, guía estudiante, planificación docente, PDF e infografías."],
-    ["Cronograma", "Pseudocronograma, fechas tentativas, pendientes y fase final."],
-    ["Arduino", "Firmware, simulación Wokwi, visualizador 3D y material técnico."],
-    ["Evidencias", "Fichas, registros, rúbricas y productos esperados por equipo."],
-    ["Cierre", "Pitch, devolución, recomendaciones y materiales reutilizables."],
+    ["Taller 1", "Formación", "PPT, planificación docente e infografías de producto esperado.", A.green],
+    ["Taller 2", "Formación", "PPT, guía estudiante, planificación docente, PDF e infografías.", A.gold],
+    ["Cronograma", "Planificación", "Pseudocronograma, fechas tentativas, pendientes y fase final.", A.navy],
+    ["Arduino + app", "Técnico", "Firmware, simulación Wokwi, app de monitoreo y visualizador 3D.", A.red],
+    ["Evidencias", "Seguimiento", "Fichas, registros, rúbricas y productos esperados por equipo.", A.navy],
+    ["Cierre", "Presentación", "Pitch, devolución, recomendaciones y materiales reutilizables.", A.green],
   ];
-  cards.forEach(([t, b], i) => {
-    const x = 0.88 + (i % 3) * 4.1;
-    const y = 1.95 + Math.floor(i / 3) * 1.58;
-    panel(slide, x, y, 3.72, 1.16, { fill: i % 2 === 0 ? A.white : A.softBlue, line: A.border, shadow: true });
-    bodyText(slide, t, x + 0.24, y + 0.25, 3.18, 0.18, { size: 13.2, color: A.navy, bold: true });
-    bodyText(slide, b, x + 0.24, y + 0.58, 3.18, 0.34, { size: 8.9, color: A.ink, valign: "top" });
+  cards.forEach(([t, cat, b, color], i) => {
+    const x = 0.88 + (i % 3) * 4.0;
+    const y = 1.92 + Math.floor(i / 3) * 1.74;
+    panel(slide, x, y, 3.74, 1.54, { fill: A.white, line: A.border, shadow: true, radius: 0.07 });
+    slide.addShape(SH.roundRect, { x: x + 0.16, y: y + 0.22, w: 0.09, h: 1.1, rectRadius: 0.04, fill: { color }, line: { color, transparency: 100 } });
+    slide.addShape(SH.roundRect, { x: x + 0.4, y: y + 0.24, w: 0.54, h: 0.54, rectRadius: 0.11, fill: { color }, line: { color, transparency: 100 } });
+    bodyText(slide, String(i + 1).padStart(2, "0"), x + 0.4, y + 0.42, 0.54, 0.1, { size: 11.5, color: color === A.gold ? A.navy : A.white, bold: true, align: "center" });
+    bodyText(slide, cat.toUpperCase(), x + 1.12, y + 0.3, 2.5, 0.12, { size: 7.4, color: A.slate, bold: true });
+    bodyText(slide, t, x + 1.12, y + 0.5, 2.5, 0.2, { size: 13.6, color: A.navy, bold: true });
+    line(slide, x + 0.4, y + 0.96, 3.1, "E3E7EC", 0.8);
+    bodyText(slide, b, x + 0.4, y + 1.06, 3.16, 0.38, { size: 8.8, color: A.ink, valign: "top" });
   });
-  panel(slide, 1.15, 5.58, 10.92, 0.66, { fill: A.navy, line: A.navy });
-  bodyText(slide, "La conversación puede apoyarse en materiales concretos y concentrarse en ajustes operativos.", 1.45, 5.83, 10.34, 0.1, {
+  panel(slide, 1.15, 5.66, 10.92, 0.64, { fill: A.navy, line: A.navy });
+  bodyText(slide, "La conversación puede apoyarse en materiales concretos y concentrarse en ajustes operativos.", 1.45, 5.9, 10.34, 0.1, {
     size: 10.5,
     color: A.white,
     bold: true,
@@ -640,6 +646,31 @@ function slide13() {
   validateSlide(slide, pptx);
 }
 
+function slide14App() {
+  const slide = pptx.addSlide();
+  bg(slide);
+  addLogo(slide);
+  header(slide, "Plataforma GeoGreen", "Tablero de monitoreo en vivo", "El dato del sensor se vuelve visible: contenedores georreferenciados en Osorno, en tiempo real.");
+  panel(slide, 0.74, 1.78, 8.18, 3.96, { fill: A.white, line: A.border, radius: 0.04, shadow: true });
+  imageContain(slide, IMG.app, 0.92, 1.96, 7.82, 3.6);
+  titleBlock(slide, "Donde aterriza el dato", 9.18, 1.92, 3.4, { size: 17.5, h: 0.74 });
+  bulletList(slide, [
+    "Mapa en vivo con contenedores en ubicaciones reales de Osorno.",
+    "Estado por llenado: verde, amarillo y rojo, igual que el dispositivo.",
+    "Alertas de lleno, batería baja o sin señal.",
+    "Ruta de retiro optimizada por las calles de la ciudad.",
+  ], 9.24, 2.66, 3.32, { accent: A.green, gap: 0.72, size: 9.6, itemH: 0.6 });
+  panel(slide, 0.74, 5.96, 11.84, 0.66, { fill: A.navy, line: A.navy });
+  bodyText(slide, "Cierra el ciclo del dispositivo: sensar → enviar → visualizar → alertar. La misma lógica que los estudiantes prototipan en Arduino.", 1.04, 6.18, 11.24, 0.18, {
+    size: 10.6,
+    color: A.white,
+    bold: true,
+    align: "center",
+  });
+  footer(slide, 14);
+  validateSlide(slide, pptx);
+}
+
 function slide14() {
   const slide = pptx.addSlide();
   bg(slide);
@@ -666,7 +697,7 @@ function slide14() {
     bold: true,
     align: "center",
   });
-  footer(slide, 14);
+  footer(slide, 15);
   validateSlide(slide, pptx);
 }
 
@@ -731,6 +762,7 @@ function slide15() {
   slide11,
   slide12,
   slide13,
+  slide14App,
   slide14,
   slide15,
 ].forEach((fn) => fn());
