@@ -29,3 +29,7 @@ Thumbs.db
 
 # Capturas temporales de verificacion
 .playwright-cli/
+
+# Previews de render de PPT (regenerables, no versionar)
+**/ppt/rendered/
+**/ppt/montage.png
