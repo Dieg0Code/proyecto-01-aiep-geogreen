@@ -700,8 +700,8 @@ function slide15() {
   const asks = [
     ["Fechas", "Días, horarios y evento final."],
     ["Participantes", "Curso, estudiantes y equipos."],
-    ["Responsables", "Distribución del pseudocronograma."],
-    ["Arduino", "Demo, simulación y rol de Don Elías."],
+    ["Coordinación", "Ajustes necesarios por etapa."],
+    ["Arduino", "Demo, simulación y materiales."],
     ["Evidencias", "Listas, fotos, fichas e informe."],
     ["Cierre", "Pitch, jurado y reconocimientos."],
   ];
