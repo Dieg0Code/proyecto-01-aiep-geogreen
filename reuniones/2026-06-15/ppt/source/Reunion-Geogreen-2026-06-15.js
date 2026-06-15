@@ -333,7 +333,7 @@ function slide02() {
   const slide = pptx.addSlide();
   bg(slide);
   addLogo(slide);
-  header(slide, "Coordinación", "Temas para revisar", "Propuesta de conversación para ordenar el avance y recibir definiciones de dirección.");
+  header(slide, "Coordinación", "Temas para revisar", "Propuesta de conversación para ordenar avances y recoger orientaciones.");
   const goals = [
     ["Responsabilidades", "Revisar la distribución propuesta para talleres, mentorías y cierre."],
     ["Fechas", "Contrastar el calendario post vacaciones con disponibilidad del establecimiento."],
@@ -349,7 +349,7 @@ function slide02() {
     bodyText(slide, b, x + 0.96, y + 0.56, 3.88, 0.34, { size: 10.7, color: A.ink });
   });
   panel(slide, 1.05, 5.72, 11.2, 0.68, { fill: A.navy, line: A.navy });
-  bodyText(slide, "La intención es facilitar una revisión ejecutiva: avance disponible, puntos abiertos y decisiones que conviene dejar encaminadas.", 1.32, 5.93, 10.64, 0.18, {
+  bodyText(slide, "La intención es facilitar una revisión ejecutiva: avance disponible, puntos abiertos y acuerdos operativos por precisar.", 1.32, 5.93, 10.64, 0.18, {
     size: 11.4,
     color: A.white,
     bold: true,
@@ -374,7 +374,7 @@ function slide03() {
     "Tecnología como medio, no como fin.",
   ], 6.7, 3.38, 5.1, { accent: A.green, gap: 0.58, size: 10.8 });
   panel(slide, 6.62, 6.02, 5.22, 0.52, { fill: A.softGreen, line: "C8D9CC" });
-  bodyText(slide, "La reunión debe cerrar cómo convertimos ese contexto en una secuencia ejecutable.", 6.88, 6.2, 4.72, 0.12, {
+  bodyText(slide, "Este contexto orienta la secuencia formativa y el componente tecnológico.", 6.88, 6.2, 4.72, 0.12, {
     size: 9.4,
     color: A.navy,
     bold: true,
@@ -388,7 +388,7 @@ function slide04() {
   const slide = pptx.addSlide();
   bg(slide);
   addLogo(slide);
-  header(slide, "Avance disponible", "Qué hemos desarrollado", "Hay material suficiente para explicar el programa y sostener la coordinación.");
+  header(slide, "Avance disponible", "Qué hemos desarrollado", "Ya existe una base de materiales para revisar y ajustar con el equipo.");
   const cards = [
     ["Taller 1", "PPT, planificación docente e infografías de producto esperado."],
     ["Taller 2", "PPT, guía estudiante, planificación docente, PDF e infografías."],
@@ -405,7 +405,7 @@ function slide04() {
     bodyText(slide, b, x + 0.24, y + 0.58, 3.18, 0.34, { size: 8.9, color: A.ink, valign: "top" });
   });
   panel(slide, 1.15, 5.58, 10.92, 0.66, { fill: A.navy, line: A.navy });
-  bodyText(slide, "La reunión no parte desde cero: ordena lo ya producido y confirma cómo se ejecuta con el establecimiento.", 1.45, 5.83, 10.34, 0.1, {
+  bodyText(slide, "La conversación puede apoyarse en materiales concretos y concentrarse en ajustes operativos.", 1.45, 5.83, 10.34, 0.1, {
     size: 10.5,
     color: A.white,
     bold: true,
@@ -419,18 +419,18 @@ function slide05() {
   const slide = pptx.addSlide();
   bg(slide, A.white);
   addLogo(slide);
-  header(slide, "Mapa oficial de trabajo", "Lógica del proyecto", "El pseudocronograma sin fechas es la distribución oficial temporal para esta reunión.");
+  header(slide, "Mapa de trabajo", "Lógica del proyecto", "El pseudocronograma sin fechas funciona como referencia de coordinación para esta reunión.");
   imageContain(slide, IMG.pseudo, 0.82, 1.68, 5.38, 5.18);
   rect(slide, 6.55, 1.78, 0.05, 4.8, A.red);
   titleBlock(slide, "Primero la lógica, después las fechas", 6.9, 2.0, 4.9, { size: 23.5, h: 0.92 });
   bulletList(slide, [
     "Ordena etapas, responsables y entregables.",
-    "Evita que el calendario oculte quién hace qué.",
+    "Separa la lógica de trabajo de la calendarización.",
     "Permite ajustar fechas sin cambiar la arquitectura del programa.",
     "Define productos mínimos por taller y mentoría.",
   ], 6.98, 3.28, 5.05, { accent: A.red, gap: 0.58, size: 10.5 });
   panel(slide, 6.9, 6.15, 4.98, 0.48, { fill: A.softGold, line: "E7D39A" });
-  bodyText(slide, "Fuente oficial temporal: pseudocronograma de coordinación.", 7.12, 6.34, 4.55, 0.08, { size: 8.8, color: A.navy, bold: true, align: "center" });
+  bodyText(slide, "Referencia de trabajo: pseudocronograma de coordinación.", 7.12, 6.34, 4.55, 0.08, { size: 8.8, color: A.navy, bold: true, align: "center" });
   footer(slide, 5);
   validateSlide(slide, pptx);
 }
@@ -439,7 +439,7 @@ function slide06() {
   const slide = pptx.addSlide();
   bg(slide);
   addLogo(slide);
-  header(slide, "Responsabilidades", "Quién hace qué", "Distribución tomada del pseudocronograma oficial temporal.");
+  header(slide, "Responsabilidades", "Distribución preliminar", "Referencia tomada del pseudocronograma de coordinación.");
   stageRow(slide, 1, "Taller 1", "Desarrollo Social", "Equipos formados + problema ambiental.", 1.8, A.red);
   stageRow(slide, 2, "Taller 2", "Desarrollo Social", "Ficha de residuo/material.", 2.48, A.red);
   stageRow(slide, 3, "Taller 3", "Programación/Sistemas", "Idea tecnológica inicial.", 3.16, A.navy);
@@ -532,7 +532,7 @@ function slide09() {
     "Nombrar un problema ambiental concreto.",
   ], 1.0, 3.35, 5.85, { accent: A.green, gap: 0.64, size: 12.0, itemH: 0.38 });
   panel(slide, 0.95, 6.05, 5.9, 0.52, { fill: A.softGreen, line: "C8D9CC" });
-  bodyText(slide, "Responsable oficial temporal: Desarrollo Social.", 1.18, 6.23, 5.44, 0.08, { size: 10.2, color: A.green, bold: true, align: "center" });
+  bodyText(slide, "Referencia de coordinación: Desarrollo Social.", 1.18, 6.23, 5.44, 0.08, { size: 10.2, color: A.green, bold: true, align: "center" });
   footer(slide, 9);
   validateSlide(slide, pptx);
 }
@@ -574,7 +574,7 @@ function slide11() {
     "Clasificar con criterio y justificar decisiones.",
   ], 1.0, 3.36, 5.95, { accent: A.gold, gap: 0.64, size: 12.0, itemH: 0.38 });
   panel(slide, 0.95, 6.05, 5.9, 0.52, { fill: A.softGold, line: "E7D39A" });
-  bodyText(slide, "Responsable oficial temporal: Desarrollo Social.", 1.18, 6.23, 5.44, 0.08, { size: 10.2, color: A.navy, bold: true, align: "center" });
+  bodyText(slide, "Referencia de coordinación: Desarrollo Social.", 1.18, 6.23, 5.44, 0.08, { size: 10.2, color: A.navy, bold: true, align: "center" });
   footer(slide, 11);
   validateSlide(slide, pptx);
 }
@@ -630,7 +630,7 @@ function slide13() {
     bodyText(slide, b, 7.08, y + 0.18, 1.42, 0.2, { size: 7.2, color: A.ink });
   });
   panel(slide, 9.28, 5.02, 2.92, 0.72, { fill: A.softBlue, line: A.border });
-  bodyText(slide, "Responsable oficial temporal: Programación/Sistemas.", 9.5, 5.3, 2.48, 0.12, {
+  bodyText(slide, "Referencia de coordinación: Programación/Sistemas.", 9.5, 5.3, 2.48, 0.12, {
     size: 8.0,
     color: A.navy,
     bold: true,
