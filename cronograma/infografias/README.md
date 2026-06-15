@@ -3,6 +3,7 @@
 Esta carpeta reúne láminas visuales para coordinación interna y envío por WhatsApp:
 
 - Cronograma general.
+- Cronograma post vacaciones a octubre 2026.
 - Pseudocronograma sin fechas.
 - Objetivo transversal.
 - Repartición de talleres.

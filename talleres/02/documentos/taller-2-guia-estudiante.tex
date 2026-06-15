@@ -1,0 +1,406 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=17mm,bottom=18mm,left=17mm,right=17mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{multicol}
+\usepackage{ragged2e}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{1F2933}
+\definecolor{AIEPMuted}{HTML}{536171}
+\definecolor{AIEPLine}{HTML}{D7DEE8}
+\definecolor{AIEPSoft}{HTML}{F6F8FB}
+\definecolor{AIEPGold}{HTML}{B08A3C}
+\definecolor{AIEPGreen}{HTML}{2F855A}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{Taller 2 - Ciencia del reciclaje}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar Osorno - \thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt}
+\renewcommand{\arraystretch}{1.16}
+
+\titleformat{\section}
+  {\Large\bfseries\color{AIEPNavy}}
+  {}{0pt}{}
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{AIEPNavy}}
+  {}{0pt}{}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newtcolorbox{infobox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.45pt,
+  arc=1.1mm,
+  left=3mm,
+  right=3mm,
+  top=2.4mm,
+  bottom=2.4mm,
+  before skip=5pt,
+  after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPMuted,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{keybox}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.65pt,
+  arc=1.1mm,
+  left=3mm,
+  right=3mm,
+  top=2.4mm,
+  bottom=2.4mm,
+  before skip=6pt,
+  after skip=6pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPMuted,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newcommand{\eyebrow}[1]{%
+  {\small\bfseries\textcolor{AIEPRed}{\MakeUppercase{#1}}}\par
+  \vspace{7mm}
+  {\color{AIEPRed}\rule{18mm}{0.8pt}}\par
+  \vspace{9mm}
+}
+
+\newcommand{\blocktitle}[2]{%
+  \vspace{2mm}
+  {\large\bfseries\color{AIEPNavy}#1}\hfill{\small\bfseries\textcolor{AIEPRed}{#2}}\par
+  \vspace{1mm}
+}
+
+\newcommand{\fieldbox}[2]{%
+  \begin{infobox}[height=#2]{#1}
+  \vspace*{\fill}
+  \end{infobox}
+}
+
+\begin{document}
+\RaggedRight
+
+\eyebrow{GeoGreen Escolar Osorno}
+
+{\Huge\bfseries\color{AIEPNavy}Taller 2 - Ciencia del reciclaje\par}
+\vspace{3mm}
+{\Large\color{AIEPMuted}De basura a material: mirar, separar y decidir mejor\par}
+
+\vspace{9mm}
+\begin{tabular}{@{}>{\bfseries\color{AIEPNavy}}l@{\hspace{7mm}}l@{}}
+Sesión & Taller 2 \\
+Duración & 90 minutos por bloque \\
+Modalidad & Presencial, participativa y grupal \\
+Organización & Equipos de 5 a 6 estudiantes \\
+Producto & Ficha de material conectada con el problema del Taller 1 \\
+\end{tabular}
+
+\vspace{8mm}
+\begin{keybox}{La gran idea}
+Un residuo no es solo basura. Es un material con propiedades, condiciones y posibilidades. Reciclar bien empieza antes de botar: cuando se reconoce el material, se separa, se mantiene limpio y se entrega correctamente.
+\end{keybox}
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{infobox}[height=35mm]{En este taller aprenderás}
+\begin{itemize}
+  \item Distinguir objeto y material.
+  \item Reconocer familias de materiales.
+  \item Explicar limpio, seco y separado.
+  \item Clasificar residuos con criterio.
+\end{itemize}
+\end{infobox}
+&
+\begin{infobox}[height=35mm]{Al finalizar}
+\begin{itemize}
+  \item Tu equipo tendrá una ficha de material.
+  \item Esa ficha se conectará con el problema ambiental trabajado en el Taller 1.
+  \item Quedarán preguntas para preparar el Taller 3.
+\end{itemize}
+\end{infobox}
+\end{tabularx}
+
+\newpage
+\section{Objetivos de la clase}
+
+\begin{keybox}{Objetivo general}
+Al terminar esta clase, podrás explicar qué hace que un material sea reciclable o no: su composición, la separación en origen y la contaminación. También podrás caracterizar un material concreto vinculado al problema ambiental que tu equipo definió en el Taller 1.
+\end{keybox}
+
+\subsection{Objetivos específicos}
+\begin{enumerate}
+  \item Distinguir los grandes tipos de material presentes en residuos cotidianos: plásticos, papel y cartón, vidrio, metales, orgánico y envases multicapa.
+  \item Explicar por qué la mezcla y la contaminación reducen o anulan la reciclabilidad de un material.
+  \item Aplicar criterios básicos de clasificación con justificación, reconociendo cuándo un material genera duda.
+  \item Construir en equipo una ficha que caracterice un material o residuo real observado en el entorno.
+  \item Conectar la ficha de material con la frase de problema ambiental formulada en el Taller 1.
+\end{enumerate}
+
+\subsection{Competencias transversales}
+\begin{tabularx}{\textwidth}{@{}p{37mm}Y@{}}
+\textbf{\color{AIEPNavy}Pensamiento científico} & Mirar un residuo como un material con propiedades, no solo como un objeto que se bota. \\
+\textbf{\color{AIEPNavy}Pensamiento crítico} & Pasar de ``esto se recicla'' a ``esto se recicla bajo ciertas condiciones''. \\
+\textbf{\color{AIEPNavy}Trabajo colaborativo} & Registrar acuerdos, distribuir roles y justificar decisiones de clasificación. \\
+\textbf{\color{AIEPNavy}Comunicación efectiva} & Explicar brevemente por qué un material puede recuperarse o perderse. \\
+\textbf{\color{AIEPNavy}Responsabilidad ambiental} & Comprender que reciclar mejor depende de hábitos, información y separación oportuna. \\
+\end{tabularx}
+
+\newpage
+\section{Bloque 1: Nada es solo basura}
+\blocktitle{Mirar el residuo por dentro}{20 minutos}
+
+\begin{infobox}{Objetivo del bloque}
+Cambiar la forma de mirar un residuo: pasar de verlo como un objeto que se bota a entenderlo como un material con propiedades.
+\end{infobox}
+
+\subsection{Objeto y material no son lo mismo}
+Cuando botas una botella, no botas solo ``una botella'': botas plástico PET. El objeto es lo que usamos; el material es lo que define si ese residuo se puede recuperar, cuánto vale, cómo se procesa o si termina como basura común.
+
+\begin{keybox}{Idea clave}
+Dos objetos distintos pueden estar hechos del mismo material. Y dos objetos parecidos pueden estar hechos de materiales diferentes.
+\end{keybox}
+
+\subsection{Familias de materiales}
+\begin{tabularx}{\textwidth}{@{}p{25mm}p{44mm}Y@{}}
+\textbf{\color{AIEPNavy}Familia} & \textbf{\color{AIEPNavy}Ejemplos} & \textbf{\color{AIEPNavy}Propiedad clave} \\
+\hline
+Plásticos & Botellas, envases, bolsas, tapas & No todos son iguales ni se reciclan igual. \\
+Papel y cartón & Cuadernos, cajas, hojas & Se arruinan si se mojan o ensucian con comida. \\
+Vidrio & Botellas, frascos & Puede reciclarse muchas veces sin perder calidad. \\
+Metales & Latas, conservas & Son valiosos para reciclar; el aluminio se recupera fácilmente. \\
+Orgánico & Restos de comida, cáscaras & No se recicla como envase; puede compostarse. \\
+Multicapa & Cajas de leche, envoltorios metalizados & Mezcla materiales pegados y es difícil de separar. \\
+\end{tabularx}
+
+\subsection{El truco está en lo que no se ve}
+Algunos residuos engañan: un vaso de café puede parecer papel, pero tener una película plástica; una caja de leche puede parecer cartón, pero estar formada por capas de cartón, plástico y aluminio. Por eso no basta con mirar un residuo por encima.
+
+\begin{infobox}{Preguntas guía}
+\begin{itemize}
+  \item ¿Qué diferencia hay entre el objeto que botamos y el material del que está hecho?
+  \item ¿Qué material aparece más en el colegio?
+  \item ¿Qué objeto parece de un material, pero en realidad combina varios?
+\end{itemize}
+\end{infobox}
+
+\newpage
+\section{Bloque 2: Reciclable no es lo mismo que reciclado}
+\blocktitle{Entender las condiciones}{20 minutos}
+
+\begin{infobox}{Objetivo del bloque}
+Comprender que un material no se recicla solo por ser reciclable: depende de cómo se separa, se mantiene y se entrega.
+\end{infobox}
+
+\subsection{La diferencia central}
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{infobox}[height=31mm]{Reciclable}
+Es lo que un material podría llegar a ser si entra correctamente a la cadena de recuperación.
+\end{infobox}
+&
+\begin{infobox}[height=31mm]{Reciclado}
+Es lo que de verdad ocurrió con el material después de separarlo, retirarlo y procesarlo.
+\end{infobox}
+\end{tabularx}
+
+\begin{keybox}{Regla fácil de recordar}
+Un material reciclable puede perderse si llega sucio, mojado o mezclado. Por eso la condición mínima es: \textbf{limpio, seco y separado}.
+\end{keybox}
+
+\subsection{Limpio, seco y separado}
+\begin{tabularx}{\textwidth}{@{}p{24mm}Y Y@{}}
+\textbf{\color{AIEPNavy}Condición} & \textbf{\color{AIEPNavy}Por qué importa} & \textbf{\color{AIEPNavy}Qué la rompe} \\
+\hline
+Limpio & Restos de comida o líquidos contaminan el material. & Envases con restos, cajas con grasa. \\
+Seco & La humedad arruina sobre todo papel y cartón. & Papel mojado, cartón húmedo. \\
+Separado & La mezcla obliga a separar después, y muchas veces ya no se puede. & Botellas, comida y papel en la misma bolsa. \\
+\end{tabularx}
+
+\subsection{Colores de referencia en Chile}
+\begin{tabularx}{\textwidth}{@{}p{26mm}p{32mm}Y@{}}
+\textbf{\color{AIEPNavy}Color} & \textbf{\color{AIEPNavy}Material} & \textbf{\color{AIEPNavy}Ejemplos} \\
+\hline
+Azul & Papel y cartón & Diarios, cajas, hojas. \\
+Amarillo & Plásticos & Botellas, envases, bolsas. \\
+Verde & Vidrio & Botellas y frascos. \\
+Gris & Metales & Latas de bebida y conservas. \\
+Café & Orgánicos & Restos de comida y cáscaras. \\
+Rojo & Peligrosos & Pilas, baterías, aceites usados. \\
+\end{tabularx}
+
+\subsection{El sistema}
+Separar bien tiene sentido porque existe una cadena: separación en origen, punto limpio o retiro, recicladores y gestores, valorización y nuevo material. En Chile, la Ley REP organiza responsabilidades para envases y embalajes, pero la primera decisión sigue ocurriendo antes de botar.
+
+\newpage
+\section{Bloque 3: El material bajo la lupa}
+\blocktitle{Investigar en equipo}{30 minutos}
+
+\begin{infobox}{Objetivo del bloque}
+Elegir un residuo real, caracterizarlo en una ficha de material y practicar una clasificación con criterio.
+\end{infobox}
+
+\subsection{Cada equipo, experto de un material}
+El equipo elige un residuo concreto: una botella plástica, lata de bebida, caja de leche, envoltorio de snack, hoja usada, vaso desechable, frasco de vidrio o restos de comida. Lo importante es estudiar un material real, no una categoría demasiado amplia.
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{infobox}[height=42mm]{Roles sugeridos}
+\begin{itemize}
+  \item Coordinación.
+  \item Registro.
+  \item Vocería.
+  \item Investigación de material.
+  \item Investigación de condiciones.
+\end{itemize}
+\end{infobox}
+&
+\begin{infobox}[height=42mm]{Buen criterio}
+\begin{itemize}
+  \item Elegir algo observable.
+  \item Preguntar de qué está hecho.
+  \item Identificar qué lo arruina.
+  \item Conectarlo con el problema del equipo.
+\end{itemize}
+\end{infobox}
+\end{tabularx}
+
+\subsection{Ficha de material}
+\begin{keybox}{Campos mínimos}
+\begin{itemize}
+  \item Material o residuo elegido.
+  \item Familia de material.
+  \item ¿De qué está hecho realmente?
+  \item ¿Es reciclable? ¿Bajo qué condiciones?
+  \item ¿Qué lo arruina o lo contamina?
+  \item ¿Qué información falta si genera duda?
+  \item Relación con el problema del equipo en el Taller 1.
+\end{itemize}
+\end{keybox}
+
+\subsection{Clasificación con criterio}
+\begin{tabularx}{\textwidth}{@{}p{35mm}Y Y@{}}
+\textbf{\color{AIEPNavy}Categoría} & \textbf{\color{AIEPNavy}Qué incluye} & \textbf{\color{AIEPNavy}Pista para decidir} \\
+\hline
+Reciclable & Material recuperable si está limpio y separado. & ¿De qué familia es? ¿Está limpio? \\
+No reciclable & Material que hoy no se recupera. & ¿Está demasiado mezclado o es multicapa? \\
+Orgánico & Restos de comida y similares. & ¿Se podría compostar? \\
+Manejo especial & Pilas, electrónicos, peligrosos. & ¿Puede dañar a personas o al ambiente? \\
+Genera duda & Falta información para decidir. & ¿Qué dato falta? \\
+\end{tabularx}
+
+\newpage
+\section{Bloque 4: Entender el material para imaginar la solución}
+\blocktitle{Conectar y proyectar}{20 minutos}
+
+\begin{infobox}{Objetivo del bloque}
+Conectar la ficha de material con la frase de problema del Taller 1 y preparar la mirada tecnológica del Taller 3.
+\end{infobox}
+
+\subsection{Conectar material y problema}
+La pregunta central del cierre es:
+
+\begin{keybox}{Pregunta del equipo}
+Ahora que entendemos el material, ¿qué cambia en la forma de mirar nuestro problema?
+\end{keybox}
+
+\subsection{Plantilla de conexión}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{48mm}Y@{}}
+Nuestro problema & Escribir la frase de problema del Taller 1. \\
+Material en el centro & Identificar el residuo o material clave. \\
+Lo que aprendimos & Explicar cómo se comporta, qué lo arruina y bajo qué condiciones se recupera. \\
+Qué cambia ahora & Formular una mirada más precisa del problema. \\
+\end{tabularx}
+
+\subsection{Puesta en común}
+Cada equipo comparte en 30 a 45 segundos:
+\begin{enumerate}
+  \item Material investigado.
+  \item Hallazgo clave de la ficha.
+  \item Conexión con el problema ambiental del equipo.
+\end{enumerate}
+
+\subsection{Salida reflexiva}
+\begin{infobox}{Para cerrar}
+\begin{itemize}
+  \item ¿Qué aprendimos sobre nuestro material que antes no sabíamos?
+  \item ¿Por qué importa entender el material para reciclar bien?
+  \item ¿Qué información todavía nos falta?
+\end{itemize}
+\end{infobox}
+
+\begin{keybox}{Puente al Taller 3}
+Con el problema y el material claros, el siguiente paso será imaginar cómo una tecnología puede medir, alertar o visualizar lo que ocurre con los residuos. GeoGreen aparece como ejemplo: un sensor puede ayudar a saber cuánto se llena un contenedor y cuándo actuar.
+\end{keybox}
+
+\newpage
+\section{Síntesis final}
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{infobox}[height=34mm]{Aprendizaje 1}
+Un residuo no es un objeto cualquiera: es un material con propiedades.
+\end{infobox}
+&
+\begin{infobox}[height=34mm]{Aprendizaje 2}
+Que algo sea reciclable no significa que se recicle; depende de que llegue limpio, seco y separado.
+\end{infobox}
+\end{tabularx}
+
+\begin{infobox}{Aprendizaje 3}
+Entender bien un material permite mirar el problema con más precisión y, desde ahí, imaginar una solución que valga la pena.
+\end{infobox}
+
+\section{Producto esperado de la sesión}
+
+Al finalizar el taller, deberían quedar:
+\begin{itemize}
+  \item ficha de material por equipo;
+  \item conexión escrita entre la ficha y la frase de problema del Taller 1;
+  \item registro de dudas o información faltante;
+  \item fotografías o evidencia del trabajo grupal;
+  \item una pregunta para continuar hacia el Taller 3.
+\end{itemize}
+
+\newpage
+\section{Ficha rápida para completar}
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\fieldbox{Material o residuo elegido}{14mm}
+&
+\fieldbox{Familia de material}{14mm}
+\end{tabularx}
+
+\fieldbox{¿De qué está hecho realmente?}{18mm}
+\fieldbox{¿Es reciclable? ¿Bajo qué condiciones?}{18mm}
+\fieldbox{¿Qué lo arruina o contamina?}{18mm}
+\fieldbox{¿Qué duda queda abierta?}{17mm}
+\fieldbox{Relación con el problema del equipo}{20mm}
+
+\end{document}

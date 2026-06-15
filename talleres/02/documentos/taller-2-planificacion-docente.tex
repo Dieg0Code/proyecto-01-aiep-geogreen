@@ -1,0 +1,436 @@
+﻿\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=14mm,top=14mm,bottom=16mm]{geometry}
+\usepackage{fontspec}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPDeep}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoft}{HTML}{EDE6DA}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGreenSoft}{HTML}{E9F6EE}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{Line}{HTML}{D8CFC4}
+\definecolor{White}{HTML}{FFFFFF}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\scriptsize\textcolor{AIEPSlate}{Planificación docente - Taller 2}}
+\fancyfoot[R]{\scriptsize\textcolor{AIEPSlate}{GeoGreen Escolar Osorno - \thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.8pt}
+\setlist[itemize]{leftmargin=4.2mm,topsep=1pt,itemsep=1.2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=5mm,topsep=1pt,itemsep=1.2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.18}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPInk}}{}{0pt}{}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{card}[1][]{
+  enhanced,
+  colback=White,
+  colframe=Line,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=3.2mm,
+  right=3.2mm,
+  top=2.8mm,
+  bottom=2.8mm,
+  #1
+}
+
+\newtcolorbox{softcard}[2][]{
+  enhanced,
+  colback=#2!10,
+  colframe=#2,
+  boxrule=0.45pt,
+  arc=1.2mm,
+  left=3.2mm,
+  right=3.2mm,
+  top=2.8mm,
+  bottom=2.8mm,
+  #1
+}
+
+\newcommand{\kicker}[1]{%
+  {\color{AIEPRed}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{2.5mm}
+  {\color{AIEPRed}\rule{13mm}{1.2pt}}\vspace{3mm}
+}
+
+\newcommand{\labeltext}[1]{%
+  {\scriptsize\bfseries\color{AIEPSlate}\MakeUppercase{#1}}\par\vspace{1.3mm}
+}
+
+\newcommand{\pagebreaksection}{\newpage}
+
+\begin{document}
+
+% 1 ---------------------------------------------------------------------------
+\thispagestyle{fancy}
+\kicker{GeoGreen Escolar Osorno}
+{\Huge\bfseries\color{AIEPNavy} Taller 2 - Ciencia del reciclaje}\par
+\vspace{2mm}
+{\large\color{AIEPSlate} Planificación lectiva para facilitar la sesión sobre materiales, reciclabilidad y separación en origen.}\par
+\vspace{6mm}
+
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{softcard}[height=32mm,valign=top]{AIEPSoftBlue}
+\labeltext{Duración por bloque}
+{\Large\bfseries\color{AIEPNavy}90 minutos}\par
+Sesión presencial, participativa y grupal.
+\end{softcard}
+&
+\begin{softcard}[height=32mm,valign=top]{AIEPSoft}
+\labeltext{Horario sugerido}
+{\Large\bfseries\color{AIEPNavy}A 09:00--10:30}\par
+B 10:45--12:15, con 15 minutos de ajuste entre bloques.
+\end{softcard}
+&
+\begin{softcard}[height=32mm,valign=top]{AIEPGreen}
+\labeltext{Participantes}
+{\Large\bfseries\color{AIEPNavy}2 bloques}\par
+30 estudiantes por bloque, organizados en 5 equipos de 6.
+\end{softcard}
+\end{tabularx}
+
+\vspace{5mm}
+\begin{tcolorbox}[
+  enhanced,
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  boxrule=0pt,
+  arc=1mm,
+  left=5mm,
+  right=5mm,
+  top=4mm,
+  bottom=4mm
+]
+{\color{White}\small\bfseries SENTIDO DE LA SESIÓN}\par\vspace{1.5mm}
+{\color{White}\large\bfseries El taller transforma la observación del problema ambiental en comprensión del material.}\par
+\vspace{1.5mm}
+{\color{AIEPSoftBlue}Los equipos aprenden a distinguir objeto y material, reconocer condiciones que permiten o anulan el reciclaje, y construir una ficha que conecte un residuo real con el problema definido en el Taller 1.}
+\end{tcolorbox}
+
+\vspace{4mm}
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=35mm,valign=top]
+\labeltext{Responsable sugerido}
+{\bfseries\color{AIEPNavy}Docente facilitador/a del programa GeoGreen}\par
+Conduce la conversación, orienta el trabajo por equipos y cuida que las respuestas se justifiquen desde propiedades del material, no solo desde intuiciones.
+\end{card}
+&
+\begin{card}[height=35mm,valign=top]
+\labeltext{Verificadores mínimos}
+\begin{itemize}
+  \item Lista de asistencia por bloque.
+  \item Fotografías del trabajo grupal.
+  \item Ficha de material por equipo.
+  \item Conexión escrita entre ficha y problema del Taller 1.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\pagebreaksection
+
+% 2 ---------------------------------------------------------------------------
+\kicker{Propósito formativo}
+\section*{Objetivos y aprendizajes esperados}
+
+\begin{softcard}{AIEPSoftBlue}
+\labeltext{Objetivo del Taller 2}
+Que cada estudiante comprenda que la reciclabilidad de un residuo depende de su composición, de la separación en origen y de las condiciones en que llega al sistema de reciclaje; y que cada equipo pueda caracterizar un material concreto asociado a su problema ambiental.
+\end{softcard}
+
+\vspace{3mm}
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=27mm,valign=top]
+\labeltext{Resultado central de la sesión}
+Cada equipo produce una ficha de material que describe familia, composición, condiciones de reciclaje, factores de contaminación, dudas pendientes y relación con su problema ambiental.
+\end{card}
+&
+\begin{card}[height=27mm,valign=top]
+\labeltext{Idea fuerza}
+Reciclar bien no empieza en la planta de reciclaje: empieza antes de botar, cuando el residuo se mantiene limpio, seco y separado.
+\end{card}
+\end{tabularx}
+
+\vspace{4mm}
+\subsection*{Resultados de aprendizaje}
+\begin{tabularx}{\textwidth}{L{31mm}Y}
+\rowcolor{AIEPNavy}
+\textcolor{White}{\bfseries Dimensión} & \textcolor{White}{\bfseries Al finalizar el taller, se espera que el/la estudiante pueda...} \\
+\hline
+Materiales & Distinguir familias de materiales frecuentes: plásticos, papel y cartón, vidrio, metales, orgánicos y envases multicapa. \\
+\hline
+Reciclabilidad & Explicar por qué un material reciclable puede perderse si llega sucio, mojado o mezclado con otros residuos. \\
+\hline
+Clasificación & Aplicar criterios simples para decidir si un residuo es reciclable, no reciclable, orgánico, de manejo especial o si genera duda. \\
+\hline
+Trabajo colaborativo & Completar una ficha de material con acuerdos del equipo, evidencia observable y preguntas pendientes. \\
+\hline
+Continuidad & Conectar el material estudiado con el problema ambiental definido en el Taller 1 y preparar el puente hacia tecnología en el Taller 3. \\
+\hline
+\end{tabularx}
+
+\vspace{4mm}
+\begin{softcard}{AIEPGold}
+\labeltext{Enfoque de evaluación formativa}
+No se espera exactitud técnica exhaustiva. El indicador principal es que el equipo avance desde ``esto es basura'' hacia ``esto es un material, se comporta así y se pierde o recupera bajo estas condiciones''.
+\end{softcard}
+
+\pagebreaksection
+
+% 3 ---------------------------------------------------------------------------
+\kicker{Rol docente}
+\section*{Enfoque metodológico y mediación}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=62mm,valign=top]
+\labeltext{Principios de facilitación}
+\begin{itemize}
+  \item Usar ejemplos concretos y cotidianos.
+  \item Preguntar por el material antes que por el contenedor.
+  \item Hacer visible la diferencia entre reciclable y reciclado.
+  \item Validar la duda cuando falte información.
+  \item Cuidar que cada equipo cierre con un producto escrito.
+\end{itemize}
+\end{card}
+&
+\begin{softcard}[height=62mm,valign=top]{AIEPGreen}
+\labeltext{Rol del/de la docente}
+\begin{itemize}
+  \item Instalar vocabulario básico sin convertir la sesión en clase de química.
+  \item Orientar la observación hacia propiedades y condiciones.
+  \item Mediar la clasificación con preguntas de justificación.
+  \item Conectar cada ficha con el problema ambiental del equipo.
+  \item Preparar el puente hacia medición, alerta y visualización.
+\end{itemize}
+\end{softcard}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{softcard}{AIEPRed}
+\labeltext{Cuidado pedagógico}
+Evitar respuestas absolutas del tipo ``esto siempre se recicla'' o ``esto nunca sirve''. La formulación más útil es condicional: se recupera si está limpio, seco, separado y si existe un canal de gestión adecuado.
+\end{softcard}
+
+\vspace{4mm}
+\subsection*{Materiales sugeridos}
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{card}[height=35mm,valign=top]
+\labeltext{Para activar}
+\begin{itemize}
+  \item Botella, lata, papel, envase o envoltorio limpio.
+  \item Pizarra o papelógrafo.
+  \item Plumones.
+\end{itemize}
+\end{card}
+&
+\begin{card}[height=35mm,valign=top]
+\labeltext{Para trabajar}
+\begin{itemize}
+  \item Plantilla de ficha de material.
+  \item Tarjetas o imágenes de residuos.
+  \item Notas adhesivas.
+\end{itemize}
+\end{card}
+&
+\begin{card}[height=35mm,valign=top]
+\labeltext{Para evidenciar}
+\begin{itemize}
+  \item Lista de asistencia.
+  \item Registro fotográfico.
+  \item Fichas completadas por equipo.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{card}
+\labeltext{Organización sugerida}
+Mantener equipos de 5 a 6 estudiantes. Roles recomendados: coordinación, registro, vocería, investigación de material e investigación de condiciones. Los roles ayudan a distribuir la participación y a proteger el producto final.
+\end{card}
+
+\pagebreaksection
+
+% 4 ---------------------------------------------------------------------------
+\kicker{Secuencia de aula}
+\section*{Plan minuto a minuto}
+
+\begin{tabularx}{\textwidth}{L{18mm}L{29mm}Y L{34mm}}
+\rowcolor{AIEPNavy}
+\textcolor{White}{\bfseries Tiempo} & \textcolor{White}{\bfseries Momento} & \textcolor{White}{\bfseries Actividad docente y estudiantil} & \textcolor{White}{\bfseries Señal de avance} \\
+\hline
+0--8 min & Encuadre & Presentar el propósito de la sesión: comprender los residuos como materiales y preparar una ficha útil para el proyecto. & Curso reconoce continuidad con Taller 1. \\
+\hline
+8--20 min & Objeto y material & Abrir con un objeto real. Guiar la distinción entre lo que se usa y el material que define su destino. & Ejemplos de objeto y material en pizarra. \\
+\hline
+20--35 min & Familias de materiales & Ordenar plásticos, papel/cartón, vidrio, metales, orgánicos y multicapa. Asociar una propiedad clave a cada familia. & Tabla breve construida con aportes del curso. \\
+\hline
+35--50 min & Reciclable y reciclado & Explicar la cadena de recuperación y la regla limpio, seco y separado. Mostrar cómo la contaminación cambia el destino del residuo. & Estudiantes justifican dos casos. \\
+\hline
+50--60 min & Colores y sistema & Revisar colores de referencia en Chile, separación en origen, Ley REP y rol de gestores o recicladores de base. & Curso identifica color y condición para materiales comunes. \\
+\hline
+60--78 min & Ficha de material & Equipos eligen un residuo concreto, completan familia, composición, condiciones, contaminantes y dudas. & Ficha de material avanzada por equipo. \\
+\hline
+78--86 min & Conexión con problema & Cada equipo relaciona su ficha con la frase del problema del Taller 1. & Conexión escrita entre material y problema. \\
+\hline
+86--90 min & Cierre & Salida breve: aprendizaje clave, por qué importa entender el material y qué información falta. & Evidencia de cierre y puente al Taller 3. \\
+\hline
+\end{tabularx}
+
+\vspace{4mm}
+\begin{softcard}{AIEPGold}
+\labeltext{Manejo del tiempo}
+Si el bloque se retrasa, reducir la explicacion del sistema chileno y proteger los últimos 25 minutos. El producto irrenunciable es la ficha de material conectada con el problema del equipo.
+\end{softcard}
+
+\pagebreaksection
+
+% 5 ---------------------------------------------------------------------------
+\kicker{Desarrollo de actividades}
+\section*{Guía práctica para facilitar la sesión}
+
+\begin{tabularx}{\textwidth}{L{25mm}Y}
+\begin{softcard}[height=24mm,valign=center]{AIEPSoftBlue}\centering\bfseries Inicio\end{softcard}
+&
+\begin{card}[height=24mm,valign=top]
+\textbf{Instalar la distinción objeto/material.} Usar una botella, lata o envoltorio visible. Preguntar qué ve el curso y luego precisar de qué material está hecho. Cerrar con una idea simple: el objeto es lo que usamos; el material define si puede recuperarse.
+\end{card}
+\\[2mm]
+\begin{softcard}[height=24mm,valign=center]{AIEPSoft}\centering\bfseries Núcleo\end{softcard}
+&
+\begin{card}[height=24mm,valign=top]
+\textbf{Trabajar ``reciclable'' versus ``reciclado''.} Presentar la cadena separar, mantener limpio y seco, entregar, retirar, procesar y convertir en nuevo material. Reforzar que el primer tramo depende de las personas y de los hábitos de separación.
+\end{card}
+\\[2mm]
+\begin{softcard}[height=24mm,valign=center]{AIEPGreen}\centering\bfseries Criterio\end{softcard}
+&
+\begin{card}[height=24mm,valign=top]
+\textbf{Clasificar con justificación.} Usar categorías simples: reciclable, no reciclable, orgánico, manejo especial y genera duda. La categoría ``genera duda'' debe entenderse como una respuesta válida cuando falta información para decidir.
+\end{card}
+\\[2mm]
+\begin{softcard}[height=24mm,valign=center]{AIEPGold}\centering\bfseries Equipos\end{softcard}
+&
+\begin{card}[height=24mm,valign=top]
+\textbf{Construir la ficha de material.} Pedir un residuo concreto, no una categoría amplia. La ficha debe responder: material elegido, familia, composición, condiciones de reciclaje, qué lo arruina, dudas y relación con el problema.
+\end{card}
+\\[2mm]
+\begin{softcard}[height=24mm,valign=center]{AIEPRed}\centering\bfseries Cierre\end{softcard}
+&
+\begin{card}[height=24mm,valign=top]
+\textbf{Conectar material y problema.} Guiar la frase: ``ahora entendemos que el problema no es solo acumulación de residuos; también es pérdida de un material recuperable por mezcla, suciedad, humedad o falta de información''.
+\end{card}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{card}[height=43mm,valign=top]
+\labeltext{Preguntas útiles para circular entre equipos}
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{itemize}
+  \item ¿De qué está hecho realmente?
+  \item ¿Bajo qué condiciones se recupera?
+  \item ¿Qué lo contamina o lo arruina?
+\end{itemize}
+&
+\begin{itemize}
+  \item ¿Qué dato falta para decidir mejor?
+  \item ¿Cómo se conecta con su problema?
+  \item ¿Qué podría medir o avisar una tecnología?
+\end{itemize}
+\end{tabularx}
+\end{card}
+
+\pagebreaksection
+
+% 6 ---------------------------------------------------------------------------
+\kicker{Cierre y continuidad}
+\section*{Evidencias, criterios de cierre y próximo paso}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}
+\labeltext{Evidencias a recoger}
+\begin{itemize}
+  \item Lista de asistencia del Bloque A y Bloque B.
+  \item Fotografías de activación, trabajo grupal y cierre.
+  \item Ficha de material completada por equipo.
+  \item Conexión escrita entre ficha y problema.
+  \item Dudas o información faltante registradas.
+\end{itemize}
+\end{card}
+&
+\begin{softcard}[height=43mm,valign=top]{AIEPGreen}
+\labeltext{Criterios de cierre}
+\begin{itemize}
+  \item La ficha nombra un material concreto.
+  \item La familia de material está identificada.
+  \item Las condiciones de reciclaje están justificadas.
+  \item El equipo reconoce al menos un factor de contaminación.
+  \item La conexión con el problema del Taller 1 es comprensible.
+\end{itemize}
+\end{softcard}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{softcard}{AIEPSoftBlue}
+\labeltext{Salida reflexiva sugerida}
+Antes de finalizar, cada estudiante o equipo responde: qué aprendimos sobre nuestro material, por qué importa entenderlo para reciclar bien y qué información falta para decidir con más seguridad.
+\end{softcard}
+
+\vspace{4mm}
+\begin{tabularx}{\textwidth}{L{27mm}Y}
+\rowcolor{AIEPNavy}
+\textcolor{White}{\bfseries Continuidad} & \textcolor{White}{\bfseries Cómo se conecta este taller con la secuencia GeoGreen} \\
+\hline
+Taller 1 & Retoma el problema ambiental formulado por cada equipo y lo mira desde la composición del residuo o material involucrado. \\
+\hline
+Taller 3 & Prepara la pregunta tecnológica: qué podría medirse, avisarse o visualizarse para mejorar la gestión del problema observado. \\
+\hline
+Mentorías & Entrega una base más precisa para convertir el problema en propuesta, maqueta, simulación o pitch de innovación sostenible. \\
+\hline
+\end{tabularx}
+
+\vspace{4mm}
+\begin{tcolorbox}[
+  enhanced,
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  boxrule=0pt,
+  arc=1mm,
+  left=4mm,
+  right=4mm,
+  top=3.5mm,
+  bottom=3.5mm
+]
+{\color{White}\bfseries Mensaje de cierre para la sesión}\par\vspace{1mm}
+{\color{AIEPSoftBlue}Entender el material permite mirar el problema con más precisión. Un residuo recuperable puede perderse por mezcla, suciedad o falta de información; una solución sostenible debe responder a esa realidad concreta.}
+\end{tcolorbox}
+
+\end{document}
+

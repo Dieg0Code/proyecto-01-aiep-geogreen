@@ -8,4 +8,8 @@ Esta carpeta reúne documentos formales del proyecto GeoGreen Escolar:
 - Fuentes editables cuando existen (`.html`, `.md`, `.tex`).
 - Versiones exportadas para compartir (`.pdf`).
 
+Archivo destacado:
+
+- `cronograma-post-vacaciones-octubre-2026.pdf`: versión ajustada del cronograma desde el retorno del 27 de julio hasta el evento final del 5 de octubre.
+
 Las infografías asociadas al cronograma están en `../infografias`.

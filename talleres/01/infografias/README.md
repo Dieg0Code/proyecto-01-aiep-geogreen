@@ -5,3 +5,4 @@ Infografías asociadas al Taller 1:
 - Conciencia ambiental.
 - Observación del entorno.
 - Planificación docente visual.
+- Producto esperado del taller.
