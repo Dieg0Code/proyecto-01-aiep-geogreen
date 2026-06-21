@@ -1,0 +1,283 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen · Kit de 45 sensores · Manual de identificación}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\renewcommand{\arraystretch}{1.25}
+\titleformat{\section}{\large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing{\section}{0pt}{10pt}{4pt}
+
+\newtcolorbox{infobox}[2][]{
+  enhanced, colback=#2!7, colframe=#2, boxrule=0.45pt, arc=1.2mm,
+  left=3mm, right=3mm, top=2.5mm, bottom=2.5mm, #1
+}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% --- Etiqueta serigrafiada de la placa (lo que está impreso en el PCB) ---
+\newcommand{\serig}[1]{%
+  \tcbox[on line, colback=AIEPInk, colframe=AIEPInk, boxrule=0pt,
+    arc=0.8mm, left=1.6mm, right=1.6mm, top=0.4mm, bottom=0.4mm]%
+    {\footnotesize\bfseries\textcolor{white}{\texttt{#1}}}%
+}
+
+% --- Badge GeoGreen ---
+\newcommand{\geogreen}{%
+  \tcbox[on line, colback=AIEPGreen!12, colframe=AIEPGreen, boxrule=0.5pt,
+    arc=0.8mm, left=1.6mm, right=1.6mm, top=0.4mm, bottom=0.4mm]%
+    {\scriptsize\bfseries\textcolor{AIEPGreen}{\faLeaf\ GeoGreen}}%
+}
+% (sin fontawesome: hoja textual)
+\renewcommand{\geogreen}{%
+  \tcbox[on line, colback=AIEPGreen!12, colframe=AIEPGreen, boxrule=0.5pt,
+    arc=0.8mm, left=1.6mm, right=1.6mm, top=0.4mm, bottom=0.4mm]%
+    {\scriptsize\bfseries\textcolor{AIEPGreen}{GeoGreen}}%
+}
+
+% --- Imagen del módulo con respaldo si el archivo no existe ---
+\newcommand{\modimg}[1]{%
+  \IfFileExists{assets/#1}%
+    {\raisebox{0pt}{\includegraphics[width=2.6cm,height=2.6cm,keepaspectratio]{assets/#1}}}%
+    {\tcbox[colback=AIEPPaper, colframe=Line, boxrule=0.4pt, arc=1mm,
+       width=2.6cm, height=2.6cm, halign=center, valign=center,
+       left=0pt, right=0pt, top=0pt, bottom=0pt]%
+       {\scriptsize\textcolor{AIEPSlate}{\centering foto:\\ ver enlace}}}%
+}
+
+% --- Enlace "ver fotos" a Google Imágenes (siempre muestra la placa real) ---
+\newcommand{\verfotos}[1]{%
+  \href{https://www.google.com/search?tbm=isch\&q=#1}{\textcolor{AIEPRed}{\footnotesize\bfseries ver fotos $\rightarrow$}}%
+}
+
+% --- Ficha de un módulo ---
+% #1 título  #2 serigrafía/etiqueta  #3 señal·voltaje  #4 qué hace
+% #5 cómo reconocerlo  #6 pinout  #7 query google  #8 archivo imagen
+\newtcolorbox{fichabox}{
+  enhanced, colback=white, colframe=Line, boxrule=0.5pt, arc=1.2mm,
+  left=2.5mm, right=2.5mm, top=2mm, bottom=2mm, breakable=false,
+  before skip=4pt, after skip=4pt
+}
+\newcommand{\ficha}[8]{%
+\begin{fichabox}
+{\bfseries\color{AIEPNavy}#1}\hfill\serig{#2}\\[1.5mm]
+\begin{minipage}[t]{2.6cm}\vspace{0pt}\modimg{#8}\end{minipage}\hfill
+\begin{minipage}[t]{\dimexpr\linewidth-3.0cm\relax}\vspace{0pt}\footnotesize
+\textcolor{AIEPSlate}{\textbf{Señal · voltaje:}} #3\par
+#4\par
+\textcolor{AIEPSlate}{\textbf{Cómo reconocerlo:}} #5\par
+\textcolor{AIEPSlate}{\textbf{Pinout:}} \texttt{#6}\quad\verfotos{#7}
+\end{minipage}
+\end{fichabox}%
+}
+
+\begin{document}
+
+% ===================== PORTADA =====================
+\begin{tcolorbox}[enhanced, colback=AIEPNavy, colframe=AIEPNavy, arc=0mm,
+  boxrule=0pt, left=5mm, right=5mm, top=5mm, bottom=5mm]
+{\color{white}\Huge\bfseries Kit de 45 sensores}\\[2mm]
+{\color{white}\Large Manual de identificación · GeoGreen}\\[3mm]
+{\color{AIEPSoftBlue} Qué es cada módulo, para qué sirve, voltaje, cómo reconocerlo y enlace a fotos.}
+\end{tcolorbox}
+
+\begin{infobox}{AIEPSoftBlue}
+\textbf{Cómo usar este manual.} Cada módulo tiene una ficha con su \textbf{nombre},
+la \textbf{etiqueta impresa en la placa} (recuadro oscuro, ej.\ \serig{KY-018}),
+qué hace, su voltaje, una pista para \textbf{reconocerlo a simple vista}, el orden de pines
+y un enlace \textcolor{AIEPRed}{\textbf{ver fotos}} que abre imágenes reales de ese módulo.
+\textbf{Truco clave:} casi todos los módulos de la familia \texttt{KY} traen su número
+\textbf{serigrafiado en el cobre de la placa} — dalo vuelta y busca el \texttt{KY-0xx}.
+Los módulos marcados con \geogreen{} son los directamente útiles para el prototipo GeoGreen.
+\end{infobox}
+
+% ===================== ÍNDICE =====================
+\section{Índice por categoría}
+\begin{multicols}{2}
+\footnotesize
+\textbf{\textcolor{AIEPNavy}{A. Energía, reloj y almacenamiento}}\\
+Fuente MB-102 · Buck MP1584EN · Lector microSD · RTC DS1302\par
+\textbf{\textcolor{AIEPNavy}{B. Distancia, movimiento e inercia}}\\
+HC-SR04 · MPU-6050 · KY-040 · KY-023\par
+\textbf{\textcolor{AIEPNavy}{C. Inclinación, vibración e impacto}}\\
+KY-002 · KY-017 · KY-020 · KY-031\par
+\textbf{\textcolor{AIEPNavy}{D. Magnéticos y efecto Hall}}\\
+KY-003 · KY-024 · KY-035 · KY-021 · KY-025\par
+\textbf{\textcolor{AIEPNavy}{E. LEDs (salida de luz)}}\\
+KY-009 · KY-011 · KY-016 · KY-029 · KY-034 · KY-027\par
+\textbf{\textcolor{AIEPNavy}{F. Ópticos e infrarrojo}}\\
+KY-018 · KY-010 · KY-008 · KY-005 · KY-022 · KY-032 · KY-033 · KY-026\par
+\textbf{\textcolor{AIEPNavy}{G. Sonido}}\\
+KY-006 · KY-012 · KY-037 · KY-038\par
+\textbf{\textcolor{AIEPNavy}{H. Temperatura, humedad y agua}}\\
+KY-001 · KY-013 · KY-028 · KY-015 · Humedad de suelo · Nivel de agua\par
+\textbf{\textcolor{AIEPNavy}{I. Interacción y actuadores}}\\
+KY-004 · KY-036 · KY-039 · KY-019\par
+\end{multicols}
+
+\begin{infobox}{AIEPGold}
+\textbf{Convención de pines.} En la mayoría de módulos KY: \texttt{S} o \texttt{Signal} = señal,
+\texttt{+}/\texttt{VCC}/\texttt{middle} = alimentación positiva, \texttt{-}/\texttt{GND} = tierra.
+\textbf{Ojo:} el orden varía entre módulos — siempre confirma con la serigrafía de la placa antes de cablear.
+\end{infobox}
+
+% ===================== A =====================
+\section{A · Energía, reloj y almacenamiento}
+
+\ficha{Fuente de alimentación para protoboard}{MB-102}{Alimentación · entrada 6,5--12\,V DC (jack) o USB; salidas conmutables 3,3\,V / 5\,V}{Entrega energía estable a la protoboard. Cada riel (rojo/azul) se elige a 3,3\,V o 5\,V con un jumper. Trae interruptor y LED de encendido.}{Se monta \emph{a horcajadas} encima de la protoboard; placa con jack de poder, conector USB y dos jumpers de voltaje.}{IN(jack/USB) · 3V3/5V (jumper) · rieles + -}{MB-102+breadboard+power+supply+module}{mb-102.jpg}
+
+\ficha{Conversor reductor DC-DC ajustable}{MP1584EN}{Alimentación · entrada 4,5--28\,V, salida ajustable $\sim$0,8--20\,V, hasta $\sim$3\,A}{Baja un voltaje a otro menor y \emph{regulable} con un tornillo. Útil para alimentar el circuito desde una batería de mayor voltaje.}{Placa azul \emph{muy pequeña} con un tornillo (trimmer) metálico y el chip \texttt{MP1584EN}. No tiene serigrafía KY.}{IN+ IN- OUT+ OUT-}{MP1584EN+mini+buck+converter+module}{mp1584en.jpg}
+
+\ficha{Lector de tarjeta microSD}{SD Card}{SPI · VCC 3,3--5\,V (regulador a bordo)}{Permite leer y escribir archivos en una tarjeta microSD: registrar mediciones (datalogging).}{Placa azul con \emph{ranura metálica} para la tarjeta y 6 pines en fila.}{GND VCC MISO MOSI SCK CS}{micro+SD+card+reader+module+arduino+SPI}{sd-reader.jpg}
+
+\ficha{Reloj de tiempo real (RTC)}{DS1302}{3 hilos (no I2C) · 2--5,5\,V}{Mantiene la fecha y hora aunque se apague el Arduino, gracias a una pila. Útil para sellar mediciones con su hora.}{Placa con \emph{cristal plateado} de 32\,kHz y \emph{portapilas redondo} para batería CR2032.}{VCC GND CLK DAT RST}{DS1302+RTC+real+time+clock+module}{ds1302.jpg}
+
+% ===================== B =====================
+\section{B · Distancia, movimiento e inercia}
+
+\ficha{Sensor ultrasónico de distancia \geogreen}{HC-SR04}{Digital (Trig/Echo) · 5\,V · mide 2--400\,cm}{Mide distancia rebotando ultrasonido. En GeoGreen mide la distancia desde la tapa hasta la basura para calcular el \% de llenado.}{Inconfundible: \emph{dos cilindros} metálicos (los ``ojos'') sobre una placa azul de 4 pines.}{VCC Trig Echo GND}{HC-SR04+ultrasonic+sensor+module}{hc-sr04.jpg}
+
+\ficha{Giroscopio + acelerómetro}{MPU-6050}{I2C (dir.\ 0x68) · 3--5\,V (regulador a bordo)}{Mide aceleración y giro en 3 ejes (6 grados de libertad). Detecta movimiento, golpes o inclinación con precisión.}{Placa pequeña con un \emph{chip cuadrado negro} marcado \texttt{MPU-6050} y 8 pines en fila.}{VCC GND SCL SDA XDA XCL ADO INT}{MPU-6050+gyroscope+accelerometer+module}{mpu6050.jpg}
+
+\ficha{Encoder rotativo}{KY-040}{Digital (cuadratura) + pulsador · 3,3--5\,V}{Perilla que \emph{gira sin tope} y cuenta pasos en ambos sentidos; además se puede pulsar. Ideal para menús y ajustes.}{Tiene un \emph{eje/perilla} que gira; placa con 5 pines.}{CLK DT SW + GND}{KY-040+rotary+encoder+module}{ky-040.jpg}
+
+\ficha{Joystick analógico XY}{KY-023}{2 salidas analógicas + pulsador · 5\,V}{Palanca tipo control PS2: entrega posición en X e Y y se puede presionar. Para mover, apuntar o navegar.}{La \emph{palanca negra} con capuchón; placa con 5 pines.}{GND +5V VRx VRy SW}{KY-023+joystick+module+arduino}{ky-023.jpg}
+
+% ===================== C =====================
+\section{C · Inclinación, vibración e impacto}
+
+\ficha{Sensor de vibración}{KY-002}{Digital (on/off) · 3,3--5\,V}{Detecta vibración o sacudidas. Cuando la placa se mueve, cierra el contacto momentáneamente.}{Tiene un \emph{resorte vertical largo} que sobresale y oscila.}{S + -}{KY-002+vibration+switch+module}{ky-002.jpg}
+
+\ficha{Interruptor de inclinación (mercurio)}{KY-017}{Digital (on/off) · 3,3--5\,V}{Cambia de estado según la \emph{inclinación}: una gota de mercurio cierra o abre el contacto.}{\emph{Cápsula de vidrio} pequeña con metal brillante (mercurio) dentro.}{S + -}{KY-017+mercury+tilt+switch+module}{ky-017.jpg}
+
+\ficha{Sensor de inclinación (bola)}{KY-020}{Digital (on/off) · 3,3--5\,V}{Igual que el de mercurio pero con una \emph{bolita metálica} dentro de un tubo: detecta si está inclinado.}{Cilindro metálico opaco (no transparente) montado vertical.}{S + -}{KY-020+tilt+switch+ball+module}{ky-020.jpg}
+
+\ficha{Sensor de golpe / impacto}{KY-031}{Digital (on/off) · 3,3--5\,V}{Detecta \emph{golpes secos} (knock). Útil como sensor de toque o de choque.}{Pequeño cilindro/resorte rígido; parecido al de vibración pero más corto y duro.}{S + -}{KY-031+knock+shock+sensor+module}{ky-031.jpg}
+
+% ===================== D =====================
+\section{D · Magnéticos y efecto Hall}
+
+\ficha{Sensor Hall digital}{KY-003}{Digital (presencia de imán) · 3,3--5\,V}{Detecta si hay un imán cerca (sí/no). Para contar vueltas, detectar puertas o posición.}{Chip negro pequeño de 3 patas mirando hacia afuera; 3 pines.}{S + -}{KY-003+hall+magnetic+sensor+module}{ky-003.jpg}
+
+\ficha{Sensor Hall lineal (analógico + digital)}{KY-024}{Analógico + digital · 3,3--5\,V}{Mide la \emph{intensidad} del campo magnético (no solo sí/no) y además da una salida digital con umbral ajustable.}{Tiene chip Hall, un \emph{comparador LM393} y un \emph{trimmer} de ajuste; 4 pines.}{A0 G + D0}{KY-024+linear+hall+magnetic+module}{ky-024.jpg}
+
+\ficha{Sensor Hall analógico}{KY-035}{Analógico (sin comparador) · 3,3--5\,V}{Versión simple del Hall analógico (chip \texttt{AH49E}): entrega un voltaje proporcional al campo magnético.}{Solo el chip Hall y 3 pines, \emph{sin} trimmer ni LM393.}{S + -}{KY-035+analog+hall+magnetic+sensor+AH49E}{ky-035.jpg}
+
+\ficha{Interruptor reed mini}{KY-021}{Digital (on/off) · 3,3--5\,V}{Lámina magnética pequeña: se cierra al acercar un imán. Igual que un sensor de puerta/ventana.}{\emph{Tubo de vidrio diminuto} con dos láminas; placa pequeña de 3 pines.}{S + -}{KY-021+mini+reed+switch+module}{ky-021.jpg}
+
+\ficha{Interruptor reed (grande)}{KY-025}{Digital + analógico · 3,3--5\,V}{Reed switch de mayor tamaño, con salida digital y analógica. Detecta imanes a mayor distancia.}{\emph{Tubo de vidrio más largo} con láminas; placa con 4 pines y trimmer.}{A0 G + D0}{KY-025+reed+switch+module+arduino}{ky-025.jpg}
+
+% ===================== E =====================
+\section{E · LEDs (salida de luz)}
+
+\ficha{LED RGB SMD (3 colores)}{KY-009}{Salida PWM (3 canales) · 3,3--5\,V}{LED de color variable: mezclando rojo, verde y azul logras cualquier color. Se controla con PWM.}{LED \emph{plano cuadrado} (SMD) sobre la placa, no un domo; 4 pines R G B y común.}{R G B - (cátodo común)}{KY-009+RGB+SMD+full+color+LED+module}{ky-009.jpg}
+
+\ficha{LED bicolor 5\,mm \geogreen}{KY-011}{2 colores (rojo/verde) · 3,3--5\,V}{LED de dos colores en uno; mezclados dan naranja. Sirve para el \emph{semáforo} de estado verde/rojo de GeoGreen.}{LED \emph{domo de 5\,mm}; placa de 3 pines.}{S(verde) middle S(rojo)}{KY-011+two+color+LED+module+5mm}{ky-011.jpg}
+
+\ficha{LED RGB 5\,mm \geogreen}{KY-016}{Salida PWM (3 canales) · 3,3--5\,V}{LED RGB de domo (4 patas) para color completo. Útil para un indicador de estado de varios colores.}{LED \emph{domo transparente de 5\,mm}; placa de 4 pines R G B GND.}{R G B - (cátodo común)}{KY-016+RGB+full+color+LED+module+5mm}{ky-016.jpg}
+
+\ficha{LED bicolor 3\,mm (cátodo común)}{KY-029}{2 colores (rojo/verde) · 3,3--5\,V}{Igual que el KY-011 pero LED de 3\,mm y cátodo común. Indicador compacto de dos estados.}{LED \emph{domo pequeño de 3\,mm}; 3 pines.}{S S - (cátodo común)}{KY-029+two+color+LED+3mm+module}{ky-029.jpg}
+
+\ficha{LED de 7 colores (parpadeo automático)}{KY-034}{Sin control (cambia solo) · 3,3--5\,V}{Al energizarlo \emph{cambia de color solo} en secuencia. Es decorativo/de prueba, no se programa el color.}{LED domo que titila en colores apenas tiene corriente; 2--3 pines.}{S - (+)}{KY-034+7+color+flashing+LED+module}{ky-034.jpg}
+
+\ficha{Copa de luz mágica}{KY-027}{LED + interruptor de mercurio · 3,3--5\,V}{Módulo demostrativo: combina un LED con un sensor de inclinación de mercurio; al \emph{inclinarlo} enciende el LED (efecto ``copa que vierte luz'').}{Placa con un LED y una \emph{cápsula de mercurio}; suele venir en pareja.}{S(LED) + - (mercurio)}{KY-027+magic+light+cup+module}{ky-027.jpg}
+
+% ===================== F =====================
+\section{F · Ópticos e infrarrojo}
+
+\ficha{Fotorresistor (sensor de luz)}{KY-018}{Analógico · 3,3--5\,V}{Mide cuánta \emph{luz ambiente} hay: su resistencia baja con más luz. Para detectar día/noche o sombra.}{\emph{LDR} redondo con cara en zig-zag (como una lenteja con líneas); 3 pines.}{S + -}{KY-018+photoresistor+LDR+module}{ky-018.jpg}
+
+\ficha{Foto-interruptor óptico}{KY-010}{Digital (haz cortado/no) · 3,3--5\,V}{Detecta cuando algo \emph{pasa por una ranura} cortando un haz de luz. Para contar objetos o medir vueltas.}{Pieza negra con forma de \emph{U/ranura} (emisor y receptor enfrentados).}{S + -}{KY-010+photo+interrupter+optical+module}{ky-010.jpg}
+
+\ficha{Emisor láser}{KY-008}{Salida (encender/apagar) · 5\,V}{Proyecta un \emph{punto láser rojo}. Para alineación, cortinas láser o demostraciones. \textbf{No mirar el haz.}}{Cabezal metálico cilíndrico que emite el punto rojo; 3 pines.}{S - +}{KY-008+laser+emitter+module}{ky-008.jpg}
+
+\ficha{Emisor infrarrojo}{KY-005}{Salida (modulada) · 3,3--5\,V}{LED \emph{infrarrojo} (no visible) para enviar señales como un control remoto de TV. Se usa con el receptor KY-022.}{LED \emph{transparente/azulado} de domo; 3 pines.}{S - +}{KY-005+infrared+transmitter+IR+module}{ky-005.jpg}
+
+\ficha{Receptor infrarrojo}{KY-022}{Digital (38\,kHz) · 3,3--5\,V}{Recibe y decodifica señales de \emph{controles remotos} infrarrojos. Para mandar órdenes con un control de TV.}{Pieza negra con ``cabeza'' redondeada (receptor IR) mirando afuera; 3 pines.}{S + - (\emph{ojo}: orden no estándar)}{KY-022+infrared+receiver+IR+module}{ky-022.jpg}
+
+\ficha{Sensor de obstáculos IR}{KY-032}{Digital + 2 trimmers · 3,3--5\,V}{Emite y recibe infrarrojo para detectar un \emph{objeto cercano} sin tocarlo. Clásico de autos que esquivan obstáculos.}{Dos LED IR (emisor y receptor) en frente y \emph{dos potenciómetros} de ajuste; 4 pines.}{GND + OUT EN}{KY-032+infrared+obstacle+avoidance+sensor+module}{ky-032.jpg}
+
+\ficha{Sensor seguidor de línea IR}{KY-033}{Digital + trimmer · 3,3--5\,V}{Distingue \emph{superficie clara u oscura} reflejando IR (chip TCRT5000). Para robots que siguen una línea negra.}{LED IR apuntando \emph{hacia abajo} y un trimmer; 3 pines.}{GND + S}{KY-033+line+tracking+follower+sensor+TCRT5000}{ky-033.jpg}
+
+\ficha{Sensor de llama (fuego)}{KY-026}{Analógico + digital · 3,3--5\,V}{Detecta la \emph{luz infrarroja de una llama} (760--1100\,nm). Para alarmas de fuego.}{\emph{LED de cabeza oscura/transparente} ligeramente curvado hacia arriba; trimmer y 4 pines.}{A0 G + D0}{KY-026+flame+sensor+module+fire}{ky-026.jpg}
+
+% ===================== G =====================
+\section{G · Sonido}
+
+\ficha{Zumbador pasivo}{KY-006}{Necesita señal/tono (PWM) · 3,3--5\,V}{Buzzer que \emph{no suena solo}: hay que enviarle una frecuencia. Permite tocar distintos tonos/melodías.}{Cápsula negra \emph{abierta por abajo} (se ve el disco); más bajita que el activo.}{S - +}{KY-006+passive+buzzer+module}{ky-006.jpg}
+
+\ficha{Zumbador activo \geogreen}{KY-012}{Solo nivel alto (tono fijo) · 3,3--5\,V}{Suena \emph{solo con darle un 1 lógico}: tono fijo. Perfecto para la \emph{alarma de contenedor lleno} de GeoGreen.}{Cápsula negra \emph{sellada} (cara cerrada), suele traer una etiqueta encima.}{S - +}{KY-012+active+buzzer+module}{ky-012.jpg}
+
+\ficha{Sensor de sonido (alta sensibilidad)}{KY-037}{Analógico + digital · 3,3--5\,V}{Micrófono que detecta \emph{ruido/aplauso}; versión sensible con micrófono grande.}{\emph{Micrófono cilíndrico grande}, trimmer y 4 pines.}{A0 G + D0}{KY-037+sound+sensor+high+sensitivity+microphone+module}{ky-037.jpg}
+
+\ficha{Sensor de sonido (micrófono)}{KY-038}{Analógico + digital · 3,3--5\,V}{Igual función que el KY-037 pero con micrófono pequeño. Detecta si hay sonido y su nivel.}{\emph{Micrófono pequeño}, comparador LM393, trimmer; 4 pines.}{A0 G + D0}{KY-038+sound+sensor+microphone+module}{ky-038.jpg}
+
+% ===================== H =====================
+\section{H · Temperatura, humedad y agua}
+
+\ficha{Sensor de temperatura DS18B20}{KY-001}{Digital 1-Wire · 3,3--5\,V · -55 a 125\,\textdegree C}{Mide temperatura con buena precisión por un solo cable de datos. Se pueden poner varios en el mismo pin.}{Chip negro de 3 patas tipo transistor marcado \texttt{DS18B20}; placa de 3 pines y resistencia.}{S + -}{KY-001+DS18B20+temperature+sensor+module}{ky-001.jpg}
+
+\ficha{Sensor de temperatura analógico}{KY-013}{Analógico (termistor NTC) · 3,3--5\,V}{Mide temperatura con un termistor: su resistencia cambia con el calor. Lectura por entrada analógica.}{Pequeño \emph{termistor} (cuentita) en la placa; 3 pines, sin chip ni trimmer.}{S + -}{KY-013+analog+temperature+sensor+thermistor+module}{ky-013.jpg}
+
+\ficha{Sensor de temperatura digital (umbral)}{KY-028}{Analógico + digital · 3,3--5\,V}{Termistor con \emph{comparador}: da una salida digital cuando se supera una temperatura ajustable, más la analógica.}{Termistor + \emph{LM393} + \emph{trimmer}; 4 pines (parecido al de sonido pero con termistor).}{A0 G + D0}{KY-028+digital+temperature+sensor+module}{ky-028.jpg}
+
+\ficha{Sensor de temperatura y humedad}{KY-015 (DHT11)}{Digital (1 hilo propietario) · 3,3--5\,V · 0--50\,\textdegree C, 20--90\,\%HR}{Mide temperatura \emph{y} humedad del aire en un solo módulo. Para clima ambiente.}{\emph{Carcasa azul (a veces blanca) con rejilla} de agujeros; 3 pines.}{S + -}{KY-015+DHT11+temperature+humidity+sensor+module}{ky-015.jpg}
+
+\ficha{Sensor de humedad de suelo}{Soil}{Analógico + digital · 3,3--5\,V}{Mide cuán \emph{húmeda está la tierra} entre dos puntas. Para riego automático y plantas.}{\emph{Horquilla/peine} de dos puntas separada del módulo comparador por cables.}{A0 G + D0}{soil+moisture+sensor+module+arduino}{soil-moisture.jpg}
+
+\ficha{Sensor de nivel de agua \geogreen}{Water}{Analógico · 3,3--5\,V}{Mide la \emph{altura de agua} por conductividad entre pistas. En GeoGreen puede vigilar lixiviados/líquidos en el fondo del contenedor.}{Placa alargada con \emph{pistas paralelas tipo peine} en un extremo; 3 pines.}{S + -}{water+level+sensor+module+arduino}{water-level.jpg}
+
+% ===================== I =====================
+\section{I · Interacción y actuadores}
+
+\ficha{Módulo de botón (pulsador)}{KY-004}{Digital (on/off) · 3,3--5\,V}{Pulsador listo para usar (con resistencia incluida). Entrada manual: confirmar, contar, encender.}{\emph{Botón táctil} cuadrado; placa de 3 pines.}{S + -}{KY-004+button+key+switch+module}{ky-004.jpg}
+
+\ficha{Sensor táctil de metal}{KY-036}{Digital (on/off) · 3,3--5\,V}{Se activa al \emph{tocar} su cabezal metálico con el dedo. Botón táctil sin partes móviles.}{Tiene un \emph{tornillo/cabezal metálico} expuesto como antena de toque; 3 pines.}{S + -}{KY-036+metal+touch+sensor+module}{ky-036.jpg}
+
+\ficha{Sensor de latidos (dedo)}{KY-039}{Analógico · 5\,V}{Estima el \emph{pulso cardíaco} iluminando el dedo con IR y midiendo la luz que pasa. Educativo, no clínico.}{Dos piezas enfrentadas (LED IR y fototransistor) con un \emph{hueco para el dedo}; 3 pines.}{S + -}{KY-039+heartbeat+finger+pulse+sensor+module}{ky-039.jpg}
+
+\ficha{Relé 5\,V (1 canal) \geogreen}{KY-019}{Control digital · bobina 5\,V · contactos hasta 250\,VAC/10\,A}{\emph{Interruptor electrónico}: con una señal del Arduino enciende/apaga aparatos de mayor potencia. Actuador para automatizar.}{\emph{Caja azul} (el relé) sobre la placa, con LED y bornera de tornillos.}{IN + - (control) · COM NO NC (carga)}{KY-019+relay+module+5V+arduino}{ky-019.jpg}
+
+\vspace{4pt}
+\begin{infobox}{AIEPRed}
+\textbf{Seguridad.} El \textbf{HC-SR04} entrega 5\,V en el pin \texttt{Echo}: en la Arduino UNO R4 (5\,V)
+va directo, pero con una ESP32 (3,3\,V) necesita un \emph{divisor de voltaje} en Echo.
+El \textbf{relé KY-019} conmuta voltajes peligrosos: si manejas 220\,V, hazlo con supervisión docente.
+El \textbf{láser KY-008} no debe apuntarse a los ojos.
+\end{infobox}
+
+\end{document}

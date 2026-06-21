@@ -1,67 +1,135 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides guidance to Codex (and other coding agents) when working with code in this repository.
 
-## Current state
+## What GeoGreen is
 
-The repository root holds **planning and specification documents** (the grant
-application and component lists). The Arduino track is implemented in `arduino/`
-and is fully simulable/automatable **from the CLI — no VS Code, no arduino-cli,
-no physical board**. The intended physical product is a **clip-on module**
-(`arduino/3d/modulo.scad`): a sealed box that sticks with 3M adhesive to the
-underside of any existing bin lid (sensor faces down; no drilling), holding an
-Arduino Nano + HC-SR04 + 3xAAA + buzzer + LED traffic light. `carcasa.scad` is a
-separate demo-container maquette. `web/index.html` is a fill-level 3D viz;
-`web/plano.html` is an interactive exploded assembly plano. ESP32 track not done.
+GeoGreen started as a grant proposal (Fondo Concursable VCM 2026, AIEP Osorno, Chile) for a
+smart waste-container fill-level monitor, and has **grown into an educational program in
+execution — "GeoGreen Escolar"**: workshops + STEM demos + a final challenge delivered to a
+school, using the device as the central case. Socio comunitario: **Instituto Comercial Liceo
+Bicentenario, Osorno**; ~60 student beneficiaries; program window **May–Sep 2026**. It spans
+three AIEP programs: Programación y Análisis de Sistemas (software), Electricidad y Electrónica
+(hardware), and Trabajo Social (community).
 
-### Toolchain (all installed, all CLI-driven)
+The device pipeline is **sensar → enviar → visualizar → alertar** (later: geo-map of recycling
+points — hence *Geo* + *Green*):
 
-- **PlatformIO** (`pio`) installed via `uv tool` → `~/.local/bin/pio.exe`. Compiles the firmware (bundles its own AVR compiler).
-- **Wokwi CLI** (`wokwi-cli`) → `~/.local/bin/wokwi-cli.exe`. Headless simulation. Needs a free token in `~/.wokwi_token` (read by the scripts; never commit it).
-- **WireViz** (`uv tool`) + **Graphviz** (`scoop`, on `~/scoop/shims`) → wiring diagram from `arduino/wiring.yml`.
-- **OpenSCAD** (`scoop`, extras bucket) → 3D render/STL from `arduino/3d/carcasa.scad`. NOTE: call the real path `~/scoop/apps/openscad/2021.01/openscad.exe`; the `current` symlink crashes OpenSCAD on Windows.
-- Use **uv** for any Python, not pip (system Python can't write to its Scripts dir).
+1. An **HC-SR04** ultrasonic sensor measures the distance from the bin lid to the contents.
+2. The firmware converts it to a **fill percentage**.
+3. A **LED traffic light** shows the state: **< 40 % verde · 40–80 % amarillo · ≥ 80 % rojo**.
+4. A **buzzer** alerts when full.
+5. (Networked builds) the reading is sent over WiFi and shown on a **dashboard / map**.
 
-### Common commands
+The repo has effectively **two halves**: the **device** (firmware + 3D + web + app) and the
+**program** (workshops, schedule, decks, content tooling). The grant application
+`1_Proyecto (1).docx` is still the authoritative source for formal scope; `RESUMEN-PROYECTO.md`
+and `PLAN-GEOGREEN-ESCOLAR.md` summarize it.
+
+## Device tracks (firmware + software)
+
+- **`arduino/`** — baseline Arduino track. Firmware (`src/main.cpp`: fill logic + semáforo +
+  buzzer), fully **simulable/automatable from the CLI** (PlatformIO + Wokwi CLI — no VS Code, no
+  arduino-cli, no board). The intended physical product is a **clip-on module**
+  (`arduino/3d/modulo.scad`): a sealed box that sticks with 3M adhesive to the underside of any
+  existing bin lid (sensor down; no drilling), holding an Arduino Nano + HC-SR04 + 3×AAA + buzzer
+  + LED traffic light. `carcasa.scad` is a separate demo-container maquette.
+- **`arduino-r4/`** — the physical **Arduino UNO R4 WiFi** Diego owns (Renesas RA4M1 at 5V +
+  onboard ESP32-S3 WiFi + integrated 12×8 LED matrix). This is the track that **unifies the old
+  Arduino + ESP32 plans** (5V *and* WiFi *and* a display). Built/flashed with **PlatformIO**
+  (platform `renesas-ra`, board `uno_r4_wifi`); **each sketch is its own pio project folder**
+  with its own `platformio.ini`. USB-only demos on the built-in matrix — no external parts.
+  Sketches: `geogreen_show/` (cinematic ~25–30 s demo, Binary Code Modulation for 8 brightness
+  levels), `geogreen_matrix/` (simpler fallback), `hacker_show/` (personal cyberpunk reel, not
+  GeoGreen). Flash with `pio run -d arduino-r4/<sketch> -t upload`. See `arduino-r4/README.md`.
+- **`app/`** — **PWA monitoring dashboard** (Vite + React + TypeScript + Tailwind). Shows the
+  fleet georeferenced on a real Osorno map (react-leaflet), with fill gauge, history, battery,
+  signal and alerts — closing the `visualizar/alertar` end. Telemetry today is a **deterministic
+  simulator** behind a `TelemetryService` interface (`src/lib/telemetry.ts`); swapping in real
+  ESP32 `fetch` calls leaves the UI unchanged. Same semáforo thresholds as firmware
+  (`src/lib/status.ts`). Tailwind palette mirrors `tools/slides-system/theme/tokens.js`.
+- **`web/`** — no-build Three.js demos: `index.html` (a **real GLB container**,
+  `web/vendor/models/contenedor.glb`, that fills and lights the semáforo with the firmware
+  logic) and `plano.html` (interactive exploded assembly plano of the clip-on module).
+
+**Voltage gotcha:** the HC-SR04 Echo pin outputs **5 V**. The UNO R4 (5 V) connects Echo
+**direct, no divider**. A **3.3 V ESP32 DevKit** would need a voltage divider / level shifter on
+Echo — don't write firmware or wiring that connects Echo straight to a 3.3 V GPIO. (The ESP32
+DevKit firmware track itself is not built; R4 is the physical networked path now.)
+
+## Program & content (GeoGreen Escolar)
+
+- **`talleres/01–03/`** — workshop kits (planning docs, student PDFs, infografías, PPTs). 01
+  conciencia ambiental, 02 ciencia del reciclaje, 03 Arduino/sensores/prototipado.
+- **`cronograma/`** — program schedule based on the grant Gantt (see `cronograma/README.md`).
+- **`reuniones/<fecha>/`** — meeting decks. `2026-06-15/` (coordinación, PptxGenJS source) and
+  `2026-06-22-socio-comunitario/` (presentation to the liceo; built on the director's base —
+  see `base-directora-vibe.md` there).
+- **`docs/`** — generated/shared assets: `infografias/`, `podcasts/`, `presupuestos/` (LaTeX),
+  `kit-sensores/` (LaTeX manual identifying the 45-sensor kit), `guia-arduino.*`, 3D/web renders.
+- **`.agent/skills/`** — AIEP content skills used to produce program material: `clase-design`,
+  `evaluacion-design`, `cohort-comms`, `slides-aiep` (these are pedagogical — they don't cover
+  hardware/reference docs).
+- **`tools/`** — `slides-system` (shared deck theme/components for PptxGenJS), `pptx-validator`,
+  `pbip-validator`.
+
+## Toolchain (all installed, CLI-driven)
+
+**Device:**
+- **PlatformIO** (`pio`, via `uv tool` → `~/.local/bin/pio.exe`) — compiles firmware.
+- **Wokwi CLI** (`wokwi-cli` → `~/.local/bin/wokwi-cli.exe`) — headless sim. Needs a free token
+  in `~/.wokwi_token` (read by the scripts; **never commit it**).
+- **WireViz** (`uv tool`) + **Graphviz** (`scoop`) — wiring diagram from `arduino/wiring.yml`.
+- **OpenSCAD** (`scoop`) — 3D render/STL. NOTE: call the real path
+  `~/scoop/apps/openscad/2021.01/openscad.exe`; the `current` symlink crashes OpenSCAD on Windows.
+
+**Web/app:** Node + npm + **Vite** (the `app/` PWA and `tools/slides-system`).
+
+**Docs & decks:**
+- **tectonic** (`scoop`) — LaTeX → PDF (XeTeX, self-contained; compiles `fontspec` + Arial).
+  Used for `docs/presupuestos/`, `docs/kit-sensores/`.
+- **LibreOffice** (`soffice`) — convert `.pptx` → PDF (e.g. to inspect/render a deck).
+- **poppler** (`pdftoppm`) + **ImageMagick** (`magick`) — render PDF pages to PNG, montages,
+  image conversion (incl. WebP). No Ghostscript installed, so use `pdftoppm` (not `magick`) for
+  PDF→PNG.
+- **Chromium/Edge headless** — HTML → PDF (see the `generar-pdf-desde-html` approach).
+- The **`slides`** skill (PptxGenJS) builds/edits `.pptx` decks.
+
+**Python:** use **uv** (not pip — system Python can't write to its Scripts dir).
+
+## Common commands
 
 ```
 bash arduino/sim.sh            # compile + headless simulate, prints serial
 bash arduino/test.sh           # asserts the 3 semaforo states (verde/amarillo/rojo)
 wireviz arduino/wiring.yml     # regenerate the wiring diagram
-openscad ... arduino/3d/carcasa.scad   # regenerate render/STL (see arduino/3d header)
-python -m http.server 8099 --directory web   # serve the Three.js viz
+pio run -d arduino-r4/geogreen_show -t upload   # flash the R4 demo (auto-detects COM port)
+python -m http.server 8099 --directory web      # serve the Three.js viz / plano
+cd app && npm run dev          # PWA dashboard at http://localhost:5173
+tectonic docs/kit-sensores/kit-45-sensores-identificacion.tex   # rebuild a LaTeX PDF
 ```
 
-`test.sh` is the closest thing to a test suite (Wokwi `--expect-text` assertions).
-Zero-install alternative for the sim: paste `src/main.cpp` + `diagram.json` into a
-new Arduino Uno project at wokwi.com. See `arduino/README.md`.
+`arduino/test.sh` is the closest thing to a hardware test suite (Wokwi `--expect-text`
+assertions). Zero-install sim alternative: paste `src/main.cpp` + `diagram.json` into a new
+Arduino Uno project at wokwi.com. See `arduino/README.md`.
 
-## What GeoGreen is
+## Conventions
 
-GeoGreen is a grant proposal (Fondo Concursable VCM 2026, AIEP Osorno, Chile) for a smart waste-container fill-level monitor. The physical prototype:
-
-1. An ultrasonic sensor (HC-SR04) measures the distance from the container lid to the contents.
-2. The controller converts that distance into a **fill percentage**.
-3. A LED "traffic light" (green / yellow / red) shows low / medium / high fill.
-4. A buzzer alerts when the container is full.
-5. (ESP32 track only) An OLED shows the percentage locally and WiFi sends the reading to a simple dashboard.
-
-A later stage envisions georeferencing recycling points on a map dashboard — hence "Geo" + "Green". The project spans three AIEP programs: Programación y Análisis de Sistemas (software), Electricidad y Electrónica (hardware), and Trabajo Social (community).
-
-## Two hardware tracks
-
-The component lists describe two parallel hardware approaches; firmware will differ between them:
-
-- **Arduino track** (`Componentes Arduino para GeoGreen - Elias.md`, led by Don Elías): Arduino UNO/Nano, no networking. Minimal demo maquette — sensor + LEDs + buzzer only. This is the baseline prototype.
-- **ESP32 track** (`Componentes ESP32 para GeoGreen - Diego.md`): ESP32 DevKit V1 with built-in WiFi, adds OLED display and dashboard upload. The more complete version.
-
-Key hardware constraint to remember when writing/reviewing ESP32 firmware: the ESP32 runs at **3.3V** but the HC-SR04 Echo pin outputs **5V** — the design requires a voltage divider or logic-level converter on Echo to protect the board. Don't write firmware or wiring docs that connect Echo directly to a GPIO.
-
-## File guide
-
-- `1_Proyecto (1).docx` — the master grant application (project metadata, dates, budget, participants). The authoritative source for project scope.
-- `Componentes ESP32 para GeoGreen - Diego.md` / `Componentes Arduino para GeoGreen - Elias.md` — bills of materials and expected behavior per track.
-- `Componentes Arduino para GeoGreen - Don Elias.pdf` / `.html` — same Arduino BOM in other formats.
-- `componenetes-arduino.png`, `componentes-don-elias.png` — reference photos of components.
-
-Documentation is written in Spanish; keep that language for new docs unless asked otherwise.
+- **Documentation is written in Spanish** — keep that language for new docs/decks unless asked.
+- **Do not add commitments to shareable institutional documents without Diego's explicit request.**
+  In PDFs, cronogramas, decks, WhatsApp-ready texts, or materials for directors/partners, do not invent
+  or add "puntos a confirmar", responsibilities, pending decisions, flexible-date clauses, attendance
+  requirements, resource commitments, or coordination notes unless Diego explicitly asks for them or
+  they are already present in the source. Keep shareable documents limited to the agreed facts.
+- **Use `nem` for project memory.** Diego built `nem`, and it is not part of generic model training:
+  do not treat it as optional context trivia. When resuming GeoGreen work, reconstructing decisions,
+  checking prior timeline changes, or preserving important outcomes, use the `nem` skill/CLI:
+  start with `nem status`, `nem outline`, `nem timeline proyecto-01-aiep-geogreen`, and targeted
+  `nem read`/`nem search`; after meaningful decisions, persist a concise `nem add` + `nem commit`
+  when the chat has been ingested.
+- **No meta commentary inside product UIs** (e.g. don't label things "datos simulados" / "demo"
+  in the app or decks).
+- New program material follows the **AIEP visual identity** (institutional palette; see
+  `slides-aiep` and `tools/slides-system`).
+- Reference photos / BOMs per track live at the repo root
+  (`Componentes Arduino…`, `Componentes ESP32…`, `componenetes-arduino.png`, etc.).
