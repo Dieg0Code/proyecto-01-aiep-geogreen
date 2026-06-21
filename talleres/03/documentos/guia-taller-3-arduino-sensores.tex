@@ -1,0 +1,453 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% --- Paleta institucional ---
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPAmber}{HTML}{E8A33D}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen Escolar · Taller 3 · Guía de Arduino y sensores}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\setlist[enumerate]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\renewcommand{\arraystretch}{1.3}
+
+\titleformat{\section}{\large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\titleformat{\subsection}{\bfseries\color{AIEPInk}}{}{0pt}{}
+\titlespacing{\subsection}{0pt}{8pt}{2pt}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% --- Cajas pedagógicas ---
+\newtcolorbox{objetivo}{enhanced, colback=AIEPSoftBlue, colframe=AIEPNavy,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+\newtcolorbox{veras}{enhanced, colback=AIEPGreen!8, colframe=AIEPGreen,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+\newtcolorbox{reto}{enhanced, colback=AIEPGold!12, colframe=AIEPGold,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+\newtcolorbox{ojo}{enhanced, colback=AIEPRed!6, colframe=AIEPRed,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+
+% --- Estilo de código (sketch de Arduino) ---
+\lstdefinestyle{arduino}{
+  language=C++,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{AIEPNavy}\bfseries,
+  commentstyle=\color{AIEPSlate}\itshape,
+  stringstyle=\color{AIEPGreen},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{Line},
+  backgroundcolor=\color{AIEPSoftBlue!35},
+  framexleftmargin=2mm, xleftmargin=3mm, xrightmargin=2mm,
+  aboveskip=5pt, belowskip=5pt,
+  morekeywords={setup,loop,pinMode,digitalWrite,digitalRead,delay,delayMicroseconds,
+    tone,noTone,pulseIn,analogRead,Serial,constrain,map,HIGH,LOW,OUTPUT,INPUT,float,
+    long,int,const,void,for,if,else,true,false}
+}
+% --- Estilo para el mapa de la protoboard (texto plano) ---
+\lstdefinestyle{plano}{
+  basicstyle=\ttfamily\scriptsize\color{AIEPInk},
+  frame=single, rulecolor=\color{Line}, backgroundcolor=\color{AIEPPaper},
+  xleftmargin=3mm, xrightmargin=2mm, aboveskip=5pt, belowskip=5pt,
+  literate={->}{{$\rightarrow$}}2
+}
+
+% --- Tira-semáforo para mostrar umbrales ---
+\newcommand{\chip}[2]{\tcbox[on line, colback=#1, colframe=#1, boxrule=0pt,
+  arc=0.6mm, left=2mm, right=2mm, top=0.4mm, bottom=0.4mm]{\footnotesize\bfseries\textcolor{white}{#2}}}
+
+\begin{document}
+
+% ===================== PORTADA =====================
+\begin{tcolorbox}[enhanced, colback=AIEPNavy, colframe=AIEPNavy, arc=0mm,
+  boxrule=0pt, left=5mm, right=5mm, top=5mm, bottom=5mm]
+{\color{white}\Huge\bfseries De la idea al prototipo}\\[2mm]
+{\color{white}\Large Guía de electrónica y programación con Arduino}\\[3mm]
+{\color{AIEPSoftBlue} Aprende paso a paso: enciende un LED, arma un semáforo, agrega una alerta
+y haz que un sensor reaccione al mundo. Al final, conectarás \textbf{tu propio sensor}.}
+\end{tcolorbox}
+
+\begin{objetivo}
+\textbf{Una idea sencilla guía todo el taller:} un buen prototipo \textbf{mide} algo del mundo,
+lo \textbf{indica} de forma clara y \textbf{alerta} cuando hace falta.\\[1mm]
+\textbf{Medir \;$\rightarrow$\; Indicar \;$\rightarrow$\; Alertar}
+\end{objetivo}
+
+Todos los ejercicios usan como ejemplo un \textbf{monitor de llenado de contenedor}: un sensor
+mide cuánto se llena, un \textbf{semáforo} de luces lo muestra y un \textbf{buzzer} avisa cuando
+está lleno. Vas a construirlo de a poco; cuando lo entiendas, cambiarás el sensor por el de tu
+proyecto.
+
+\subsection{Qué trae tu kit}
+\begin{tabularx}{\linewidth}{@{}L{4.4cm}Y@{}}
+\hline
+\textbf{Placa Arduino UNO} & El cerebro: ejecuta tu programa. Se conecta al computador por USB.\\
+\textbf{Protoboard} & Tablero para armar circuitos sin soldar.\\
+\textbf{Cables jumper} & Conexiones entre la placa y la protoboard.\\
+\textbf{3 LEDs + 3 resistencias} & El semáforo (verde, amarillo, rojo). Cada LED lleva su resistencia.\\
+\textbf{Buzzer} & La alerta sonora.\\
+\textbf{1 sensor} & El que eligió tu grupo (lo usarás en los últimos pasos).\\
+\hline
+\end{tabularx}
+
+% ===================== 0. ANTES DE EMPEZAR =====================
+\section{Antes de empezar}
+
+\subsection{La protoboard por dentro}
+Antes de conectar nada, hay que entender cómo está unida la protoboard \textbf{por dentro}. Esto
+evita el 90\% de los errores.
+
+\begin{lstlisting}[style=plano]
+  +  o o o o o o o o o o o o   <- riel +, unido a lo largo
+  -  o o o o o o o o o o o o   <- riel -, unido a lo largo
+     1   5   10  15  20
+  a  o o o o o o o o o o o o
+  b  o o o o o o o o o o o o   columna a..e:
+  c  o o o o o o o o o o o o   unida en vertical
+  d  o o o o o o o o o o o o   (5 hoyos juntos)
+  e  o o o o o o o o o o o o
+     == canal central: separa arriba de abajo ==
+  f  o o o o o o o o o o o o
+  g  o o o o o o o o o o o o   columna f..j:
+  h  o o o o o o o o o o o o   unida en vertical
+  i  o o o o o o o o o o o o
+  j  o o o o o o o o o o o o
+  -  o o o o o o o o o o o o
+  +  o o o o o o o o o o o o
+\end{lstlisting}
+
+\textbf{Las 3 reglas de oro:}
+\begin{enumerate}
+\item Las \textbf{líneas de los bordes} (+ y $-$) están unidas a lo largo de toda la placa: sirven
+para repartir corriente y tierra.
+\item En el centro, cada \textbf{columna} tiene 5 hoyos unidos \textbf{en vertical} (arriba a--e,
+abajo f--j).
+\item El \textbf{canal central} separa la mitad de arriba de la de abajo: no se tocan.
+\end{enumerate}
+Para conectar dos patas entre sí, ponlas en hoyos de la \textbf{misma columna de 5}.
+
+\subsection{Cómo cargar un programa}
+Escribes el programa (un \textit{sketch}) en el \textbf{Arduino IDE} y lo envías a la placa:
+\begin{itemize}
+\item \textbf{Verificar} (\checkmark): revisa que el código no tenga errores.
+\item \textbf{Subir} ($\rightarrow$): graba el programa en la placa.
+\item \textbf{Monitor Serie}: una ventana donde la placa te \textbf{escribe} lo que está midiendo.
+Será nuestra ``pantalla''. Ábrela y ajústala a \texttt{9600}.
+\end{itemize}
+
+% ===================== 1. PRIMER LED =====================
+\section{Ejercicio 1 · Tu primer LED}
+\begin{objetivo}\textbf{Meta:} encender un LED. Aprender polaridad, resistencia y rieles —sin
+programar todavía.\end{objetivo}
+
+Un LED tiene una \textbf{pata larga (+)} y una \textbf{pata corta ($-$)}. La corriente entra por
+la larga. Si lo conectas al revés, no enciende (no se daña).
+
+\textbf{Conexión} (con la placa conectada por USB, que entrega 5\,V):
+
+\begin{tabularx}{\linewidth}{@{}L{5.2cm}Y@{}}
+\hline
+\texttt{5V} de la placa & $\rightarrow$ riel rojo (+)\\
+\texttt{GND} de la placa & $\rightarrow$ riel azul ($-$)\\
+Resistencia & del riel + a una columna libre\\
+LED: pata larga (+) & a esa misma columna\\
+LED: pata corta ($-$) & $\rightarrow$ riel azul ($-$)\\
+\hline
+\end{tabularx}
+
+\begin{ojo}\textbf{Nunca} conectes un LED sin su resistencia en serie: se quema. Cualquiera de
+\textbf{220\,$\Omega$} (o 330\,$\Omega$) sirve.\end{ojo}
+
+\begin{veras}El LED enciende. Si no, lo más común es que esté al revés: da vuelta el LED.\end{veras}
+
+% ===================== 2. BLINK =====================
+\section{Ejercicio 2 · Hazlo parpadear}
+\begin{objetivo}\textbf{Meta:} controlar el LED con un \textbf{programa}. Que parpadee solo.\end{objetivo}
+
+Ahora la resistencia ya no va al riel +, sino a un \textbf{pin digital} (por ejemplo el
+\texttt{D4}), para que el programa lo encienda y apague.
+
+\begin{lstlisting}[style=arduino]
+const int LED = 4;            // el LED esta en el pin D4
+
+void setup() {
+  pinMode(LED, OUTPUT);       // el pin D4 sera una salida
+}
+
+void loop() {
+  digitalWrite(LED, HIGH);    // enciende
+  delay(500);                 // espera 0,5 s
+  digitalWrite(LED, LOW);     // apaga
+  delay(500);
+}
+\end{lstlisting}
+
+\begin{veras}El LED parpadea cada medio segundo.\end{veras}
+\begin{reto}\textbf{Reto:} cambia los \texttt{500} para que parpadee más rápido o más lento.\end{reto}
+
+% ===================== 3. SEMAFORO =====================
+\section{Ejercicio 3 · El semáforo de 3 LEDs}
+\begin{objetivo}\textbf{Meta:} controlar tres LEDs a la vez y encenderlos en secuencia.\end{objetivo}
+
+Arma los tres LEDs (cada uno con su resistencia): \textbf{verde en D4}, \textbf{amarillo en D3},
+\textbf{rojo en D2}. Las patas cortas van todas al riel azul ($-$).
+
+\begin{lstlisting}[style=arduino]
+const int VERDE = 4, AMARILLO = 3, ROJO = 2;
+
+void setup() {
+  pinMode(VERDE, OUTPUT);
+  pinMode(AMARILLO, OUTPUT);
+  pinMode(ROJO, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(VERDE, HIGH);    delay(700); digitalWrite(VERDE, LOW);
+  digitalWrite(AMARILLO, HIGH); delay(700); digitalWrite(AMARILLO, LOW);
+  digitalWrite(ROJO, HIGH);     delay(700); digitalWrite(ROJO, LOW);
+}
+\end{lstlisting}
+
+\begin{veras}Los LEDs se encienden uno tras otro: verde, amarillo, rojo, y vuelve a empezar.\end{veras}
+\begin{reto}\textbf{Reto:} haz que el verde y el rojo enciendan juntos, y el amarillo solo.\end{reto}
+
+% ===================== 4. BUZZER =====================
+\section{Ejercicio 4 · La alerta sonora}
+\begin{objetivo}\textbf{Meta:} agregar un sonido de alerta con el buzzer.\end{objetivo}
+
+Conecta el buzzer: pata \textbf{+} (larga) al pin \textbf{D8}; pata $-$ al riel azul ($-$).
+
+\begin{lstlisting}[style=arduino]
+const int BUZZER = 8;
+
+void setup() {
+  pinMode(BUZZER, OUTPUT);
+}
+
+void loop() {
+  tone(BUZZER, 2000);   // suena a 2000 Hz
+  delay(150);
+  noTone(BUZZER);       // silencio
+  delay(150);
+}
+\end{lstlisting}
+
+\begin{veras}El buzzer hace ``pip pip''. \texttt{tone()} lo enciende; \texttt{noTone()} lo apaga.\end{veras}
+\begin{reto}\textbf{Reto:} cambia \texttt{2000} por otro número y escucha cómo cambia el tono.\end{reto}
+
+% ===================== 5. SENSOR =====================
+\section{Ejercicio 5 · Medir el mundo}
+\begin{objetivo}\textbf{Meta:} leer un sensor y mostrar su valor en el Monitor Serie.\end{objetivo}
+
+Usaremos el sensor de distancia \textbf{HC-SR04} como ejemplo. Mide cuán lejos está un objeto:
+manda un pulso y cronometra cuánto demora el eco en volver.
+
+\textbf{Conexión:} \texttt{VCC}$\rightarrow$5V, \texttt{GND}$\rightarrow$($-$),
+\texttt{Trig}$\rightarrow$D9, \texttt{Echo}$\rightarrow$D10.
+
+\begin{lstlisting}[style=arduino]
+const int TRIG = 9, ECHO = 10;
+
+void setup() {
+  Serial.begin(9600);         // abre la comunicacion con el Monitor Serie
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+}
+
+void loop() {
+  digitalWrite(TRIG, LOW);  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH); delayMicroseconds(10);   // lanza el pulso
+  digitalWrite(TRIG, LOW);
+  long t = pulseIn(ECHO, HIGH);     // mide cuanto demora el eco
+  float cm = t * 0.0343 / 2;        // lo convierte a centimetros
+
+  Serial.print("Distancia: ");
+  Serial.print(cm);
+  Serial.println(" cm");
+  delay(300);
+}
+\end{lstlisting}
+
+\begin{veras}En el Monitor Serie ves la distancia en cm, cambiando al acercar o alejar la mano.\end{veras}
+
+\subsection{De la medida cruda a algo útil}
+Una distancia en cm no dice ``qué tan lleno está''. Lo convertimos a un \textbf{porcentaje} con una
+regla de tres: si el contenedor está \textbf{vacío a 25\,cm} y \textbf{lleno a 3\,cm}:
+\begin{lstlisting}[style=arduino]
+float pct = (25 - cm) * 100.0 / (25 - 3);   // distancia -> porcentaje
+pct = constrain(pct, 0, 100);               // lo deja entre 0 y 100
+\end{lstlisting}
+
+% ===================== 6. INTEGRAR =====================
+\section{Ejercicio 6 · Medir + Indicar + Alertar}
+\begin{objetivo}\textbf{Meta:} unir todo. El sensor decide el color del semáforo y dispara la
+alerta.\end{objetivo}
+
+Usamos estos cortes: \;\chip{AIEPGreen}{< 40\%}\; \chip{AIEPAmber}{40--80\%}\;
+\chip{AIEPRed}{$\geq$ 80\%}.
+
+\begin{lstlisting}[style=arduino]
+const int TRIG=9, ECHO=10, VERDE=4, AMARILLO=3, ROJO=2, BUZZER=8;
+const float VACIO=25, LLENO=3;            // cm
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TRIG,OUTPUT); pinMode(ECHO,INPUT);
+  pinMode(VERDE,OUTPUT); pinMode(AMARILLO,OUTPUT);
+  pinMode(ROJO,OUTPUT);  pinMode(BUZZER,OUTPUT);
+}
+
+float medir() {                           // devuelve la distancia en cm
+  digitalWrite(TRIG,LOW);  delayMicroseconds(2);
+  digitalWrite(TRIG,HIGH); delayMicroseconds(10);
+  digitalWrite(TRIG,LOW);
+  return pulseIn(ECHO, HIGH) * 0.0343 / 2;
+}
+
+void loop() {
+  float cm = medir();
+  float pct = (VACIO - cm) * 100.0 / (VACIO - LLENO);
+  pct = constrain(pct, 0, 100);
+
+  digitalWrite(VERDE,    pct < 40);            // verde si esta bajo
+  digitalWrite(AMARILLO, pct >= 40 && pct < 80);
+  digitalWrite(ROJO,     pct >= 80);           // rojo si esta lleno
+
+  if (pct >= 80) tone(BUZZER, 2000);           // alerta
+  else           noTone(BUZZER);
+
+  Serial.print(pct); Serial.println(" %");
+  delay(200);
+}
+\end{lstlisting}
+
+\begin{veras}El semáforo cambia de color según la distancia y el buzzer suena al llegar a rojo.
+\textbf{Ya tienes un prototipo completo:} mide, indica y alerta.\end{veras}
+
+% ===================== 7. FILTRADO =====================
+\section{Ejercicio 7 · Mediciones confiables}
+\begin{objetivo}\textbf{Meta:} que el número no ``baile''. Entender el ruido y cómo filtrarlo.\end{objetivo}
+
+Los sensores son \textbf{ruidosos}: dos lecturas seguidas pueden dar valores distintos aunque nada
+se mueva, y el semáforo titila. La solución: no creerle a una sola lectura.
+
+\textbf{Idea 1 — Promedio.} Tomar varias lecturas y promediarlas suaviza el resultado:
+\begin{lstlisting}[style=arduino]
+float medirPromedio() {
+  float suma = 0;
+  for (int i = 0; i < 5; i++) {   // 5 lecturas
+    suma = suma + medir();
+    delay(10);
+  }
+  return suma / 5;                // su promedio
+}
+\end{lstlisting}
+
+\textbf{Idea 2 — Mediana.} Si una lectura sale ``loca'' (muy distinta), el promedio se contamina.
+La \textbf{mediana} —ordenar las lecturas y tomar la del medio— ignora ese valor extremo y es aún
+más estable. Usa \texttt{medirPromedio()} en lugar de \texttt{medir()} en el Ejercicio 6.
+
+\begin{reto}\textbf{Reto:} sube de 5 a 9 lecturas y observa si queda más firme. ¿Se vuelve más
+lento en reaccionar?\end{reto}
+
+% ===================== 8. RETO FINAL =====================
+\section{Ejercicio 8 · Tu propio sensor}
+\begin{objetivo}\textbf{Meta final:} reemplazar el HC-SR04 por el sensor de tu proyecto y hacerlo
+indicar y alertar.\end{objetivo}
+
+Todo lo que aprendiste sirve para \textbf{cualquier} sensor. Sigue estos 4 pasos:
+
+\begin{enumerate}
+\item \textbf{Identifícalo.} ¿Cuántos pines tiene? Busca \texttt{VCC} y \texttt{GND}. ¿La señal es
+\textbf{analógica} (un pin marcado \texttt{A0}, \texttt{AO}) o \textbf{digital}? Funciona a 5\,V.
+\item \textbf{Léelo en crudo.} Sube un sketch mínimo que escriba la lectura en el Monitor Serie
+(con \texttt{analogRead(A0)} si es analógico). Estimula el sensor (moja la tierra, tapa la luz\ldots)
+y observa cómo cambian los números.
+\item \textbf{Elige los umbrales.} Anota el valor ``tranquilo'' y el valor ``alerta''. Esos son tus
+cortes, como el 40\% y 80\% del semáforo.
+\item \textbf{Conéctalo a indicar y alertar.} Reemplaza la parte de ``medir'' por tu sensor y reusa
+el semáforo y el buzzer que ya armaste.
+\end{enumerate}
+
+\textbf{Ejemplo de lectura analógica} (sirve para humedad de suelo, gas, LDR y lluvia):
+\begin{lstlisting}[style=arduino]
+void setup() { Serial.begin(9600); }
+void loop() {
+  int valor = analogRead(A0);   // un numero entre 0 y 1023
+  Serial.println(valor);
+  delay(300);
+}
+\end{lstlisting}
+
+\subsection{Pistas según tu sensor}
+\begin{tabularx}{\linewidth}{@{}L{3.2cm}L{3.4cm}L{2.4cm}Y@{}}
+\hline
+\textbf{Sensor} & \textbf{Qué mide} & \textbf{Señal} & \textbf{Cómo leerlo}\\
+\hline
+HC-SR04 & Distancia / nivel & Digital (pulso) & \texttt{pulseIn()} (ejemplo de esta guía)\\
+Humedad de suelo & Humedad de la tierra & Analógica & \texttt{analogRead(A0)}\\
+DHT11 & Temperatura y humedad & Digital (bus) & Librería \texttt{DHT}\\
+Gas (MQ-2/135) & Humo / calidad del aire & Analógica & \texttt{analogRead(A0)}\\
+LDR (luz) & Nivel de luz & Analógica & \texttt{analogRead(A0)}\\
+Lluvia & Presencia de agua & Analóg./Digital & \texttt{analogRead} o \texttt{digitalRead}\\
+\hline
+\end{tabularx}
+
+\begin{ojo}Algunos sensores (DHT11) necesitan una \textbf{librería}: instálala desde el Gestor de
+Librerías del Arduino IDE buscando su nombre.\end{ojo}
+
+% ===================== CIERRE =====================
+\section{Lo que aprendiste}
+\begin{itemize}
+\item Leer una protoboard y armar un circuito sin soldar.
+\item Encender LEDs desde un programa y construir un semáforo.
+\item Hacer sonar una alerta con el buzzer.
+\item Leer un sensor, convertir su medida en algo útil y mostrarla.
+\item Unir todo en la lógica \textbf{medir $\rightarrow$ indicar $\rightarrow$ alertar}.
+\item Filtrar el ruido y, sobre todo, \textbf{adaptar el método a tu propio sensor}.
+\end{itemize}
+
+\vspace{2mm}
+\begin{objetivo}Con estos pasos, tu grupo ya puede construir el prototipo de su proyecto
+sustentable. El sensor cambia; el método es siempre el mismo.\end{objetivo}
+
+\end{document}
