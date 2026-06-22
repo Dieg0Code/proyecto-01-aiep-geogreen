@@ -20,7 +20,7 @@ const IMG = {
   lockup: path.join(ASSETS, "lockup-vinculacion-dark.png"),
   lockupW: path.join(ASSETS, "lockup-vinculacion-white.png"),
   app: path.join(REPO, "reuniones/2026-06-15/ppt/source/assets/app-geogreen-mapa-osorno.png"),
-  proto: path.join(REPO, "docs/infografias/infografia-prototipo-original-sim-geogreen.jpg"),
+  proto: path.join(REPO, "talleres/03/infografias/infografia-prototipo-original-sim-geogreen.jpg"),
   render: path.join(ASSETS, "render-poster.jpg"),
   objetivo: path.join(REPO, "cronograma/infografias/infografia-objetivo-transversal-geogreen.png"),
   r4: path.join(REPO, "docs/arduino-uno-r4-wifi-dibujo-digital-crop.png"),
@@ -170,14 +170,15 @@ function s07() {
   const s = pptx.addSlide(); bg(s, A.white); lockup(s);
   header(s, "Contexto territorial", "Osorno: un desafío local de reciclaje",
     "El programa nace de un problema visible del territorio, no de un ejercicio tecnológico.");
-  const cards = [["75%", "meta de reciclaje al 2028", A.red], ["+1,3 M", "kg de reciclaje recuperados al año en la comuna", A.navy], ["+100", "puntos limpios y verdes en la ciudad", A.green]];
-  cards.forEach(([b, l, ac], i) => statCard(s, b, l, 0.78 + i * 4.0, 1.92, 3.72, 1.9, { accent: ac, bigSize: 31 }));
+  const cards = [["25% → 75%", "hogares con reciclaje domiciliario: 2025 → meta 2028 (Ley REP · ReSimple)", A.red], ["+1,3 M", "kg de material recuperado en la comuna (sobre todo vidrio)", A.navy], ["+100", "puntos limpios y verdes en la red comunal", A.green]];
+  cards.forEach(([b, l, ac], i) => statCard(s, b, l, 0.78 + i * 4.0, 1.92, 3.72, 2.02, { accent: ac, bigSize: 26 }));
   bullets(s, [
     "La brecha crítica está en la separación en origen.",
     "Material reciclable se pierde al mezclarse o contaminarse.",
     "Falta información para decidir y actuar a tiempo.",
-  ], 0.95, 4.2, 11.0, { accent: A.red, gap: 0.5, size: 12.5, itemH: 0.4 });
-  band(s, 0.78, 6.18, 11.72, 0.62, "GeoGreen conecta datos, hábitos y tecnología para mejorar esas decisiones.");
+  ], 0.95, 4.34, 11.0, { accent: A.red, gap: 0.5, size: 12.5, itemH: 0.4 });
+  band(s, 0.78, 6.04, 11.72, 0.56, "GeoGreen conecta datos, hábitos y tecnología para mejorar esas decisiones.");
+  txt(s, "Fuentes: Municipalidad de Osorno · Ley REP (Ley 20.920) · convenio Osorno–ReSimple 2024–2028.", 0.78, 6.72, 11.72, 0.2, { size: 8, color: A.slate, italic: true });
   footer(s, pg());
 }
 
