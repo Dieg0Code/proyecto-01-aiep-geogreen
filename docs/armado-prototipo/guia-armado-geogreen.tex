@@ -1,0 +1,259 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPAmber}{HTML}{E8A33D}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen · Guía de armado del prototipo}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\setlist[enumerate]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\renewcommand{\arraystretch}{1.3}
+
+\titleformat{\section}{\large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{4pt}
+\titleformat{\subsection}{\bfseries\color{AIEPInk}}{}{0pt}{}
+\titlespacing{\subsection}{0pt}{8pt}{2pt}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{nota}{enhanced, colback=AIEPSoftBlue, colframe=AIEPNavy,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+\newtcolorbox{ojo}{enhanced, colback=AIEPRed!6, colframe=AIEPRed,
+  boxrule=0pt, leftrule=2.5pt, arc=0.8mm, left=3mm, right=3mm, top=2mm, bottom=2mm,
+  before skip=4pt, after skip=4pt}
+
+\lstdefinestyle{plano}{
+  basicstyle=\ttfamily\scriptsize\color{AIEPInk},
+  frame=single, rulecolor=\color{Line}, backgroundcolor=\color{AIEPPaper},
+  xleftmargin=3mm, xrightmargin=2mm, aboveskip=5pt, belowskip=5pt
+}
+\lstdefinestyle{cmd}{
+  basicstyle=\ttfamily\footnotesize, frame=single, rulecolor=\color{Line},
+  backgroundcolor=\color{AIEPSoftBlue!35},
+  xleftmargin=3mm, xrightmargin=2mm, aboveskip=5pt, belowskip=5pt
+}
+
+% Chip de pin (recuadro oscuro tipo serigrafia)
+\newcommand{\pin}[1]{\tcbox[on line, colback=AIEPInk, colframe=AIEPInk, boxrule=0pt,
+  arc=0.7mm, left=1.4mm, right=1.4mm, top=0.3mm, bottom=0.3mm]%
+  {\footnotesize\bfseries\textcolor{white}{\texttt{#1}}}}
+
+\begin{document}
+
+% ===================== PORTADA =====================
+\begin{tcolorbox}[enhanced, colback=AIEPNavy, colframe=AIEPNavy, arc=0mm,
+  boxrule=0pt, left=5mm, right=5mm, top=5mm, bottom=5mm]
+{\color{white}\Huge\bfseries Guía de armado del prototipo}\\[2mm]
+{\color{white}\Large GeoGreen · Monitor de llenado con Arduino}\\[3mm]
+{\color{AIEPSoftBlue} Mapa de pines, conexiones y firmware para volver a armar o replicar el
+prototipo desde cero.}
+\end{tcolorbox}
+
+\begin{nota}
+\textbf{Qué es.} Un monitor de llenado de contenedor: un sensor mide la distancia al contenido,
+el firmware la convierte en \textbf{porcentaje de llenado}, un \textbf{semáforo} de LEDs lo indica
+y un \textbf{buzzer} alerta cuando está lleno. Una \textbf{pantalla OLED} muestra el porcentaje y
+la \textbf{matriz LED} de la placa muestra la marca del proyecto.
+Lógica: \textbf{medir $\rightarrow$ indicar $\rightarrow$ alertar}.
+\end{nota}
+
+% ===================== COMPONENTES =====================
+\section{Componentes}
+\begin{tabularx}{\linewidth}{@{}L{5.2cm}Y@{}}
+\hline
+\textbf{Componente} & \textbf{Especificación}\\
+\hline
+Placa controladora & Arduino UNO R4 WiFi (5\,V, matriz LED 12$\times$8 integrada)\\
+Protoboard & 830 puntos (MB-102)\\
+Sensor & HC-SR04 (ultrasónico, 4 pines)\\
+LED 5\,mm $\times$3 & Verde, amarillo y rojo\\
+Resistencias $\times$3 & 220\,$\Omega$ (o 330\,$\Omega$), una por LED\\
+Buzzer & Activo 5\,V (2 pines, con polaridad)\\
+Pantalla & OLED 0.96" I2C, SSD1306 (4 pines)\\
+Cables & Jumper dupont macho-macho\\
+Alimentación & Cable USB (desde el PC o un cargador 5\,V)\\
+\hline
+\end{tabularx}
+
+\begin{nota}
+En una \textbf{Arduino UNO R3} también funciona (mismo cableado y firmware); solo no tendría la
+matriz LED integrada para la marca.
+\end{nota}
+
+% ===================== MAPA DE PINES =====================
+\section{Mapa de pines (conexiones)}
+La placa se alimenta por \textbf{USB}. Lleva el \pin{5V} de la placa al \textbf{riel rojo (+)} y
+el \pin{GND} al \textbf{riel azul ($-$)} de la protoboard; de ahí salen las alimentaciones.
+
+\begin{tabularx}{\linewidth}{@{}L{3.6cm}L{3.6cm}Y@{}}
+\hline
+\textbf{Componente} & \textbf{Pin del componente} & \textbf{Va a}\\
+\hline
+Sensor HC-SR04 & VCC & riel rojo (+)\\
+ & GND & riel azul ($-$)\\
+ & Trig & \pin{D9}\\
+ & Echo & \pin{D10} \quad(directo, sin divisor)\\
+\hline
+LED rojo & ánodo (+, pata larga) & \pin{D2} a través de resistencia\\
+ & cátodo ($-$, pata corta) & riel azul ($-$)\\
+\hline
+LED amarillo & ánodo (+) & \pin{D3} a través de resistencia\\
+ & cátodo ($-$) & riel azul ($-$)\\
+\hline
+LED verde & ánodo (+) & \pin{D4} a través de resistencia\\
+ & cátodo ($-$) & riel azul ($-$)\\
+\hline
+Buzzer & + (pata larga) & \pin{D8}\\
+ & $-$ (pata corta) & riel azul ($-$)\\
+\hline
+Pantalla OLED & VCC & riel rojo (+)\\
+ & GND & riel azul ($-$)\\
+ & SDA & \pin{SDA} \quad(o \texttt{A4})\\
+ & SCL & \pin{SCL} \quad(o \texttt{A5})\\
+\hline
+Matriz LED 12$\times$8 & --- & integrada en la placa (sin cableado)\\
+\hline
+\end{tabularx}
+
+\subsection{Resumen rápido del Arduino}
+\begin{tabularx}{\linewidth}{@{}L{2.6cm}Y@{}}
+\hline
+\pin{D2} & LED rojo (vía resistencia) \\
+\pin{D3} & LED amarillo (vía resistencia) \\
+\pin{D4} & LED verde (vía resistencia) \\
+\pin{D8} & Buzzer (+) \\
+\pin{D9} & HC-SR04 Trig \\
+\pin{D10} & HC-SR04 Echo \\
+\pin{SDA} / \pin{SCL} & Pantalla OLED (I2C) \\
+\pin{5V} / \pin{GND} & Rieles + y $-$ de la protoboard \\
+\hline
+\end{tabularx}
+
+% ===================== ESQUEMA =====================
+\section{Esquema de conexión}
+\begin{lstlisting}[style=plano]
+   ARDUINO UNO R4 WiFi   (USB al PC = alimentacion 5V)
+   |
+   5V  ---> riel rojo (+)        riel + alimenta sensor y OLED
+   GND ---> riel azul (-)        riel - es la tierra comun
+   |
+   D9  ---> HC-SR04 Trig
+   D10 ---> HC-SR04 Echo         (directo, la placa es 5V)
+   D2  --[R]--> LED rojo (+)     ; (-) -> riel (-)
+   D3  --[R]--> LED amarillo (+) ; (-) -> riel (-)
+   D4  --[R]--> LED verde (+)    ; (-) -> riel (-)
+   D8  -------> Buzzer (+)       ; (-) -> riel (-)
+   SDA -------> OLED SDA
+   SCL -------> OLED SCL
+   |
+   HC-SR04 VCC -> riel (+)   ;  GND -> riel (-)
+   OLED    VCC -> riel (+)   ;  GND -> riel (-)
+
+   [R] = resistencia 220-330 ohm en serie con cada LED
+\end{lstlisting}
+
+% ===================== NOTAS =====================
+\section{Notas de armado}
+\begin{itemize}
+\item \textbf{Polaridad del LED:} la \textbf{pata larga} es el ánodo (+) y va hacia la
+resistencia/pin; la \textbf{pata corta} es el cátodo ($-$) y va al riel azul. Si está al revés,
+no enciende (no se daña).
+\item \textbf{Resistencia en serie:} cada LED lleva su resistencia (220--330\,$\Omega$). Nunca
+conectes un LED directo a un pin sin resistencia.
+\item \textbf{Buzzer:} tiene polaridad; la pata larga (o el lado marcado \texttt{+}) va a
+\pin{D8}. Si es del tipo sellado, retira el sticker que tapa el agujero del sonido.
+\end{itemize}
+
+\begin{ojo}
+\textbf{Echo del HC-SR04 va directo a \pin{D10}.} La UNO (R3/R4) trabaja a 5\,V, así que no
+necesita divisor de voltaje. (Eso solo haría falta en una placa de 3.3\,V.)
+\end{ojo}
+
+\begin{ojo}
+\textbf{OLED en negro pero el resto funciona:} casi siempre es \textbf{SDA y SCL cruzados} o que
+la dirección I2C es \texttt{0x3D} en vez de \texttt{0x3C}. Corrige el cruce y reinicia la placa,
+o cambia \texttt{DIR\_OLED} en el firmware.
+\end{ojo}
+
+% ===================== FIRMWARE =====================
+\section{Firmware}
+El programa está en \texttt{arduino-r4/geogreen\_proto/} (proyecto PlatformIO). Para grabarlo en
+la placa, con ella conectada por USB:
+
+\begin{lstlisting}[style=cmd]
+pio run -d arduino-r4/geogreen_proto -t upload
+\end{lstlisting}
+
+Al arrancar hace un \textbf{autotest}: enciende verde $\rightarrow$ amarillo $\rightarrow$ rojo,
+uno por uno (confirma el cableado de los LEDs). La matriz pasa la marca \textbf{GeoGreen · AIEP}
+en bucle.
+
+\subsection{Perillas de calibración (constantes arriba del archivo)}
+\begin{tabularx}{\linewidth}{@{}L{4.2cm}L{2.2cm}Y@{}}
+\hline
+\textbf{Constante} & \textbf{Valor} & \textbf{Qué ajusta}\\
+\hline
+\texttt{DIST\_VACIO} & 25 cm & distancia con el contenedor vacío (0\%)\\
+\texttt{DIST\_LLENO} & 3 cm & distancia con el contenedor lleno (100\%)\\
+\texttt{UMBRAL\_MEDIO} & 40\% & corte verde $\rightarrow$ amarillo\\
+\texttt{UMBRAL\_ALTO} & 80\% & corte amarillo $\rightarrow$ rojo + buzzer\\
+\texttt{N\_MUESTRAS} & 7 & lecturas por ciclo (mediana)\\
+\texttt{SALTO\_MAX} / \texttt{CONFIRMAR} & 6 cm / 3 & rechazo de saltos falsos del sensor\\
+\texttt{DEADBAND\_PCT} & 1.5 & cuánto debe cambiar para refrescar el \%\\
+\hline
+\end{tabularx}
+
+\begin{nota}
+\textbf{Para un contenedor real} (no demo de escritorio), sube \texttt{DIST\_VACIO} a la
+profundidad real del contenedor (p.ej. 100 cm) y deja \texttt{DIST\_LLENO} en la distancia mínima
+útil del sensor.
+\end{nota}
+
+% ===================== PUESTA EN MARCHA =====================
+\section{Puesta en marcha}
+\begin{enumerate}
+\item Arma el cableado según el \textbf{mapa de pines}.
+\item Conecta la placa por USB y graba el firmware.
+\item \textbf{Verifica el autotest:} deben encender los 3 LEDs en orden. Si uno no enciende, está
+al revés.
+\item Mueve la mano frente al sensor: el semáforo y la OLED deben cambiar
+verde $\rightarrow$ amarillo $\rightarrow$ rojo, y el buzzer sonar en rojo.
+\item La matriz debe estar pasando \textbf{GeoGreen · AIEP}.
+\end{enumerate}
+
+\end{document}
