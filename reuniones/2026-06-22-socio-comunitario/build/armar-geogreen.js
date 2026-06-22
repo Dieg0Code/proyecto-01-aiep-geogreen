@@ -240,7 +240,7 @@ function s09b() {
     "Una vista del aparato, el caso central de GeoGreen Escolar.", { titleW: 8.6, subtitleW: 8.4 });
   tag(s, "Modelado 3D", 0.95, 2.46, A.navy);
   bullets(s, [
-    "Los equipos modelan en 3D la carcasa que protege el dispositivo.",
+    "El diseño 3D de la carcasa que protege el dispositivo.",
     "Una vista de cómo se vería el aparato fuera de la protoboard.",
   ], 0.95, 3.1, 5.2, { accent: A.navy, gap: 0.95, size: 12.5, itemH: 0.82 });
   framed(s, IMG.render, 6.7, 1.95, 5.9, 4.65, { radius: 0.04 });
