@@ -26,6 +26,9 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include "ArduinoGraphics.h"     // debe ir ANTES que Arduino_LED_Matrix
+#include "Arduino_LED_Matrix.h"
+#include "TextAnimation.h"
 
 // --- Pines ---
 const int PIN_TRIG     = 9;   // Disparo del HC-SR04
@@ -41,6 +44,24 @@ const int ALTO_OLED  = 64;
 const uint8_t DIR_OLED = 0x3C;   // direccion I2C tipica de la SSD1306
 Adafruit_SSD1306 oled(ANCHO_OLED, ALTO_OLED, &Wire, -1);
 bool hayPantalla = false;        // se enciende en setup() si la OLED responde
+
+// --- Matriz LED integrada: marca del proyecto desplazandose ---
+// Corre asincrona (por interrupcion), asi no frena el sensor.
+ArduinoLEDMatrix matrix;
+TEXT_ANIMATION_DEFINE(marca, 140)            // buffer de frames (texto * 5 px)
+const char TEXTO_MARCA[] = " GeoGreen   AIEP  ";
+volatile bool marcaSiguiente = false;        // la pone el callback al terminar
+
+void marcaCallback() { marcaSiguiente = true; }   // se ejecuta en IRQ: minimo
+
+// (Re)lanza el desplazamiento de la marca; al terminar, el callback pide repetir.
+void reproducirMarca() {
+  matrix.beginText(0, 1, 0xFFFFFF);
+  matrix.println(TEXTO_MARCA);
+  matrix.endTextAnimation(SCROLL_LEFT, marca);
+  matrix.loadTextAnimationSequence(marca);
+  matrix.play();
+}
 
 // --- Geometria del contenedor (en cm) ---
 // Rango de escritorio para demo: con la mano entre ~25 cm y ~3 cm se recorre
@@ -230,6 +251,15 @@ void setup() {
   pinMode(PIN_ROJO, OUTPUT);
   pinMode(PIN_BUZZER, OUTPUT);
 
+  // Marca en la matriz: arranca a desplazarse en segundo plano (no bloquea).
+  matrix.begin();
+  matrix.beginDraw();
+  matrix.stroke(0xFFFFFFFF);
+  matrix.textFont(Font_5x7);
+  matrix.textScrollSpeed(65);
+  matrix.setCallback(marcaCallback);
+  reproducirMarca();
+
   // La pantalla es opcional: si no responde, el resto sigue funcionando.
   hayPantalla = oled.begin(SSD1306_SWITCHCAPVCC, DIR_OLED);
   if (hayPantalla) {
@@ -246,6 +276,12 @@ void setup() {
 }
 
 void loop() {
+  // Mantiene la marca en bucle: al terminar un pase, lanza el siguiente.
+  if (marcaSiguiente) {
+    marcaSiguiente = false;
+    reproducirMarca();
+  }
+
   // Capa 1: mediana de lecturas validas (o -1 si hubo muy pocas).
   float m = medirDistancia();
 
