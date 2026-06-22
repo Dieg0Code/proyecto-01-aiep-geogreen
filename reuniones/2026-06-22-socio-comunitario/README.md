@@ -5,18 +5,19 @@ Objetivo: **sumar al liceo como aliado**. Audiencia: directiva + docentes. Prese
 
 ## El deck
 
-**`GeoGreen-socio-comunitario-2026-06-22.pptx`** (24 slides), armado en dos partes fusionadas:
+**`GeoGreen-socio-comunitario-2026-06-22.pptx`** (25 slides), armado en dos partes fusionadas:
 
 - **Slides 1–5:** la base institucional de la directora, **intactas** (portada, Misión/Visión/Valores,
   Vinculación con el Medio + definición + Modelo VcM).
-- **Slides 6–24:** generadas con **nuestro sistema** (`tools/slides-system`, PptxGenJS + tema AIEP),
+- **Slides 6–25:** generadas con **nuestro sistema** (`tools/slides-system`, PptxGenJS + tema AIEP),
   pulidas y audience-facing, con el **lockup "Vinculación con el Medio"** (el sello) en cada una:
   6 divisor GeoGreen · 7 problema Osorno · 8 qué es GeoGreen (pipeline + semáforo) · 9 el dispositivo ·
-  10 componente tecnológico real (Arduino R4 + sensores) · 11 sensores y actuadores (infografías) ·
-  12 la visión/app · 13 GeoGreen Escolar · 14 objetivo transversal · 15 recorrido · 16–18 Talleres 1·2·3
-  (cada uno protagoniza su infografía-resumen + bullets de apoyo) · **19 el wow técnico** (slide navy:
-  Arduino R4 + sensores + infografía de la protoboard) · 20 lo que producen los estudiantes ·
-  21 mentorías · 22 evento final/pitch (panel hero + tarjetas) · 23 la alianza · 24 cierre.
+  **10 visualización 3D del dispositivo** (render del modelo + **video reproducible** embebido) ·
+  11 componente tecnológico real (Arduino R4 + sensores) · 12 sensores y actuadores (infografías) ·
+  13 la visión/app · 14 GeoGreen Escolar · 15 objetivo transversal · 16 recorrido · 17–19 Talleres 1·2·3
+  (cada uno protagoniza su infografía-resumen + bullets de apoyo) · **20 el wow técnico** (slide navy:
+  Arduino R4 + sensores + infografía de la protoboard) · 21 lo que producen los estudiantes ·
+  22 mentorías · 23 evento final/pitch (panel hero + tarjetas) · 24 la alianza · 25 cierre.
 
 Sistema visual común en 6–23: rail de acento, badges numerados, timelines con track-line, tarjetas
 con sombra, infografías enmarcadas y el semáforo dibujado nativo. Cada taller usa un template
@@ -30,8 +31,9 @@ abreviaturas ni referencias de coordinación). Verificado con un chequeo anti-me
 ## Cómo se arma
 
 ```bash
-node build/armar-geogreen.js     # genera build/parte-geogreen.pptx (slides 6-22, PptxGenJS)
-uv run --with python-pptx python build/fusionar.py   # recorta su base a 1-5 + fusiona -> .pptx final
+node build/armar-geogreen.js     # genera build/parte-geogreen.pptx (slides 6-25, PptxGenJS)
+uv run --with python-pptx python build/fusionar.py        # recorta su base a 1-5 + fusiona -> .pptx final
+uv run --with python-pptx python build/agregar-video.py   # incrusta el video 3D reproducible (post-fusión)
 "/c/Program Files/LibreOffice/program/soffice.exe" --headless --convert-to pdf --outdir build GeoGreen-socio-comunitario-2026-06-22.pptx
 ```
 
@@ -40,8 +42,12 @@ uv run --with python-pptx python build/fusionar.py   # recorta su base a 1-5 + f
 
 ## Archivos
 
-- `build/armar-geogreen.js` — generador de las slides 6–22 (contenido + estilo).
+- `build/armar-geogreen.js` — generador de las slides 6–25 (contenido + estilo).
 - `build/fusionar.py` — recorte (a 1–5) + fusión.
+- `build/agregar-video.py` — incrusta el video 3D reproducible en el deck final (post-fusión,
+  `python-pptx add_movie`); `fusionar.py` solo copia imágenes, no media.
+- `assets/render-poster.jpg` / `assets/render-carcasa-crop.mp4` — portada y video del modelo 3D
+  (recortados del screencast de Blender para mostrar solo el modelo).
 - `build/parte-geogreen.pptx` — parte 6–22 (intermedio).
 - `build/GeoGreen-socio-comunitario-2026-06-22.pdf` — export para revisar/compartir.
 - `build/montage-final.png` — las 22 slides de un vistazo.

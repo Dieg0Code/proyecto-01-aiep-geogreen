@@ -21,6 +21,7 @@ const IMG = {
   lockupW: path.join(ASSETS, "lockup-vinculacion-white.png"),
   app: path.join(REPO, "reuniones/2026-06-15/ppt/source/assets/app-geogreen-mapa-osorno.png"),
   proto: path.join(REPO, "docs/infografias/infografia-prototipo-original-sim-geogreen.jpg"),
+  render: path.join(ASSETS, "render-poster.jpg"),
   objetivo: path.join(REPO, "cronograma/infografias/infografia-objetivo-transversal-geogreen.png"),
   r4: path.join(REPO, "docs/arduino-uno-r4-wifi-dibujo-digital-crop.png"),
   s_hc: path.join(REPO, "docs/kit-sensores/assets/hc-sr04.jpg"),
@@ -229,6 +230,20 @@ function s09() {
   ];
   feats.forEach(([c, n, t, d], i) => featRow(s, 0.95, 2.32 + i * 1.18, 5.0, c, n, t, d, { sz: 0.56, glyphSize: 18, descH: 0.72 }));
   framed(s, IMG.proto, 6.35, 1.74, 6.2, 5.32, { radius: 0.04 });
+  footer(s, pg());
+}
+
+// =================== SLIDE 9b · Visualización 3D del dispositivo ===================
+function s09b() {
+  const s = pptx.addSlide(); bg(s, A.paper); rail(s, A.navy); lockup(s);
+  header(s, "Visualización", "El dispositivo en 3D",
+    "Una vista del aparato, el caso central de GeoGreen Escolar.", { titleW: 8.6, subtitleW: 8.4 });
+  tag(s, "Modelado 3D", 0.95, 2.46, A.navy);
+  bullets(s, [
+    "Los equipos modelan en 3D la carcasa que protege el dispositivo.",
+    "Una vista de cómo se vería el aparato fuera de la protoboard.",
+  ], 0.95, 3.1, 5.2, { accent: A.navy, gap: 0.95, size: 12.5, itemH: 0.82 });
+  framed(s, IMG.render, 6.7, 1.95, 5.9, 4.65, { radius: 0.04 });
   footer(s, pg());
 }
 
@@ -521,5 +536,5 @@ function s22() {
   txt(s, "GeoGreen Escolar Osorno · AIEP", 0.9, 7.2, 6.0, 0.16, { size: 8.4, color: "DCE6F2" });
 }
 
-[s06, s07, s08, s09, s10, s10b, s11, s12, s13, s14, s15, s16, s17, s17b, s18, s19, s20, s21, s22].forEach((fn) => fn());
+[s06, s07, s08, s09, s09b, s10, s10b, s11, s12, s13, s14, s15, s16, s17, s17b, s18, s19, s20, s21, s22].forEach((fn) => fn());
 pptx.writeFile({ fileName: path.join(HERE, "build", "parte-geogreen.pptx") }).then((f) => console.log("OK:", f, "·", PAGE - 5, "slides"));
