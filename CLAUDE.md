@@ -104,6 +104,12 @@ DevKit firmware track itself is not built; R4 is the physical networked path now
 
 **Python:** use **uv** (not pip — system Python can't write to its Scripts dir).
 
+**Context across sessions:** this project's cross-session context lives in **nem** (the `nem`
+skill / CLI). At the **start** of a session, recall it (`nem outline` → `nem search`/`nem read`)
+to pick up prior decisions, stakeholders and pending follow-ups (e.g. budget/compras, reuniones);
+when a thread is resolved, **persist** it (`nem add` → `nem commit`). Durable user facts and dated
+reminders go in `nem fact`. The user runs `nem sync`; you only commit locally.
+
 ## Common commands
 
 ```
