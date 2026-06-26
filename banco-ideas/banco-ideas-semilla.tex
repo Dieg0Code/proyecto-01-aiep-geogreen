@@ -1,0 +1,334 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1.9cm]{geometry}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+\setstretch{1.12}
+
+% --- Paleta institucional ---
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{102A43}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E6EEF7}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPAmber}{HTML}{E8A33D}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen Escolar · Banco de ideas semilla}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=3pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=3pt}
+\renewcommand{\arraystretch}{1.3}
+
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing{\section}{0pt}{16pt}{8pt}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{infobox}[2][]{
+  enhanced, colback=#2!7, colframe=#2, boxrule=0.5pt, arc=1.4mm,
+  left=4mm, right=4mm, top=3.5mm, bottom=3.5mm, #1
+}
+
+% --- Etiqueta del módulo (dato para quien arma el circuito) ---
+\newcommand{\serig}[1]{%
+  \tcbox[on line, colback=AIEPInk, colframe=AIEPInk, boxrule=0pt,
+    arc=0.8mm, left=1.8mm, right=1.8mm, top=0.5mm, bottom=0.5mm]%
+    {\small\bfseries\textcolor{white}{\texttt{#1}}}%
+}
+
+% --- Chip de nivel de dificultad ---
+\newcommand{\nivel}[2]{%
+  \tcbox[on line, colback=#1!14, colframe=#1, boxrule=0.6pt,
+    arc=0.9mm, left=1.8mm, right=1.8mm, top=0.5mm, bottom=0.5mm]%
+    {\footnotesize\bfseries\textcolor{#1}{#2}}%
+}
+\newcommand{\nbasico}{\nivel{AIEPGreen}{Fácil}}
+\newcommand{\nmedio}{\nivel{AIEPAmber}{Intermedio}}
+\newcommand{\nreto}{\nivel{AIEPRed}{Desafío}}
+
+% --- Tarjeta de sensor (foto + nombre llano + etiqueta + uso) ---
+% #1 archivo  #2 nombre llano  #3 etiqueta  #4 para qué sirve
+\newcommand{\poolcard}[4]{%
+\begin{tcolorbox}[colback=white, colframe=Line, boxrule=0.6pt, arc=1.4mm,
+  left=1.5mm, right=1.5mm, top=2mm, bottom=2mm, halign=center, valign=top]
+\includegraphics[height=2.2cm,keepaspectratio]{assets/#1}\\[1.4mm]
+{\small\bfseries\color{AIEPNavy}#2}\\[0.6mm]
+\serig{#3}\\[1.2mm]
+{\footnotesize\textcolor{AIEPSlate}{#4}}
+\end{tcolorbox}%
+}
+
+% --- Ficha de idea ---
+% #1 número  #2 título  #3 nivel  #4 problema/para qué (ambiental)
+% #5 sensores (entrada)  #6 cómo funciona  #7 variación o reto
+\newtcolorbox{ideabox}{
+  enhanced, colback=white, colframe=Line, boxrule=0.7pt, arc=1.6mm,
+  left=4mm, right=4mm, top=3.5mm, bottom=3.5mm, breakable=false,
+  before skip=9pt, after skip=9pt
+}
+\newcommand{\idea}[7]{%
+\begin{ideabox}
+{\large\bfseries\color{AIEPNavy}#1.\ #2}\hfill#3\par
+\vspace{2.5mm}
+{\color{AIEPSlate}\textbf{Para qué:}} #4\par\vspace{1.8mm}
+{\color{AIEPSlate}\textbf{Qué usa:}} #5\par\vspace{1.8mm}
+{\color{AIEPSlate}\textbf{Cómo funciona:}} #6\par\vspace{1.8mm}
+{\color{AIEPGreen}\textbf{Sube de nivel:}} #7
+\end{ideabox}%
+}
+
+\begin{document}
+
+% ===================== PORTADA =====================
+\begin{tcolorbox}[enhanced, colback=AIEPNavy, colframe=AIEPNavy, arc=0mm,
+  boxrule=0pt, left=6mm, right=6mm, top=6mm, bottom=6mm]
+{\color{white}\Huge\bfseries Banco de ideas semilla}\\[3mm]
+{\color{white}\Large GeoGreen Escolar}\\[4mm]
+{\color{AIEPSoftBlue}\large Proyectos de \textbf{sostenibilidad y medioambiente} listos para cuando
+un equipo dice ``no se me ocurre nada''. Todos se arman con el kit que ya tenemos y siguen la misma
+idea del prototipo GeoGreen: \textbf{el aparato mide algo, decide si pasó un límite y avisa con una
+luz o una alarma}.}
+\end{tcolorbox}
+
+\begin{infobox}{AIEPSoftBlue}
+\textbf{Cómo usar este banco.}
+La idea \emph{no} es entregarle un proyecto cerrado al estudiante, sino \textbf{darle un empujón}.
+Cuando un equipo no se decide: ofréceles \textbf{2 o 3} de estas ideas, pídeles que elijan una y
+que la \textbf{adapten} (cambiar el lugar, el límite, el sensor o lo que hace). Así la propuesta
+sigue siendo suya. Todas comparten el espíritu de GeoGreen: \textbf{cuidar el medioambiente y los
+recursos}. Cada idea trae una pista de ``\textcolor{AIEPGreen}{sube de nivel}'' para los equipos
+que quieran ir más allá. \emph{No hace falta saber programar para entender la idea}: cada ficha dice
+qué mide y qué hace.
+\end{infobox}
+
+\begin{infobox}{AIEPGreen}
+\textbf{El aparato primero; el software es el ``sube de nivel''.} El prototipo base es solo el
+dispositivo físico (sensor + luz/alarma) y lo puede armar \emph{cualquier} equipo. Sumarle
+software --- una app, un panel en vivo, un mapa o un aviso al celular --- es lo que lo lleva al
+siguiente nivel, y conecta directo con la app de GeoGreen y la placa con WiFi. Por eso casi todas
+las ideas tienen su capa de software en ``\textbf{sube de nivel}''.
+\end{infobox}
+
+% ===================== POOL DE SENSORES =====================
+\section{Los sensores que vamos a usar}
+El kit trae muchos sensores. Para empezar, estos son los más fáciles y los que más dan juego.
+Un \textbf{sensor} es la parte que ``siente'' algo del mundo (distancia, luz, humedad\ldots); una
+\textbf{salida} es la parte que ``avisa o actúa'' (una luz, un sonido, encender un aparato).
+Con esta mano de piezas se arman las ideas de este banco (y muchas más que se les ocurran).
+(La etiqueta oscura, tipo \serig{HC-SR04}, es solo el nombre técnico, útil para quien arma el
+circuito.)
+
+\vspace{3mm}
+{\large\bfseries\color{AIEPNavy}Sensores (lo que el proyecto ``siente'')}
+\vspace{2mm}
+
+\begin{tcbraster}[raster columns=4, raster equal height=rows,
+  raster column skip=2.6mm, raster row skip=2.6mm]
+\poolcard{hc-sr04.jpg}{Distancia}{HC-SR04}{Mide qué tan lejos está algo}
+\poolcard{ky-015.jpg}{Temperatura y humedad}{KY-015}{Del aire de un lugar}
+\poolcard{ky-001.jpg}{Temperatura}{KY-001}{Precisa, incluso del agua}
+\poolcard{ky-018.jpg}{Luz}{KY-018}{Cuánta luz hay (día/noche)}
+\poolcard{soil-moisture.jpg}{Humedad de la tierra}{Soil}{Si la tierra está seca}
+\poolcard{water-level.jpg}{Nivel de agua}{Water}{Cuánta agua hay}
+\poolcard{ky-021.jpg}{Sensor magnético}{KY-021}{Si una tapa quedó abierta}
+\end{tcbraster}
+
+\vspace{3mm}
+{\large\bfseries\color{AIEPGreen}Salidas (cómo el proyecto ``avisa o actúa'')}\\
+{\small\textcolor{AIEPSlate}{Las mismas tres del prototipo GeoGreen.}}
+\vspace{2mm}
+
+\begin{tcbraster}[raster columns=4, raster equal height=rows,
+  raster column skip=2.6mm, raster row skip=2.6mm]
+\poolcard{ky-011.jpg}{Luz de colores}{KY-011}{Semáforo verde / rojo}
+\poolcard{ky-012.jpg}{Zumbador}{KY-012}{Alarma sonora}
+\poolcard{ky-019.jpg}{Relé}{KY-019}{Enciende un aparato real}
+\end{tcbraster}
+
+\begin{infobox}{AIEPSoftBlue}
+Existe además un \textbf{manual aparte con la foto y los datos de cada sensor} del kit, por si un
+equipo quiere usar uno que no está en esta lista.
+\end{infobox}
+
+\begin{infobox}{AIEPRed}
+\textbf{Seguridad.} El sensor de distancia funciona a 5\,V y se conecta directo a nuestra placa
+(Arduino UNO R4). El relé puede manejar aparatos de 220\,V: si se llega a ese punto, siempre
+con \textbf{supervisión docente}.
+\end{infobox}
+
+% ===================== IDEAS =====================
+\section{12 ideas con impacto territorial y social}
+El sello de AIEP es el \textbf{impacto territorial y social}. Por eso cada idea parte de un
+\textbf{problema real de Osorno y la región de Los Lagos} y crece hacia un mapa o una red que llega
+a toda la comunidad. El aparato es simple; lo que escala es el dato compartido.
+
+\begin{infobox}{AIEPGold}
+\textbf{De la maqueta al territorio.} Cada idea arranca como un prototipo \textbf{simple y barato}
+--- un sensor, un \textbf{umbral} y una alarma --- pero su gracia es que \textbf{escala}: cuando
+muchos comparten el dato en un mapa o panel, el mismo aparato chico se vuelve un sistema que sirve a
+un barrio, una ciudad o toda la región. Empieza pequeño, piensa en grande.
+\end{infobox}
+
+\subsection*{\large\textcolor{AIEPGreen}{Aire y calefacción (la crisis de Osorno)}}
+
+\idea{1}{¿Está seca tu leña?}{\nbasico}%
+{Osorno es una de las ciudades con peor aire de Chile por la leña húmeda: al quemarse, llena el
+aire de humo dañino. Saber si tu leña está lista para quemar limpio baja el humo y cuida la salud
+de todo el barrio.}%
+{\serig{Soil} clavado en un trozo de leña mide qué tan húmeda está.}%
+{Compara tu leña con una muestra bien seca: si se acerca a la seca, verde, lista para quemar
+limpio; si sigue húmeda, rojo, hay que secarla más.}%
+{Un mapa del barrio con puntos donde se consigue leña seca y campañas para bajar el humo entre todos.}
+
+\idea{2}{Detector de humedad y moho en casa}{\nbasico}%
+{Las viviendas frías y húmedas del sur enferman (asma, bronquitis) y crían moho. Avisar a tiempo
+cuándo ventilar es salud para miles de familias.}%
+{\serig{KY-015} mide la humedad del aire de la pieza.}%
+{Si la humedad se mantiene sobre $\sim$70\% por más de media hora: rojo, ``ventila''. Verde cuando
+baja a un nivel sano.}%
+{Graficar la humedad del día y armar un ranking de las salas o viviendas más húmedas de un sector.}
+
+\subsection*{\large\textcolor{AIEPGreen}{Agua: crisis hídrica y comunidades}}
+
+\idea{3}{Vigía del estanque de Agua Potable Rural}{\nmedio}%
+{En la región, cientos de sistemas de Agua Potable Rural apenas alcanzan a abastecer a sus
+comunidades; quedarse sin agua sin aviso es grave. Vigilar el nivel del estanque permite reaccionar
+a tiempo.}%
+{\serig{HC-SR04} montado arriba del estanque, midiendo la distancia al agua.}%
+{El nivel sale de la distancia y la altura del estanque (lleno = poca distancia). Verde sobre 60\%,
+amarillo 30--60\%, rojo bajo 30\% + alarma.}%
+{Avisar al operador por celular y mostrar el nivel de varios estanques de la zona en un panel para
+coordinar el reparto.}
+
+\idea{4}{Riego eficiente para la sequía}{\nbasico}%
+{La región fue declarada en emergencia agrícola por falta de agua. Regar solo cuando la tierra lo
+necesita cuida un recurso escaso; ideal para huertos escolares o invernaderos comunitarios.}%
+{\serig{Soil} mide la humedad de la tierra del cultivo o el huerto.}%
+{Bajo el umbral de ``tierra seca'': aviso de regar (o riega solo con el relé \serig{KY-019}).
+Húmeda: verde, no riega.}%
+{Un panel del huerto con varias zonas y aviso al celular de cuál necesita agua, para repartir el
+riego sin desperdicio.}
+
+\idea{5}{Alarma de reserva de agua}{\nbasico}%
+{En una escuela rural o una sede, quedarse sin agua en el estanque o los bidones detiene todo. Una
+alarma simple de ``queda poca'' evita el apuro.}%
+{\serig{Water} puesto a la altura del nivel mínimo del estanque o bidón.}%
+{Mientras toca agua: verde. Cuando el agua baja y deja de tocarlo: rojo + alarma ``rellenar''.}%
+{Avisar por celular y, con un segundo punto, distinguir ``lleno / a la mitad / vacío''.}
+
+\subsection*{\large\textcolor{AIEPGreen}{Ríos y clima}}
+
+\idea{6}{Alerta temprana de crecida de río}{\nmedio}%
+{Los ríos del sur (como el Rahue y el Damas) se desbordan con las lluvias. Un aviso temprano de que
+el agua sube da tiempo a la comunidad para reaccionar.}%
+{\serig{HC-SR04} instalado en un puente, mirando hacia abajo, hacia el agua.}%
+{Si el agua sube, la distancia baja. Verde normal, amarillo alerta, rojo + alarma en nivel
+peligroso, a tiempo para avisar a la comunidad.}%
+{Enviar el nivel al celular o a una web en vivo y mostrar varios puntos del cauce en un mapa de
+alerta comunitaria.}
+
+\idea{7}{Salud del río}{\nmedio}%
+{El Río Damas y otros sufren descargas que dañan la vida del agua. Vigilar el río y delatar cuándo
+algo cambia ayuda a defenderlo y a exigir que se cuide.}%
+{\serig{KY-001} sumergido mide la temperatura del agua.}%
+{Compara con la temperatura normal del río; una subida brusca delata una descarga río arriba y
+enciende la alerta.}%
+{Medir en varios puntos del río y armar un mapa ciudadano de la salud del agua.}
+
+\subsection*{\large\textcolor{AIEPGreen}{Residuos}}
+
+\idea{8}{Contenedor inteligente (el caso base)}{\nbasico}%
+{Saber cuándo un basurero está lleno sin abrirlo: menos viajes de camión y menos desbordes en la
+ciudad.}%
+{\serig{HC-SR04} mide la distancia de la tapa a la basura.}%
+{La distancia se vuelve \% de llenado. Verde bajo 40\%, amarillo 40--80\%, rojo sobre 80\% +
+alarma. Es el prototipo de GeoGreen.}%
+{Mostrar todos los contenedores en un mapa de la ciudad (la app de GeoGreen) y optimizar la ruta de
+recolección.}
+
+\idea{9}{Alerta de tapa abierta en contenedores}{\nbasico}%
+{Un contenedor o punto limpio con la tapa abierta junta lluvia, da malos olores y atrae plagas.
+Avisar para cerrarlo cuida el barrio.}%
+{\serig{KY-021} (sensor magnético) más un imán pegado a la tapa.}%
+{Tapa cerrada (imán cerca): verde. Abierta más de 2 minutos: amarillo; más de 10: rojo + alarma.}%
+{Un mapa de los contenedores que quedan abiertos seguido, para enfocar el mantenimiento o una campaña.}
+
+\subsection*{\large\textcolor{AIEPGreen}{Energía e infraestructura}}
+
+\idea{10}{Alumbrado público que avisa cuándo falla}{\nmedio}%
+{Una ciudad tiene miles de luminarias; muchas quedan quemadas de noche o encendidas de día sin que
+nadie lo note. Detectarlo ahorra energía pública y mantiene las calles seguras.}%
+{\serig{KY-018} junto a la luminaria.}%
+{De noche con poca luz y la luminaria apagada: falla (quemada). De día con mucha luz y la luminaria
+encendida: desperdicio. En ambos casos, rojo.}%
+{Un mapa de la ciudad con cada luminaria en verde o rojo, para que mantenimiento sepa al instante
+cuál arreglar.}
+
+\idea{11}{¿Dónde pega más el sol?}{\nmedio}%
+{Aprovechar el sol --- para un huerto, un panel solar o secar leña --- parte por saber qué lugar
+recibe más luz a lo largo del día. Una medición simple lo resuelve y evita decisiones a ojo.}%
+{\serig{KY-018} mide la luz en distintos puntos del patio o el techo.}%
+{Compara cuánta luz recibe cada lugar y marca el más soleado; también delata salas que gastan luz
+de día por falta de luz natural.}%
+{Registrar el sol por hora y dibujar un ``mapa de sol'' del colegio o el terreno.}
+
+\subsection*{\large\textcolor{AIEPGreen}{Producción local}}
+
+\idea{12}{Guardián de la cadena de frío (leche, vacunas, alimentos)}{\nbasico}%
+{En una región lechera y rural, mantener el frío de la leche, las vacunas o los alimentos es clave:
+si el frío se corta, se pierde un producto caro y se arriesga la salud.}%
+{\serig{KY-001} dentro del refrigerador, el tanque de leche o el cooler.}%
+{Cada caso tiene su rango (ej. la leche cruda bajo $\sim$4\,\textdegree C). Si la temperatura sale
+del rango seguro: rojo + alarma al instante.}%
+{Guardar el historial de temperatura y avisar al teléfono del encargado apenas algo falla.}
+
+% ===================== FICHA TEMPLATE =====================
+\section{Ficha de idea (resumen en 4 líneas)}
+Cualquier proyecto, propio o tomado de este banco, se puede describir en 4 líneas. Si el equipo
+llena esta ficha, ya tiene su idea tecnológica inicial:
+
+\begin{infobox}{AIEPGold}
+\setstretch{1.5}
+\textbf{1. Problema ambiental / para qué sirve:} \dotfill\par
+\textbf{2. Qué mide y con qué sensor:} \dotfill\par
+\textbf{3. Cuándo se activa (el límite):} \dotfill\ (verde / amarillo / rojo)\par
+\textbf{4. Cómo avisa o actúa:} \dotfill\ (luz, alarma, encender algo, contar\ldots)
+\end{infobox}
+
+\begin{infobox}{AIEPSoftBlue}
+\textbf{Regla de oro para destrabar.} Casi todo proyecto entra en una frase:
+``\emph{cuando} [el sensor] pase de [un límite], \emph{entonces} [avisa o acciona]''.
+Si el equipo completa esa frase, ya tiene proyecto.
+\end{infobox}
+
+\end{document}
