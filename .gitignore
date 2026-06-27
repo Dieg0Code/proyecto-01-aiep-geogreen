@@ -1,6 +1,9 @@
 # Secretos (nunca subir)
 .wokwi_token
 *.token
+.env
+.env.*
+*.key
 
 # Artefactos de compilacion PlatformIO
 .pio/
