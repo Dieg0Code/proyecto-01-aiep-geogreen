@@ -1,4 +1,8 @@
 *.tmp
 *.bak
 ~*.lck
-
+hardware/kicad/.history/
+hardware/kicad/*.before-autoroute
+hardware/kicad/exports/*.dsn
+hardware/kicad/exports/*.ses
+hardware/kicad/exports/*.log
