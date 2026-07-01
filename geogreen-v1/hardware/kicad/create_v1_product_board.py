@@ -54,6 +54,35 @@ def add_model(item, filename, scale=(1, 1, 1), offset=(0, 0, 0), rotation=(0, 0,
     item.Add3DModel(model)
 
 
+def m8_4pin_footprint(board, ref, value):
+    item = pcbnew.FOOTPRINT(board)
+    item.SetReference(ref)
+    item.SetValue(value)
+    item.SetAttributes(pcbnew.FP_THROUGH_HOLE)
+    for number, x, y in [("1", -2, -2), ("2", -2, 2), ("3", 2, -2), ("4", 2, 2)]:
+        pad = pcbnew.PAD(item)
+        pad.SetNumber(number)
+        pad.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
+        pad.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+        pad.SetPosition(pt(x, y))
+        pad.SetSize(pcbnew.VECTOR2I(mm(1.7), mm(1.7)))
+        pad.SetDrillSize(pcbnew.VECTOR2I(mm(0.9), mm(0.9)))
+        pad.SetLayerSet(pcbnew.LSET.AllCuMask())
+        item.Add(pad)
+    for number, x, y in [("M1", -6, 0), ("M2", 6, 0)]:
+        pad = pcbnew.PAD(item)
+        pad.SetNumber(number)
+        pad.SetAttribute(pcbnew.PAD_ATTRIB_NPTH)
+        pad.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
+        pad.SetPosition(pt(x, y))
+        pad.SetSize(pcbnew.VECTOR2I(mm(3.2), mm(3.2)))
+        pad.SetDrillSize(pcbnew.VECTOR2I(mm(3.2), mm(3.2)))
+        pad.SetLayerSet(pcbnew.LSET.AllCuMask())
+        item.Add(pad)
+    add_model(item, "models/M8-4pin-IP67-simple.step")
+    return item
+
+
 def pad_net(item, pad, n):
     p = item.FindPadByNumber(str(pad))
     if p is not None:
@@ -124,11 +153,10 @@ text(board, "GeoGreen V1", 47.5, 58.5, 1.8)
 text(board, "PRODUCT PCB CONCEPT - NOT FAB READY", 47.5, 7.5, 0.9)
 
 u1 = fp(board, "RF_Module", "ESP32-C6-MINI-1", "U1", "ESP32-C6-MINI-1", 43, 24)
+u1.Models().clear()
 add_model(
     u1,
-    "${KICAD10_3DMODEL_DIR}/RF_Module.3dshapes/ESP32-C3-WROOM-02.step",
-    scale=(0.72, 0.72, 1),
-    offset=(0, 0, 0),
+    "models/ESP32-C6-MINI-1-simple.step",
 )
 usb = fp(board, "Connector_USB", "USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal", "J1", "USB-C", 47.5, 56, 180)
 f1 = fp(board, "Fuse", "Fuse_1206_3216Metric", "F1", "PTC_USB", 57, 51)
@@ -137,7 +165,14 @@ u2 = fp(board, "Package_TO_SOT_SMD", "SOT-23-5", "U2", "3V3_REG_TODO", 64, 45)
 c1 = fp(board, "Capacitor_SMD", "C_0805_2012Metric", "C1", "10uF", 60, 42)
 c2 = fp(board, "Capacitor_SMD", "C_0805_2012Metric", "C2", "10uF", 69, 42)
 
-sensor_ip = fp(board, "Connector_Amphenol", "Amphenol_M8S-03PMMR-SF8001", "J2", "IP67_SENSOR_CANDIDATE", 15, 42, 90)
+sensor_ip = m8_4pin_footprint(board, "J2", "M8_4PIN_IP67_SENSOR")
+sensor_ip.SetPosition(pt(15, 42))
+sensor_ip.SetOrientationDegrees(90)
+board.Add(sensor_ip)
+pad_net(sensor_ip, 1, v3)
+pad_net(sensor_ip, 2, gnd)
+pad_net(sensor_ip, 3, uart_rx)
+pad_net(sensor_ip, 4, sensor_rx)
 sensor_dbg = fp(board, "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", "J3", "A02YYUW_4WIRE", 28, 52)
 rgb = fp(board, "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", "J4", "RGB_SEMAFORO", 78, 22, 90)
 bz = fp(board, "Buzzer_Beeper", "Buzzer_12x9.5RM7.6", "BZ1", "BUZZER", 76, 44)
