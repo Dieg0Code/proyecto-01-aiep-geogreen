@@ -231,6 +231,23 @@ function addNotesAndValidate(slide, opts = {}) {
   warnIfSlideElementsOutOfBounds(slide, pptx);
 }
 
+function addCenteredTextInCircle(slide, text, opts) {
+  const inset = 0.01;
+  slide.addText(text, {
+    x: opts.x + inset,
+    y: opts.y + inset,
+    w: opts.d - inset * 2,
+    h: opts.d - inset * 2,
+    fontFace: opts.fontFace ?? TYPOGRAPHY.display,
+    fontSize: opts.fontSize,
+    bold: opts.bold ?? true,
+    color: opts.color,
+    align: "center",
+    valign: "mid",
+    margin: 0,
+  });
+}
+
 function addStepCircle(slide, x, y, number, color, label, body) {
   slide.addShape(SH.ellipse, {
     x,
@@ -240,17 +257,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     fill: { color },
     line: { color: C.white, pt: 1.4 },
   });
-  slide.addText(String(number).padStart(2, "0"), {
+  addCenteredTextInCircle(slide, String(number).padStart(2, "0"), {
     x,
-    y: y + 0.2,
-    w: 0.74,
-    h: 0.24,
-    fontFace: TYPOGRAPHY.display,
+    y,
+    d: 0.74,
     fontSize: 13.5,
-    bold: true,
     color: color === C.gold ? C.navyDeep : C.white,
-    align: "center",
-    margin: 0,
   });
   slide.addText(label, {
     x: x - 0.36,
@@ -531,28 +543,18 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: item.color },
       line: { color: C.white, pt: 2 },
     });
-    slide.addText(item.min, {
-      x,
-      y: 3.26,
-      w: item.d,
-      h: 0.29,
+    slide.addText([
+      { text: item.min, options: { breakLine: true, fontSize: item.d < 0.8 ? 17 : 21, bold: true } },
+      { text: "min", options: { fontSize: 9.5, bold: true } },
+    ], {
+      x: x + 0.01,
+      y: 3.46 - item.d / 2 + 0.01,
+      w: item.d - 0.02,
+      h: item.d - 0.02,
       fontFace: TYPOGRAPHY.display,
-      fontSize: item.d < 0.8 ? 17 : 21,
-      bold: true,
       color: textColor,
       align: "center",
-      margin: 0,
-    });
-    slide.addText("min", {
-      x,
-      y: 3.62,
-      w: item.d,
-      h: 0.14,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 9.5,
-      bold: true,
-      color: textColor,
-      align: "center",
+      valign: "mid",
       margin: 0,
     });
     slide.addText(item.body, {
@@ -787,17 +789,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: stage.accent },
       line: { color: C.white, pt: 1.5 },
     });
-    slide.addText(stage.badge, {
+    addCenteredTextInCircle(slide, stage.badge, {
       x: stage.x + 0.82,
-      y: 2.61,
-      w: 0.64,
-      h: 0.2,
-      fontFace: TYPOGRAPHY.display,
+      y: 2.43,
+      d: 0.64,
       fontSize: 11.5,
-      bold: true,
       color: stage.accent === C.gold ? C.navyDeep : C.white,
-      align: "center",
-      margin: 0,
     });
     slide.addText(stage.title, {
       x: stage.x + 0.18,
@@ -1032,17 +1029,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: anchor.accent },
       line: { color: anchor.accent },
     });
-    slide.addText(anchor.n, {
+    addCenteredTextInCircle(slide, anchor.n, {
       x: anchor.x + 0.2,
-      y: anchor.y + 0.4,
-      w: 0.54,
-      h: 0.18,
-      fontFace: TYPOGRAPHY.display,
+      y: anchor.y + 0.25,
+      d: 0.54,
       fontSize: 11.2,
-      bold: true,
       color: anchor.accent === C.gold ? C.navyDeep : C.white,
-      align: "center",
-      margin: 0,
     });
     slide.addText(anchor.title, {
       x: anchor.x + 0.9,
@@ -1077,10 +1069,10 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     line: { color: C.white, pt: 1.7 },
   });
   slide.addText("HISTORIA\nDEL PROYECTO", {
-    x: 5.24,
-    y: 3.55,
-    w: 1.86,
-    h: 0.7,
+    x: 5.01,
+    y: 2.85,
+    w: 2.32,
+    h: 2.32,
     fontFace: TYPOGRAPHY.display,
     fontSize: 17.5,
     bold: true,
@@ -1181,17 +1173,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: step.color },
       line: { color: step.color },
     });
-    slide.addText(step.n, {
+    addCenteredTextInCircle(slide, step.n, {
       x: step.x + 0.1,
-      y: step.y + 0.18,
-      w: 0.4,
-      h: 0.16,
-      fontFace: TYPOGRAPHY.display,
+      y: step.y + 0.07,
+      d: 0.4,
       fontSize: 9.5,
-      bold: true,
       color: textColor,
-      align: "center",
-      margin: 0,
     });
     slide.addText(step.label, {
       x: step.x + 0.66,
@@ -1291,17 +1278,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: item.color },
       line: { color: C.white, pt: 1.8 },
     });
-    slide.addText(item.n, {
+    addCenteredTextInCircle(slide, item.n, {
       x: item.cx - 0.43,
-      y: 3.12,
-      w: 0.86,
-      h: 0.24,
-      fontFace: TYPOGRAPHY.display,
+      y: 2.89,
+      d: 0.86,
       fontSize: 14,
-      bold: true,
       color: textColor,
-      align: "center",
-      margin: 0,
     });
     slide.addText(item.prompt, {
       x: item.cx - 0.92,
@@ -1576,17 +1558,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: accent },
       line: { color: accent },
     });
-    slide.addText(String(index + 1), {
+    addCenteredTextInCircle(slide, String(index + 1), {
       x: 1.0,
-      y: y + 0.14,
-      w: 0.38,
-      h: 0.16,
-      fontFace: TYPOGRAPHY.display,
+      y: y + 0.04,
+      d: 0.38,
       fontSize: 9.5,
-      bold: true,
       color: accent === C.gold ? C.navyDeep : C.white,
-      align: "center",
-      margin: 0,
     });
     slide.addText(starter, {
       x: 1.58,
@@ -1740,17 +1717,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: step.color },
       line: { color: C.white, pt: 1.4 },
     });
-    slide.addText(step.n, {
+    addCenteredTextInCircle(slide, step.n, {
       x: 1.08,
-      y: step.y + 0.17,
-      w: 0.64,
-      h: 0.22,
-      fontFace: TYPOGRAPHY.display,
+      y: step.y,
+      d: 0.64,
       fontSize: 14,
-      bold: true,
       color: step.color === C.gold ? C.navyDeep : C.white,
-      align: "center",
-      margin: 0,
     });
     slide.addText(step.title, {
       x: 1.98,
@@ -1812,17 +1784,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: C.white },
       line: { color: C.border, pt: 1.3 },
     });
-    slide.addText(String(index + 1), {
+    addCenteredTextInCircle(slide, String(index + 1), {
       x: 5.32,
-      y: y + 0.1,
-      w: 0.38,
-      h: 0.18,
-      fontFace: TYPOGRAPHY.display,
+      y: y + 0.02,
+      d: 0.38,
       fontSize: 10.5,
-      bold: true,
       color: C.navy,
-      align: "center",
-      margin: 0,
     });
     slide.addText(question, {
       x: 5.94,
@@ -1915,10 +1882,10 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     line: { color: C.white, pt: 2 },
   });
   slide.addText("PRESENTACIÓN\nDEL EQUIPO", {
-    x: 8.92,
-    y: 3.0,
-    w: 2.18,
-    h: 0.66,
+    x: 8.73,
+    y: 2.19,
+    w: 2.56,
+    h: 2.56,
     fontFace: TYPOGRAPHY.display,
     fontSize: 16.5,
     bold: true,
@@ -2282,28 +2249,19 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     fill: { color: C.gold },
     line: { color: C.white, pt: 2 },
   });
-  slide.addText("6", {
-    x: 5.18,
-    y: 3.0,
-    w: 2.98,
-    h: 0.68,
+  slide.addText([
+    { text: "6", options: { breakLine: true, fontSize: 38, bold: true } },
+    { text: "APORTES", options: { breakLine: true, fontSize: 15.5, bold: true } },
+    { text: "UNA HISTORIA", options: { fontSize: 15.5, bold: true } },
+  ], {
+    x: 5.19,
+    y: 2.55,
+    w: 2.96,
+    h: 2.96,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 38,
-    bold: true,
     color: C.navyDeep,
     align: "center",
-    margin: 0,
-  });
-  slide.addText("APORTES\nUNA HISTORIA", {
-    x: 5.56,
-    y: 3.8,
-    w: 2.22,
-    h: 0.62,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 15.5,
-    bold: true,
-    color: C.navyDeep,
-    align: "center",
+    valign: "mid",
     margin: 0,
   });
 
@@ -2867,17 +2825,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: criterion.color },
       line: { color: criterion.color },
     });
-    slide.addText(criterion.n, {
+    addCenteredTextInCircle(slide, criterion.n, {
       x: criterion.x + 0.28,
-      y: criterion.y + 0.4,
-      w: 0.58,
-      h: 0.2,
-      fontFace: TYPOGRAPHY.display,
+      y: criterion.y + 0.24,
+      d: 0.58,
       fontSize: 10.5,
-      bold: true,
       color: textColor,
-      align: "center",
-      margin: 0,
     });
     slide.addText(criterion.title, {
       x: criterion.x + 1.02,
@@ -3019,17 +2972,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: step.color },
       line: { color: C.navyDeep, pt: 2 },
     });
-    slide.addText(step.n, {
+    addCenteredTextInCircle(slide, step.n, {
       x: step.x,
-      y: 2.21,
-      w: 0.82,
-      h: 0.22,
-      fontFace: TYPOGRAPHY.display,
+      y: 1.98,
+      d: 0.82,
       fontSize: 12,
-      bold: true,
       color: textColor,
-      align: "center",
-      margin: 0,
     });
     slide.addText(step.title, {
       x: step.x + 1.02,
@@ -3316,17 +3264,12 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: { color: output.color },
       line: { color: output.color },
     });
-    slide.addText(output.n, {
+    addCenteredTextInCircle(slide, output.n, {
       x: 0.84,
-      y: output.y + 0.15,
-      w: 0.56,
-      h: 0.2,
-      fontFace: TYPOGRAPHY.display,
+      y: output.y,
+      d: 0.56,
       fontSize: 10.5,
-      bold: true,
       color: textColor,
-      align: "center",
-      margin: 0,
     });
     slide.addText(output.title, {
       x: 1.66,
