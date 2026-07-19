@@ -162,7 +162,7 @@ function addHeader(slide, kicker, title, subtitle, number, opts = {}) {
     w: 5.6,
     h: 0.2,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 9.8,
+    fontSize: 10.8,
     bold: true,
     charSpacing: 1.3,
     color: opts.kickerColor ?? C.red,
@@ -186,7 +186,7 @@ function addHeader(slide, kicker, title, subtitle, number, opts = {}) {
       w: opts.subtitleW ?? 9.9,
       h: opts.subtitleH ?? 0.36,
       fontFace: TYPOGRAPHY.body,
-      fontSize: opts.subtitleFontSize ?? 13.5,
+      fontSize: opts.subtitleFontSize ?? 15,
       color: opts.subtitleColor ?? C.slate,
       margin: 0,
     });
@@ -220,7 +220,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 0.74,
     h: 0.24,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 12.5,
+    fontSize: 13.5,
     bold: true,
     color: color === C.gold ? C.navyDeep : C.white,
     align: "center",
@@ -232,19 +232,19 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 1.46,
     h: 0.28,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 12.5,
+    fontSize: 13.5,
     bold: true,
     color: C.white,
     align: "center",
     margin: 0,
   });
   slide.addText(body, {
-    x: x - 0.58,
+    x: x - 0.76,
     y: y + 1.28,
-    w: 1.9,
-    h: 0.52,
+    w: 2.26,
+    h: 0.64,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 10.2,
+    fontSize: 12.4,
     color: C.paleInk,
     align: "center",
     margin: 0,
@@ -356,7 +356,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 3.0,
     h: 0.22,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 10.2,
+    fontSize: 11,
     bold: true,
     charSpacing: 1.5,
     color: C.cyan,
@@ -379,7 +379,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 9.85,
     h: 0.42,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 14.2,
+    fontSize: 15.5,
     color: C.paleInk,
     margin: 0,
   });
@@ -411,7 +411,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 1.9,
     h: 0.18,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 9.8,
+    fontSize: 10.8,
     bold: true,
     charSpacing: 1.05,
     color: C.navyDeep,
@@ -423,7 +423,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 7.94,
     h: 0.3,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 15.8,
+    fontSize: 16.5,
     bold: true,
     color: C.navyDeep,
     margin: 0,
@@ -439,132 +439,155 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     slide,
     "Ruta de 60 minutos",
     "Una hora, cinco movimientos",
-    "Cada tramo deja un producto que alimenta al siguiente.",
+    "Cada movimiento produce algo concreto y prepara el siguiente.",
     3,
   );
 
-  slide.addShape(SH.ellipse, {
-    x: 0.74,
-    y: 2.28,
-    w: 2.0,
-    h: 2.0,
-    fill: { color: C.navy },
-    line: { color: C.white, pt: 2 },
-  });
-  slide.addText("60", {
-    x: 0.74,
-    y: 2.64,
-    w: 2.0,
-    h: 0.58,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 34,
-    bold: true,
-    color: C.white,
-    align: "center",
-    margin: 0,
-  });
-  slide.addText("MINUTOS", {
-    x: 0.74,
-    y: 3.28,
-    w: 2.0,
-    h: 0.2,
+  const route = [
+    { cx: 1.45, d: 0.86, min: "10", title: "RECUPERAR", body: "Historia + respaldo", color: C.red },
+    { cx: 3.88, d: 0.98, min: "15", title: "CONSTRUIR", body: "Guion comprensible", color: C.cyan },
+    { cx: 6.32, d: 0.94, min: "13", title: "COORDINAR", body: "Soporte + seis voces", color: C.gold },
+    { cx: 8.87, d: 1.12, min: "19", title: "ENSAYAR", body: "Corregir + comprobar", color: C.green },
+    { cx: 11.66, d: 0.72, min: "03", title: "CERRAR", body: "Versión preparada", color: C.navy },
+  ];
+
+  slide.addText("00:00", {
+    x: 0.72,
+    y: 2.2,
+    w: 0.86,
+    h: 0.24,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 10,
+    fontSize: 11.5,
     bold: true,
-    charSpacing: 1.4,
-    color: C.cyan,
-    align: "center",
+    color: C.slate,
     margin: 0,
+  });
+  slide.addText("01:00", {
+    x: 11.42,
+    y: 2.2,
+    w: 0.86,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11.5,
+    bold: true,
+    color: C.slate,
+    align: "right",
+    margin: 0,
+  });
+  slide.addShape(SH.line, {
+    x: 1.45,
+    y: 3.46,
+    w: 10.21,
+    h: 0,
+    line: { color: C.softBlue, pt: 11, beginArrowType: "none", endArrowType: "triangle" },
   });
 
-  const segments = [
-    { min: "10", title: "RECUPERAR", body: "Historia y respaldo", color: C.red, w: 1.68 },
-    { min: "15", title: "GUION", body: "Relato comprensible", color: C.cyan, w: 2.22 },
-    { min: "13", title: "COORDINAR", body: "Soporte, roles y transiciones", color: C.gold, w: 2.04 },
-    { min: "19", title: "ENSAYAR", body: "Observar, corregir y comprobar", color: C.green, w: 2.62 },
-    { min: "03", title: "CERRAR", body: "Versión preparada", color: C.navy, w: 1.42 },
-  ];
-  let x = 2.84;
-  segments.forEach((segment, index) => {
-    slide.addShape(SH.roundRect, {
-      x,
-      y: 2.16,
-      w: segment.w,
-      h: 2.28,
-      rectRadius: 0.03,
-      fill: { color: index === 4 ? C.softBlue : C.white },
-      line: { color: segment.color, pt: 1.35 },
-    });
-    slide.addShape(SH.rect, {
-      x,
-      y: 2.16,
-      w: segment.w,
-      h: 0.17,
-      fill: { color: segment.color },
-      line: { color: segment.color },
-    });
-    slide.addText(segment.min, {
-      x: x + 0.18,
-      y: 2.52,
-      w: segment.w - 0.36,
-      h: 0.54,
+  route.forEach((item) => {
+    const x = item.cx - item.d / 2;
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addText(item.title, {
+      x: item.cx - 1.08,
+      y: 2.5,
+      w: 2.16,
+      h: 0.3,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 28,
+      fontSize: 14.5,
       bold: true,
-      color: segment.color,
-      align: "center",
-      margin: 0,
-    });
-    slide.addText(segment.title, {
-      x: x + 0.12,
-      y: 3.18,
-      w: segment.w - 0.24,
-      h: 0.24,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: segment.w < 1.5 ? 9.2 : 10.1,
-      bold: true,
-      charSpacing: 0.65,
       color: C.navy,
       align: "center",
       margin: 0,
     });
-    slide.addText(segment.body, {
-      x: x + 0.13,
-      y: 3.58,
-      w: segment.w - 0.26,
-      h: 0.52,
+    slide.addShape(SH.ellipse, {
+      x,
+      y: 3.46 - item.d / 2,
+      w: item.d,
+      h: item.d,
+      fill: { color: item.color },
+      line: { color: C.white, pt: 2 },
+    });
+    slide.addText(item.min, {
+      x,
+      y: 3.26,
+      w: item.d,
+      h: 0.29,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: item.d < 0.8 ? 17 : 21,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText("min", {
+      x,
+      y: 3.62,
+      w: item.d,
+      h: 0.14,
       fontFace: TYPOGRAPHY.body,
-      fontSize: segment.w < 1.5 ? 9.2 : 10.2,
-      color: C.slate,
+      fontSize: 9.5,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.cx - 1.06,
+      y: 4.18,
+      w: 2.12,
+      h: 0.48,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 13,
+      bold: true,
+      color: C.ink,
       align: "center",
       valign: "mid",
       margin: 0,
     });
-    x += segment.w + 0.08;
   });
 
   slide.addShape(SH.roundRect, {
-    x: 1.35,
-    y: 5.25,
-    w: 10.62,
-    h: 0.96,
+    x: 1.06,
+    y: 5.3,
+    w: 11.2,
+    h: 0.94,
     rectRadius: 0.04,
     fill: { color: C.navy },
     line: { color: C.navy },
   });
-  slide.addText("Hoy preparan una versión clara. El proyecto sigue creciendo con el trabajo del equipo.", {
-    x: 1.72,
-    y: 5.55,
-    w: 9.9,
-    h: 0.3,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 17,
+  slide.addShape(SH.roundRect, {
+    x: 1.24,
+    y: 5.52,
+    w: 1.72,
+    h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.green },
+    line: { color: C.green },
+  });
+  slide.addText("TRAMO CLAVE", {
+    x: 1.38,
+    y: 5.68,
+    w: 1.44,
+    h: 0.18,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.5,
     bold: true,
+    charSpacing: 0.8,
     color: C.white,
     align: "center",
     margin: 0,
   });
-  addNotesAndValidate(slide);
+  slide.addText("19 minutos para ensayar, observar y convertir una dificultad en una mejora comprobable.", {
+    x: 3.26,
+    y: 5.55,
+    w: 8.45,
+    h: 0.4,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 16,
+    bold: true,
+    color: C.white,
+    valign: "mid",
+    margin: 0,
+  });
+  addNotesAndValidate(slide, { ignoreLines: true });
 }
 
 // 04 · Apertura Bloque 1
@@ -587,7 +610,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     fill: C.red,
     line: C.red,
     color: C.white,
-    fontSize: 9.8,
+    fontSize: 10.8,
   });
   slide.addText("Antes de presentar,\nrecuperen su historia", {
     x: 0.76,
@@ -624,7 +647,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       fill: chip.fill,
       line: chip.fill,
       color: chip.color ?? C.white,
-      fontSize: 10.2,
+      fontSize: 11.2,
     });
   });
   slide.addShape(SH.roundRect, {
@@ -658,102 +681,117 @@ function addStepCircle(slide, x, y, number, color, label, body) {
   addHeader(
     slide,
     "Trazabilidad del proyecto",
-    "La presentación recibe el trabajo anterior",
-    "Cuatro etapas, una sola historia: cada producto explica por qué existe el siguiente.",
+    "Tres productos entran. Una historia sale.",
+    "La presentación conecta lo que el equipo ya investigó, decidió y puso a prueba.",
     5,
   );
 
   const stages = [
     {
       x: 0.72,
-      w: 2.56,
       badge: "M1",
       title: "PROBLEMA",
-      body: "Situación validada\n+ contexto afectado",
+      body: "Situación + contexto",
       question: "¿Qué necesita cambiar?",
       fill: C.redSoft,
       accent: C.red,
     },
     {
-      x: 3.48,
-      w: 2.56,
+      x: 3.22,
       badge: "M2",
       title: "SOLUCIÓN",
-      body: "Respuesta propuesta\n+ recursos definidos",
+      body: "Respuesta + recursos",
       question: "¿Qué decidimos hacer?",
       fill: C.cyanSoft,
       accent: C.cyan,
     },
     {
-      x: 6.24,
-      w: 2.56,
+      x: 5.72,
       badge: "M3",
       title: "EVIDENCIA",
-      body: "Prueba, maqueta,\nsimulación o registro",
+      body: "Prueba + aprendizaje",
       question: "¿Qué podemos mostrar?",
       fill: C.goldSoft,
       accent: C.gold,
     },
-    {
-      x: 9.0,
-      w: 3.58,
-      badge: "M4",
-      title: "RELATO PÚBLICO",
-      body: "Guion + soporte + roles\n+ primera corrección",
-      question: "¿Cómo lo comprenderá otra persona?",
-      fill: C.greenSoft,
-      accent: C.green,
-    },
   ];
 
-  stages.forEach((stage, index) => {
+  slide.addText("ENTRADAS", {
+    x: 0.72,
+    y: 1.88,
+    w: 7.3,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1.2,
+    color: C.slate,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("SALIDA", {
+    x: 8.82,
+    y: 1.88,
+    w: 3.8,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1.2,
+    color: C.green,
+    align: "center",
+    margin: 0,
+  });
+
+  stages.forEach((stage) => {
     slide.addShape(SH.roundRect, {
       x: stage.x,
-      y: 2.06,
-      w: stage.w,
-      h: 3.18,
+      y: 2.2,
+      w: 2.28,
+      h: 3.12,
       rectRadius: 0.04,
       fill: { color: stage.fill },
-      line: { color: stage.accent, pt: 1.35 },
+      line: { color: stage.accent, pt: 1.7 },
     });
     slide.addShape(SH.ellipse, {
-      x: stage.x + 0.18,
-      y: 2.28,
-      w: 0.58,
-      h: 0.58,
+      x: stage.x + 0.82,
+      y: 2.43,
+      w: 0.64,
+      h: 0.64,
       fill: { color: stage.accent },
-      line: { color: stage.accent },
+      line: { color: C.white, pt: 1.5 },
     });
     slide.addText(stage.badge, {
-      x: stage.x + 0.18,
-      y: 2.44,
-      w: 0.58,
+      x: stage.x + 0.82,
+      y: 2.61,
+      w: 0.64,
       h: 0.2,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 10.5,
+      fontSize: 11.5,
       bold: true,
       color: stage.accent === C.gold ? C.navyDeep : C.white,
       align: "center",
       margin: 0,
     });
     slide.addText(stage.title, {
-      x: stage.x + 0.9,
-      y: 2.34,
-      w: stage.w - 1.08,
-      h: 0.28,
+      x: stage.x + 0.18,
+      y: 3.22,
+      w: 1.92,
+      h: 0.32,
       fontFace: TYPOGRAPHY.display,
-      fontSize: stage.title.length > 13 ? 13.3 : 15,
+      fontSize: 16.5,
       bold: true,
       color: C.navy,
+      align: "center",
       margin: 0,
     });
     slide.addText(stage.body, {
-      x: stage.x + 0.25,
-      y: 3.22,
-      w: stage.w - 0.5,
-      h: 0.82,
+      x: stage.x + 0.18,
+      y: 3.78,
+      w: 1.92,
+      h: 0.5,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 13.1,
+      fontSize: 14,
       bold: true,
       color: C.ink,
       align: "center",
@@ -761,78 +799,111 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       margin: 0,
     });
     slide.addShape(SH.line, {
-      x: stage.x + 0.32,
-      y: 4.28,
-      w: stage.w - 0.64,
+      x: stage.x + 0.26,
+      y: 4.42,
+      w: 1.76,
       h: 0,
-      line: { color: stage.accent, pt: 1, transparency: 35 },
+      line: { color: stage.accent, pt: 1.2, transparency: 25 },
     });
     slide.addText(stage.question, {
-      x: stage.x + 0.24,
-      y: 4.48,
-      w: stage.w - 0.48,
-      h: 0.46,
+      x: stage.x + 0.18,
+      y: 4.65,
+      w: 1.92,
+      h: 0.42,
       fontFace: TYPOGRAPHY.body,
-      fontSize: stage.w > 3 ? 11.2 : 10.7,
+      fontSize: 12.4,
       bold: true,
       italic: true,
       color: C.slate,
       align: "center",
       margin: 0,
     });
-    if (index < stages.length - 1) {
-      slide.addShape(SH.chevron, {
-        x: stage.x + stage.w + 0.055,
-        y: 3.3,
-        w: 0.09,
-        h: 0.58,
-        fill: { color: C.navy },
-        line: { color: C.navy },
-      });
-    }
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 8.18,
+    y: 3.16,
+    w: 0.5,
+    h: 1.1,
+    fill: { color: C.green },
+    line: { color: C.green },
+  });
+  slide.addShape(SH.roundRect, {
+    x: 8.88,
+    y: 2.2,
+    w: 3.72,
+    h: 3.12,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.green, pt: 2 },
+  });
+  components.addPill(slide, SH, "M4 · PITCH", {
+    x: 9.18,
+    y: 2.48,
+    w: 1.44,
+    h: 0.42,
+    fill: C.green,
+    line: C.green,
+    color: C.white,
+    fontSize: 11.5,
+  });
+  slide.addText("UNA HISTORIA\nQUE SE ENTIENDE", {
+    x: 9.17,
+    y: 3.16,
+    w: 3.14,
+    h: 0.72,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 22,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Guion + soporte visual\n+ seis voces + una corrección", {
+    x: 9.18,
+    y: 4.08,
+    w: 3.04,
+    h: 0.62,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 15,
+    bold: true,
+    color: C.paleInk,
+    margin: 0,
+  });
+  slide.addText("¿Cómo lo comprenderá otra persona?", {
+    x: 9.18,
+    y: 4.84,
+    w: 3.04,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 12.8,
+    bold: true,
+    italic: true,
+    color: C.gold,
+    margin: 0,
   });
 
   slide.addShape(SH.roundRect, {
-    x: 1.2,
+    x: 1.08,
     y: 5.72,
-    w: 10.9,
-    h: 0.72,
+    w: 11.16,
+    h: 0.76,
     rectRadius: 0.04,
-    fill: { color: C.white },
-    line: { color: C.red, pt: 1.2 },
-  });
-  slide.addShape(SH.rect, {
-    x: 1.2,
-    y: 5.72,
-    w: 0.15,
-    h: 0.72,
-    fill: { color: C.red },
+    fill: { color: C.redSoft },
     line: { color: C.red },
   });
-  slide.addText("SI FALTA UNA PIEZA", {
-    x: 1.62,
-    y: 5.94,
-    w: 1.8,
-    h: 0.2,
-    fontFace: TYPOGRAPHY.body,
-    fontSize: 9.8,
-    bold: true,
-    charSpacing: 0.9,
-    color: C.red,
-    margin: 0,
-  });
-  slide.addText("Se registra como brecha de respaldo. No se completa con una afirmación inventada.", {
-    x: 3.45,
-    y: 5.9,
-    w: 8.25,
+  slide.addText("SI FALTA RESPALDO: SE REGISTRA. NO SE INVENTA.", {
+    x: 1.42,
+    y: 5.96,
+    w: 10.48,
     h: 0.28,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 14.3,
+    fontSize: 16,
     bold: true,
-    color: C.navy,
+    color: C.red,
+    align: "center",
     margin: 0,
   });
-  addNotesAndValidate(slide);
+  addNotesAndValidate(slide, { ignoreLines: true });
 }
 
 // 06 · Cuatro anclajes
@@ -847,7 +918,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 4.2,
     h: 0.2,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 9.8,
+    fontSize: 10.8,
     bold: true,
     charSpacing: 1.25,
     color: C.cyan,
@@ -868,9 +939,9 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     x: 0.76,
     y: 1.48,
     w: 9.5,
-    h: 0.36,
+    h: 0.42,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 13.5,
+    fontSize: 15.2,
     color: C.paleInk,
     margin: 0,
   });
@@ -941,7 +1012,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       w: 0.54,
       h: 0.18,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 10.2,
+      fontSize: 11.2,
       bold: true,
       color: anchor.accent === C.gold ? C.navyDeep : C.white,
       align: "center",
@@ -953,18 +1024,18 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       w: anchor.w - 1.14,
       h: 0.28,
       fontFace: TYPOGRAPHY.display,
-      fontSize: anchor.title.length > 20 ? 12.1 : 13.7,
+      fontSize: anchor.title.length > 20 ? 13.8 : 15.2,
       bold: true,
       color: C.white,
       margin: 0,
     });
     slide.addText(anchor.body, {
       x: anchor.x + 0.24,
-      y: anchor.y + 0.9,
+      y: anchor.y + 0.84,
       w: anchor.w - 0.48,
-      h: 0.38,
+      h: 0.5,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 10.8,
+      fontSize: 12.4,
       color: C.paleInk,
       align: "center",
       margin: 0,
@@ -1008,7 +1079,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     w: 10.15,
     h: 0.2,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 10.4,
+    fontSize: 11.3,
     bold: true,
     charSpacing: 0.45,
     color: C.white,
