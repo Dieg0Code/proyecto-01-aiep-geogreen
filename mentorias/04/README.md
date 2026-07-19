@@ -163,3 +163,139 @@ La facilitación no consiste en escribir la historia por el equipo. Su función 
 - Puente: en el siguiente bloque, el equipo convertirá este inventario en un guion de pitch con inicio, desarrollo y cierre.
 
 ---
+
+# BLOQUE 2: Construir el guion del pitch
+
+- Duración: 15 minutos
+- Objetivo del bloque: transformar el inventario narrativo del Bloque 1 en un guion breve, coherente y comprensible para una audiencia diversa, manteniendo la relación entre problema, contexto, solución, funcionamiento, evidencia y aporte esperado.
+- Modalidad: modelamiento breve, escritura colaborativa y prueba de comprensión entre pares.
+
+## Desarrollo
+
+### 2.1 Del inventario a una historia que se puede seguir
+
+El inventario construido en el bloque anterior contiene las ideas esenciales, pero todavía no constituye una presentación. Para convertirlo en un pitch, el equipo debe tomar una decisión comunicativa: **en qué orden necesita recibir la información una persona que no conoce el proyecto**.
+
+Un pitch no es una lista de componentes, una lectura de la ficha de trabajo ni una sucesión de frases repartidas entre integrantes. Es una narración breve en la que cada parte prepara la siguiente. La audiencia debe poder comprender por qué existe la propuesta antes de conocer sus detalles y reconocer qué evidencia sostiene lo que el equipo comunica.
+
+El/la docente presenta la siguiente secuencia:
+
+```text
+1. PROBLEMA Y CONTEXTO
+   ¿Qué situación observamos y dónde ocurre?
+              ↓
+2. PERSONAS O COMUNIDAD RELACIONADA
+   ¿A quién afecta o quiénes participan de esta situación?
+              ↓
+3. SOLUCIÓN PROPUESTA
+   ¿Qué respuesta construimos y por qué resulta pertinente?
+              ↓
+4. FUNCIONAMIENTO
+   ¿Qué hace la propuesta y cómo se desarrolla su acción principal?
+              ↓
+5. EVIDENCIA
+   ¿Qué podemos mostrar para respaldar el avance?
+              ↓
+6. APORTE ESPERADO
+   ¿Qué mejora busca favorecer y qué queremos que la audiencia recuerde?
+```
+
+Esta estructura protege la **coherencia interna** del proyecto. Si el problema cambia al redactar el pitch, si la solución no responde al contexto o si la evidencia corresponde a otra idea, el relato pierde consistencia. El guion debe mostrar una relación reconocible:
+
+```text
+PROBLEMA  ←→  SOLUCIÓN  ←→  EVIDENCIA
+```
+
+No es necesario que todos los proyectos utilicen las mismas palabras ni reproduzcan exactamente el caso GeoGreen. La secuencia organiza el pensamiento, pero cada equipo mantiene la identidad de su propuesta y decide qué información resulta indispensable para comprenderla.
+
+### 2.2 Comunicar para una audiencia diversa
+
+La presentación será escuchada por personas con experiencias y conocimientos distintos. Por ello, el equipo debe aplicar un criterio de **accesibilidad comunicacional**: utilizar lenguaje claro sin perder precisión, explicar las expresiones técnicas que sean necesarias y relacionar cada recurso con la función que cumple.
+
+En lugar de centrar el relato en nombres de placas, sensores, materiales o aplicaciones, conviene comenzar por la utilidad que estos elementos tienen dentro de la propuesta.
+
+| Expresión centrada en el componente | Reformulación centrada en la función |
+|---|---|
+| “Usamos un HC-SR04 conectado a una placa.” | “Un sensor mide la distancia y permite estimar cuándo el contenedor se está llenando.” |
+| “La información llega a un dashboard.” | “Los datos se muestran en una pantalla para facilitar el seguimiento y la toma de decisiones.” |
+| “Integramos un sistema de alertas.” | “Cuando se alcanza una condición crítica, el sistema avisa para que sea posible actuar a tiempo.” |
+
+En el caso de GeoGreen, el funcionamiento puede resumirse como **sensar → enviar → visualizar → alertar**. Esta cadena sirve para mostrar cómo una tecnología completa un recorrido desde la observación de una situación hasta una respuesta posible. Cada equipo puede reconocer y explicar la cadena propia de su propuesta, aunque utilice otros recursos o se encuentre en una etapa distinta de desarrollo.
+
+La claridad también exige un lenguaje respetuoso del contexto. Desde Desarrollo Social, se evita atribuir el problema a supuestas carencias individuales o responsabilizar de manera general a una comunidad. El relato debe describir situaciones, prácticas y condiciones observables.
+
+| Formulación que conviene revisar | Formulación situada y respetuosa |
+|---|---|
+| “Las personas no tienen conciencia.” | “En el contexto observado no existe una práctica clara y sostenida de separación de residuos.” |
+| “Nuestra idea solucionará completamente el problema.” | “Nuestra propuesta busca aportar a una mejora concreta y mostramos una primera evidencia de su funcionamiento.” |
+| “Creamos una solución innovadora.” | “Diseñamos una propuesta que permite medir, informar o facilitar una acción específica.” |
+
+El criterio no consiste en hacer que la propuesta parezca menos ambiciosa. Consiste en comunicar su valor de manera verificable, evitando estigmatizaciones y diferenciando con claridad lo que el equipo **observó**, lo que **desarrolló** y lo que **espera aportar**.
+
+### 2.3 Redactar la primera versión del guion
+
+Cada equipo utiliza su inventario narrativo para completar una primera versión. Se recomienda trabajar con frases breves y escribir una idea principal en cada segmento.
+
+```text
+1. En [lugar o contexto] observamos que...
+
+2. Esta situación afecta o se relaciona con...
+
+3. Frente a este problema, nuestro equipo propone...
+
+4. La propuesta funciona de la siguiente manera...
+
+5. Podemos respaldar nuestro avance mostrando...
+
+6. Con esta propuesta esperamos aportar a...
+
+7. La idea principal que queremos dejar es...
+```
+
+La escritura puede organizarse en cuatro momentos breves:
+
+1. **Ordenar:** ubicar la información del Bloque 1 en los siete segmentos del guion.
+2. **Conectar:** incorporar frases que expliquen la relación entre el problema, la solución y la evidencia.
+3. **Depurar:** retirar repeticiones, tecnicismos innecesarios y afirmaciones que no puedan respaldarse.
+4. **Leer en voz alta:** comprobar si el relato suena natural y si puede comprenderse sin consultar los documentos anteriores.
+
+Durante la redacción, el/la docente acompaña como mediador/a del proceso comunicacional. No escribe el discurso por el equipo ni reemplaza sus decisiones. Su intervención busca favorecer la reflexión mediante preguntas como:
+
+- ¿Qué necesita saber primero alguien que nunca ha escuchado esta propuesta?
+- ¿Dónde se reconoce el contexto y las personas relacionadas con el problema?
+- ¿La solución está explicada por lo que permite hacer o solamente por sus componentes?
+- ¿Qué frase conecta la evidencia con la propuesta?
+- ¿Se distingue lo que ya realizaron de lo que esperan conseguir?
+- ¿Qué parte podría decirse de una forma más directa?
+
+### 2.4 Prueba de comprensión
+
+Antes de cerrar el bloque, cada equipo entrega su guion a otra persona del mismo grupo para una lectura completa. Quien lee responde, sin recibir explicaciones adicionales, cuatro preguntas:
+
+1. ¿Cuál es el problema y en qué contexto ocurre?
+2. ¿Qué propone el equipo?
+3. ¿Cómo funciona la propuesta?
+4. ¿Qué evidencia existe y qué aporte se espera?
+
+Si alguna respuesta no puede recuperarse del texto, el equipo identifica el punto de quiebre y corrige la frase correspondiente. Esta prueba desplaza la revisión desde “nos gusta cómo suena” hacia un criterio observable: **otra persona puede reconstruir la propuesta a partir del guion**.
+
+La revisión no busca uniformar las presentaciones. Busca asegurar que la intención del equipo sea comprensible para una audiencia que no participó en las mentorías ni conoce sus decisiones previas.
+
+### Preguntas guía
+
+- ¿El relato permite comprender primero la situación y luego la respuesta?
+- ¿Se reconoce a las personas y al contexto sin estigmatizarlos?
+- ¿Cada término técnico necesario está explicado mediante su función?
+- ¿La solución mantiene relación directa con el problema validado?
+- ¿La evidencia respalda una decisión, un funcionamiento o un aprendizaje concreto?
+- ¿El guion diferencia entre avances logrados y aportes esperados?
+- ¿Qué frase debería recordar la audiencia al terminar la presentación?
+
+### Cierre del bloque
+
+- Idea clave: un buen pitch vuelve comprensible el proceso del equipo sin simplificarlo en exceso ni exagerar sus resultados.
+- Comprobación breve: una persona que no redactó el guion puede identificar el problema, la solución, el funcionamiento, la evidencia y el aporte esperado.
+- Producto del bloque: primera versión estructurada y revisada del guion del pitch.
+- Puente: en el siguiente bloque, el equipo convertirá el guion en una presentación coordinada, definiendo el soporte visual, los roles y las transiciones entre sus integrantes.
+
+---
