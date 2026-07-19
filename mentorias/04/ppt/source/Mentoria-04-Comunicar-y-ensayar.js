@@ -2681,7 +2681,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
   addHeader(
     slide,
     "Pauta común de observación",
-    "Cuatro preguntas observan el ensayo",
+    "Observen el ensayo desde cuatro focos",
     "Miren acciones que el equipo puede mantener o modificar, no características personales.",
     18,
     { titleFontSize: 25.5 },
@@ -2690,6 +2690,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
   const criteria = [
     {
       x: 0.72,
+      y: 2.18,
       color: C.red,
       n: "01",
       title: "SE ENTIENDE",
@@ -2697,15 +2698,8 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       key: "CLARIDAD",
     },
     {
-      x: 3.76,
-      color: C.cyan,
-      n: "02",
-      title: "SE CONECTA",
-      body: "¿Problema, solución y aporte mantienen una relación coherente?",
-      key: "COHERENCIA",
-    },
-    {
-      x: 6.8,
+      x: 0.72,
+      y: 4.34,
       color: C.gold,
       n: "03",
       title: "SE DEMUESTRA",
@@ -2713,7 +2707,17 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       key: "RESPALDO",
     },
     {
-      x: 9.84,
+      x: 9.06,
+      y: 2.18,
+      color: C.cyan,
+      n: "02",
+      title: "SE CONECTA",
+      body: "¿Problema, solución y aporte mantienen una relación coherente?",
+      key: "COHERENCIA",
+    },
+    {
+      x: 9.06,
+      y: 4.34,
       color: C.green,
       n: "04",
       title: "SE COORDINA",
@@ -2721,107 +2725,236 @@ function addStepCircle(slide, x, y, number, color, label, body) {
       key: "EJECUCIÓN",
     },
   ];
+
+  // Escena central: el equipo presenta; los cuatro focos observan acciones concretas.
+  slide.addShape(SH.roundRect, {
+    x: 4.74,
+    y: 2.06,
+    w: 3.84,
+    h: 3.92,
+    rectRadius: 0.05,
+    fill: { color: C.navyDeep },
+    line: { color: C.navy, pt: 1.2 },
+    shadow: { type: "outer", color: "AAB4C0", blur: 2, angle: 45, distance: 1, opacity: 0.2 },
+  });
+  slide.addShape(SH.rect, {
+    x: 4.74,
+    y: 2.06,
+    w: 3.84,
+    h: 0.12,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("EL ENSAYO", {
+    x: 5.02,
+    y: 2.34,
+    w: 3.28,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 16.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("una versión completa, sin detenerse", {
+    x: 5.08,
+    y: 2.72,
+    w: 3.16,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.5,
+    color: C.paleInk,
+    align: "center",
+    margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 5.24,
+    y: 3.12,
+    w: 2.84,
+    h: 1.28,
+    rectRadius: 0.03,
+    fill: { color: C.white },
+    line: { color: C.border, pt: 0.8 },
+  });
+  slide.addShape(SH.rect, {
+    x: 5.56,
+    y: 3.43,
+    w: 1.38,
+    h: 0.14,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addShape(SH.rect, {
+    x: 5.56,
+    y: 3.72,
+    w: 2.08,
+    h: 0.12,
+    fill: { color: C.cyan },
+    line: { color: C.cyan },
+  });
+  slide.addShape(SH.rect, {
+    x: 5.56,
+    y: 3.98,
+    w: 1.72,
+    h: 0.12,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+
+  const people = [
+    { x: 5.46, color: C.red },
+    { x: 6.34, color: C.cyan },
+    { x: 7.22, color: C.green },
+  ];
+  people.forEach((person) => {
+    slide.addShape(SH.ellipse, {
+      x: person.x,
+      y: 4.62,
+      w: 0.42,
+      h: 0.42,
+      fill: { color: person.color },
+      line: { color: person.color },
+    });
+    slide.addShape(SH.roundRect, {
+      x: person.x - 0.08,
+      y: 5.08,
+      w: 0.58,
+      h: 0.4,
+      rectRadius: 0.04,
+      fill: { color: C.navy },
+      line: { color: person.color, pt: 1.2 },
+    });
+  });
+  slide.addText("OBSERVEN ACCIONES", {
+    x: 5.1,
+    y: 5.62,
+    w: 3.12,
+    h: 0.18,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 9.6,
+    bold: true,
+    charSpacing: 0.9,
+    color: C.gold,
+    align: "center",
+    margin: 0,
+  });
+
   criteria.forEach((criterion) => {
     const textColor = criterion.color === C.gold ? C.navyDeep : C.white;
     slide.addShape(SH.roundRect, {
       x: criterion.x,
-      y: 2.1,
-      w: 2.76,
-      h: 3.8,
+      y: criterion.y,
+      w: 3.56,
+      h: 1.64,
       rectRadius: 0.04,
       fill: { color: C.white },
-      line: { color: criterion.color, pt: 1.6 },
+      line: { color: criterion.color, pt: 1.5 },
+    });
+    slide.addShape(SH.rect, {
+      x: criterion.x,
+      y: criterion.y,
+      w: 0.12,
+      h: 1.64,
+      fill: { color: criterion.color },
+      line: { color: criterion.color },
     });
     slide.addShape(SH.ellipse, {
-      x: criterion.x + 0.88,
-      y: 2.42,
-      w: 1.0,
-      h: 1.0,
+      x: criterion.x + 0.28,
+      y: criterion.y + 0.24,
+      w: 0.58,
+      h: 0.58,
       fill: { color: criterion.color },
-      line: { color: C.white, pt: 1.6 },
+      line: { color: criterion.color },
     });
     slide.addText(criterion.n, {
-      x: criterion.x + 0.88,
-      y: 2.72,
-      w: 1.0,
-      h: 0.28,
+      x: criterion.x + 0.28,
+      y: criterion.y + 0.4,
+      w: 0.58,
+      h: 0.2,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 15,
+      fontSize: 10.5,
       bold: true,
       color: textColor,
       align: "center",
       margin: 0,
     });
     slide.addText(criterion.title, {
-      x: criterion.x + 0.2,
-      y: 3.72,
-      w: 2.36,
-      h: 0.3,
+      x: criterion.x + 1.02,
+      y: criterion.y + 0.18,
+      w: 2.26,
+      h: 0.28,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 15.5,
+      fontSize: 14.2,
       bold: true,
       color: C.navy,
-      align: "center",
+      margin: 0,
+    });
+    slide.addText(criterion.key, {
+      x: criterion.x + 1.02,
+      y: criterion.y + 0.53,
+      w: 2.26,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.2,
+      bold: true,
+      charSpacing: 0.7,
+      color: criterion.color,
       margin: 0,
     });
     slide.addText(criterion.body, {
-      x: criterion.x + 0.24,
-      y: 4.28,
-      w: 2.28,
-      h: 0.88,
+      x: criterion.x + 0.3,
+      y: criterion.y + 0.88,
+      w: 2.98,
+      h: 0.52,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 12.6,
+      fontSize: 11.2,
       color: C.ink,
-      align: "center",
       valign: "mid",
       margin: 0,
     });
-    slide.addShape(SH.roundRect, {
-      x: criterion.x + 0.42,
-      y: 5.34,
-      w: 1.92,
-      h: 0.38,
-      rectRadius: 0.04,
+
+    const isLeft = criterion.x < 5;
+    const lineY = criterion.y + 0.82;
+    slide.addShape(SH.line, {
+      x: isLeft ? criterion.x + 3.56 : 8.62,
+      y: lineY,
+      w: isLeft ? 0.36 : 0.44,
+      h: 0,
+      line: { color: criterion.color, pt: 1.7, transparency: 12 },
+    });
+    slide.addShape(SH.ellipse, {
+      x: isLeft ? 4.62 : 8.6,
+      y: lineY - 0.06,
+      w: 0.12,
+      h: 0.12,
       fill: { color: criterion.color },
       line: { color: criterion.color },
-    });
-    slide.addText(criterion.key, {
-      x: criterion.x + 0.54,
-      y: 5.45,
-      w: 1.68,
-      h: 0.16,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 10.5,
-      bold: true,
-      charSpacing: 0.65,
-      color: textColor,
-      align: "center",
-      margin: 0,
     });
   });
 
   slide.addShape(SH.roundRect, {
-    x: 1.36,
-    y: 6.2,
-    w: 10.6,
-    h: 0.5,
+    x: 1.5,
+    y: 6.34,
+    w: 10.32,
+    h: 0.46,
     rectRadius: 0.04,
     fill: { color: C.navy },
     line: { color: C.navy },
   });
   slide.addText("REGISTREN UNA OBSERVACIÓN CONCRETA POR DIMENSIÓN", {
-    x: 1.72,
-    y: 6.34,
-    w: 9.88,
-    h: 0.2,
+    x: 1.84,
+    y: 6.46,
+    w: 9.64,
+    h: 0.19,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 14.5,
+    fontSize: 13.8,
     bold: true,
     color: C.white,
     align: "center",
     margin: 0,
   });
-  addNotesAndValidate(slide);
+  addNotesAndValidate(slide, { ignoreLines: true });
 }
 
 // 19 · Retroalimentación y corrección verificable
@@ -2842,7 +2975,7 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     color: C.cyan,
     margin: 0,
   });
-  slide.addText("Una observación debe producir una decisión", {
+  slide.addText("Una observación debe mover una decisión", {
     x: 0.74,
     y: 0.82,
     w: 9.0,
@@ -2864,112 +2997,165 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     margin: 0,
   });
 
-  const feedback = [
-    {
-      x: 0.78,
-      n: "01",
-      title: "OBSERVACIÓN",
-      question: "¿Qué ocurrió?",
-      example: "La solución apareció antes del problema.",
-      color: C.red,
-    },
-    {
-      x: 4.43,
-      n: "02",
-      title: "EFECTO",
-      question: "¿Qué dificultó?",
-      example: "No se entendió por qué existía la propuesta.",
-      color: C.gold,
-    },
-    {
-      x: 8.08,
-      n: "03",
-      title: "AJUSTE",
-      question: "¿Qué cambiaremos?",
-      example: "Mover el problema al inicio del relato.",
-      color: C.green,
-    },
+  const steps = [
+    { x: 0.92, color: C.red, n: "01", title: "OBSERVAR", question: "¿Qué ocurrió?" },
+    { x: 5.02, color: C.gold, n: "02", title: "EXPLICAR", question: "¿Qué efecto produjo?" },
+    { x: 9.12, color: C.green, n: "03", title: "DECIDIR", question: "¿Qué cambiaremos?" },
   ];
-  feedback.forEach((item, index) => {
-    const textColor = item.color === C.gold ? C.navyDeep : C.white;
-    slide.addShape(SH.roundRect, {
-      x: item.x,
-      y: 2.22,
-      w: 3.18,
-      h: 2.78,
-      rectRadius: 0.04,
-      fill: { color: C.darkPanel },
-      line: { color: item.color, pt: 1.5 },
-    });
+  slide.addShape(SH.line, {
+    x: 1.48,
+    y: 2.38,
+    w: 8.76,
+    h: 0,
+    line: { color: C.blue, pt: 5, transparency: 20 },
+  });
+  steps.forEach((step, index) => {
+    const textColor = step.color === C.gold ? C.navyDeep : C.white;
     slide.addShape(SH.ellipse, {
-      x: item.x + 0.22,
-      y: 2.48,
-      w: 0.58,
-      h: 0.58,
-      fill: { color: item.color },
-      line: { color: item.color },
+      x: step.x,
+      y: 1.98,
+      w: 0.82,
+      h: 0.82,
+      fill: { color: step.color },
+      line: { color: C.navyDeep, pt: 2 },
     });
-    slide.addText(item.n, {
-      x: item.x + 0.22,
-      y: 2.64,
-      w: 0.58,
-      h: 0.2,
+    slide.addText(step.n, {
+      x: step.x,
+      y: 2.21,
+      w: 0.82,
+      h: 0.22,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 10.5,
+      fontSize: 12,
       bold: true,
       color: textColor,
       align: "center",
       margin: 0,
     });
-    slide.addText(item.title, {
-      x: item.x + 0.98,
-      y: 2.54,
-      w: 1.92,
-      h: 0.28,
+    slide.addText(step.title, {
+      x: step.x + 1.02,
+      y: 2.05,
+      w: 2.28,
+      h: 0.3,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 15,
+      fontSize: 16,
       bold: true,
+      color: step.color,
+      margin: 0,
+    });
+    slide.addText(step.question, {
+      x: step.x + 1.02,
+      y: 2.43,
+      w: 2.34,
+      h: 0.26,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.7,
+      color: C.paleInk,
+      margin: 0,
+    });
+    if (index < steps.length - 1) {
+      slide.addShape(SH.chevron, {
+        x: step.x + 3.48,
+        y: 2.15,
+        w: 0.24,
+        h: 0.46,
+        fill: { color: C.cyan },
+        line: { color: C.cyan },
+      });
+    }
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.78,
+    y: 3.14,
+    w: 11.78,
+    h: 2.46,
+    rectRadius: 0.05,
+    fill: { color: C.white },
+    line: { color: C.white },
+    shadow: { type: "outer", color: "000000", blur: 2, angle: 45, distance: 1, opacity: 0.18 },
+  });
+  slide.addShape(SH.roundRect, {
+    x: 0.98,
+    y: 3.36,
+    w: 1.5,
+    h: 0.36,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  slide.addText("CASO APLICADO", {
+    x: 1.14,
+    y: 3.46,
+    w: 1.18,
+    h: 0.16,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 9.3,
+    bold: true,
+    charSpacing: 0.55,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+
+  const applied = [
+    {
+      x: 1.02,
+      color: C.red,
+      label: "OBSERVACIÓN",
+      body: "La solución apareció antes del problema.",
+    },
+    {
+      x: 4.78,
+      color: C.gold,
+      label: "EFECTO",
+      body: "No se entendió por qué existía la propuesta.",
+    },
+    {
+      x: 8.54,
+      color: C.green,
+      label: "AJUSTE",
+      body: "Mover el problema al inicio del relato.",
+    },
+  ];
+  applied.forEach((item, index) => {
+    slide.addShape(SH.rect, {
+      x: item.x,
+      y: 3.94,
+      w: 0.1,
+      h: 1.02,
+      fill: { color: item.color },
+      line: { color: item.color },
+    });
+    slide.addText(item.label, {
+      x: item.x + 0.28,
+      y: 3.92,
+      w: 2.88,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.5,
+      bold: true,
+      charSpacing: 0.6,
       color: item.color,
       margin: 0,
     });
-    slide.addText(item.question, {
-      x: item.x + 0.3,
-      y: 3.32,
-      w: 2.58,
-      h: 0.3,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 13,
-      bold: true,
-      color: C.white,
-      align: "center",
-      margin: 0,
-    });
-    slide.addShape(SH.line, {
-      x: item.x + 0.42,
-      y: 3.82,
-      w: 2.34,
-      h: 0,
-      line: { color: item.color, pt: 1.1, transparency: 25 },
-    });
-    slide.addText(item.example, {
-      x: item.x + 0.32,
-      y: 4.04,
-      w: 2.54,
-      h: 0.62,
+    slide.addText(item.body, {
+      x: item.x + 0.28,
+      y: 4.3,
+      w: 2.82,
+      h: 0.68,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 13.3,
+      fontSize: 13.8,
       bold: true,
-      color: C.paleInk,
-      align: "center",
+      color: C.navyDeep,
       valign: "mid",
       margin: 0,
     });
-    if (index < feedback.length - 1) {
+    if (index < applied.length - 1) {
       slide.addShape(SH.chevron, {
-        x: item.x + 3.3,
-        y: 3.18,
-        w: 0.24,
-        h: 0.76,
+        x: item.x + 3.28,
+        y: 4.24,
+        w: 0.22,
+        h: 0.58,
         fill: { color: C.blue },
         line: { color: C.blue },
       });
@@ -2977,47 +3163,92 @@ function addStepCircle(slide, x, y, number, color, label, body) {
   });
 
   slide.addShape(SH.roundRect, {
-    x: 1.06,
-    y: 5.5,
-    w: 11.2,
-    h: 1.02,
+    x: 1.04,
+    y: 5.88,
+    w: 11.24,
+    h: 0.7,
     rectRadius: 0.04,
     fill: { color: C.gold },
     line: { color: C.gold },
   });
-  slide.addText("CORREGIR", {
-    x: 1.4,
-    y: 5.73,
-    w: 1.4,
+  slide.addText("CAMBIAR 1 PARTE", {
+    x: 1.36,
+    y: 6.08,
+    w: 2.18,
     h: 0.22,
     fontFace: TYPOGRAPHY.body,
-    fontSize: 11,
-    bold: true,
-    charSpacing: 0.8,
-    color: C.navyDeep,
-    margin: 0,
-  });
-  slide.addText("Cambien una parte prioritaria y reensayen su entrada, aporte y salida.", {
-    x: 2.94,
-    y: 5.68,
-    w: 7.02,
-    h: 0.34,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 16,
+    fontSize: 11.2,
     bold: true,
     color: C.navyDeep,
     align: "center",
     margin: 0,
   });
-  slide.addText("¿Ahora se comprende?", {
-    x: 10.02,
-    y: 5.7,
-    w: 1.9,
-    h: 0.3,
+  slide.addText("→", {
+    x: 3.56,
+    y: 6.0,
+    w: 0.52,
+    h: 0.32,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 14,
+    fontSize: 20,
     bold: true,
     color: C.red,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("REENSAYARLA", {
+    x: 4.12,
+    y: 6.08,
+    w: 2.16,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11.2,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("→", {
+    x: 6.32,
+    y: 6.0,
+    w: 0.52,
+    h: 0.32,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 20,
+    bold: true,
+    color: C.red,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("COMPROBAR", {
+    x: 6.92,
+    y: 6.08,
+    w: 1.82,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11.2,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 9.02,
+    y: 5.99,
+    w: 2.82,
+    h: 0.46,
+    rectRadius: 0.04,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("¿AHORA SE COMPRENDE?", {
+    x: 9.22,
+    y: 6.12,
+    w: 2.42,
+    h: 0.18,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 10.8,
+    bold: true,
+    color: C.white,
     align: "center",
     margin: 0,
   });
