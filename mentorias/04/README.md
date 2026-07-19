@@ -299,3 +299,148 @@ La revisión no busca uniformar las presentaciones. Busca asegurar que la intenc
 - Puente: en el siguiente bloque, el equipo convertirá el guion en una presentación coordinada, definiendo el soporte visual, los roles y las transiciones entre sus integrantes.
 
 ---
+
+# BLOQUE 3: Preparar soporte visual, roles y transiciones
+
+- Duración: 13 minutos
+- Objetivo del bloque: convertir el guion del pitch en una presentación colectiva, seleccionando apoyos visuales pertinentes y distribuyendo entre los seis integrantes una secuencia de intervención con responsabilidades, transiciones y tiempos previstos.
+- Modalidad: diseño rápido por equipos, asignación de responsabilidades y organización de una pauta de presentación.
+
+### Distribución interna del tiempo
+
+| Minutos | Acción del equipo |
+|---:|---|
+| 0–3 | Seleccionar el soporte visual y definir qué función cumple dentro del relato. |
+| 3–9 | Distribuir las seis intervenciones y completar la pauta de presentación. |
+| 9–13 | Redactar transiciones, coordinar el uso del soporte y realizar una lectura rápida de la secuencia. |
+
+## Desarrollo
+
+### 3.1 El soporte visual cumple una función
+
+El guion explica la propuesta mediante la voz del equipo; el soporte visual permite **situar, aclarar o demostrar** aquello que sería difícil comprender solamente con palabras. Puede consistir en una presentación, un afiche, una fotografía, un diagrama, una simulación, un video breve, una maqueta, una interfaz o un prototipo físico. No todos los equipos necesitan utilizar el mismo formato ni acumular varios recursos.
+
+Antes de incorporar una imagen o un objeto, el equipo responde tres preguntas:
+
+```text
+¿QUÉ ESTÁ VIENDO LA AUDIENCIA?
+        ↓
+¿QUÉ IDEA AYUDA A COMPRENDER?
+        ↓
+¿QUÉ AFIRMACIÓN O AVANCE PERMITE RESPALDAR?
+```
+
+Si el recurso no permite responder al menos una de estas preguntas, probablemente cumple una función decorativa y puede retirarse. La selección debe mantener la trazabilidad construida en los bloques anteriores.
+
+| Función comunicativa | Apoyo posible | Qué debería comprender la audiencia |
+|---|---|---|
+| Situar el problema | fotografía del contexto, mapa, dato breve o esquema de actores | dónde ocurre la situación y quiénes se relacionan con ella |
+| Explicar la solución | boceto, flujo, storyboard, diagrama o modelo | qué propone el equipo y cómo responde al problema |
+| Mostrar funcionamiento | simulación, interfaz, demostración, secuencia de imágenes o prototipo | qué acción realiza la propuesta y qué sucede durante su uso |
+| Respaldar el avance | registro de prueba, comparación, resultado, error corregido, fotografía o video | qué construyó, probó o aprendió efectivamente el equipo |
+| Cerrar con sentido | frase clave, síntesis visual o imagen del aporte esperado | qué mejora busca favorecer y qué idea conviene recordar |
+
+Cada recurso seleccionado debe incorporar una explicación oral. Mostrar una fotografía sin indicar qué evidencia contiene, reproducir un video sin contextualizarlo o exhibir un prototipo sin señalar qué se probó deja la interpretación completamente en manos de la audiencia.
+
+Para favorecer la accesibilidad comunicacional, el equipo aplica criterios básicos:
+
+- una idea principal por apoyo visual;
+- títulos y textos que puedan leerse desde el fondo de la sala;
+- contraste suficiente entre fondo y contenido;
+- imágenes enfocadas, recortadas sobre el elemento importante y sin detalles irrelevantes;
+- diagramas con recorridos simples y etiquetas comprensibles;
+- videos breves, probados previamente y centrados en la acción que se desea demostrar;
+- datos acompañados por una frase que explique por qué son relevantes.
+
+La pregunta orientadora no es “¿se ve bonito?”, sino: **¿ayuda a comprender mejor y mantiene el foco en la propuesta?**
+
+### 3.2 Seis roles, una presentación compartida
+
+Los seis roles definidos desde el Taller 1 se mantienen. En esta mentoría, cada responsabilidad se traduce en una contribución comunicativa concreta. De esta forma, la presentación representa el trabajo colectivo y no queda concentrada en una sola persona.
+
+| Rol del equipo | Contribución al pitch | Responsabilidad durante la presentación |
+|---|---|---|
+| Coordinación | apertura y recorrido general | presenta al equipo y la propuesta, cuida el orden de las intervenciones y recupera la secuencia si ocurre una interrupción |
+| Investigación | problema, contexto y personas relacionadas | comunica el diagnóstico utilizando antecedentes verificables y lenguaje situado |
+| Diseño | forma de la solución | explica el boceto, flujo, modelo o experiencia de uso y relaciona sus decisiones con el problema |
+| Tecnología | funcionamiento de la propuesta | traduce sensores, recursos o procesos técnicos a acciones comprensibles para la audiencia |
+| Pruebas y evidencia | avance verificable | muestra qué se construyó, probó o registró y distingue resultados, dificultades y aspectos todavía proyectados |
+| Comunicación | aporte esperado y cierre | integra la idea principal, conecta el proyecto con su aporte ambiental o comunitario y cierra el relato |
+
+La distribución no convierte el proyecto en seis partes aisladas. Cada integrante debe comprender el relato completo, reconocer la evidencia y saber qué ocurre antes y después de su intervención. El rol asigna una responsabilidad principal; el sentido de la propuesta pertenece al equipo completo.
+
+Para evitar intervenciones simbólicas, cada participación debe contener al menos una **idea sustantiva**. Decir solamente el nombre del equipo, cambiar una diapositiva o presentar al siguiente integrante no constituye por sí solo una participación suficiente.
+
+### 3.3 Diseñar las transiciones
+
+Una transición conecta dos partes del relato y ayuda a que la audiencia perciba una sola presentación, no seis discursos consecutivos. Cada integrante prepara tres elementos:
+
+1. **Entrada:** retoma en una frase la idea anterior.
+2. **Aporte:** comunica su idea principal y utiliza el apoyo visual correspondiente.
+3. **Salida:** abre la pregunta o el contenido que desarrollará la siguiente persona.
+
+El/la docente puede modelar la diferencia con estos ejemplos:
+
+| Transición débil | Transición que mantiene el hilo |
+|---|---|
+| “Ahora sigue mi compañero.” | “Ya identificamos dónde ocurre el problema; ahora [nombre] mostrará cómo nuestra propuesta responde a esa situación.” |
+| “A mí me toca explicar el sensor.” | “Para que la propuesta pueda reconocer este cambio, incorporamos un sensor cuya función explicará [nombre].” |
+| “Eso sería todo de mi parte.” | “La idea funciona en el diseño; a continuación veremos qué logramos comprobar durante las pruebas.” |
+
+Las transiciones deben ser breves y naturales. No necesitan memorizarse palabra por palabra, pero sí dejar claro por qué la presentación avanza hacia la parte siguiente.
+
+También se define la coordinación con el soporte visual:
+
+- quién activa, sostiene o cambia cada recurso;
+- en qué momento exacto aparece;
+- qué elemento debe observar la audiencia;
+- cuándo se retira o se avanza al siguiente apoyo;
+- quién continúa hablando si un recurso tarda en cargar o no puede mostrarse.
+
+Esta coordinación reduce silencios, movimientos improvisados y explicaciones que no coinciden con lo que se está mostrando.
+
+### 3.4 Construir la pauta de presentación
+
+Cada equipo integra guion, roles y soporte visual en una pauta única. Los tiempos que se registran corresponden a una **previsión de trabajo** y se ajustarán con la medición real del ensayo en el Bloque 4.
+
+| Orden | Rol e integrante | Idea principal | Soporte visual o evidencia | Acción durante el tramo | Tiempo previsto | Frase de transición |
+|---:|---|---|---|---|---|---|
+| 1 | Coordinación: | | | | | |
+| 2 | Investigación: | | | | | |
+| 3 | Diseño: | | | | | |
+| 4 | Tecnología: | | | | | |
+| 5 | Pruebas y evidencia: | | | | | |
+| 6 | Comunicación: | | | | | |
+
+El equipo completa la tabla sin volver a redactar todo el discurso. Debe registrar palabras clave, acciones observables y referencias concretas al soporte. Una pauta demasiado extensa puede producir lectura mecánica; una pauta sin información suficiente deja la coordinación al azar.
+
+Antes de cerrar, realizan una lectura rápida de la secuencia, sin ejecutar todavía el ensayo completo, y verifican:
+
+- las seis intervenciones aportan contenido;
+- el problema aparece antes que la explicación detallada de la solución;
+- cada apoyo visual tiene una función y una persona responsable;
+- la evidencia se muestra y se interpreta;
+- las transiciones mantienen el hilo narrativo;
+- los tiempos previstos permiten reconocer qué partes necesitan mayor síntesis.
+
+Durante esta organización, el/la docente observa especialmente la distribución de la palabra. Si una persona concentra la explicación o si otra queda reducida a una intervención formal, devuelve la decisión al equipo mediante preguntas de redistribución, sin escribir ni asignar el discurso por ellos.
+
+### Preguntas guía
+
+- ¿Qué parte del relato realmente necesita apoyo visual?
+- ¿El recurso elegido permite situar, explicar o demostrar?
+- ¿La audiencia sabrá qué debe observar y por qué resulta importante?
+- ¿Las seis personas aportan una idea necesaria para comprender la propuesta?
+- ¿Cada integrante conoce también la secuencia completa?
+- ¿Las transiciones conectan ideas o solamente anuncian personas?
+- ¿Quién controla cada recurso y qué hará el equipo si no puede mostrarse?
+- ¿Los tiempos previstos reflejan la importancia de cada parte del relato?
+
+### Cierre del bloque
+
+- Idea clave: una presentación colectiva se diseña coordinando relato, evidencia, responsabilidades y acciones visibles; no se obtiene dividiendo un texto en seis fragmentos.
+- Comprobación breve: el equipo puede recorrer su pauta e identificar quién comunica cada idea, qué apoyo utiliza, cuándo interviene y cómo entrega el relato a la persona siguiente.
+- Producto del bloque: pauta de presentación con soporte visual seleccionado, seis intervenciones sustantivas, responsables, transiciones y tiempos previstos.
+- Puente: en el siguiente bloque, el equipo ejecutará la presentación, medirá su funcionamiento real y utilizará retroalimentación para realizar una corrección verificable.
+
+---
