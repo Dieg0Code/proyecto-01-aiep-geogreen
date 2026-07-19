@@ -90,6 +90,24 @@ const IMG = {
     "generadas",
     "sistema-geogreen-sensor-dato-respuesta.png",
   ),
+  contextSchool: path.join(
+    repoRoot,
+    "talleres",
+    "01",
+    "ppt",
+    "source",
+    "assets",
+    "images",
+    "school-recycling-bin-lagos-bin-focus.jpg",
+  ),
+  prototypeDetail: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "fotos",
+    "prototipo-oled-geogreen-detalle.png",
+  ),
 };
 
 function addImageCrop(slide, imagePath, x, y, w, h, opts = {}) {
@@ -1848,6 +1866,674 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     margin: 0,
   });
   addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 12 · Apertura Bloque 3
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  components.addPill(slide, SH, "BLOQUE 3 · 13 MINUTOS", {
+    x: 0.76,
+    y: 0.56,
+    w: 2.72,
+    h: 0.42,
+    fill: C.red,
+    line: C.red,
+    color: C.white,
+    fontSize: 10.8,
+  });
+  slide.addText("El guion ahora se convierte\nen una experiencia compartida", {
+    x: 0.76,
+    y: 1.34,
+    w: 6.28,
+    h: 1.22,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 30,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Cada persona aporta una idea, utiliza un apoyo y entrega el hilo a quien continúa.", {
+    x: 0.8,
+    y: 2.92,
+    w: 5.88,
+    h: 0.7,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 16,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  slide.addShape(SH.ellipse, {
+    x: 8.72,
+    y: 2.18,
+    w: 2.58,
+    h: 2.58,
+    fill: { color: C.gold },
+    line: { color: C.white, pt: 2 },
+  });
+  slide.addText("PRESENTACIÓN\nDEL EQUIPO", {
+    x: 8.92,
+    y: 3.0,
+    w: 2.18,
+    h: 0.66,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 16.5,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    valign: "mid",
+    margin: 0,
+  });
+  const sharedParts = [
+    { x: 7.16, y: 1.38, w: 1.88, label: "VOZ", color: C.red },
+    { x: 10.98, y: 1.38, w: 1.62, label: "APOYO", color: C.cyan },
+    { x: 7.08, y: 5.02, w: 1.98, label: "ACCIÓN", color: C.green },
+    { x: 10.88, y: 5.02, w: 1.78, label: "TRANSICIÓN", color: C.blue },
+  ];
+  sharedParts.forEach((part) => {
+    slide.addShape(SH.roundRect, {
+      x: part.x,
+      y: part.y,
+      w: part.w,
+      h: 0.6,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: part.color, pt: 1.6 },
+    });
+    slide.addText(part.label, {
+      x: part.x + 0.14,
+      y: part.y + 0.18,
+      w: part.w - 0.28,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 13.5,
+      bold: true,
+      color: C.white,
+      align: "center",
+      margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 0.8,
+    y: 5.3,
+    w: 5.88,
+    h: 0.92,
+    rectRadius: 0.04,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("SEIS PERSONAS. UNA SOLA HISTORIA.", {
+    x: 1.18,
+    y: 5.58,
+    w: 5.12,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 18.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 12, { white: true });
+  addNotesAndValidate(slide);
+}
+
+// 13 · Funciones del soporte visual
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Soporte visual con propósito",
+    "El recurso tiene una tarea",
+    "Antes de mostrar algo, decidan qué necesita comprender la audiencia.",
+    13,
+  );
+
+  const supportExamples = [
+    {
+      x: 0.72,
+      title: "SITUAR",
+      question: "¿Dónde ocurre y a quiénes implica?",
+      result: "Contexto + personas",
+      image: IMG.contextSchool,
+      color: C.red,
+    },
+    {
+      x: 4.58,
+      title: "ACLARAR",
+      question: "¿Qué propone y cómo funciona?",
+      result: "Flujo + relación",
+      image: IMG.systemFlow,
+      color: C.cyan,
+    },
+    {
+      x: 8.44,
+      title: "DEMOSTRAR",
+      question: "¿Qué construimos, probamos o aprendimos?",
+      result: "Evidencia + interpretación",
+      image: IMG.prototype,
+      color: C.green,
+    },
+  ];
+  supportExamples.forEach((example) => {
+    slide.addShape(SH.roundRect, {
+      x: example.x,
+      y: 2.02,
+      w: 3.5,
+      h: 3.96,
+      rectRadius: 0.04,
+      fill: { color: C.white },
+      line: { color: example.color, pt: 1.5 },
+    });
+    addImageCrop(slide, example.image, example.x + 0.12, 2.14, 3.26, 1.86);
+    slide.addShape(SH.rect, {
+      x: example.x + 0.12,
+      y: 3.72,
+      w: 3.26,
+      h: 0.28,
+      fill: { color: example.color, transparency: 4 },
+      line: { color: example.color, transparency: 100 },
+    });
+    slide.addText(example.title, {
+      x: example.x + 0.24,
+      y: 4.22,
+      w: 3.02,
+      h: 0.3,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 17,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(example.question, {
+      x: example.x + 0.28,
+      y: 4.7,
+      w: 2.94,
+      h: 0.56,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 13,
+      bold: true,
+      color: C.ink,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+    slide.addShape(SH.roundRect, {
+      x: example.x + 0.42,
+      y: 5.42,
+      w: 2.66,
+      h: 0.38,
+      rectRadius: 0.04,
+      fill: { color: example.color },
+      line: { color: example.color },
+    });
+    slide.addText(example.result, {
+      x: example.x + 0.54,
+      y: 5.53,
+      w: 2.42,
+      h: 0.16,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 10.8,
+      bold: true,
+      color: example.color === C.cyan ? C.navyDeep : C.white,
+      align: "center",
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.18,
+    y: 6.22,
+    w: 10.94,
+    h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  slide.addText("¿QUÉ VE?  →  ¿QUÉ COMPRENDE?  →  ¿QUÉ RESPALDA?", {
+    x: 1.56,
+    y: 6.36,
+    w: 10.18,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 15.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide);
+}
+
+// 14 · Mostrar frente a demostrar
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Evidencia comunicada",
+    "La imagen no habla sola",
+    "Mostrar un recurso sirve cuando el equipo indica qué se observa y por qué importa.",
+    14,
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.72,
+    y: 2.04,
+    w: 4.26,
+    h: 4.18,
+    rectRadius: 0.04,
+    fill: { color: C.white },
+    line: { color: C.border, pt: 1.4 },
+  });
+  components.addPill(slide, SH, "SOLO MOSTRAR", {
+    x: 1.02,
+    y: 2.3,
+    w: 1.68,
+    h: 0.4,
+    fill: C.slate,
+    line: C.slate,
+    color: C.white,
+    fontSize: 10.5,
+  });
+  addImageCrop(slide, IMG.prototypeDetail, 0.98, 2.86, 3.74, 2.35);
+  slide.addText("“Este es nuestro prototipo.”", {
+    x: 1.08,
+    y: 5.48,
+    w: 3.54,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 15.5,
+    bold: true,
+    italic: true,
+    color: C.slate,
+    align: "center",
+    margin: 0,
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 5.18,
+    y: 3.58,
+    w: 0.44,
+    h: 0.92,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 5.84,
+    y: 2.04,
+    w: 6.76,
+    h: 4.18,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.green, pt: 1.8 },
+  });
+  components.addPill(slide, SH, "MOSTRAR + INTERPRETAR", {
+    x: 6.16,
+    y: 2.3,
+    w: 2.32,
+    h: 0.4,
+    fill: C.green,
+    line: C.green,
+    color: C.white,
+    fontSize: 10.5,
+  });
+  addImageCrop(slide, IMG.prototype, 6.14, 2.88, 3.06, 2.82);
+  const evidenceNotes = [
+    { y: 2.92, label: "68 %", body: "nivel medido", color: C.cyan },
+    { y: 3.72, label: "AMARILLO", body: "estado de atención", color: C.gold },
+    { y: 4.52, label: "PRUEBA", body: "mide, interpreta y comunica", color: C.green },
+  ];
+  evidenceNotes.forEach((note) => {
+    slide.addShape(SH.rect, {
+      x: 9.5,
+      y: note.y,
+      w: 0.1,
+      h: 0.58,
+      fill: { color: note.color },
+      line: { color: note.color },
+    });
+    slide.addText(note.label, {
+      x: 9.82,
+      y: note.y,
+      w: 2.34,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 14.5,
+      bold: true,
+      color: note.color,
+      margin: 0,
+    });
+    slide.addText(note.body, {
+      x: 9.82,
+      y: note.y + 0.29,
+      w: 2.34,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.5,
+      color: C.white,
+      margin: 0,
+    });
+  });
+  slide.addText("La evidencia necesita una frase que explique qué se comprobó.", {
+    x: 6.2,
+    y: 5.82,
+    w: 6.06,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14.6,
+    bold: true,
+    color: C.gold,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide);
+}
+
+// 15 · Seis roles, seis aportes
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("PRESENTACIÓN COMPARTIDA", {
+    x: 0.74,
+    y: 0.46,
+    w: 4.2,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1.2,
+    color: C.cyan,
+    margin: 0,
+  });
+  slide.addText("Seis roles se convierten en seis aportes", {
+    x: 0.74,
+    y: 0.82,
+    w: 8.8,
+    h: 0.56,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 28,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Cada integrante comunica una idea necesaria y conoce el relato completo.", {
+    x: 0.76,
+    y: 1.44,
+    w: 8.2,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 14.5,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  slide.addShape(SH.ellipse, {
+    x: 5.18,
+    y: 2.54,
+    w: 2.98,
+    h: 2.98,
+    fill: { color: C.gold },
+    line: { color: C.white, pt: 2 },
+  });
+  slide.addText("6", {
+    x: 5.18,
+    y: 3.0,
+    w: 2.98,
+    h: 0.68,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 38,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("APORTES\nUNA HISTORIA", {
+    x: 5.56,
+    y: 3.8,
+    w: 2.22,
+    h: 0.62,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 15.5,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+
+  const roles = [
+    { x: 0.72, y: 2.06, title: "COORDINACIÓN", body: "Abre y cuida el recorrido.", color: C.red },
+    { x: 0.72, y: 3.48, title: "INVESTIGACIÓN", body: "Explica problema y contexto.", color: C.cyan },
+    { x: 0.72, y: 4.9, title: "DISEÑO", body: "Muestra la forma de la solución.", color: C.gold },
+    { x: 9.18, y: 2.06, title: "TECNOLOGÍA", body: "Traduce cómo funciona.", color: C.green },
+    { x: 9.18, y: 3.48, title: "PRUEBAS Y EVIDENCIA", body: "Demuestra el avance real.", color: C.blue },
+    { x: 9.18, y: 4.9, title: "COMUNICACIÓN", body: "Conecta el aporte y cierra.", color: C.red },
+  ];
+  roles.forEach((role) => {
+    slide.addShape(SH.roundRect, {
+      x: role.x,
+      y: role.y,
+      w: 3.44,
+      h: 1.04,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: role.color, pt: 1.5 },
+    });
+    slide.addShape(SH.rect, {
+      x: role.x,
+      y: role.y,
+      w: 0.12,
+      h: 1.04,
+      fill: { color: role.color },
+      line: { color: role.color },
+    });
+    slide.addText(role.title, {
+      x: role.x + 0.34,
+      y: role.y + 0.2,
+      w: 2.84,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: role.title.length > 18 ? 12.6 : 14.2,
+      bold: true,
+      color: role.color,
+      margin: 0,
+    });
+    slide.addText(role.body, {
+      x: role.x + 0.34,
+      y: role.y + 0.56,
+      w: 2.84,
+      h: 0.25,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.6,
+      color: C.white,
+      margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 2.12,
+    y: 6.32,
+    w: 9.1,
+    h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("CAMBIAR UNA DIAPOSITIVA NO REEMPLAZA UNA IDEA SUSTANTIVA.", {
+    x: 2.46,
+    y: 6.46,
+    w: 8.42,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 15, { white: true });
+  addNotesAndValidate(slide);
+}
+
+// 16 · Pauta de presentación
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Pauta de presentación",
+    "Conviertan seis voces en una sola secuencia",
+    "Registren palabras clave y acciones; el tiempo previsto se ajustará durante el ensayo.",
+    16,
+    { titleFontSize: 25.5 },
+  );
+
+  const columns = [
+    { x: 0.72, w: 0.58, label: "#" },
+    { x: 1.3, w: 1.96, label: "ROL + NOMBRE" },
+    { x: 3.26, w: 2.32, label: "IDEA PRINCIPAL" },
+    { x: 5.58, w: 2.7, label: "APOYO + ACCIÓN" },
+    { x: 8.28, w: 0.82, label: "TIEMPO" },
+    { x: 9.1, w: 3.5, label: "FRASE DE TRANSICIÓN" },
+  ];
+  columns.forEach((column) => {
+    slide.addShape(SH.rect, {
+      x: column.x,
+      y: 2.02,
+      w: column.w,
+      h: 0.52,
+      fill: { color: C.navy },
+      line: { color: C.white, pt: 0.7 },
+    });
+    slide.addText(column.label, {
+      x: column.x + 0.08,
+      y: 2.18,
+      w: column.w - 0.16,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: column.w < 1 ? 9.8 : 10.5,
+      bold: true,
+      color: C.white,
+      align: column.w < 1 ? "center" : "left",
+      margin: 0,
+    });
+  });
+  const pautaRoles = [
+    "Coordinación",
+    "Investigación",
+    "Diseño",
+    "Tecnología",
+    "Pruebas y evidencia",
+    "Comunicación",
+  ];
+  pautaRoles.forEach((role, index) => {
+    const y = 2.54 + index * 0.55;
+    const fill = index % 2 === 0 ? C.white : C.softBlue;
+    columns.forEach((column) => {
+      slide.addShape(SH.rect, {
+        x: column.x,
+        y,
+        w: column.w,
+        h: 0.55,
+        fill: { color: fill },
+        line: { color: C.border, pt: 0.7 },
+      });
+    });
+    slide.addText(String(index + 1), {
+      x: 0.8,
+      y: y + 0.17,
+      w: 0.42,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 10.5,
+      bold: true,
+      color: C.red,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(role, {
+      x: 1.42,
+      y: y + 0.16,
+      w: 1.72,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: role.length > 18 ? 10.4 : 11.8,
+      bold: true,
+      color: C.navy,
+      margin: 0,
+    });
+    slide.addText("idea clave", {
+      x: 3.42,
+      y: y + 0.17,
+      w: 1.98,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.2,
+      color: C.slate,
+      italic: true,
+      margin: 0,
+    });
+    slide.addText("qué muestra + qué hace", {
+      x: 5.74,
+      y: y + 0.17,
+      w: 2.38,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11,
+      color: C.slate,
+      italic: true,
+      margin: 0,
+    });
+    slide.addText("___", {
+      x: 8.4,
+      y: y + 0.15,
+      w: 0.58,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.5,
+      color: C.slate,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText("entrada → aporte → salida", {
+      x: 9.28,
+      y: y + 0.17,
+      w: 3.14,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.2,
+      color: C.slate,
+      italic: true,
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.92,
+    y: 6.08,
+    w: 11.48,
+    h: 0.64,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("6 MINUTOS · PALABRAS CLAVE, NO PÁRRAFOS · TODOS CONOCEN LA SECUENCIA COMPLETA", {
+    x: 1.28,
+    y: 6.27,
+    w: 10.76,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 13.8,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide);
 }
 
 (async () => {
