@@ -79,9 +79,14 @@ Texto exacto: “Cada sesión comienza con el producto anterior y termina con el
 Mostrar una cadena de cuatro documentos unidos por flechas. Añadir: “Si falta el entregable, se rompe la trazabilidad del proyecto.”
 
 SECCIÓN: MATERIAL DISPONIBLE
-Mostrar iconos de documento, PowerPoint, ficha e infografía.
+Mostrar cinco iconos inequívocos y distintos:
+1. README de la clase: documento de lectura rotulado README.
+2. Planificación docente: portapapeles o calendario con lista de verificación y lápiz; nunca un icono PPT.
+3. PPT: pantalla de presentación con una diapositiva visible; nunca un documento genérico.
+4. Ficha de trabajo: hoja o formulario con campos y casillas.
+5. Infografía: lámina vertical con gráfico y texto.
 Texto exacto: “README de la clase · planificación docente · PPT · ficha de trabajo · infografía”
-Texto exacto secundario: “Puede usarse tal cual o adaptarse. El producto obligatorio se mantiene.”
+Texto exacto secundario: “Los materiales pueden adaptarse. El producto obligatorio se mantiene.”
 
 CIERRE
 Título exacto: “EL EQUIPO DESARROLLA. LA MENTORÍA ORIENTA.”
