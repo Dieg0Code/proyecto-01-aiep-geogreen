@@ -2,11 +2,13 @@
 
 Esta carpeta reúne infografías de apoyo que no pertenecen a un taller específico:
 
-- Arduino y hardware.
-- Sensores.
-- Actuadores.
-- Compra de componentes.
-- Contexto de Osorno.
-- Devolución y cierre.
+- `infografia-resumen-proyecto-geogreen.png`: síntesis general del programa.
+- `infografia-contexto-osorno-reciclaje-geogreen-gptimage.png`: contexto territorial.
+- `infografia-ley-rep-geogreen-escolar.png`: marco de reciclaje y Ley REP.
+- `infografia-arduino-r4-wifi-geogreen.html`: referencia técnica de la UNO R4 WiFi.
+- `infografia-devolucion-y-cierre-geogreen-gptimage.png`: devolución y cierre.
+- `infografia-roles-equipo-geogreen-gptimage.png`: seis responsabilidades
+  persistentes; el archivo `.md` contiguo conserva el prompt y la revisión.
 
-Los documentos de presupuesto y compra están en `../presupuestos`.
+Las piezas específicas del Taller 3 están en `../../talleres/03/infografias/` y
+los documentos de presupuesto y compra en `../presupuestos/`.

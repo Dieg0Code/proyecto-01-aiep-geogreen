@@ -1,33 +1,74 @@
 # Mapa de materiales GeoGreen Escolar
 
-Este archivo resume dónde quedó organizado el material de coordinación, talleres, infografías y presupuesto.
+Índice del repositorio para distinguir rápidamente las fuentes vigentes, los
+paquetes docentes, las versiones técnicas y los antecedentes históricos.
+
+## Fuentes vigentes
+
+- `README.md`: estado general del dispositivo y del programa educativo.
+- `PLAN-GEOGREEN-ESCOLAR.md`: ejecución, alcance y articulación del proyecto.
+- `RESUMEN-PROYECTO.md`: digest de la postulación formal, con el calendario
+  operativo añadido como actualización separada.
+- `cronograma/documentos/cronograma-vigente-2026.md`: fuente única de fechas.
 
 ## Cronograma y coordinación
 
-- `cronograma/documentos/`: cronogramas, lineamientos, documentos de talleres y mentorías.
-- `cronograma/infografias/`: láminas visuales generales para coordinación interna y WhatsApp.
-- `cronograma/v0.1.0/`: versiones previas conservadas como referencia.
+- `cronograma/README.md`: calendario resumido y rutas de los documentos vigentes.
+- `cronograma/documentos/`: cronograma ejecutivo, lineamientos y desarrollo de
+  talleres, mentorías y cierre.
+- `cronograma/infografias/`: infografía vigente para coordinación y WhatsApp.
+- `reuniones/`: presentaciones y antecedentes históricos de reuniones ya
+  realizadas; no sustituyen al cronograma vigente.
 
 ## Talleres
 
-- `talleres/01/`: Taller 1, conciencia ambiental y problema local.
-- `talleres/01/documentos/`: planificaciones y PDFs del Taller 1.
-- `talleres/01/infografias/`: infografías del Taller 1.
-- `talleres/01/ppt/`: presentación final del Taller 1 y su fuente.
-- `talleres/02/`: Taller 2, ciencia del reciclaje.
-- `talleres/02/infografias/`: infografías del Taller 2.
-- `talleres/03/`: Taller 3, Arduino, sensores y prototipado.
-- `talleres/03/infografias/`: infografías del Taller 3.
+- `talleres/01/`: conciencia ambiental y definición del problema.
+- `talleres/02/`: ciencia del reciclaje, materiales y separación.
+- `talleres/03/`: sensores, prototipado, desarrollo agéntico y proyección a la
+  competencia.
 
-## Documentos generales
+Cada taller conserva su README como fuente pedagógica. Según el paquete existen
+subcarpetas `documentos/`, `ppt/`, `infografias/`, `media/` y `podcast/`.
 
-- `docs/infografias/`: infografías de apoyo general, hardware, sensores, actuadores, contexto y cierre.
-- `docs/presupuestos/`: documentos de compra, presupuesto y banco de componentes.
-- `docs/guia-visual-aiep.md`: guía visual persistente para mantener paleta y estilo.
+El Taller 3 incluye:
 
-## Prototipos y técnica
+- `talleres/03/README.md`: clase completa de 90 minutos.
+- `talleres/03/ppt/`: deck editable y presentación final.
+- `talleres/03/media/`: banco oficial, fotografías, videos y piezas generadas.
+- `talleres/03/infografias/`: serie de una lámina por bloque, con sus prompts.
+- `talleres/03/podcast/`: material de coordinación para el equipo ampliado.
 
-- `arduino/`: firmware, simulación, wiring y pruebas CLI.
-- `web/`: demo visual 3D y plano interactivo.
-- `Componentes Arduino para GeoGreen - Elias.md`: lista base de componentes Arduino.
-- `Componentes ESP32 para GeoGreen - Diego.md`: lista base de componentes ESP32.
+## Desafío y equipos
+
+- `banco-ideas/`: propuestas semilla y sensores seleccionados. Es un apoyo para
+  desbloquear ideas, no una lista de soluciones obligatorias.
+- `docs/infografias/infografia-roles-equipo-geogreen-gptimage.png`: seis
+  responsabilidades para distribuir el trabajo dentro de cada equipo.
+- `cronograma/documentos/lineamientos-transversales-equipos-entregables-geogreen.*`:
+  continuidad, productos y criterios comunes.
+
+## Dispositivo y software
+
+- `arduino/`: firmware base, simulación Wokwi, pruebas, cableado y módulo 3D.
+- `arduino-r4/`: prototipo físico UNO R4 WiFi y demos de matriz LED.
+- `geogreen-v0/`: validación experimental con ESP32 DevKit + A02YYUW.
+- `geogreen-v1/`: PCB interna ESP32-C6 candidata de diseño.
+- `app/`: PWA de monitoreo y visualización de datos.
+- `web/`: contenedor 3D interactivo y plano explosionado.
+
+## Inventario, sensores y compras
+
+- `docs/inventario/`: fotografía e inventario preliminar fechado de los
+  componentes disponibles en AIEP.
+- `docs/kit-sensores/`: manual para identificar el kit de 45 sensores.
+- `docs/presupuestos/`: presupuesto, cotizaciones y antecedentes de compra.
+- `Componentes Arduino para GeoGreen - Elias.md` y
+  `Componentes ESP32 para GeoGreen - Diego.md`: listas tempranas conservadas como
+  antecedentes; no describen por sí solas la arquitectura vigente.
+
+## Herramientas de producción
+
+- `.agent/skills/`: skills pedagógicas y visuales del proyecto.
+- `tools/slides-system/`: tema y componentes compartidos para PptxGenJS.
+- `tools/pptx-validator/`: validación OpenXML de presentaciones PowerPoint.
+- `tools/pbip-validator/`: validación de artefactos Power BI cuando corresponda.

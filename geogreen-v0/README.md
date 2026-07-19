@@ -11,9 +11,10 @@ clasificar de forma estable tres estados:
 V0.1 no es el producto final. Es una prueba de medicion: sensor, lectura UART,
 filtrado, calibracion y registro CSV por monitor serie.
 
-La etapa posterior esta separada como roadmap en
-[`docs/v1-roadmap.md`](docs/v1-roadmap.md): PCB interna con ESP32-C6, USB-C,
-conector IP67, semaforo, buzzer, proteccion de energia y mockup de carcasa.
+El planteamiento inicial de la etapa posterior se conserva en
+[`docs/v1-roadmap.md`](docs/v1-roadmap.md). Su implementación actual vive en
+[`../geogreen-v1/`](../geogreen-v1/): PCB interna con ESP32-C6, USB-C, conector
+de sensor, semáforo, buzzer y protección de energía.
 
 ## Arquitectura
 
@@ -109,20 +110,14 @@ geogreen-v0/
 - Alimentar el sensor a 3.3 V es parte de esta prueba; falta confirmar desempeno
   real frente a alimentacion nominal indicada por proveedor.
 
-## Pasos exactos para abrir el proyecto en KiCad
+## Abrir el proyecto preliminar en KiCad
 
 1. Abrir KiCad.
-2. `File` -> `New Project`.
-3. Crear el proyecto en `geogreen-v0/hardware/kicad/geogreen-v0.kicad_pro`.
-4. Abrir el editor de esquematicos.
-5. Crear simbolos genericos primero:
-   - ESP32 DevKit como modulo enchufable por headers hembra.
-   - Conector sensor 1x4.
-   - Resistencia pull-up 10 kOhm.
-   - Test pads 3V3, GND, UART_RX.
-6. No asignar footprint del ESP32 todavia.
-7. Completar la lista de medidas en `hardware/kicad-v0-checklist.md`.
-8. Cuando la placa fisica este medida, asignar footprints y recien pasar a PCB.
+2. Abrir `geogreen-v0/hardware/kicad/geogreen-v0.kicad_pro`.
+3. Revisar el PCB carrier y el reporte `hardware/kicad/exports/drc.rpt`.
+4. Tratar el footprint ESP32 DevKit de 30 pines como referencia visual, no como
+   una huella confirmada para fabricación.
+5. Completar `hardware/kicad-v0-checklist.md` antes de cerrar medidas o conectores.
 
 ## KiCad CLI
 
@@ -132,7 +127,7 @@ En esta maquina `kicad-cli` esta instalado en:
 & "C:\Program Files\KiCad\10.0\bin\kicad-cli.exe" version
 ```
 
-Uso futuro, despues de crear el proyecto KiCad:
+Exportaciones disponibles desde la CLI:
 
 ```powershell
 & "C:\Program Files\KiCad\10.0\bin\kicad-cli.exe" sch export pdf geogreen-v0\hardware\kicad\geogreen-v0.kicad_sch -o geogreen-v0\hardware\kicad\exports\schematic.pdf

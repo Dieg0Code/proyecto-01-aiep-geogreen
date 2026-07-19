@@ -1,152 +1,153 @@
-# GeoGreen 🌱
+# GeoGreen Escolar
 
-**Medidor IoT de llenado de contenedores de reciclaje** — proyecto de la postulación
-al Fondo Concursable VCM 2026, **AIEP Osorno** (Chile).
+GeoGreen comenzó como una propuesta para monitorear el llenado de contenedores de
+reciclaje y evolucionó hacia un programa educativo de AIEP Osorno. El dispositivo
+funciona como caso central para enseñar sostenibilidad, sensores, datos,
+prototipado, desarrollo agéntico y comunicación de soluciones.
 
-Un sensor ultrasónico mide cuánto le falta a un contenedor para llenarse y lo
-informa con un **semáforo de LEDs** y una **alerta sonora**. La versión completa
-proyecta enviar el dato por **WiFi o LoRa** a un tablero con la ubicación
-georreferenciada de cada punto de reciclaje (de ahí *Geo* + *Green*).
+- **Socio comunitario:** Instituto Comercial Liceo Bicentenario, Osorno.
+- **Público objetivo:** cerca de 60 estudiantes, organizados en equipos.
+- **Programa:** tres talleres, cuatro mentorías, ensayo y competencia final.
+- **Lógica tecnológica:** `sensar → enviar → visualizar → alertar`.
 
-En esta etapa (continuidad) el proyecto es un **programa educativo — GeoGreen
-Escolar**: talleres + demostraciones STEM + un desafío final dictados a un colegio,
-usando el dispositivo como caso central.
+## Estado vigente · julio de 2026
 
-- Resumen completo de la postulación: **[`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md)**
-- Plan de ejecución y roadmap: **[`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md)**
-- Cronograma del programa: **[`cronograma/README.md`](cronograma/README.md)**
+El repositorio reúne dos líneas de trabajo conectadas:
 
-<p align="center">
-  <img src="componenetes-arduino.png" alt="Componentes del prototipo GeoGreen con Arduino" width="360">
-</p>
+1. **El dispositivo:** firmware, simulación, prototipos físicos, visualización,
+   diseño 3D y PCB.
+2. **El programa educativo:** talleres, cronograma, presentaciones, infografías,
+   banco de ideas, inventario y materiales para la competencia.
 
-## Estado actual
+Los Talleres 1 y 2 cuentan con planificación y presentación. El Taller 3 dispone
+de un paquete completo de 90 minutos: README pedagógico, deck editable, banco
+audiovisual, podcast de coordinación y una serie de cuatro infografías.
 
-El **track Arduino** ya está implementado y se puede **simular 100 % por terminal**,
-sin placa física ni VS Code, usando PlatformIO + Wokwi CLI.
+El calendario operativo vigente está centralizado en
+[`cronograma/README.md`](cronograma/README.md). Los talleres se realizarán el 17,
+18 y 24 de agosto; las mentorías se extenderán hasta el 28 de septiembre; el
+evento final con jurado y premiación está programado para el 5 de octubre; y el
+cierre interno corresponde a la semana del 12 de octubre.
 
-## Qué hace el prototipo
+## Evolución del dispositivo
 
-1. El sensor **HC-SR04** mide la distancia entre la tapa y el contenido.
-2. El código la convierte en un **porcentaje de llenado** (0–100 %).
-3. El semáforo indica el estado:
+GeoGreen no corresponde a un único circuito inmutable. El repositorio conserva
+distintas versiones porque cada una responde a una etapa del proceso.
 
-   | Llenado | LED | Buzzer |
-   |---|---|---|
-   | `< 40 %` | 🟢 verde | — |
-   | `40–79 %` | 🟡 amarillo | — |
-   | `≥ 80 %` | 🔴 rojo | 🔊 suena |
+| Versión o track | Propósito | Estado |
+|---|---|---|
+| Prototipo original de referencia | `HC-SR04` + módulo de comunicación celular. No incluía semáforo ni buzzer. | Antecedente histórico reconstruido para explicar la evolución. |
+| `arduino/` | Firmware base con porcentaje, semáforo y buzzer; simulación y pruebas con PlatformIO + Wokwi CLI. | Implementado y automatizado. |
+| `arduino-r4/` | Prototipo físico con UNO R4 WiFi, `HC-SR04`, OLED, semáforo y buzzer; además, demos en la matriz LED integrada. | Construido y probado en protoboard. |
+| `geogreen-v0/` | Validación de medición con ESP32 DevKit + sensor ultrasónico impermeable `A02YYUW`. | Track experimental de medición. |
+| `geogreen-v1/` | PCB interna de dos capas con ESP32-C6, USB-C, conectores, semáforo y buzzer. | Candidata de diseño con DRC limpio; requiere revisión de ingeniería antes de fabricar. |
+| `app/` | PWA con mapa de Osorno, estados, historial, batería, señal y alertas. | Interfaz funcional sobre una capa de telemetría reemplazable. |
+| `web/` | Contenedor 3D interactivo y plano explosionado del módulo. | Demos funcionales sin proceso de build. |
 
-## Cómo simularlo (sin VS Code ni Arduino físico)
+La versión física educativa utilizada como demostración transforma una medición
+de distancia en una respuesta comprensible:
 
-Requisitos: [PlatformIO Core](https://platformio.org/) y
-[Wokwi CLI](https://docs.wokwi.com/wokwi-ci/getting-started) + un token gratuito
-de <https://wokwi.com/dashboard/ci> guardado en `~/.wokwi_token`.
+1. El `HC-SR04` mide la distancia entre la tapa y el contenido.
+2. La placa calcula un porcentaje de llenado.
+3. El semáforo utiliza los umbrales `< 40 %`, `40–79 %` y `≥ 80 %`.
+4. La OLED muestra porcentaje y estado.
+5. El buzzer se activa en el estado rojo.
+6. Una versión conectada puede enviar el dato para visualizarlo y generar alertas.
 
-```bash
-bash arduino/sim.sh         # compila + simula y muestra el Monitor Serie
-bash arduino/sim.sh shot    # igual, y genera un screenshot run.png
-bash arduino/test.sh        # verifica automáticamente los 3 estados del semáforo
-```
+## Programa educativo y competencia
 
-Salida esperada de `test.sh`:
+| Etapa | Fecha | Propósito |
+|---|---|---|
+| Taller 1 | Lunes 17 de agosto | Identificar un problema ambiental concreto y formar los equipos. |
+| Taller 2 | Martes 18 de agosto | Comprender residuos, materiales, separación y reciclabilidad. |
+| Taller 3 | Lunes 24 de agosto | Relacionar el problema con una variable, un sensor y una primera prueba segura. |
+| Mentorías 1–4 | 31 de agosto al 28 de septiembre | Revisar avances, orientar decisiones y destrabar dificultades. |
+| Evento final | Lunes 5 de octubre | Presentar ante el jurado, recibir retroalimentación y participar en la premiación. |
 
-```
- 80cm -> Llenado: 22 %  (verde)        ... PASS
- 50cm -> Llenado: 55 %  (amarillo)     ... PASS
- 20cm -> Llenado: 89 %  (rojo+buzzer)  ... PASS
-TODOS LOS CASOS PASARON ✓
-```
+El desarrollo de las propuestas ocurre principalmente mediante el trabajo
+autónomo de cada equipo entre sesiones. Las mentorías no sustituyen ese trabajo:
+sirven para revisar evidencia, orientar y ayudar a resolver bloqueos concretos.
 
-### Cableado (planos para armar)
+GeoGreen muestra hasta dónde puede crecer una idea, pero no es una solución que
+los equipos deban copiar. La competencia valora la relación entre problema,
+sensor, respuesta, evidencia, mejora y claridad de la presentación.
 
-Mapa de conexiones generado por CLI con [WireViz](https://github.com/wireviz/WireViz)
-(fuente: [`arduino/wiring.yml`](arduino/wiring.yml), regenerar con `wireviz arduino/wiring.yml`):
-Arduino Nano + HC-SR04 + semáforo + buzzer, alimentado con 3×AAA y un interruptor.
+## Inicio rápido
 
-<p align="center">
-  <img src="docs/cableado.png" alt="Diagrama de cableado del módulo GeoGreen" width="640">
-</p>
+### Simulación y pruebas del firmware base
 
-¿Prefieres el pictórico clásico (Arduino + protoboard + cablecitos)? Guía paso a
-paso para armarlo en Fritzing: [`arduino/GUIA-FRITZING.md`](arduino/GUIA-FRITZING.md).
-Mapa de pines y calibración: [`arduino/README.md`](arduino/README.md).
-
-## Módulo clip-on (el diseño físico)
-
-La idea: una **cajita sellada que se pega con adhesivo 3M a la cara interior de
-la tapa de cualquier basurero** — sin cableado expuesto, sin perforar, sin
-fabricar basureros especiales. El sensor mira hacia abajo al contenido. Adentro
-van el Arduino Nano, las pilas 3×AAA, el buzzer y el semáforo.
-
-Plano 3D explosionado (OpenSCAD, [`arduino/3d/modulo.scad`](arduino/3d/modulo.scad)):
-
-<p align="center">
-  <img src="docs/modulo-3d.png" alt="Plano explosionado del módulo clip-on" width="420">
-</p>
-
-**Plano interactivo** (rotable, con etiquetas y slider de explosión):
-[`web/plano.html`](web/plano.html) — `python -m http.server 8099 --directory web`
-y abre `http://localhost:8099/plano.html`.
-
-<p align="center">
-  <img src="docs/plano-web.png" alt="Plano 3D interactivo del módulo" width="640">
-</p>
-
-STL listos para imprimir: [`modulo-base.stl`](arduino/3d/modulo-base.stl) ·
-[`modulo-tapa.stl`](arduino/3d/modulo-tapa.stl). Regenerar:
+Requiere PlatformIO, Wokwi CLI y un token de Wokwi guardado fuera del repositorio
+en `~/.wokwi_token`.
 
 ```bash
-openscad -o docs/modulo-3d.png --viewall --autocenter arduino/3d/modulo.scad
-openscad -D 'vista="tapa"' -o arduino/3d/modulo-tapa.stl arduino/3d/modulo.scad
+bash arduino/sim.sh
+bash arduino/test.sh
 ```
 
-> También está la maqueta demostrativa tipo contenedor completo en
-> [`arduino/3d/carcasa.scad`](arduino/3d/carcasa.scad) (`docs/carcasa-3d.png`),
-> útil para mostrar el concepto en la presentación.
+### Prototipo físico UNO R4 WiFi
 
-## Visualización web 3D
+```bash
+pio run -d arduino-r4/geogreen_proto
+pio run -d arduino-r4/geogreen_proto -t upload
+```
 
-Demo interactiva en [`web/index.html`](web/index.html) (Three.js, sin build):
-un contenedor 3D que se llena y enciende el semáforo usando **la misma lógica
-del firmware**. Arrastra para rotar, mueve el slider de distancia.
+### Aplicación de monitoreo
 
-<p align="center">
-  <img src="docs/web3d.png" alt="Visualización web 3D del llenado (estado lleno)" width="520">
-</p>
+```bash
+cd app
+npm install
+npm run dev
+```
+
+### Visualización 3D
 
 ```bash
 python -m http.server 8099 --directory web
-# abrir http://localhost:8099   (o http://localhost:8099/?dist=15 para verlo lleno)
 ```
 
-## Estructura
+Abrir `http://localhost:8099/` para el contenedor o
+`http://localhost:8099/plano.html` para el plano del módulo.
 
-```
+## Mapa del repositorio
+
+```text
 .
-├── arduino/                 # Track Arduino (firmware + simulación CLI + 3D)
-│   ├── src/main.cpp         # Lógica de llenado + semáforo + buzzer
-│   ├── diagram.json         # Circuito virtual de Wokwi
-│   ├── platformio.ini       # Configuración de compilación
-│   ├── sim.sh / test.sh     # Scripts de simulación y test por CLI
-│   ├── wiring.yml           # Fuente del diagrama de cableado (WireViz)
-│   ├── GUIA-FRITZING.md     # Guía para el pictórico en Fritzing
-│   └── 3d/                  # OpenSCAD: modulo.scad (clip-on) + carcasa.scad + STL
-├── web/
-│   ├── index.html           # Visualización web 3D del llenado (Three.js)
-│   └── plano.html           # Plano 3D explosionado interactivo del módulo
-├── docs/                    # Imágenes generadas (cableado, renders 3D, web)
-├── *.md / *.docx / *.pdf    # Documentación: postulación y listas de componentes
-└── componentes-*.png        # Fotos de los componentes
+├── arduino/                 # Firmware base, Wokwi, pruebas, cableado y 3D
+├── arduino-r4/              # Demos y prototipo físico UNO R4 WiFi
+├── geogreen-v0/             # Validación ESP32 DevKit + A02YYUW
+├── geogreen-v1/             # PCB interna con ESP32-C6
+├── app/                     # PWA de monitoreo
+├── web/                     # Contenedor 3D y plano interactivo
+├── talleres/01-03/          # Paquetes pedagógicos de los talleres
+├── banco-ideas/             # Ideas semilla y sensores seleccionados
+├── cronograma/              # Calendario operativo vigente
+├── reuniones/               # Materiales y antecedentes de coordinación
+├── docs/                    # Inventario, infografías, presupuestos y guías
+└── tools/                   # Sistema de slides y validadores
 ```
 
-## Próximos pasos
+Índice ampliado de materiales: [`MATERIALES.md`](MATERIALES.md).
 
-- Calibrar `DIST_VACIO` / `DIST_LLENO` al contenedor real.
-- Track **ESP32**: pantalla OLED + envío por WiFi a un dashboard.
-- Georreferenciar los puntos de reciclaje en un mapa.
+## Seguridad eléctrica esencial
+
+- La UNO R4 WiFi trabaja con lógica de `5 V`; el pin `Echo` del `HC-SR04` puede
+  conectarse directamente.
+- Un ESP32 DevKit trabaja normalmente con lógica de `3,3 V`; el mismo `Echo` de
+  `5 V` requiere divisor de voltaje o adaptación de nivel.
+- Todo circuito se arma y revisa desconectado. Antes de energizar se comprueban
+  voltaje, pinout, polaridad, resistencias y posibles cortocircuitos.
+
+## Fuentes documentales
+
+- [`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md) — alcance formal de la postulación y
+  diferencia respecto del calendario operativo.
+- [`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md) — estado de ejecución y
+  articulación del programa.
+- [`cronograma/documentos/cronograma-vigente-2026.md`](cronograma/documentos/cronograma-vigente-2026.md)
+  — fuente única de fechas operativas.
+- [`talleres/03/README.md`](talleres/03/README.md) — fuente pedagógica del Taller 3.
 
 ---
 
-*Proyecto académico — AIEP Osorno. Carreras de Programación y Análisis de Sistemas,
-Electricidad y Electrónica, y Trabajo Social.*
+Proyecto académico de Vinculación con el Medio · AIEP Osorno · Ingeniería,
+Energía y Tecnología + Desarrollo Social y Educación.

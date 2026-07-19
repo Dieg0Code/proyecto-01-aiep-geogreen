@@ -1,0 +1,355 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=16mm,bottom=17mm,left=17mm,right=17mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPDeep}{HTML}{031D3B}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{D8DEE6}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9EEF4}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 1 · Planificación docente}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.16}
+
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{2pt}{6pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{docbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.5pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=4pt,after skip=4pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPMuted,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{accentbox}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{navybox}[2][]{
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  coltext=white,
+  boxrule=0pt,
+  arc=1.2mm,
+  left=3.5mm,right=3.5mm,top=3mm,bottom=3mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPGold,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newcommand{\eyebrow}[1]{%
+  {\small\bfseries\textcolor{AIEPRed}{\MakeUppercase{#1}}}\par
+  \vspace{7mm}
+  {\color{AIEPRed}\rule{18mm}{0.9pt}}\par
+  \vspace{9mm}
+}
+
+\newcommand{\criterion}[3]{%
+  \begin{tcolorbox}[colback=#3!7,colframe=#3,boxrule=0.5pt,arc=1mm,left=2mm,right=2mm,top=1.6mm,bottom=1.6mm,before skip=2pt,after skip=2pt]
+  {\bfseries\textcolor{AIEPNavy}{#1}}\\[-1pt]
+  {\small #2}
+  \end{tcolorbox}
+}
+
+\begin{document}
+
+\eyebrow{GeoGreen Escolar · AIEP Osorno}
+
+{\Huge\bfseries\color{AIEPNavy}Mentoría 1\par}
+\vspace{2mm}
+{\LARGE\bfseries\color{AIEPInk}Problema y contexto afectado\par}
+\vspace{4mm}
+{\large\color{AIEPMuted}Planificación docente para Desarrollo Social\par}
+
+\vspace{9mm}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{40mm}Y@{}}
+Programa & GeoGreen Escolar Osorno \\
+Fecha & Lunes 31 de agosto de 2026 \\
+Duración & 60 minutos por bloque \\
+Participantes & 60 estudiantes, distribuidos en dos bloques de 30 \\
+Organización & 5 equipos de 6 estudiantes por bloque \\
+Área responsable & Desarrollo Social \\
+Responsable & [Nombre del/de la docente] \\
+\end{tabularx}
+
+\vspace{8mm}
+\begin{accentbox}{Sentido de la mentoría}
+La sesión acompaña a cada equipo para revisar el problema ambiental que ha construido, situarlo en un contexto concreto y reconocer qué afirmaciones cuentan con evidencia. El propósito no es desarrollar el proyecto durante la mentoría ni resolver la formulación por el equipo, sino fortalecer su capacidad para tomar decisiones fundamentadas y continuar el trabajo entre sesiones.
+\end{accentbox}
+
+\begin{navybox}{Entregable obligatorio de salida}
+Cada equipo debe finalizar con un \textbf{problema validado inicialmente}, su \textbf{contexto afectado} y un \textbf{próximo paso verificable}. Este producto será el insumo de la Mentoría 2.
+\end{navybox}
+
+\newpage
+\section{Propósito, objetivos y condiciones de ejecución}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=61mm]{Objetivo general}
+Al finalizar la sesión, cada equipo podrá describir su problema ambiental de manera situada, distinguir evidencia de hipótesis y supuestos, y comprobar si su idea tecnológica responde de forma coherente a una necesidad real de su entorno.
+
+\vspace{2mm}
+La validación es inicial: reconoce el respaldo disponible y deja visibles los aspectos que aún deben contrastarse.
+\end{docbox}
+&
+\begin{docbox}[height=61mm]{Objetivos específicos}
+\begin{itemize}
+  \item Integrar los productos de los tres talleres.
+  \item Precisar lugar, momento, actores y condiciones del problema.
+  \item Diferenciar observaciones, hipótesis y generalizaciones.
+  \item Revisar la pertinencia social de la idea propuesta.
+  \item Definir un próximo paso observable.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Insumos obligatorios de entrada}
+Cada equipo dispone sobre la mesa de:
+\begin{enumerate}
+  \item el problema ambiental formulado en el Taller 1;
+  \item la ficha del residuo o material elaborada en el Taller 2;
+  \item la idea tecnológica inicial desarrollada en el Taller 3.
+\end{enumerate}
+
+Si falta un insumo, el equipo registra la brecha. No se sustituye por una explicación improvisada ni se reinicia el proyecto.
+
+\subsection{Condiciones que deben preservarse}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{docbox}[height=43mm]{Lógica del programa}
+\begin{itemize}
+  \item Cinco equipos de seis estudiantes por bloque.
+  \item Los roles y la decisión pertenecen al equipo completo.
+  \item Los tres entregables previos son el punto de partida.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=43mm]{Continuidad}
+\begin{itemize}
+  \item La mentoría orienta; no reemplaza el trabajo autónomo.
+  \item El próximo paso se realiza entre sesiones.
+  \item La Mentoría 2 revisa el avance demostrado.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\newpage
+\section{Enfoque metodológico y preparación}
+
+\begin{navybox}{Rol docente}
+El/la docente media mediante preguntas, solicita fundamentos, ayuda a reconocer generalizaciones y devuelve la decisión al equipo. La intervención es focalizada: no redacta el problema, no valida una afirmación solo porque parece probable y no diseña la solución tecnológica por los estudiantes.
+\end{navybox}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=72mm]{Principios de facilitación}
+\begin{itemize}
+  \item \textbf{Trazabilidad:} volver desde la idea hacia el problema que la originó.
+  \item \textbf{Diagnóstico situado:} precisar espacio, tiempo, actores y condiciones.
+  \item \textbf{Contraste:} preguntar de dónde proviene cada afirmación.
+  \item \textbf{No culpabilización:} describir prácticas y condiciones sin estigmatizar.
+  \item \textbf{Autonomía:} orientar el criterio sin completar el producto por el equipo.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=72mm]{Preparación antes de la sesión}
+\begin{itemize}
+  \item Revisar la presentación y las notas de facilitación.
+  \item Disponer proyector, computador y control de tiempo.
+  \item Imprimir una ficha de trabajo por equipo: cinco por bloque.
+  \item Solicitar los tres productos elaborados en talleres.
+  \item Preparar lápices o marcadores verde, amarillo y rojo.
+  \item Organizar cinco mesas o zonas de trabajo.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Cuidado ético}
+No exponer nombres ni datos personales innecesarios, no fotografiar personas sin autorización y no atribuir conductas a grupos completos a partir de casos aislados. Cuando existan perspectivas diferentes, se registran como información por contrastar.
+\end{accentbox}
+
+\subsection{Uso del material de apoyo}
+La presentación y esta planificación constituyen una base común para conducir la sesión. El/la docente puede adaptar ejemplos y formulaciones a su estilo, preservando la secuencia de trabajo, los tiempos globales, los productos obligatorios y la continuidad del proyecto.
+
+\newpage
+\section{Plan minuto a minuto}
+
+\small
+\begin{tabularx}{\textwidth}{@{}C{17mm}p{35mm}Y p{39mm}@{}}
+\textbf{\color{AIEPNavy}Tiempo} & \textbf{\color{AIEPNavy}Momento} & \textbf{\color{AIEPNavy}Acción docente} & \textbf{\color{AIEPNavy}Evidencia} \\
+\hline
+0--10 & \textbf{Bloque 1}\newline Volver al problema & Presentar el propósito, comprobar los tres productos de entrada y guiar la revisión de coherencia entre problema, material e idea. & Frase: ``Nuestra idea se relaciona con el problema porque...''. \\
+\hline
+10--25 & \textbf{Bloque 2}\newline Contexto afectado & Orientar el mapa situado: lugar, momento, actores y condiciones. Detener generalizaciones y solicitar precisión. & Mapa situado y síntesis del problema contextualizado. \\
+\hline
+25--45 & \textbf{Bloque 3}\newline Evidencia y supuestos & Explicar las tres categorías, aplicar el semáforo y realizar una ronda focalizada por las cinco mesas. & Matriz con afirmación respaldada, hipótesis pendiente y generalización reformulada. \\
+\hline
+45--57 & \textbf{Bloque 4}\newline Problema--solución & Revisar los cinco criterios de pertinencia, acompañar la ficha final y escuchar declaraciones de 30 segundos. & Problema validado, aporte de la idea, límite y próximo paso. \\
+\hline
+57--60 & \textbf{Cierre}\newline Continuidad & Recuperar aprendizajes, comprobar entregables y dejar registrado el trabajo entre sesiones. & Frases: ``Validamos que...'' y ``Antes de la Mentoría 2...''. \\
+\end{tabularx}
+\normalsize
+
+\vspace{7mm}
+\begin{accentbox}{Administración del tiempo}
+Mantener proyectadas las diapositivas de actividad y avisar cuando reste un minuto. Las rondas docentes son breves y focalizadas. Si una discusión requiere más tiempo, se registra como próximo paso; no se extiende una mesa a costa de las demás.
+\end{accentbox}
+
+\subsection{Distribución sugerida de las rondas}
+\begin{tabularx}{\textwidth}{@{}p{39mm}Y@{}}
+\textbf{Primera ronda} & Comprobar que el equipo trabaja con los tres productos y que problema, material e idea cuentan una misma historia. \\
+\textbf{Segunda ronda} & Seleccionar una afirmación central y preguntar cómo la saben, qué tipo de información es y qué falta contrastar. \\
+\textbf{Tercera ronda} & Verificar que la idea declara un aporte realista y que el próximo paso puede demostrarse. \\
+\end{tabularx}
+
+\newpage
+\section{Guía práctica de facilitación}
+
+\subsection{Bloques 1 y 2 · coherencia y contexto}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=66mm]{Preguntas clave}
+\begin{itemize}
+  \item ¿Qué situación necesita cambiar?
+  \item ¿Qué residuo o material está involucrado?
+  \item ¿Qué parte del problema aborda la idea?
+  \item ¿Dónde y cuándo ocurre exactamente?
+  \item ¿Quiénes participan o reciben consecuencias?
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=66mm]{Señales de avance}
+\begin{itemize}
+  \item El problema no está definido como una tecnología.
+  \item Lugar y momento son específicos.
+  \item Se distinguen involucrados, afectados y personas que pueden aportar.
+  \item La formulación evita ``todos'', ``nadie'', ``siempre'' y ``nunca'' sin respaldo.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Bloque 3 · secuencia de orientación}
+\begin{enumerate}
+  \item \textbf{Pedir fundamento:} ``¿Cómo saben que esto ocurre?''
+  \item \textbf{Identificar el tipo de información:} ``¿Es observación, hipótesis o supuesto?''
+  \item \textbf{Buscar contraste:} ``¿Qué otra fuente o perspectiva ayudaría?''
+  \item \textbf{Devolver la decisión:} ``¿Conviene mantener, contrastar o reformular?''
+\end{enumerate}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{\hspace{4mm}}Y@{}}
+\begin{docbox}[height=41mm]{Verde}
+Existe una observación, registro, dato o fuente identificable. El equipo anota qué sostiene la afirmación.
+\end{docbox}
+&
+\begin{docbox}[height=41mm]{Amarillo}
+Es una explicación posible. El equipo define qué información o perspectiva necesita contrastar.
+\end{docbox}
+&
+\begin{docbox}[height=41mm]{Rojo}
+Falta respaldo o existe una generalización. El equipo describe únicamente lo que conoce.
+\end{docbox}
+\end{tabularx}
+
+\subsection{Bloque 4 · pregunta de pertinencia}
+\begin{navybox}{Pregunta central}
+Si la idea funcionara exactamente como el equipo espera, ¿qué parte concreta del problema cambiaría y para quién?
+\end{navybox}
+
+\newpage
+\section{Evidencias, criterios de cierre y continuidad}
+
+\subsection{Criterios de pertinencia social}
+\criterion{Pertinencia}{La idea responde al problema validado.}{AIEPRed}
+\criterion{Coherencia}{Se comprende qué parte busca observar, prevenir, informar o mejorar.}{AIEPCyan}
+\criterion{Utilidad social}{Se identifica quién podría utilizar el resultado, la información o la alerta.}{AIEPGold}
+\criterion{Alcance}{La propuesta declara un aporte realista y no promete resolver todo el problema.}{AIEPGreen}
+\criterion{Respeto por el contexto}{Considera a las personas involucradas sin culpabilizarlas ni excluirlas.}{AIEPRed}
+
+\subsection{Verificadores del entregable final}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=61mm]{Debe contener}
+\begin{itemize}
+  \item problema específico, situado y observable;
+  \item actores o contexto afectado;
+  \item al menos una evidencia reconocible;
+  \item hipótesis declarada como pendiente;
+  \item aporte y límite de la idea;
+  \item próximo paso verificable.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=61mm]{No se reemplaza por}
+\begin{itemize}
+  \item una explicación oral sin registro;
+  \item una afirmación probable sin fuente;
+  \item una generalización sobre un grupo;
+  \item una promesa de resolver todo;
+  \item una tarea redactada por el/la docente.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Continuidad obligatoria}
+Cada equipo conserva sus tres productos de entrada, el mapa situado, la matriz de evidencia y la ficha final. Entre sesiones ejecuta el próximo paso acordado. La Mentoría 2 retoma el problema validado para revisar la solución propuesta y definir componentes, materiales o recursos.
+\end{accentbox}
+
+\begin{navybox}{Declaración de 30 segundos}
+``Nuestro problema ocurre en \rule{24mm}{0.35pt} y afecta o involucra a \rule{24mm}{0.35pt}. Sabemos que ocurre porque \rule{24mm}{0.35pt}. Nuestra idea busca aportar mediante \rule{24mm}{0.35pt}, y antes de la Mentoría 2 necesitamos \rule{24mm}{0.35pt}.''
+\end{navybox}
+
+\end{document}

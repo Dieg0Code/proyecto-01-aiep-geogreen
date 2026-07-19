@@ -1,7 +1,10 @@
 const path = require("path");
 const PptxGenJS = require("../../../../tools/slides-system/node_modules/pptxgenjs");
 const slidesSystem = require("../../../../tools/slides-system");
-const { imageSizingCrop } = require("../../../../tools/slides-system/vendor/pptxgenjs_helpers/image");
+const {
+  imageSizingCrop,
+  imageSizingContain,
+} = require("../../../../tools/slides-system/vendor/pptxgenjs_helpers/image");
 
 const { theme, components, utils } = slidesSystem;
 const { applyAiepTheme, TOKENS: C, TYPOGRAPHY } = theme;
@@ -21,6 +24,7 @@ const SH = pptx.ShapeType;
 const SLIDE_W = 13.333;
 const SLIDE_H = 7.5;
 const rootDir = path.resolve(__dirname, "..");
+const repoRoot = path.resolve(__dirname, "../../../..");
 const outputPptx = path.join(rootDir, "Taller-01-Conciencia-Ambiental.pptx");
 const imgDir = path.resolve(__dirname, "assets/images");
 
@@ -34,6 +38,20 @@ const IMG = {
   audit: path.join(imgDir, "recycling-sorting-audit.jpg"),
   rossAudit: path.join(imgDir, "ross-waste-audit-education-day.jpg"),
   aurariaAudit: path.join(imgDir, "auraria-campus-waste-audit.jpg"),
+  lockup: path.join(
+    repoRoot,
+    "reuniones",
+    "2026-06-22-socio-comunitario",
+    "assets",
+    "lockup-vinculacion-dark.png",
+  ),
+  lockupW: path.join(
+    repoRoot,
+    "reuniones",
+    "2026-06-22-socio-comunitario",
+    "assets",
+    "lockup-vinculacion-white.png",
+  ),
 };
 
 const GEO = {
@@ -53,6 +71,17 @@ function imageCover(slide, imagePath, x, y, w, h, opts = {}) {
     path: imagePath,
     ...imageSizingCrop(imagePath, x, y, w, h, opts.cx, opts.cy, opts.cw, opts.ch),
   });
+}
+
+function imageContain(slide, imagePath, x, y, w, h) {
+  slide.addImage({
+    path: imagePath,
+    ...imageSizingContain(imagePath, x, y, w, h),
+  });
+}
+
+function institutionalLockup(slide, white = false) {
+  imageContain(slide, white ? IMG.lockupW : IMG.lockup, 11.55, 0.24, 1.42, 1.06);
 }
 
 function bg(slide, color = GEO.paper) {
@@ -129,6 +158,7 @@ function header(slide, eyebrow, title, subtitle = "") {
 }
 
 function footer(slide, number, dark = false) {
+  institutionalLockup(slide, dark);
   const lineColor = dark ? "FFFFFF" : C.border;
   slide.addShape(SH.line, {
     x: 0.74,

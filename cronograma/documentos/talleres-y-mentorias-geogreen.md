@@ -4,8 +4,8 @@
 
 > Documento de apoyo para alinear el contenido formativo del proyecto GeoGreen
 > Escolar Osorno, a partir de la postulación Fondo VCM 2026 y su cronograma de
-> trabajo. La propuesta puede ajustarse luego de la reunión de coordinación con
-> el establecimiento.
+> trabajo. Actualizado al 13 de julio de 2026 y subordinado al calendario vigente
+> de `cronograma-vigente-2026.md`.
 
 ## 1. Propósito general
 
@@ -37,14 +37,16 @@ Principios de trabajo:
 - Aprender haciendo, con ejemplos visibles y materiales concretos.
 - Usar lenguaje claro, evitando tecnicismos innecesarios.
 - Relacionar sostenibilidad, tecnología y vida cotidiana.
-- Promover equipos mixtos con rotación de roles: coordinación, registro,
-  prototipado, análisis y vocería.
+- Organizar equipos de seis con responsabilidades persistentes de coordinación,
+  investigación, diseño, tecnología, pruebas y evidencia, y comunicación. Los
+  roles pueden rotar; las decisiones siguen perteneciendo al equipo completo.
 - Recoger evidencias simples: listas de asistencia, fotografías, fichas de
   trabajo, registros de mentoría y rúbricas.
 
 ## 3. Taller 1: Conciencia ambiental local
 
-**Periodo:** junio  
+**Fecha:** lunes 17 de agosto de 2026
+
 **Responsable principal sugerido:** Desarrollo Social y Educación  
 **Verificadores:** lista de asistencia, fotografías y material de trabajo.
 
@@ -82,7 +84,8 @@ coordinación y decisiones oportunas.
 
 ## 4. Taller 2: Ciencia del reciclaje
 
-**Periodo:** junio  
+**Fecha:** martes 18 de agosto de 2026
+
 **Responsable principal sugerido:** trabajo conjunto entre DSE e I/E/T  
 **Verificadores:** lista de asistencia, fotografías y fichas de trabajo.
 
@@ -117,52 +120,58 @@ la recuperación de materiales y reduce la cantidad de residuos mal dispuestos.
 
 ## 5. Taller 3: Innovación con propósito, GeoGreen como caso
 
-**Periodo:** junio  
+**Fecha:** lunes 24 de agosto de 2026
+
 **Responsable principal sugerido:** Ingeniería, Energía y Tecnología  
 **Verificadores:** lista de asistencia, fotografías y guía del desafío.
 
 ### Objetivo
 
-Mostrar cómo una problemática ambiental puede transformarse en un desafío de
-innovación mediante sensores, microcontroladores, datos, visualización y
-alertas.
+Relacionar un problema ambiental con una variable observable y un sensor,
+formular una propuesta inicial, utilizar agentes para planificar una prueba
+pequeña y comprender cómo un prototipo puede crecer hacia una solución integrada.
 
 ### ¿De qué se trata?
 
-En este taller GeoGreen aparece como caso central. Se explica, de manera
-didáctica, cómo un sensor puede medir el nivel de llenado de un contenedor y
-cómo esa información puede ayudar a tomar mejores decisiones. La sesión no
-busca que los estudiantes dominen electrónica avanzada, sino que entiendan el
-principio del sistema y puedan imaginar soluciones propias.
+En este taller GeoGreen aparece como referente de una ruta completa: simulación,
+prototipo físico, software, diseño 3D y PCB. La sesión dura 90 minutos y no busca
+enseñar electrónica avanzada. Su propósito es que los estudiantes comprendan
+las herramientas disponibles, identifiquen un sensor pertinente y produzcan una
+primera dirección de trabajo segura y comprobable.
+
+El prototipo original de referencia utilizaba un `HC-SR04` y un módulo de
+comunicación celular; no incluía semáforo ni buzzer. La versión educativa actual
+añade respuestas locales, OLED y una placa UNO R4 WiFi. Esta comparación muestra
+que una solución evoluciona mediante decisiones, pruebas y evidencia.
 
 ### Contenidos clave
 
-- Sensor de distancia o nivel: qué mide y para qué sirve.
-- Microcontrolador: el componente que interpreta la lectura.
-- Semáforo o buzzer: alerta local cuando el contenedor está lleno.
-- Envío de datos: idea general de WiFi o LoRa.
-- Visualización: tablero, mapa o indicador simple para decidir retiros.
-- Pensamiento computacional: dividir el problema en pasos.
+- Placa, protoboard, sensor, salida, voltaje y pinout.
+- Protocolo de seguridad antes de conectar USB.
+- Selección `problema → variable observable → sensor`.
+- Desarrollo agéntico con intención, contexto, preguntas, plan y prueba pequeña.
+- Verificación humana de conexiones, código y evidencia.
+- Ruta `sensar → enviar → visualizar → alertar` y aporte de software, diseño 3D y PCB.
 
 ### Actividades sugeridas
 
-1. **Demostración GeoGreen:** mostrar el prototipo o simulación de llenado.
-2. **Desarme conceptual:** separar el sistema en cuatro pasos: sensar, enviar,
-   visualizar y alertar.
-3. **Ideación guiada:** cada equipo elige un problema de residuos y propone una
-   solución usando la lógica GeoGreen.
-4. **Ficha de idea:** los equipos completan una ficha inicial con problema,
-   usuario, solución, datos necesarios y alerta esperada.
+1. **Evolución GeoGreen:** contrastar simulación, prototipo físico, visualización y PCB.
+2. **Del mundo físico al dato:** reconocer placa, protoboard, sensor, salida y precauciones.
+3. **Prototipado agéntico:** elegir una variable y un sensor, entregar contexto al
+   agente y acordar una primera prueba segura.
+4. **Proyección:** registrar la propuesta, el nivel de madurez y un siguiente hito verificable.
 
 ### Resultado esperado
 
-Al finalizar, cada equipo debería contar con una idea inicial para desarrollar
-durante las mentorías, ya sea como maqueta, miniprototipo, simulación o propuesta
-visual.
+Al finalizar, cada equipo conserva una propuesta tecnológica inicial: problema,
+variable, sensor, regla `cuando… entonces…`, plan de prueba, primera evidencia o
+prueba pendiente y próximo hito. El desarrollo continúa con trabajo autónomo
+entre sesiones; las mentorías revisan y orientan ese avance.
 
 ## 6. Mentorías a equipos escolares
 
-**Periodo:** julio a agosto  
+**Periodo:** 31 de agosto al 28 de septiembre de 2026
+
 **Responsable sugerido:** trabajo conjunto entre DSE e I/E/T  
 **Verificador:** registro de mentorías por equipo.
 
@@ -173,12 +182,12 @@ claras, viables y presentables para el desafío final.
 
 ### ¿De qué se tratan?
 
-Las mentorías son espacios breves de revisión y mejora. No reemplazan los
-talleres; funcionan como acompañamiento para que cada equipo avance según su
-nivel. Algunos equipos podrán desarrollar una maqueta física, otros una
-simulación, un diagrama, un tablero simple o una propuesta de intervención
-escolar. Lo importante es que la solución tenga sentido, responda a un problema
-real y pueda explicarse con claridad.
+Las mentorías son espacios breves para **revisar, orientar y destrabar**. El
+trabajo de desarrollo ocurre principalmente entre sesiones con el tiempo y la
+constancia de cada equipo. Algunos equipos podrán presentar una maqueta física,
+otros una simulación, un diagrama, un tablero o una propuesta de intervención.
+La mentoría no construye esos productos por los estudiantes: examina lo realizado,
+formula preguntas, entrega referencias y ayuda a decidir el siguiente paso.
 
 ### Estructura sugerida de cada mentoría
 
@@ -189,6 +198,10 @@ real y pueda explicarse con claridad.
    visualiza o alerta.
 4. **Viabilidad:** ajustar la idea a materiales, tiempo y nivel escolar.
 5. **Próximo paso:** dejar una tarea concreta para la siguiente revisión.
+
+El acompañamiento avanza desde pregunta, pista y referencia hacia la revisión
+técnica. La intervención directa se reserva para riesgos eléctricos, daño posible
+o una condición que impida continuar de forma segura.
 
 ### Preguntas guía para los equipos
 
@@ -216,7 +229,8 @@ real y pueda explicarse con claridad.
 
 ## 7. Ensayo de pitch escolar
 
-**Periodo:** agosto  
+**Fecha:** lunes 28 de septiembre de 2026, integrado a la Mentoría 4
+
 **Responsable principal sugerido:** Desarrollo Social y Educación  
 **Verificadores:** listas de asistencia y rúbricas.
 
@@ -247,22 +261,26 @@ ordenada, ensayada y acompañada de algún soporte visual.
 
 ## 8. Evento final y cierre
 
-**Periodo:** septiembre  
+**Evento final:** lunes 5 de octubre de 2026
+
+**Cierre interno:** semana del 12 de octubre de 2026
+
 **Responsable sugerido:** trabajo conjunto entre DSE e I/E/T  
 **Verificadores:** programa, jurado, fotografías e informe final.
 
 ### Objetivo
 
-Realizar una muestra o pitch final donde los equipos presenten sus propuestas,
-reciban retroalimentación y se reconozca su participación.
+Realizar la competencia final donde los equipos presenten sus propuestas ante un
+jurado, reciban retroalimentación y participen en la premiación.
 
 ### ¿De qué se trata?
 
-El evento final funciona como cierre pedagógico y comunitario. Permite mostrar
-los aprendizajes del proceso, destacar buenas ideas y recoger evidencia para el
-informe de cierre. La evaluación debe ser formativa: más que premiar solo el
-resultado técnico, conviene valorar la comprensión del problema, la creatividad,
-la claridad de la propuesta, el trabajo en equipo y el posible impacto.
+El evento final funciona como cierre pedagógico, comunitario y competitivo.
+Permite comparar propuestas, reconocer los avances más sólidos y recoger
+evidencia para el informe de cierre. La premiación no considera solamente la
+cantidad de componentes: también valora la comprensión del problema, la
+coherencia técnica, las pruebas y mejoras, el trabajo en equipo, la claridad de
+la presentación y el posible impacto.
 
 ### Criterios sugeridos de retroalimentación
 
@@ -287,16 +305,17 @@ respaldar la ejecución:
 - Materiales reutilizables: guías, infografías, plantillas o presentaciones.
 - Informe final con aprendizajes, recomendaciones y posibilidades de continuidad.
 
-## 10. Observaciones para coordinación
+## 10. Criterios operativos vigentes
 
-- Confirmar con el establecimiento fechas, horarios y cantidad de estudiantes
-  por sesión.
-- Definir si los talleres se harán con un curso completo, grupos paralelos o
-  equipos seleccionados.
-- Ajustar el nivel técnico según edad, especialidad y experiencia previa de los
-  estudiantes.
-- Preparar una demo GeoGreen simple y robusta antes del Taller 3.
-- Acordar con DSE el formato de fichas, rúbricas y registro de mentorías.
-- Mantener el foco en que GeoGreen Escolar es una experiencia formativa: el
-  prototipo inspira, pero el aprendizaje y las propuestas estudiantiles son el
-  centro del programa.
+- Usar el cronograma operativo único del repositorio; no reutilizar fechas de
+  decks o alternativas anteriores.
+- Trabajar con lenguaje adecuado para tercero medio, manteniendo precisión para
+  docentes y stakeholders.
+- Mantener los circuitos desconectados hasta completar revisión de voltaje,
+  pinout, polaridad, resistencias y posibles cortocircuitos.
+- Usar GeoGreen como referente y demostración, no como respuesta que todos los
+  equipos deban copiar.
+- Preservar la autonomía: docentes y monitores orientan y protegen la seguridad,
+  pero no producen la solución por el equipo.
+- Registrar avances, errores, decisiones y evidencias; el proceso también forma
+  parte de lo que se presenta y evalúa.

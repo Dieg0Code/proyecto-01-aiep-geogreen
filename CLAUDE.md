@@ -8,7 +8,8 @@ GeoGreen started as a grant proposal (Fondo Concursable VCM 2026, AIEP Osorno, C
 smart waste-container fill-level monitor, and has **grown into an educational program in
 execution — "GeoGreen Escolar"**: workshops + STEM demos + a final challenge delivered to a
 school, using the device as the central case. Socio comunitario: **Instituto Comercial Liceo
-Bicentenario, Osorno**; ~60 student beneficiaries; program window **May–Sep 2026**. It spans
+Bicentenario, Osorno**; ~60 student beneficiaries. The formal grant window is **May–Sep 2026**;
+the current operational schedule runs through the internal close in the week of **12 Oct 2026**. It spans
 three AIEP programs: Programación y Análisis de Sistemas (software), Electricidad y Electrónica
 (hardware), and Trabajo Social (community).
 
@@ -52,8 +53,8 @@ and `PLAN-GEOGREEN-ESCOLAR.md` summarize it.
 - **`app/`** — **PWA monitoring dashboard** (Vite + React + TypeScript + Tailwind). Shows the
   fleet georeferenced on a real Osorno map (react-leaflet), with fill gauge, history, battery,
   signal and alerts — closing the `visualizar/alertar` end. Telemetry today is a **deterministic
-  simulator** behind a `TelemetryService` interface (`src/lib/telemetry.ts`); swapping in real
-  ESP32 `fetch` calls leaves the UI unchanged. Same semáforo thresholds as firmware
+  simulator** behind a `TelemetryService` interface (`src/lib/telemetry.ts`); swapping in a real
+  network telemetry implementation leaves the UI unchanged. Same semáforo thresholds as firmware
   (`src/lib/status.ts`). Tailwind palette mirrors `tools/slides-system/theme/tokens.js`.
 - **`web/`** — no-build Three.js demos: `index.html` (a **real GLB container**,
   `web/vendor/models/contenedor.glb`, that fills and lights the semáforo with the firmware
@@ -61,8 +62,8 @@ and `PLAN-GEOGREEN-ESCOLAR.md` summarize it.
 
 **Voltage gotcha:** the HC-SR04 Echo pin outputs **5 V**. The UNO R4 (5 V) connects Echo
 **direct, no divider**. A **3.3 V ESP32 DevKit** would need a voltage divider / level shifter on
-Echo — don't write firmware or wiring that connects Echo straight to a 3.3 V GPIO. (The ESP32
-DevKit firmware track itself is not built; R4 is the physical networked path now.)
+Echo — don't write firmware or wiring that connects Echo straight to a 3.3 V GPIO. The separate
+`geogreen-v0/` validation track uses an A02YYUW over UART rather than the HC-SR04.
 
 ## Program & content (GeoGreen Escolar)
 
@@ -75,8 +76,8 @@ DevKit firmware track itself is not built; R4 is the physical networked path now
 - **`docs/`** — generated/shared assets: `infografias/`, `podcasts/`, `presupuestos/` (LaTeX),
   `kit-sensores/` (LaTeX manual identifying the 45-sensor kit), `guia-arduino.*`, 3D/web renders.
 - **`.agent/skills/`** — AIEP content skills used to produce program material: `clase-design`,
-  `evaluacion-design`, `cohort-comms`, `slides-aiep` (these are pedagogical — they don't cover
-  hardware/reference docs).
+  `evaluacion-design`, `cohort-comms`, `slides-aiep` and `infografias-aiep` (these are
+  pedagogical/visual — they don't replace hardware reference docs).
 - **`tools/`** — `slides-system` (shared deck theme/components for PptxGenJS), `pptx-validator`,
   `pbip-validator`.
 

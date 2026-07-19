@@ -1,8 +1,9 @@
 # Track Arduino UNO R4 WiFi
 
 Firmware para la **Arduino UNO R4 WiFi** (MCU Renesas RA4M1 a 5V + coprocesador
-ESP32-S3 para WiFi, matriz LED 12x8 integrada). Todo corre **solo con USB y la
-matriz integrada** — no necesita sensores, protoboard ni componentes externos.
+ESP32-S3 para WiFi, matriz LED 12x8 integrada). La carpeta incluye tanto demos
+que funcionan solo con USB y la matriz integrada como el prototipo físico
+GeoGreen montado en protoboard.
 
 A diferencia del track ESP32 DevKit (3.3V), la R4 es 5V: el pin Echo del HC-SR04
 se conecta directo a un GPIO **sin divisor de voltaje**.
@@ -16,6 +17,10 @@ se conecta directo a un GPIO **sin divisor de voltaje**.
   sobre una matriz que de fábrica es binaria.
 - **`geogreen_matrix/`** — demo simple de respaldo: texto + barra de llenado +
   parpadeo de alerta.
+- **`geogreen_proto/`** — prototipo físico completo: `HC-SR04`, semáforo de tres
+  LEDs, buzzer y OLED SSD1306. Calcula porcentaje, filtra lecturas ultrasónicas,
+  aplica histéresis a los estados y mantiene la identidad GeoGreen en la matriz
+  integrada sin bloquear la medición.
 - **`hacker_show/`** — demo personal (no GeoGreen): animación ciberpunk en bucle
   (lluvia estilo Matrix + calavera con glitch), pensada para grabar y subir de
   historia.
@@ -36,6 +41,7 @@ pio run -d arduino-r4/geogreen_show
 
 # Compilar + flashear (con la placa conectada por USB; detecta el puerto solo):
 pio run -d arduino-r4/geogreen_show   -t upload
+pio run -d arduino-r4/geogreen_proto  -t upload
 pio run -d arduino-r4/hacker_show     -t upload
 pio run -d arduino-r4/geogreen_matrix -t upload
 
@@ -45,14 +51,15 @@ pio device monitor -d arduino-r4/geogreen_show
 
 > `pio` está instalado vía `uv tool` en `~/.local/bin/pio.exe` (ya en el PATH).
 
-### Comando para la reunión
+### Demos para presentación
 
-La placa **ya queda con `geogreen_show` flasheado**, así que para mostrarlo basta
-**enchufarla por USB** (a un notebook o a un cargador/powerbank) y el show arranca
-solo en bucle. Si querés re-flashearlo en el momento:
+`geogreen_show` sirve como demo autónoma cuando no se quiere conectar hardware
+externo. `geogreen_proto` corresponde a la demostración con sensor, OLED,
+semáforo y buzzer. Para cargar cualquiera:
 
 ```bash
 pio run -d arduino-r4/geogreen_show -t upload
+pio run -d arduino-r4/geogreen_proto -t upload
 ```
 
 ## Ajustes del show
@@ -62,12 +69,16 @@ brillo/parpadeo del motor de grises (subir = más brillo y estabilidad, bajar =
 menos flicker). Se afina mirando la matriz. Si al **grabar en video** aparecen
 bandas/parpadeo, subir `BCM_UNIT` estabiliza la imagen en cámara.
 
-## Próximo paso (cuando llegue el HC-SR04)
+## Estado de la integración
 
-`sceneFill` del show pasará a alimentarse de la **distancia real** medida por el
-ultrasónico en vez de simular el porcentaje. El WiFi (librería `WiFiS3`, incluida en
-el core) habilita la subida al dashboard del track ESP32. Para sumar la librería del
-sensor u otras, se agregan a `lib_deps` en el `platformio.ini` del sketch.
+La medición física ya está implementada en `geogreen_proto`; no se incorporó a
+`geogreen_show` porque ese sketch se conserva como pieza audiovisual autónoma.
+La conexión de telemetría real con el dashboard sigue siendo una integración
+separada: la R4 dispone de WiFi mediante `WiFiS3`, mientras la aplicación mantiene
+la fuente de datos detrás de la interfaz `TelemetryService`.
+
+Mapa de pines, armado y evidencia del prototipo:
+[`../docs/armado-prototipo/`](../docs/armado-prototipo/).
 
 ## Nota
 

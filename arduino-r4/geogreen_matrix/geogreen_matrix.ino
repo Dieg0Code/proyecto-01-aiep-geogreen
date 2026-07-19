@@ -9,8 +9,8 @@
  *      llenándose). Crece desde abajo hacia arriba.
  *   3. Al llegar a nivel crítico, la matriz parpadea = ALERTA "lleno".
  *
- * Cuando lleguen el HC-SR04 y el resto del kit, el porcentaje vendrá
- * de la distancia medida en vez de simularse.
+ * Este fallback conserva un porcentaje animado para funcionar sin hardware
+ * externo. La medicion real con HC-SR04 vive en ../geogreen_proto/.
  *
  * Placa: Arduino UNO R4 WiFi  (FQBN arduino:renesas_uno:unor4wifi)
  * Flasheo por USB, sin componentes externos.

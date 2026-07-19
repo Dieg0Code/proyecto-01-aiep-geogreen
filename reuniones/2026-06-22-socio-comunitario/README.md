@@ -1,5 +1,10 @@
 # Reunión socio comunitario — lunes 2026-06-22
 
+> **Registro histórico de una reunión ya realizada.** Este README documenta el
+> deck y su construcción; no es fuente de fechas ni del estado actual del
+> programa. Para coordinación vigente usar `../../cronograma/README.md` y para el
+> Taller 3 usar `../../talleres/03/README.md`.
+
 Presentación de GeoGreen al **socio comunitario (Instituto Comercial Liceo Bicentenario, Osorno)**.
 Objetivo: **sumar al liceo como aliado**. Audiencia: directiva + docentes. Presenta Diego, en vivo.
 

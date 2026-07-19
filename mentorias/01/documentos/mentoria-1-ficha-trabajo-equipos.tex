@@ -1,0 +1,188 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=13mm,bottom=14mm,left=14mm,right=14mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{C9D2DE}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 1}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{Ficha de trabajo por equipo}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\newtcolorbox{fieldbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.55pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newtcolorbox{accentfield}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPRed,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newcommand{\writearea}[1]{\vspace{#1}\hrule height 0.35pt\vspace{4mm}\hrule height 0.35pt}
+\newcommand{\checkline}[1]{$\square$\hspace{1.5mm}#1}
+
+\begin{document}
+
+{\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · MENTORÍA 1}}\par
+\vspace{2mm}
+{\LARGE\bfseries\color{AIEPNavy}Problema y contexto afectado\par}
+{\normalsize\color{AIEPMuted}Ficha de trabajo por equipo · Conservar para la Mentoría 2\par}
+
+\vspace{4mm}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{25mm}Y >{\bfseries\color{AIEPNavy}}p{29mm}p{38mm}@{}}
+Equipo & \rule{57mm}{0.35pt} & Proyecto & \rule{36mm}{0.35pt} \\
+Integrantes & \multicolumn{3}{l}{\rule{145mm}{0.35pt}} \\
+\end{tabularx}
+
+\vspace{3mm}
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Productos de entrada:}\hspace{4mm}
+\checkline{Problema T1}\hspace{5mm}
+\checkline{Ficha de material T2}\hspace{5mm}
+\checkline{Idea tecnológica T3}
+\end{tcolorbox}
+
+\section*{1. Mapa situado del problema}
+\vspace{-2mm}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=31mm]{Lugar específico}
+¿Dónde ocurre exactamente?
+\writearea{5mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=31mm]{Momento y frecuencia}
+¿Cuándo ocurre y cuánto se repite?
+\writearea{5mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=31mm]{Actores involucrados}
+¿Quiénes interactúan con la situación?
+\writearea{5mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=31mm]{Personas o grupos afectados}
+¿Quiénes reciben consecuencias?
+\writearea{5mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{fieldbox}[height=33mm]{Condiciones que podrían influir}
+Marquen y precisen: \checkline{hábitos}\hspace{3mm}\checkline{información}\hspace{3mm}\checkline{infraestructura}\hspace{3mm}\checkline{organización}\hspace{3mm}\checkline{normas}
+\writearea{5mm}
+\end{fieldbox}
+
+\begin{accentfield}[height=39mm]{Primera síntesis situada}
+En \rule{38mm}{0.35pt}, durante \rule{34mm}{0.35pt}, ocurre \rule{55mm}{0.35pt}.\\[5mm]
+Involucra o afecta a \rule{47mm}{0.35pt} y podría relacionarse con \rule{53mm}{0.35pt}.
+\end{accentfield}
+
+\newpage
+{\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · MENTORÍA 1}}\par
+\vspace{2mm}
+{\LARGE\bfseries\color{AIEPNavy}Evidencia, validación y próximo paso\par}
+{\normalsize\color{AIEPMuted}Complete con información que el equipo pueda sostener o declarar como pendiente.\par}
+
+\section*{2. Semáforo de evidencia}
+\vspace{-2mm}
+{\small
+\begin{tabularx}{\textwidth}{|Y|p{25mm}|p{48mm}|p{52mm}|}
+\hline
+\textbf{Afirmación del equipo} & \textbf{Estado} & \textbf{Evidencia o fuente} & \textbf{Qué falta o qué decidimos} \\
+\hline
+\rule{0pt}{14mm} & $\bigcirc$ Verde\newline $\bigcirc$ Amarillo\newline $\bigcirc$ Rojo & & \\
+\hline
+\rule{0pt}{14mm} & $\bigcirc$ Verde\newline $\bigcirc$ Amarillo\newline $\bigcirc$ Rojo & & \\
+\hline
+\rule{0pt}{14mm} & $\bigcirc$ Verde\newline $\bigcirc$ Amarillo\newline $\bigcirc$ Rojo & & \\
+\hline
+\end{tabularx}}
+
+\begin{tcolorbox}[colback=AIEPSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Antes de avanzar, deje resuelto:}\quad
+una afirmación que pueden sostener · una hipótesis por contrastar · una generalización eliminada o reformulada.
+\end{tcolorbox}
+
+\section*{3. Ficha final de validación}
+\vspace{-2mm}
+\begin{accentfield}[height=33mm]{Problema validado}
+En \rule{29mm}{0.35pt}, ocurre \rule{40mm}{0.35pt}, que involucra o afecta a \rule{43mm}{0.35pt}.\\[4mm]
+Sabemos que ocurre porque \rule{58mm}{0.35pt} y genera \rule{48mm}{0.35pt}.
+\end{accentfield}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=28mm]{Hipótesis pendiente}
+¿Qué explicación todavía debe contrastarse?
+\writearea{4mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=28mm]{Aporte de la idea}
+¿Qué busca observar, prevenir, informar o mejorar?
+\writearea{4mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=28mm]{Límite actual}
+¿Qué parte queda fuera de su alcance?
+\writearea{4mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=28mm]{Próximo paso verificable}
+¿Qué avance podrán demostrar antes de la Mentoría 2?
+\writearea{4mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\textbf{Declaración de 30 segundos}\par
+Nuestro problema ocurre en \rule{28mm}{0.35pt} y afecta o involucra a \rule{28mm}{0.35pt}. Sabemos que ocurre porque \rule{33mm}{0.35pt}. Nuestra idea busca aportar mediante \rule{34mm}{0.35pt}, y antes de la Mentoría 2 necesitamos \rule{34mm}{0.35pt}.
+\end{tcolorbox}
+
+\end{document}

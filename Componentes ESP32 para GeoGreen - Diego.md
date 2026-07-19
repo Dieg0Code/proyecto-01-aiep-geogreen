@@ -1,5 +1,10 @@
 # Componentes para mi versión GeoGreen con ESP32
 
+> **Antecedente de compra y exploración.** Esta lista fue redactada antes de que
+> la UNO R4 WiFi unificara la demostración física de 5 V con conectividad. Se
+> conserva para comparar alternativas, no como arquitectura vigente. Los tracks
+> actuales están descritos en `README.md`, `geogreen-v0/` y `geogreen-v1/`.
+
 Objetivo: armar una versión más completa del prototipo, con medición de llenado, alerta visual/sonora, pantalla local y posibilidad de enviar datos por WiFi a un dashboard simple.
 
 ## Compra principal

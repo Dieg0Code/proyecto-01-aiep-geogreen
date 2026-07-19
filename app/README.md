@@ -32,12 +32,17 @@ node scripts/generate-icons.mjs   # regenera los iconos PWA desde la marca GeoGr
 - **Alertas** (`/alertas`) — lleno / batería baja / sin señal, enlazadas al detalle.
 - **Detalle** (panel) — gauge de llenado, histórico 24 h, batería, señal, última lectura.
 
-## Datos: simulados hoy, ESP32 mañana
+## Fuente de telemetría
 
-Hoy no hay flota física, así que `src/lib/telemetry.ts` es un **simulador
-determinista** de ~12 contenedores en Osorno. Está detrás de la interfaz
-`TelemetryService`; para conectar dispositivos reales basta reemplazar esa
-implementación por `fetch` a la API del ESP32 — la UI no cambia.
+`src/lib/telemetry.ts` utiliza actualmente un generador determinista de lecturas
+para representar una flota de aproximadamente 12 contenedores en Osorno. La
+fuente está aislada detrás de la interfaz `TelemetryService`, por lo que una
+integración de red con UNO R4 WiFi, ESP32 o un backend puede reemplazarla sin
+reescribir las pantallas.
+
+El prototipo físico ya existe en `../arduino-r4/geogreen_proto/`; la transmisión
+de esas lecturas hacia la aplicación es una etapa de integración distinta del
+funcionamiento local del sensor, OLED, semáforo y buzzer.
 
 El semáforo (`src/lib/status.ts`) usa los mismos umbrales que el firmware:
 **< 40 % verde · 40–80 % amarillo · ≥ 80 % rojo**.

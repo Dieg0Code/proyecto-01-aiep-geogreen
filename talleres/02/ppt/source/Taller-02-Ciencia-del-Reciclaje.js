@@ -21,6 +21,7 @@ const SH = pptx.ShapeType;
 const SLIDE_W = 13.333;
 const SLIDE_H = 7.5;
 const rootDir = path.resolve(__dirname, "..");
+const repoRoot = path.resolve(__dirname, "../../../..");
 const outputPptx = path.join(rootDir, "Taller-02-Ciencia-del-Reciclaje.pptx");
 const imgDir = path.resolve(__dirname, "assets/images");
 
@@ -33,11 +34,25 @@ const IMG = {
   recila: path.join(imgDir, "reciclaje-trabajo-recila-cl.jpg"),
   vitacura: path.join(imgDir, "mercado-reciclaje-vitacura-cl.jpg"),
   board: path.join(imgDir, "arduino-uno-r4-geogreen.png"),
+  lockup: path.join(
+    repoRoot,
+    "reuniones",
+    "2026-06-22-socio-comunitario",
+    "assets",
+    "lockup-vinculacion-dark.png",
+  ),
+  lockupW: path.join(
+    repoRoot,
+    "reuniones",
+    "2026-06-22-socio-comunitario",
+    "assets",
+    "lockup-vinculacion-white.png",
+  ),
 };
 
-// Variacion de paleta para el Taller 2: misma paleta AIEP (navy + gold + rojo +
-// neutros), pero con el GOLD como acento firma del taller (en vez del rojo del
-// Taller 1) y el neutro verdoso institucional como superficie de los materiales.
+// Paleta del Taller 2: navy, blanco cálido y rojo sostienen la identidad AIEP;
+// el dorado firma el contenido y los colores de reciclaje aparecen solo cuando
+// comunican una familia, una norma o una decisión real.
 const A = {
   navy: C.navy,
   navyDeep: "061E3A",
@@ -49,6 +64,14 @@ const A = {
   redSoft: "F8E7E8",
   red: C.red,
   ink: "182B3A",
+  recycleBlue: "2879B9",
+  recycleYellow: "F7B900",
+  recycleGreen: "2F914F",
+  recycleGray: "9299A1",
+  recycleBrown: "845B36",
+  recycleRed: "C63A2D",
+  recyclePurple: "7C63A5",
+  recycleTeal: "0F7C8C",
 };
 
 function imageCover(slide, imagePath, x, y, w, h, opts = {}) {
@@ -60,6 +83,10 @@ function imageCover(slide, imagePath, x, y, w, h, opts = {}) {
 
 function imageContain(slide, imagePath, x, y, w, h) {
   slide.addImage({ path: imagePath, ...imageSizingContain(imagePath, x, y, w, h) });
+}
+
+function institutionalLockup(slide, white = false) {
+  imageContain(slide, white ? IMG.lockupW : IMG.lockup, 11.55, 0.24, 1.42, 1.06);
 }
 
 function bg(slide, color = A.paper) {
@@ -90,8 +117,8 @@ function panel(slide, x, y, w, h, opts = {}) {
   });
 }
 
-// Geometria AIEP: tres barras. En el Taller 2 el acento por defecto es el gold.
-function bars(slide, x, y, scale = 1, color = A.gold) {
+// Geometría AIEP: el rojo aporta energía; el dorado queda como firma del contenido.
+function bars(slide, x, y, scale = 1, color = C.red) {
   slide.addShape(SH.rect, { x, y: y + 0.16 * scale, w: 0.14 * scale, h: 0.42 * scale, fill: { color }, line: { color } });
   slide.addShape(SH.rect, { x: x + 0.2 * scale, y, w: 0.16 * scale, h: 0.58 * scale, fill: { color }, line: { color } });
   slide.addShape(SH.rect, { x: x + 0.42 * scale, y: y + 0.16 * scale, w: 0.14 * scale, h: 0.42 * scale, fill: { color }, line: { color } });
@@ -107,7 +134,7 @@ function header(slide, eyebrow, title, subtitle = "") {
     fontFace: TYPOGRAPHY.body,
     fontSize: 9,
     bold: true,
-    color: C.navy,
+    color: C.red,
     charSpace: 1.1,
     margin: 0,
   });
@@ -137,6 +164,7 @@ function header(slide, eyebrow, title, subtitle = "") {
 }
 
 function footer(slide, number, dark = false) {
+  institutionalLockup(slide, dark);
   const lineColor = dark ? "FFFFFF" : C.border;
   slide.addShape(SH.line, {
     x: 0.74,
@@ -161,8 +189,8 @@ function footer(slide, number, dark = false) {
     w: 0.42,
     h: 0.24,
     rectRadius: 0.05,
-    fill: { color: A.gold },
-    line: { color: A.gold, transparency: 100 },
+    fill: { color: dark ? C.red : C.navy },
+    line: { color: dark ? C.red : C.navy, transparency: 100 },
   });
   slide.addText(String(number).padStart(2, "0"), {
     x: 12.16,
@@ -172,7 +200,7 @@ function footer(slide, number, dark = false) {
     fontFace: TYPOGRAPHY.body,
     fontSize: 7.6,
     bold: true,
-    color: C.navy,
+    color: C.white,
     align: "center",
     margin: 0,
   });
@@ -577,12 +605,12 @@ function slide06Families() {
   bg(slide);
   header(slide, "Ordenar el panorama", "Seis familias de materiales", "No hace falta memorizar química: basta reconocer la familia y una propiedad clave.");
   const fams = [
-    ["Plásticos", "varios tipos; no todos se reciclan igual", A.neutral, C.navy],
-    ["Papel y cartón", "se arruinan si se mojan o ensucian", C.white, C.navy],
-    ["Vidrio", "se recicla muchas veces sin perder calidad", A.blueSoft, C.navy],
-    ["Metales", "muy valiosos; el aluminio se recupera fácil", A.goldSoft, "9A7B22"],
-    ["Orgánico", "no se recicla: se composta; mezclado contamina", A.neutral, C.navy],
-    ["Multicapa", "materiales pegados; difícil de separar", C.white, C.navy],
+    ["Plásticos", "varios tipos; no todos se reciclan igual", "FFF4CC", A.recycleYellow],
+    ["Papel y cartón", "se arruinan si se mojan o ensucian", "EAF3FB", A.recycleBlue],
+    ["Vidrio", "se recicla muchas veces sin perder calidad", "E8F4EC", A.recycleGreen],
+    ["Metales", "muy valiosos; el aluminio se recupera fácil", "EEF0F2", A.recycleGray],
+    ["Orgánico", "no se recicla: se composta; mezclado contamina", "F4E9DF", A.recycleBrown],
+    ["Multicapa", "materiales pegados; difícil de separar", "F1EBF7", A.recyclePurple],
   ];
   fams.forEach(([title, body, fill, accent], i) => {
     const col = i % 3;
@@ -590,7 +618,7 @@ function slide06Families() {
     const x = 0.92 + col * 3.78;
     const y = 2.12 + row * 1.94;
     panel(slide, x, y, 3.3, 1.66, { fill, line: fill === C.white ? C.border : fill, shadow: true });
-    rect(slide, x, y, 0.07, 1.66, accent === "9A7B22" ? A.gold : C.navy);
+    rect(slide, x, y, 0.08, 1.66, accent);
     slide.addText(title, {
       x: x + 0.26,
       y: y + 0.28,
@@ -819,15 +847,9 @@ function slide11CleanDrySeparated() {
   header(slide, "La regla clave", "Limpio, seco y separado", "Tres condiciones deciden si un reciclable se convierte de verdad en reciclado.");
   // Fórmula-resumen como ancla del concepto.
   panel(slide, 0.92, 1.9, 10.8, 0.58, { fill: A.neutral, line: A.neutral, shadow: false });
-  slide.addText([
-    { text: "Limpio", options: { color: C.navy, bold: true } },
-    { text: "    +    ", options: { color: "9A7B22", bold: true } },
-    { text: "Seco", options: { color: C.navy, bold: true } },
-    { text: "    +    ", options: { color: "9A7B22", bold: true } },
-    { text: "Separado", options: { color: C.navy, bold: true } },
-    { text: "    =    ", options: { color: "9A7B22", bold: true } },
-    { text: "reciclado de verdad", options: { color: C.navy, bold: true } },
-  ], { x: 1.1, y: 2.02, w: 10.44, h: 0.34, fontFace: TYPOGRAPHY.display, fontSize: 16, align: "center", margin: 0 });
+  slide.addText("Limpio   +   Seco   +   Separado   =   reciclado de verdad", {
+    x: 1.1, y: 2.02, w: 10.44, h: 0.34, fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true, color: C.navy, align: "center", margin: 0,
+  });
 
   const conds = [
     ["01", "Limpio", "Sin restos de comida que contaminen el material.", "un envase con restos, una caja con grasa"],
@@ -853,11 +875,8 @@ function slide11CleanDrySeparated() {
     });
     panel(slide, x + 0.24, y + 2.04, 2.82, 0.66, { fill: A.redSoft, line: A.redSoft, shadow: false });
     rect(slide, x + 0.24, y + 2.04, 0.06, 0.66, C.red);
-    slide.addText([
-      { text: "Lo rompe:  ", options: { color: "9A2C24", bold: true } },
-      { text: breaks, options: { color: "9A2C24", bold: false } },
-    ], {
-      x: x + 0.42, y: y + 2.14, w: 2.52, h: 0.48, fontFace: TYPOGRAPHY.body, fontSize: 9.4, margin: 0, breakLine: false,
+    slide.addText(`Lo rompe: ${breaks}`, {
+      x: x + 0.42, y: y + 2.14, w: 2.52, h: 0.48, fontFace: TYPOGRAPHY.body, fontSize: 9.4, color: "9A2C24", margin: 0, breakLine: false,
     });
   });
   thesis(slide, "Un reciclable sucio no es un reciclable con un detalle menor: muchas veces deja de serlo.");
@@ -1017,11 +1036,8 @@ function slide15DecisionBeforeTossing() {
   });
   panel(slide, 0.92, 5.36, 10.8, 0.62, { fill: A.goldSoft, line: A.goldSoft, shadow: false });
   rect(slide, 0.92, 5.36, 0.08, 0.62, A.gold);
-  slide.addText([
-    { text: "Conecta con el Taller 1:  ", options: { color: "9A7B22", bold: true } },
-    { text: "reciclar bien es, en gran parte, un hábito de separación tomado a tiempo.", options: { color: C.navy, bold: true } },
-  ], {
-    x: 1.24, y: 5.55, w: 10.3, h: 0.24, fontFace: TYPOGRAPHY.body, fontSize: 11.5, margin: 0,
+  slide.addText("Conecta con el Taller 1 · reciclar bien es, en gran parte, un hábito de separación tomado a tiempo.", {
+    x: 1.24, y: 5.55, w: 10.3, h: 0.24, fontFace: TYPOGRAPHY.body, fontSize: 11.5, bold: true, color: C.navy, margin: 0,
   });
   thesis(slide, "El mejor momento para reciclar algo es justo antes de botarlo, no después.");
   footer(slide, 15);
@@ -1183,19 +1199,19 @@ function slide21Classification() {
   bg(slide);
   header(slide, "Clasificar con criterio", "Cinco categorías, una decisión", "El foco no es solo acertar: es justificar por qué.");
   const cats = [
-    ["Reciclable", "¿de qué familia es? ¿está limpio?", false],
-    ["No reciclable", "¿muy mezclado o multicapa?", false],
-    ["Orgánico", "¿se podría compostar?", false],
-    ["Manejo especial", "pilas, electrónicos, peligrosos", false],
-    ["Genera duda", "¿qué dato falta para decidir?", true],
+    ["Reciclable", "¿de qué familia es? ¿está limpio?", A.recycleGreen, C.white],
+    ["No reciclable", "¿muy mezclado o multicapa?", "5E6670", C.white],
+    ["Orgánico", "¿se podría compostar?", A.recycleBrown, C.white],
+    ["Manejo especial", "pilas, electrónicos, peligrosos", A.recycleRed, C.white],
+    ["Genera duda", "¿qué dato falta para decidir?", A.gold, C.navy],
   ];
-  cats.forEach(([name, pista, gold], i) => {
+  cats.forEach(([name, pista, categoryColor, titleColor], i) => {
     const x = 0.92 + i * 2.18;
     const y = 2.34;
-    panel(slide, x, y, 2.04, 2.78, { fill: C.white, line: gold ? A.gold : C.border, shadow: true });
-    rect(slide, x, y, 2.04, 0.78, gold ? A.gold : C.navy);
+    panel(slide, x, y, 2.04, 2.78, { fill: C.white, line: categoryColor, shadow: true });
+    rect(slide, x, y, 2.04, 0.78, categoryColor);
     slide.addText(name, {
-      x: x + 0.16, y: y + 0.14, w: 1.74, h: 0.5, fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true, color: gold ? C.navy : C.white, margin: 0,
+      x: x + 0.16, y: y + 0.14, w: 1.74, h: 0.5, fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true, color: titleColor, margin: 0,
     });
     slide.addText("PISTA PARA DECIDIR", {
       x: x + 0.16, y: y + 0.96, w: 1.76, h: 0.12, fontFace: TYPOGRAPHY.body, fontSize: 7, bold: true, color: C.slate, charSpace: 0.5, margin: 0,
@@ -1241,11 +1257,8 @@ function slide22Block3Close() {
     });
   });
   panel(slide, 0.92, 4.86, 10.8, 0.72, { fill: A.gold, line: A.gold, shadow: false });
-  slide.addText([
-    { text: "Para conversar:   ", options: { color: "9A2C24", bold: true } },
-    { text: "¿qué material les generó más duda al clasificar?", options: { color: C.navy, bold: true } },
-  ], {
-    x: 1.24, y: 5.08, w: 10.2, h: 0.28, fontFace: TYPOGRAPHY.body, fontSize: 12.5, align: "center", margin: 0,
+  slide.addText("Para conversar · ¿qué material les generó más duda al clasificar?", {
+    x: 1.24, y: 5.08, w: 10.2, h: 0.28, fontFace: TYPOGRAPHY.body, fontSize: 12.5, bold: true, color: C.navy, align: "center", margin: 0,
   });
   thesis(slide, "Ya investigamos el material de cerca; ahora lo conectamos con nuestro problema.", true);
   footer(slide, 22, true);
@@ -1353,19 +1366,20 @@ function slide26BridgeTaller3() {
     x: 1.2, y: 4.94, w: 4.7, h: 0.5, fontFace: TYPOGRAPHY.body, fontSize: 11, bold: true, color: C.navy, align: "center", margin: 0,
   });
   const steps = [
-    ["Sensar", "mide cuánto se llena el contenedor"],
-    ["Enviar", "manda el dato por WiFi o LoRa"],
-    ["Visualizar", "muestra el nivel en un tablero"],
-    ["Alertar", "avisa cuando está lleno"],
+    ["Sensar", "mide cuánto se llena el contenedor", A.recycleBlue, "EAF3FB"],
+    ["Enviar", "manda el dato por WiFi", A.recycleTeal, "E7F4F5"],
+    ["Visualizar", "muestra el nivel en un tablero", A.recycleGreen, "E8F4EC"],
+    ["Alertar", "avisa cuando está lleno", A.recycleRed, A.redSoft],
   ];
-  steps.forEach(([t, b], i) => {
+  steps.forEach(([t, b, accent, fill], i) => {
     const y = 2.12 + i * 0.88;
-    panel(slide, 6.4, y, 5.32, 0.76, { fill: i === 0 ? A.goldSoft : C.white, line: i === 0 ? A.gold : C.border, shadow: false });
-    slide.addText(String(i + 1), { x: 6.64, y: y + 0.24, w: 0.4, h: 0.2, fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true, color: "9A7B22", margin: 0 });
+    panel(slide, 6.4, y, 5.32, 0.76, { fill, line: accent, shadow: false });
+    rect(slide, 6.4, y, 0.08, 0.76, accent);
+    slide.addText(String(i + 1), { x: 6.64, y: y + 0.24, w: 0.4, h: 0.2, fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true, color: accent, margin: 0 });
     slide.addText(t, { x: 7.16, y: y + 0.14, w: 2.0, h: 0.2, fontFace: TYPOGRAPHY.display, fontSize: 14.5, bold: true, color: C.navy, margin: 0 });
     slide.addText(b, { x: 7.16, y: y + 0.44, w: 4.3, h: 0.18, fontFace: TYPOGRAPHY.body, fontSize: 10, color: C.slate, margin: 0 });
     if (i < 3) {
-      slide.addShape(SH.line, { x: 6.66, y: y + 0.76, w: 0, h: 0.12, line: { color: A.gold, pt: 1.2 } });
+      slide.addShape(SH.line, { x: 6.66, y: y + 0.76, w: 0, h: 0.12, line: { color: C.border, pt: 1.2 } });
     }
   });
   thesis(slide, "Una tecnología tiene sentido cuando responde a un problema real y conoce su material.");

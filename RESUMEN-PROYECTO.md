@@ -3,6 +3,11 @@
 > Digest fiel de **toda** la postulación (`1_Proyecto (1).docx`, Fondo Concursable
 > VCM 2026). Pensado como referencia rápida para liderar el proyecto y la reunión.
 > Para el roadmap técnico y de ejecución, ver [`PLAN-GEOGREEN-ESCOLAR.md`](PLAN-GEOGREEN-ESCOLAR.md).
+>
+> **Lectura vigente al 13 de julio de 2026:** este archivo conserva lo declarado
+> en la postulación. Cuando el calendario o la implementación cambiaron durante la
+> ejecución, se indica expresamente como actualización operativa y no se reescribe
+> la fuente formal.
 
 ## 1. Lo esencial (ficha resumen)
 
@@ -145,7 +150,10 @@ proponer soluciones a la gestión de residuos de su comunidad escolar.
   del sector productivo y de servicios* (mejora la gestión de residuos desde la
   educación escolar).
 
-## 13. Carta Gantt
+## 13. Carta Gantt de postulación
+
+La tabla siguiente conserva la planificación formal presentada originalmente al Fondo VCM 2026.
+El calendario operativo vigente se documenta inmediatamente después.
 
 | Actividad | Verificador | Inicio | Término |
 |---|---|---|---|
@@ -157,6 +165,24 @@ proponer soluciones a la gestión de residuos de su comunidad escolar.
 | Ensayo de pitch escolar | Listas, rúbricas | Agosto | Agosto |
 | Evento final (presentación de ideas) | Programa, jurado, fotos | Sept. | Sept. |
 | Devolución y cierre | Informe final | Sept. | Sept. |
+
+### Calendario operativo vigente
+
+| Fecha | Hito |
+|---|---|
+| 17 de agosto de 2026 | Taller 1 |
+| 18 de agosto de 2026 | Taller 2 |
+| 24 de agosto de 2026 | Taller 3 |
+| 31 de agosto de 2026 | Mentoría 1 |
+| 7 de septiembre de 2026 | Mentoría 2 |
+| Semana del 14 de septiembre de 2026 | Sin actividades por Fiestas Patrias |
+| 21 de septiembre de 2026 | Mentoría 3 |
+| 28 de septiembre de 2026 | Mentoría 4 y ensayo |
+| 2 de octubre de 2026 | Hito comunicacional |
+| 5 de octubre de 2026 | Evento final |
+| Semana del 12 de octubre de 2026 | Cierre interno |
+
+Fuente operativa: `cronograma/documentos/cronograma-vigente-2026.md`.
 
 ## 14. Presupuesto ($2.080.000)
 
@@ -188,18 +214,24 @@ Líder: **Elías Silva** · Co-líder: **Joaho Hernández** · El encargado admi
 debe ser el Jefe/Director Administrativo de la Sede. *(La sección "Equipo de trabajo"
 del Word está en blanco — falta completar perfiles/experiencia.)*
 
-## 16. ⚠️ Puntos a confirmar/aclarar en la reunión
+## 16. Aclaraciones entre postulación y ejecución
 
-- **Nombre del colegio:** la descripción dice *"XXXX de Osorno"* (placeholder),
-  pero la ficha indica **Instituto Comercial Liceo Bicentenario** → confirmar cuál es.
-- **Calendario:** la ficha dice inicio **06-04** y término **30-10-2026**, pero la
-  Carta Gantt corre de **Mayo a Septiembre** → aclarar las fechas reales.
-- **Equipo de trabajo:** completar la sección (líder, co-líder, administrativo y
-  perfiles técnicos con experiencia).
-- **Rol de Diego:** la ficha lista a Elías como líder y Joaho como co-líder; si
-  Diego va a ejecutar/liderar, conviene dejarlo explícito en el equipo.
+- **Socio comunitario:** la ejecución se realiza con el **Instituto Comercial
+  Liceo Bicentenario, Osorno**. El texto `XXXX de Osorno` se conserva únicamente
+  como un placeholder presente en una sección del documento original.
+- **Calendario:** la Carta Gantt de postulación permanece como antecedente formal.
+  La ejecución adoptó el calendario operativo de agosto a octubre incluido en la
+  sección 13 y centralizado en `cronograma/`.
+- **Equipo formal:** la ficha de postulación identifica a Elías Silva como líder y
+  a Joaho Hernández como co-líder. Los aportes docentes y técnicos de ejecución se
+  documentan en el plan operativo y en los materiales de cada taller, sin alterar
+  retroactivamente la ficha presentada al fondo.
+- **Evolución técnica:** las referencias a WiFi/LoRa y a los componentes de la
+  propuesta describen el alcance formal. El estado real del prototipo —UNO R4
+  WiFi, prototipo físico, PWA, tracks A02YYUW/ESP32 y PCB V1— se mantiene en
+  `README.md` y `PLAN-GEOGREEN-ESCOLAR.md`.
 
 ---
 
-*Resumen elaborado a partir de `1_Proyecto (1).docx`. Si necesitas este documento
-en PDF o presentación para proyectar, se puede generar aparte.*
+*Resumen elaborado a partir de `1_Proyecto (1).docx`; actualización operativa
+contrastada con el cronograma vigente del repositorio.*

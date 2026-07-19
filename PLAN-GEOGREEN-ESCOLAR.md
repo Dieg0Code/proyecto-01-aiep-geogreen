@@ -1,172 +1,158 @@
-# GeoGreen Escolar - Plan de ejecucion actualizado
+# GeoGreen Escolar · Plan de ejecución vigente
 
-> Actualizado: 2026-06-21. Documento base para alinear el relato del proyecto,
-> preparar la reunion de lanzamiento con el socio comunitario y seleccionar fuentes
-> para NotebookLM.
+> Actualizado: 13 de julio de 2026.
 >
-> Resumen formal de la postulacion: [`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md).
+> Este documento describe el estado operativo del programa. El alcance formal de
+> la postulación se conserva en [`RESUMEN-PROYECTO.md`](RESUMEN-PROYECTO.md) y las
+> fechas vigentes en [`cronograma/README.md`](cronograma/README.md).
 
 ## En una frase
 
-GeoGreen Escolar convierte un prototipo de monitoreo de contenedores en una
-experiencia educativa de vinculacion con el medio: estudiantes del liceo observan
-un problema ambiental real, entienden los residuos y materiales, conocen sensores
-y datos, y terminan proponiendo una solucion en formato de pitch.
+GeoGreen Escolar utiliza la evolución de un sistema de monitoreo de contenedores
+para que estudiantes de tercero medio comprendan un problema ambiental,
+investiguen sensores, formulen una solución propia, produzcan evidencia y la
+presenten en una competencia final.
 
-## Que se presenta al socio comunitario
-
-La reunion del lunes 22 de junio de 2026 no es solo una muestra tecnica. Es el
-lanzamiento de una alianza entre AIEP Osorno y el Instituto Comercial Liceo
-Bicentenario para ejecutar un programa formativo con tres momentos:
-
-1. Talleres: conciencia ambiental, ciencia del reciclaje y tecnologia/prototipado.
-2. Mentorias: acompanamiento de equipos escolares para convertir problemas en ideas.
-3. Cierre: evento final con presentacion/pitch de soluciones.
-
-El dispositivo GeoGreen funciona como caso central: permite explicar la cadena
-**sensar -> enviar -> visualizar -> alertar** usando un problema cercano, concreto
-y territorial.
-
-## Socio, alcance y marco institucional
+## Alcance actual
 
 - **Socio comunitario:** Instituto Comercial Liceo Bicentenario, Osorno.
-- **Beneficiarios esperados:** cerca de 60 estudiantes del liceo, organizados en
-  dos bloques de 30.
-- **Institucion ejecutora:** AIEP Osorno, desde Vinculacion con el Medio.
-- **Carreras involucradas:** Programacion y Analisis de Sistemas, Electricidad y
-  Electronica, y Trabajo Social/Desarrollo Social.
-- **Fondo:** Fondo Concursable VCM 2026, proyecto de continuidad.
-- **Presupuesto formal:** $2.080.000, segun postulacion.
+- **Beneficiarios proyectados:** cerca de 60 estudiantes, distribuidos en dos
+  bloques y organizados en equipos.
+- **Institución ejecutora:** AIEP Osorno, desde Vinculación con el Medio.
+- **Áreas involucradas:** Programación y Análisis de Sistemas; Electricidad y
+  Electrónica; Trabajo Social / Desarrollo Social.
+- **Fondo:** Fondo Concursable VCM 2026, línea de continuidad.
+- **Presupuesto formal:** `$2.080.000`, según la postulación.
 
-La idea clave para el liceo: no vienen a "recibir una charla", sino a participar
-como aliado territorial. El liceo aporta contexto, problemas reales, organizacion
-escolar y retroalimentacion; AIEP aporta talleres, demostraciones, tecnologia,
-materiales y acompanamiento.
+## Propuesta formativa
 
-## Estado actual del proyecto
-
-El proyecto avanzo bastante despues del primer one-pager. Hoy ya no estamos solo
-en planificacion general.
-
-| Area | Estado actual | Archivos principales |
-|---|---|---|
-| Postulacion y relato | Resumen formal listo; alcance VCM clarificado. | `1_Proyecto (1).docx`, `RESUMEN-PROYECTO.md` |
-| Reunion socio comunitario | PPT final armado sobre base institucional de la directora, con seccion GeoGreen completa. | `reuniones/2026-06-22-socio-comunitario/GeoGreen-socio-comunitario-2026-06-22.pptx` |
-| Taller 1 | Planificacion, deck e infografias listas. Foco: observar problemas ambientales locales. | `talleres/01/` |
-| Taller 2 | README y PPT terminados. Foco: ciencia del reciclaje, materiales, separacion y puente a tecnologia. | `talleres/02/` |
-| Taller 3 | Carpeta definida; foco previsto en Arduino, sensores, actuadores, simulacion y GeoGreen como caso. | `talleres/03/README.md`, `docs/infografias/` |
-| Arduino base | Firmware con semaforo + buzzer, simulacion Wokwi y tests CLI. | `arduino/` |
-| Arduino UNO R4 WiFi | Track fisico real disponible; demos en matriz LED integradas y compiladas con PlatformIO. | `arduino-r4/` |
-| Web 3D | Visualizacion con contenedor GLB real, modulo clip-on y modal de circuito Wokwi. | `web/index.html`, `web/plano.html` |
-| App de monitoreo | PWA React lista como simulador determinista: mapa de Osorno, contenedores, alertas, bateria, senal e historico. | `app/` |
-| Cronograma | Existen opciones antes y despues de vacaciones, con talleres, mentorias y cierre. | `cronograma/` |
-| Kit de sensores | Manual/identificacion de kit de 45 sensores en desarrollo/documentado. | `docs/kit-sensores/` |
-
-## La logica tecnica actual
+El programa se articula como un recorrido continuo:
 
 ```text
-sensar -> enviar -> visualizar -> alertar
+PROBLEMA AMBIENTAL
+        ↓
+RESIDUOS Y MATERIALES
+        ↓
+SENSORES, DATOS Y PRIMERA PRUEBA
+        ↓
+TRABAJO AUTÓNOMO + MENTORÍAS
+        ↓
+EVIDENCIA, PRESENTACIÓN Y COMPETENCIA
 ```
 
-- **Sensar:** HC-SR04 mide distancia desde la tapa al contenido.
-- **Procesar:** firmware convierte la distancia a porcentaje de llenado.
-- **Alertar localmente:** semaforo de estados: verde bajo 40 %, amarillo entre
-  40 % y 80 %, rojo desde 80 %; buzzer cuando esta lleno.
-- **Visualizar:** la PWA muestra contenedores en mapa de Osorno con indicadores.
-- **Enviar:** la conectividad real queda como siguiente paso fisico; la ruta
-  recomendada hoy es aprovechar Arduino UNO R4 WiFi como placa fisica 5V + WiFi.
+GeoGreen funciona como referente visible, no como solución obligatoria. Su ciclo
+tecnológico permite mostrar cómo una idea puede crecer:
 
-Nota tecnica importante: el HC-SR04 entrega Echo a 5 V. En Arduino UNO R4 WiFi se
-puede conectar directo; en un ESP32 DevKit de 3.3 V se requiere divisor de voltaje
-o level shifter.
+```text
+SENSAR → ENVIAR → VISUALIZAR → ALERTAR
+```
 
-## Roadmap realista desde hoy
+Cada equipo decide hasta dónde necesita avanzar. Agregar WiFi, una aplicación,
+una carcasa o una PCB solo tiene valor cuando responde al problema y puede
+justificarse con evidencia.
 
-| Fase | Proposito | Estado |
+## Estado de los entregables
+
+| Área | Estado vigente | Fuente principal |
 |---|---|---|
-| 1. Relato y lanzamiento | Presentar oficialmente GeoGreen Escolar al liceo y acordar marco de trabajo. | Listo para reunion del 22 de junio. |
-| 2. Talleres formativos | Ejecutar Taller 1, 2 y 3 con dos bloques de estudiantes. | Taller 1 y 2 listos; Taller 3 en preparacion. |
-| 3. Demo tecnologica | Mostrar la cadena sensar -> enviar -> visualizar -> alertar con firmware, R4, web 3D y app. | Demo base lista; falta calibrar con hardware/sensor real si se usara en vivo. |
-| 4. Mentorias | Acompanamiento semanal para que equipos transformen problemas en propuestas. | Cronogramas propuestos; fechas por confirmar con liceo. |
-| 5. Evento final | Pitch escolar con retroalimentacion y evidencia de cierre. | Disenado a nivel de programa; pendiente coordinacion fina. |
+| Postulación | Resumen formal disponible y separado del calendario operativo. | `1_Proyecto (1).docx`, `RESUMEN-PROYECTO.md` |
+| Lanzamiento | Reunión con el socio comunitario realizada; deck y registros conservados. | `reuniones/2026-06-22-socio-comunitario/` |
+| Taller 1 | Planificación, presentación, documentos e infografías disponibles. | `talleres/01/` |
+| Taller 2 | README y presentación terminados, con material complementario. | `talleres/02/` |
+| Taller 3 | Clase de 90 minutos y paquete completo terminados: README, PPT, media, podcast e infografías por bloque. | `talleres/03/` |
+| Equipos | Seis responsabilidades definidas para distribuir propósito, documentación, agente, seguridad, evidencia y vocería. | `docs/infografias/infografia-roles-equipo-geogreen-gptimage.png` |
+| Banco de ideas | Ideas semilla y sensores seleccionados disponibles como apoyo no obligatorio. | `banco-ideas/` |
+| Cronograma | Calendario operativo único desde agosto hasta el cierre de octubre. | `cronograma/` |
+| Inventario | Catálogo visual e inventario preliminar fechado; manual del kit de sensores disponible. | `docs/inventario/`, `docs/kit-sensores/` |
+| Prototipo físico | UNO R4 WiFi con HC-SR04, OLED, semáforo y buzzer construido en protoboard. | `arduino-r4/geogreen_proto/`, `talleres/03/media/fotos/` |
+| Simulación | Firmware base compilable, simulable y verificable desde CLI. | `arduino/` |
+| Visualización | PWA de monitoreo y demos 3D funcionales. | `app/`, `web/` |
+| PCB | Diseño V1 de dos capas con DRC limpio; sujeto a revisión de ingeniería antes de fabricación. | `geogreen-v1/` |
 
-## Cronograma operativo vigente
+## Evolución técnica que se transfiere en el Taller 3
 
-La version de coordinacion actual mueve el inicio formativo a agosto:
+El prototipo original de referencia utilizaba un `HC-SR04` y un módulo de
+comunicación celular. No incluía semáforo ni buzzer. La versión educativa actual
+añadió respuestas locales, una pantalla y una placa con WiFi; después se amplió
+con software de visualización, diseño 3D y una PCB.
 
-- **Lunes 22 de junio:** reunion de lanzamiento con el socio comunitario.
-- **Junio-julio:** preparacion interna, inventario y coordinacion fina.
-- **Lunes 17 de agosto:** Taller 1, problema ambiental / conciencia ambiental local.
-- **Martes 18 de agosto:** Taller 2, ciencia del reciclaje / materiales.
-- **Lunes 24 de agosto:** Taller 3, sensores, Arduino y GeoGreen.
-- **Lunes 31 de agosto:** Mentoria 1.
-- **Septiembre:** mentorias, avances y ensayo de pitch, sin actividad la semana del 14 de septiembre por Fiestas Patrias.
-- **Lunes 5 de octubre:** evento final tentativo.
-- **Semana del 12 de octubre:** cierre interno tentativo.
+La enseñanza no se organiza como una clase de electrónica avanzada. Los 90
+minutos transfieren una ruta de prototipado:
 
-Fuente principal: `cronograma/documentos/cronograma-vigente-2026.md`. Las
-infografias y opciones anteriores quedan como antecedentes historicos, no como la
-ultima version de calendario.
+```text
+PROBLEMA → INTENCIÓN → CONTEXTO → PLAN → PRUEBA → EVIDENCIA → MEJORA
+```
 
-## Roles por area
+Los agentes pueden ayudar a investigar, explicar, proponer conexiones, escribir
+una primera versión de código y operar herramientas. El equipo humano conserva
+el propósito, la seguridad, la verificación y la decisión de avanzar.
 
-| Area | Aporte |
+## Trabajo de los equipos y mentorías
+
+El Taller 3 deja una propuesta tecnológica inicial: problema, variable, sensor,
+regla `cuando… entonces…`, primera prueba y siguiente hito.
+
+El desarrollo posterior ocurre principalmente con el tiempo y la constancia de
+cada equipo. Las mentorías cumplen tres funciones:
+
+1. **Revisar** lo que el equipo ya hizo y la evidencia que presenta.
+2. **Orientar** decisiones técnicas, ambientales, sociales o comunicacionales.
+3. **Destrabar** una dificultad concreta sin reemplazar el trabajo del equipo.
+
+Docentes y monitores no conectan el circuito ni producen la solución completa
+por los estudiantes. Intervienen directamente cuando existe riesgo eléctrico o
+una condición técnica que impide continuar con seguridad.
+
+## Competencia final
+
+El evento del 5 de octubre incluye presentación ante jurado, retroalimentación y
+premiación. Una propuesta se fortalece cuando:
+
+- aborda un problema relevante;
+- relaciona coherentemente sensor, datos y respuesta;
+- presenta evidencia de pruebas y mejoras;
+- utiliza cada recurso técnico con un propósito claro;
+- comunica qué hace, para quién y por qué importa.
+
+Mientras más lejos lleve un equipo su idea con coherencia y evidencia, más
+sólida será su presentación. Superar el referente GeoGreen es válido siempre que
+el avance pueda demostrarse y explicarse.
+
+## Cronograma operativo
+
+| Fecha | Instancia | Foco |
+|---|---|---|
+| Lunes 22 de junio | Lanzamiento | Presentación del programa al socio comunitario. |
+| Junio–julio | Preparación interna | Materiales, inventario y producción docente. |
+| Lunes 17 de agosto | Taller 1 | Problema ambiental y formación de equipos. |
+| Martes 18 de agosto | Taller 2 | Ciencia del reciclaje y materiales. |
+| Lunes 24 de agosto | Taller 3 | Sensores, prototipado y desarrollo agéntico. |
+| Lunes 31 de agosto | Mentoría 1 | Problema, usuario, contexto y primera solución. |
+| Lunes 7 de septiembre | Mentoría 2 | Solución, recursos, materiales y roles. |
+| Semana del 14 de septiembre | Sin actividades | Fiestas Patrias. |
+| Lunes 21 de septiembre | Mentoría 3 | Evidencia de maqueta, simulación, diagrama o prototipo. |
+| Lunes 28 de septiembre | Mentoría 4 y ensayo | Guion, soporte visual, roles y tiempos. |
+| Viernes 2 de octubre | Hito comunicacional | Comunicación del cierre próximo. |
+| Lunes 5 de octubre | Evento final | Jurado, retroalimentación y premiación. |
+| Semana del 12 de octubre | Cierre interno | Consolidación de evidencias y materiales. |
+
+## Aporte por área
+
+| Área | Aporte principal |
 |---|---|
-| Programacion y Analisis de Sistemas | Firmware, app, dashboard, visualizaciones, datos, simulacion y relato tecnico. |
-| Electricidad y Electronica | Sensores, conexiones, actuadores, seguridad electrica, prototipado y montaje. |
-| Trabajo Social / Desarrollo Social | Facilitacion, participacion estudiantil, enfoque comunitario, evidencias y cierre pedagogico. |
-| Liceo | Contexto escolar, estudiantes, problemas reales, espacios, horarios y retroalimentacion. |
+| Programación y Análisis de Sistemas | Firmware, simulación, agentes, software, datos, dashboard y comunicación técnica. |
+| Electricidad y Electrónica | Sensores, placas, actuadores, seguridad, montaje y validación física. |
+| Trabajo Social / Desarrollo Social | Facilitación, participación, contexto comunitario, evidencias y comunicación. |
+| Liceo | Contexto escolar, estudiantes, problemas reales, espacios y retroalimentación. |
 
-## Material listo para usar en la reunion
+## Material prioritario para coordinación
 
-- PPT final para el socio comunitario:
-  `reuniones/2026-06-22-socio-comunitario/GeoGreen-socio-comunitario-2026-06-22.pptx`
-- PDF de revision:
-  `reuniones/2026-06-22-socio-comunitario/build/GeoGreen-socio-comunitario-2026-06-22.pdf`
-- Montaje visual del deck:
-  `reuniones/2026-06-22-socio-comunitario/build/montage-final.png`
-- Demo Arduino R4:
-  `pio run -d arduino-r4/geogreen_show -t upload`
-- App PWA:
-  `cd app && npm run dev`
-- Web 3D:
-  `python -m http.server 8099 --directory web`
+1. `cronograma/documentos/cronograma-vigente-2026.md`.
+2. `cronograma/documentos/lineamientos-transversales-equipos-entregables-geogreen.pdf`.
+3. `talleres/03/README.md`.
+4. `talleres/03/ppt/Taller-03-De-la-idea-al-prototipo.pptx`.
+5. `talleres/03/podcast/Electrónica_y_pensamiento_crítico_en_GeoGreen_Escolar_interno.m4a`.
 
-## Decisiones a cerrar con el liceo
-
-1. Cursos o niveles participantes.
-2. Fechas de talleres y opcion de cronograma.
-3. Horarios de los dos bloques de 30 estudiantes.
-4. Espacios disponibles: sala, laboratorio, proyector, internet, mesas de trabajo.
-5. Docentes o encargados del liceo que acompanaran cada sesion.
-6. Tipo de evidencia esperada: asistencia, fotos, productos por equipo, rubrica,
-   cierre/pitch.
-7. Nivel de exposicion publica del evento final: interno, comunidad escolar o con
-   invitados AIEP.
-
-## Mensaje guia para Diego
-
-La reunion debe sonar asi: GeoGreen Escolar no llega a instalar una solucion desde
-afuera; llega a abrir un proceso de aprendizaje aplicado con el liceo. La tecnologia
-es el caso vivo que permite unir reciclaje, sensores, datos, comunidad e innovacion.
-
-Frase util para presentar:
-
-> GeoGreen Escolar parte mirando un problema cotidiano del liceo, lo entiende desde
-> los residuos y los materiales, y luego muestra como la tecnologia puede ayudar a
-> medir, visualizar y tomar mejores decisiones.
-
-## Fuentes recomendadas para NotebookLM
-
-Para un podcast personal de preparacion, seleccionar:
-
-1. `PLAN-GEOGREEN-ESCOLAR.md` - este documento actualizado.
-2. `reuniones/2026-06-22-socio-comunitario/GeoGreen-socio-comunitario-2026-06-22.pptx`
-   o su PDF exportado.
-3. `RESUMEN-PROYECTO.md`.
-4. `cronograma/README.md` y/o las opciones de cronograma en `cronograma/documentos/`.
-5. `talleres/01/README.md`, `talleres/02/README.md`, `talleres/03/README.md` si
-   quieres que el audio repase el contenido de los talleres.
-
-Evitar para ese podcast personal las fuentes muy tecnicas de componentes, salvo
-que quieras un segundo audio solo para preparar respuestas tecnicas.
+Los decks de reuniones anteriores se conservan como antecedentes históricos y
+no deben utilizarse como fuente de fechas cuando contradigan el cronograma
+vigente.

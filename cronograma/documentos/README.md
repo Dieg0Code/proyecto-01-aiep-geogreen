@@ -1,28 +1,22 @@
 # Documentos de cronograma y lineamientos
 
-Esta carpeta reune documentos formales del proyecto GeoGreen Escolar:
+> Actualización documental: 13 de julio de 2026.
 
-- Cronogramas de trabajo.
-- Lineamientos transversales.
-- Documentos de talleres y mentorias.
-- Fuentes editables cuando existen (`.html`, `.md`, `.tex`).
-- Versiones exportadas para compartir (`.pdf`).
+## Calendario vigente
 
-## Archivo vigente
+- `cronograma-vigente-2026.md` — fuente operativa principal.
+- `cronograma-geogreen-actualizado-2026.tex` — fuente LaTeX de la versión ejecutiva.
+- `cronograma-geogreen-actualizado-2026.pdf` — versión ejecutiva para compartir.
 
-- `cronograma-vigente-2026.md`: version de coordinacion actualizada al 2026-06-21.
-  Es la fuente principal para el calendario actual.
-- `cronograma-geogreen-actualizado-2026.pdf`: version ejecutiva y compartible del
-  cronograma actualizado, pensada para enviar a equipos directivos y docentes.
-- `cronograma-geogreen-actualizado-2026.tex`: fuente editable del PDF compartible.
+## Documentos complementarios
 
-## Archivos historicos
+- `lineamientos-transversales-equipos-entregables-geogreen.*` — progresión, responsables y entregables.
+- `talleres-y-mentorias-geogreen.*` — desarrollo pedagógico del programa.
 
-- `cronograma-post-vacaciones-octubre-2026.pdf`: version previa desde el retorno
-  del 27 de julio hasta el evento final del 5 de octubre. Queda como antecedente,
-  no como ultima version vigente.
-- `cronograma-opcion-a-antes-vacaciones.*`: opcion anterior de inicio antes de
-  vacaciones.
-- `cronograma-opcion-b-post-vacaciones.*`: opcion anterior de inicio post vacaciones.
+Las versiones Markdown, HTML y PDF conservan dos criterios comunes: el evento
+del 5 de octubre corresponde a la competencia final con jurado y premiación; y
+las mentorías revisan, orientan y destraban avances desarrollados por los propios
+equipos entre sesiones.
 
-Las infografias asociadas al cronograma estan en `../infografias`.
+Todos estos documentos deben usar el calendario vigente que comienza los talleres el
+17 de agosto de 2026 y finaliza con el cierre interno durante la semana del 12 de octubre.

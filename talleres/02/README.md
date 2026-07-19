@@ -250,13 +250,14 @@ En este bloque la clase pasa de la conversación general al trabajo por equipos.
 
 La consigna es sencilla y motivadora: cada equipo se vuelve experto de un material. No del reciclaje en general, sino de un material concreto que puedan observar, tocar o reconocer en su entorno.
 
-Para que el trabajo no se concentre en una o dos personas, conviene mantener roles simples, en la línea del taller anterior:
+Para que el trabajo no se concentre en una o dos personas, se mantienen las seis responsabilidades iniciadas en el Taller 1. Pueden rotar, pero deben seguir cubiertas:
 
-- **Coordinación:** mantiene al equipo enfocado en la tarea.
-- **Registro:** completa la ficha con las ideas acordadas.
-- **Vocería:** prepara la síntesis para la puesta en común.
-- **Investigación de material:** se concentra en de qué está hecho y cómo se comporta.
-- **Investigación de condiciones:** se concentra en qué lo arruina y bajo qué condiciones se recicla.
+- **Coordinación:** ordena tiempos, turnos y tareas.
+- **Investigación:** averigua de qué está hecho el material, cómo se comporta y qué lo contamina.
+- **Diseño:** organiza la ficha, categorías, relaciones y representación visual.
+- **Tecnología:** identifica qué información del material podría observarse, medirse o comunicarse después.
+- **Pruebas y evidencia:** contrasta la clasificación, registra dudas y conserva ficha, fotografías y resultados.
+- **Comunicación:** prepara la síntesis y distribuye la explicación del equipo.
 
 Cada equipo elige un material a partir de un residuo real. Conviene insistir en elegir algo concreto y observable, no una categoría enorme. Ejemplos posibles:
 
@@ -493,4 +494,4 @@ El insumo principal para la siguiente sesión es la ficha de material de cada eq
 - el material comprendido en el Taller 2;
 - y la mirada tecnológica de sensores, medición, alerta y visualización, usando GeoGreen como caso demostrativo.
 
-La clase no se cierra como una actividad aislada. Se cierra como un paso más dentro de la investigación escolar aplicada sobre residuos, materiales e innovación, que continuará en el Taller 3 y en las mentorías.
+La clase no se cierra como una actividad aislada. Se cierra como un paso más dentro de la investigación escolar aplicada sobre residuos, materiales e innovación. El Taller 3 abrirá la ruta tecnológica; después, cada equipo desarrollará su propuesta entre sesiones y utilizará las mentorías para revisar, orientar y destrabar sus avances.

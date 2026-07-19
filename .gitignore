@@ -36,6 +36,13 @@ Thumbs.db
 # Previews de render de PPT (regenerables, no versionar)
 **/ppt/rendered/
 **/ppt/montage.png
+**/ppt/montage-*.png
+**/ppt/revision-*.png
+**/ppt/validation-*/
+**/ppt/*.optimized.pptx
+
+# Salidas intermedias de diseño de PCB (el archivo vigente es geogreen-v1.kicad_pcb)
+/geogreen-v1/hardware/kicad/geogreen-v0.kicad_pcb
 
 # Entregables comprimidos para enviar (no versionar; GitHub se queja con binarios grandes)
 /entregables/

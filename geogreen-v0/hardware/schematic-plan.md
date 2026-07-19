@@ -1,5 +1,9 @@
 # Plan de esquematico GeoGreen V0.1
 
+> Documento de diseño preliminar. El proyecto KiCad ya existe en `hardware/kicad/`
+> y conserva un footprint visual no confirmado para el ESP32 DevKit. No usar este
+> plan ni esa placa como paquete listo para fabricación.
+
 Objetivo: preparar una PCB carrier de dos capas para enchufar un ESP32 DevKit y
 conectar un sensor A02YYUW / SEN0311, sin cerrar todavia footprint ni layout final.
 

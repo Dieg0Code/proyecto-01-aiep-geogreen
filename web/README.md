@@ -44,7 +44,8 @@ sensar -> enviar -> visualizar -> alertar
 ```
 
 - **Sensar:** el sensor simulado estima distancia al contenido.
-- **Enviar:** la lectura podría transmitirse por WiFi o LoRa.
+- **Enviar:** una versión conectada puede transmitir la lectura por WiFi hacia
+  un servicio o aplicación de monitoreo.
 - **Visualizar:** el tablero muestra porcentaje, distancia y estado.
 - **Alertar:** desde 80% recomienda programar retiro.
 

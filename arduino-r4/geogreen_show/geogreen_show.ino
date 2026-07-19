@@ -16,7 +16,8 @@
  * grises -> fundidos suaves y movimiento "anti-aliased".
  *
  * Placa: Arduino UNO R4 WiFi (FQBN arduino:renesas_uno:unor4wifi). Flasheo USB.
- * Cuando llegue el HC-SR04, sceneWaveFill se alimentara de la distancia real.
+ * Este show conserva valores animados para funcionar sin hardware externo.
+ * La medicion real con HC-SR04 vive en ../geogreen_proto/.
  */
 
 #include <math.h>

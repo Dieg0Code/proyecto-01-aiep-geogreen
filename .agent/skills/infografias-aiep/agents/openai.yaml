@@ -1,0 +1,7 @@
+interface:
+  display_name: "Infografías AIEP"
+  short_description: "Diseño, generación y revisión de infografías AIEP"
+  default_prompt: "Usa $infografias-aiep para diseñar, generar, revisar y archivar una infografía vertical estilo AIEP con su prompt reproducible."
+
+policy:
+  allow_implicit_invocation: true

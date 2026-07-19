@@ -1,6 +1,13 @@
 # Componentes mínimos para prototipo GeoGreen con Arduino
 
-Don Elías, para armar una maqueta funcional del proyecto GeoGreen con Arduino necesitamos confirmar o conseguir estos componentes:
+> **Antecedente de planificación inicial.** Esta lista conserva la definición del
+> kit mínimo propuesta al comienzo del proyecto. El prototipo físico vigente usa
+> una UNO R4 WiFi, HC-SR04, OLED, semáforo y buzzer; ver
+> [`arduino-r4/README.md`](arduino-r4/README.md). El prototipo original anterior a
+> esta recreación utilizaba HC-SR04 y comunicación celular, sin semáforo ni buzzer.
+
+Para armar una maqueta funcional del proyecto GeoGreen con Arduino se definió
+inicialmente el siguiente conjunto mínimo:
 
 | Componente | Cantidad mínima | Para qué sirve |
 |---|---:|---|

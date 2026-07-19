@@ -4,3 +4,7 @@ Documentos del Taller 2 sobre ciencia del reciclaje, materiales, separación en 
 
 - `taller-2-planificacion-docente.pdf`: planificación para facilitación docente.
 - `taller-2-guia-estudiante.pdf`: guía estudiantil basada en el contenido del taller.
+
+Ambos PDF fueron regenerados el 13 de julio de 2026 para mantener las seis
+responsabilidades persistentes del equipo y la función de las mentorías como
+revisión, orientación y apoyo ante bloqueos del trabajo realizado entre sesiones.

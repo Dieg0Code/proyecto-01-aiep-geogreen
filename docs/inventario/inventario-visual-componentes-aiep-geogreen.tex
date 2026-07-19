@@ -1,0 +1,279 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1.65cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{5F6B7A}
+\definecolor{AIEPPaper}{HTML}{F5F2EC}
+\definecolor{AIEPSoftBlue}{HTML}{E9EEF4}
+\definecolor{AIEPGreen}{HTML}{3FAE6A}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{Line}{HTML}{D8E1EA}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\textcolor{AIEPSlate}{GeoGreen Escolar · Inventario visual de componentes AIEP}}
+\fancyfoot[R]{\small\textcolor{AIEPSlate}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt}
+\renewcommand{\arraystretch}{1.32}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing{\section}{0pt}{13pt}{6pt}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{infobox}[2][]{
+  enhanced, colback=#2!7, colframe=#2, boxrule=0.45pt, arc=1.2mm,
+  left=3.5mm, right=3.5mm, top=3mm, bottom=3mm, #1
+}
+
+\newtcolorbox{fotobox}{
+  enhanced, colback=white, colframe=Line, boxrule=0.5pt, arc=1.2mm,
+  left=3mm, right=3mm, top=3mm, bottom=3mm,
+  before skip=7pt, after skip=7pt
+}
+
+\newcommand{\badge}[2]{%
+  \tcbox[on line, colback=#1!10, colframe=#1, boxrule=0.45pt,
+    arc=0.8mm, left=1.4mm, right=1.4mm, top=0.3mm, bottom=0.3mm]%
+    {\scriptsize\bfseries\textcolor{#1}{#2}}%
+}
+
+\newcommand{\foto}[5]{%
+\begin{fotobox}
+{\bfseries\color{AIEPNavy}Foto #1 · #2}\hfill #3\\[1.5mm]
+\begin{minipage}[t]{0.38\linewidth}\vspace{0pt}
+  \includegraphics[width=\linewidth,height=5.9cm,keepaspectratio]{assets/inventario-aiep-#1.jpg}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.57\linewidth}\vspace{0pt}\normalsize
+#4
+\vspace{1.5mm}
+
+\textcolor{AIEPSlate}{\textbf{Relación con GeoGreen:}} #5
+\end{minipage}
+\end{fotobox}
+}
+
+\begin{document}
+
+\begin{tcolorbox}[enhanced, colback=AIEPNavy, colframe=AIEPNavy, arc=0mm,
+  boxrule=0pt, left=5mm, right=5mm, top=5mm, bottom=5mm]
+{\color{white}\Huge\bfseries Inventario visual de componentes}\\[2mm]
+{\color{white}\Large Material disponible en AIEP para GeoGreen Escolar}\\[3mm]
+{\color{AIEPSoftBlue} Registro fotográfico comentado para organización de kits y coordinación de uso.}
+\end{tcolorbox}
+
+\begin{infobox}{AIEPSoftBlue}
+\textbf{Propósito.} Este documento sistematiza el material disponible observado en fotografías: placas, sensores, cables, protoboards y módulos de comunicación. Su objetivo es dejar un registro común de la información recopilada para GeoGreen Escolar y facilitar que dirección, administración y equipo docente tengan la misma lectura sobre el material existente y su relación con el proyecto.
+\end{infobox}
+
+\begin{infobox}{AIEPGold}
+\textbf{Alcance del inventario.} Las fotografías muestran material útil para prototipado y permiten reconocer una base de apoyo ya disponible. Al mismo tiempo, las cantidades visibles y la variedad de componentes sugieren que este material puede complementarse con una base común de trabajo, especialmente si se busca que los equipos cuenten con condiciones similares durante las actividades.
+\end{infobox}
+
+\section{Resumen por tipo de material}
+
+\begin{tabularx}{\linewidth}{L{3.2cm}Y Y}
+\textbf{Tipo} & \textbf{Qué se observa} & \textbf{Uso principal} \\
+\hline
+Placas programables & SparkFun RedBoard, Arduino UNO compatible, Arduino Mega, WeMos D1 y WeMos D1 R32. & Ejecutar programas, leer sensores y controlar luces o alertas. \\
+Prototipado & Protoboards, cables Dupont, cables USB, resistencias y LEDs. & Armar circuitos rápidos sin soldar, probar conexiones y preparar kits por grupo. \\
+Sensores centrales & HC-SR04, kit MCI de 37 sensores, sensor ultrasónico Dragino A02-15. & Medir distancia, ambiente, luz, sonido, temperatura, movimiento u otras variables. \\
+Módulos avanzados & SIM7600SA, GPS, conversor Ethernet-fibra, placas WiFi. & Mostrar posibilidades de conectividad o georreferencia, con apoyo técnico. \\
+\end{tabularx}
+
+\section{Lectura visual por fotografía}
+
+\foto{01}{Vista general de componentes sobre mesa}{\badge{AIEPGreen}{útil para kits}}{
+\textbf{Qué se ve:} conjunto mixto de placas, cables Dupont de colores, pantalla LCD, módulos de comunicación, placas en bolsas antiestáticas y un sensor o módulo pequeño suelto.
+
+\textbf{Para qué sirve:} muestra que el material está repartido en varias familias: placas que ejecutan programas, cables para conectar, pantalla para mostrar datos y módulos más avanzados para comunicación.
+}{
+Registra una vista general del material recopilado. La pantalla LCD queda identificada como componente disponible para visualización de datos o mensajes breves.
+}
+
+\foto{02}{Placa WeMos D1 R32 en bolsa antiestática}{\badge{AIEPGold}{avanzado}}{
+\textbf{Qué se ve:} una placa WeMos D1 R32, de formato parecido a Arduino UNO, pero basada en ESP32. Está dentro de una bolsa antiestática.
+
+\textbf{Para qué sirve:} permite conectar proyectos a WiFi y trabajar con datos. Es potente, pero requiere más cuidado que un Arduino clásico.
+}{
+Queda registrada como placa con conectividad WiFi y mayor complejidad técnica que una placa Arduino clásica. Su uso requiere revisión técnica previa.
+}
+
+\foto{03}{WeMos D1 R32 fuera de la bolsa}{\badge{AIEPGold}{avanzado}}{
+\textbf{Qué se ve:} la misma familia de placa WeMos D1 R32, con conectores laterales similares a Arduino y módulo inalámbrico integrado.
+
+\textbf{Para qué sirve:} puede leer sensores y enviar información por WiFi. Su ventaja es la conectividad; su dificultad es que no siempre se cablea igual que Arduino UNO.
+}{
+Queda registrada como componente de conectividad. Aporta continuidad hacia la etapa de envío de datos dentro de la lógica de GeoGreen.
+}
+
+\foto{04}{Módulos SIM7600SA}{\badge{AIEPGold}{avanzado}}{
+\textbf{Qué se ve:} dos módulos SIMCom SIM7600SA, pensados para comunicación celular. Al costado se observa una antena o receptor pequeño.
+
+\textbf{Para qué sirve:} permiten que un dispositivo se comunique por red celular, similar a usar una conexión móvil. También pueden apoyar funciones de ubicación según configuración.
+}{
+Quedan registrados como módulos de comunicación celular. Representan una línea de conectividad avanzada para escenarios sin WiFi.
+}
+
+\foto{05}{GPS o antena de ubicación junto a módulo en bolsa}{\badge{AIEPGold}{avanzado}}{
+\textbf{Qué se ve:} un módulo pequeño con antena cerámica, típico de GPS o ubicación, junto a una placa en bolsa.
+
+\textbf{Para qué sirve:} ayuda a obtener ubicación geográfica. En un proyecto como GeoGreen, podría vincular una lectura con un lugar del mapa.
+}{
+Queda registrado como componente asociado a ubicación. Se relaciona con la dimensión geográfica del proyecto, aunque no forma parte de la base homogénea de kits.
+}
+
+\foto{06}{Sensor ultrasónico Dragino A02-15}{\badge{AIEPGold}{demo técnica}}{
+\textbf{Qué se ve:} sensor ultrasónico industrial Dragino A02-15, con dos transductores protegidos y cable largo.
+
+\textbf{Para qué sirve:} mide distancia como el HC-SR04, pero en un formato más robusto, pensado para instalaciones reales o ambientes más exigentes.
+}{
+Queda registrado como sensor ultrasónico de formato más robusto. Representa una posible referencia entre prototipo educativo y solución técnica más avanzada.
+}
+
+\foto{07}{Placa tipo Arduino Mega en bolsa}{\badge{AIEPGold}{respaldo}}{
+\textbf{Qué se ve:} placa compatible con Arduino Mega 2560, de mayor tamaño que Arduino UNO y con muchos pines.
+
+\textbf{Para qué sirve:} permite conectar más sensores o módulos a la vez. Es útil cuando un proyecto crece y necesita más entradas y salidas.
+}{
+Queda registrada como placa de mayor capacidad y cantidad de pines. Su presencia amplía el banco de placas, aunque no corresponde a la base homogénea proyectada.
+}
+
+\foto{08}{Placa SparkFun RedBoard en bolsa}{\badge{AIEPGreen}{útil para kits}}{
+\textbf{Qué se ve:} placa SparkFun RedBoard, compatible con Arduino UNO, guardada en bolsa antiestática.
+
+\textbf{Para qué sirve:} funciona como el cerebro del circuito: recibe datos de sensores y controla LEDs, buzzer o pantalla.
+}{
+Queda registrada como placa compatible con Arduino UNO, relevante para prototipado con sensores, LEDs y alertas.
+}
+
+\foto{09}{Kit SparkFun con protoboard, RedBoard y componentes}{\badge{AIEPGreen}{útil para kits}}{
+\textbf{Qué se ve:} caja SparkFun con placa RedBoard, protoboard, cables, resistencias, LEDs, servo y otros componentes pequeños.
+
+\textbf{Para qué sirve:} es casi un kit de aprendizaje completo. Permite armar circuitos sin soldar y probar sensores o actuadores.
+}{
+Queda registrado como kit de aprendizaje casi completo, con placa, protoboard y componentes básicos para circuitos de prueba.
+}
+
+\foto{10}{Kit SparkFun con Arduino UNO, pantalla y LEDs}{\badge{AIEPGreen}{útil para kits}}{
+\textbf{Qué se ve:} placa Arduino UNO, protoboard, cable USB, pantalla LCD, LEDs y componentes básicos dentro de caja SparkFun.
+
+\textbf{Para qué sirve:} permite construir un prototipo completo: leer un sensor, encender luces y mostrar información en pantalla.
+}{
+Muy útil para GeoGreen. La pantalla LCD puede mostrar el porcentaje de llenado o estados como bajo, medio y lleno.
+}
+
+\foto{11}{Detalle de motor, LEDs y componentes pequeños}{\badge{AIEPGreen}{apoyo}}{
+\textbf{Qué se ve:} LEDs de colores, motor DC pequeño, resistencias y piezas sueltas dentro del kit.
+
+\textbf{Para qué sirve:} los LEDs sirven para indicar estados; el motor puede mostrar movimiento o acción física; las resistencias protegen los LEDs y ordenan el circuito.
+}{
+Quedan registrados LEDs de colores y componentes de actuación. Los LEDs se relacionan directamente con el semáforo de estado de GeoGreen.
+}
+
+\foto{12}{Kit SparkFun con HC-SR04 conectado}{\badge{AIEPGreen}{clave GeoGreen}}{
+\textbf{Qué se ve:} placa RedBoard, protoboard y sensor ultrasónico HC-SR04 conectado con cables.
+
+\textbf{Para qué sirve:} esta es la base directa del prototipo GeoGreen: el sensor mide distancia y la placa puede convertir esa medición en estado de llenado.
+}{
+Queda registrado un montaje ya relacionado con GeoGreen: placa, protoboard y sensor ultrasónico para medición de distancia.
+}
+
+\foto{13}{Caja SparkFun con HC-SR04, cable USB y protoboard}{\badge{AIEPGreen}{kit casi listo}}{
+\textbf{Qué se ve:} kit ordenado con protoboard, placa RedBoard, sensor ultrasónico, cable USB y otra placa o shield.
+
+\textbf{Para qué sirve:} contiene los elementos principales para una estación de prototipado: programar, conectar y medir distancia.
+}{
+Queda registrado como conjunto cercano a un kit GeoGreen: incluye placa, protoboard, sensor ultrasónico y cableado de trabajo.
+}
+
+\foto{14}{Arduino UNO compatible}{\badge{AIEPGreen}{útil para kits}}{
+\textbf{Qué se ve:} placa Arduino UNO compatible, sin caja, sostenida en la mano.
+
+\textbf{Para qué sirve:} es una placa sencilla para aprender electrónica y programación. Es adecuada para sensores de 5 V como el HC-SR04.
+}{
+Queda registrada una placa Arduino UNO compatible, útil como unidad de control para prototipos con sensores y salidas visuales.
+}
+
+\foto{15}{WeMos D1 con WiFi}{\badge{AIEPGold}{avanzado}}{
+\textbf{Qué se ve:} placa WeMos D1 con módulo WiFi ESP8266 integrado.
+
+\textbf{Para qué sirve:} permite crear prototipos conectados a internet o a una red local. Es útil para mostrar cómo un sensor podría enviar datos.
+}{
+Queda registrada como placa WiFi basada en ESP8266. Aporta conectividad, con mayor complejidad de implementación que una placa Arduino UNO.
+}
+
+\foto{16}{HC-SR04 y módulos pequeños en bolsas}{\badge{AIEPGreen}{clave GeoGreen}}{
+\textbf{Qué se ve:} sensor ultrasónico HC-SR04 en bolsa, junto a otros módulos pequeños.
+
+\textbf{Para qué sirve:} el HC-SR04 mide distancia y es el sensor central para explicar el llenado de un contenedor.
+}{
+Queda registrado al menos un sensor HC-SR04 adicional. Este tipo de sensor es central para el caso de medición de llenado.
+}
+
+\foto{17}{Conversor Ethernet-fibra}{\badge{AIEPGold}{telecom}}{
+\textbf{Qué se ve:} conversor de medio Ethernet-fibra multimodo de 100 Mbps.
+
+\textbf{Para qué sirve:} permite conectar redes usando fibra óptica. No es una pieza de Arduino, sino de telecomunicaciones.
+}{
+Queda registrado como componente de infraestructura de red. No corresponde al conjunto base de prototipado Arduino.
+}
+
+\foto{18}{Caja MCI de 37 sensores abierta}{\badge{AIEPGreen}{muy útil}}{
+\textbf{Qué se ve:} caja con módulos de sensores organizados en compartimentos: sonido, temperatura, luz, movimiento, humedad, contacto y otros.
+
+\textbf{Para qué sirve:} permite explorar muchas formas de medir el entorno. Es útil para que los equipos imaginen soluciones ambientales más allá del sensor ultrasónico.
+}{
+Queda registrada una caja de sensores variados, útil como banco de exploración para mediciones ambientales y tecnológicas.
+}
+
+\foto{19}{Kit MCI de 37 sensores cerrado}{\badge{AIEPGreen}{banco de sensores}}{
+\textbf{Qué se ve:} caja MCI rotulada como kit de 37 sensores para Arduino, con la lista de módulos incluidos.
+
+\textbf{Para qué sirve:} funciona como inventario base del banco de sensores. La tapa ayuda a identificar qué debería estar dentro de la caja.
+}{
+Queda registrada la identificación externa del kit MCI de 37 sensores y su lista de módulos incluidos.
+}
+
+\section{Lectura consolidada del material}
+
+\begin{tabularx}{\linewidth}{L{3.4cm}Y Y}
+\textbf{Conjunto registrado} & \textbf{Componentes asociados} & \textbf{Lectura para GeoGreen} \\
+\hline
+Base de prototipado & Placas Arduino o compatibles, protoboards, cables USB, jumpers, LEDs y resistencias. & Permite armar circuitos de prueba y sostener actividades prácticas. La cantidad exacta debe confirmarse físicamente. \\
+Sensores principales & HC-SR04, caja MCI de 37 sensores y sensor ultrasónico Dragino A02-15. & Existe material para medición y demostración. El HC-SR04 se relaciona directamente con el caso GeoGreen. \\
+Comunicación y ubicación & WeMos, SIM7600SA, GPS y módulos relacionados. & Hay material para mostrar conectividad, georreferencia o evolución futura del proyecto. Se integra mejor como complemento de una base común de prototipado. \\
+Componentes de apoyo & Pantalla LCD, servo, motor, módulos pequeños y conversor Ethernet-fibra. & Complementan demostraciones o actividades específicas y amplían las posibilidades del material base. \\
+\end{tabularx}
+
+\begin{infobox}{AIEPGreen}
+\textbf{Conclusión de inventario.} AIEP cuenta con material valioso para GeoGreen Escolar, especialmente para apoyo, demostración y respaldo. Para la planificación de actividades por equipos, este registro permite distinguir entre material disponible y base común de trabajo. En ese sentido, una cotización con placas equivalentes y sensores nuevos puede ayudar a ordenar la experiencia, mientras los componentes existentes amplían las posibilidades de trabajo.
+\end{infobox}
+
+\end{document}

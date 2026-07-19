@@ -271,22 +271,22 @@ También permite mostrar que una solución puede tomar caminos distintos. Alguna
 
 ## Desarrollo
 
-### 3.1 Formar equipos y asignar roles simples
+### 3.1 Formar equipos y asignar seis responsabilidades
 
 En este bloque la clase pasa desde la conversación general hacia el trabajo por equipos. Se recomienda organizar grupos de 5 a 6 estudiantes. Si el bloque tiene 30 estudiantes, la organización natural sería trabajar con 5 equipos de 6.
 
-Para evitar que el trabajo quede concentrado en una o dos personas, conviene asignar roles simples. No tienen que sentirse rígidos ni formales; funcionan como una manera de ordenar la participación.
+Para evitar que el trabajo quede concentrado en una o dos personas, cada integrante asume una de las seis responsabilidades persistentes del programa. Los roles pueden rotar en sesiones posteriores, pero ninguna responsabilidad queda vacía.
 
 Roles sugeridos:
 
-- **Coordinación:** mantiene al equipo enfocado en la tarea.
-- **Registro:** anota las ideas principales en la ficha o papelógrafo.
-- **Vocería:** comparte la síntesis del equipo cuando corresponda.
-- **Observación de causas:** pregunta por qué podría estar ocurriendo el problema.
-- **Observación de consecuencias:** pregunta qué pasa si el problema continúa.
-- **Cuidado de materiales:** ordena tarjetas, ejemplos o recursos de clasificación.
+- **Coordinación:** ordena tiempos, turnos y tareas; cuida que todos participen.
+- **Investigación:** aclara el problema y busca causas, datos y personas afectadas.
+- **Diseño:** convierte lo observado en el mapa de problema, relaciones y primeros bocetos.
+- **Tecnología:** registra qué información podría medirse o apoyarse con herramientas más adelante.
+- **Pruebas y evidencia:** revisa la calidad de lo observado y guarda ficha, fotografías, dudas y acuerdos.
+- **Comunicación:** prepara la síntesis y organiza quién explica cada parte.
 
-La idea de los roles no es burocratizar la actividad, sino hacer visible que un problema ambiental se entiende mejor cuando se mira desde más de una perspectiva.
+La idea no es dividir el proyecto en seis trabajos aislados. La propuesta pertenece a todo el equipo y las decisiones importantes deben poder explicarse entre todos.
 
 ### 3.2 Construir el mapa de problema
 
@@ -521,7 +521,9 @@ La secuencia continúa así:
 
 - En el **Taller 2**, los estudiantes revisarán materiales, reciclaje, clasificación y criterios para entender mejor qué pasa con distintos tipos de residuos.
 - En el **Taller 3**, observarán cómo la tecnología puede ayudar a medir, alertar, visualizar o comunicar una situación ambiental.
-- En las **mentorías**, cada equipo podrá transformar su problema en una propuesta, maqueta, simulación o pitch.
+- Entre sesiones, cada equipo podrá transformar su problema en una propuesta,
+  maqueta, simulación o pitch; las **mentorías** revisarán, orientarán y ayudarán a
+  destrabar ese trabajo.
 
 La conexión con GeoGreen puede explicarse de manera simple:
 
@@ -573,6 +575,6 @@ El insumo principal para la siguiente sesión es la frase de problema de cada eq
 
 - la exploración de materiales y reciclaje del Taller 2;
 - la mirada tecnológica de sensores, alertas y visualización del Taller 3;
-- el desarrollo posterior de propuestas durante las mentorías.
+- el desarrollo autónomo posterior de propuestas, revisado y orientado en las mentorías.
 
 La clase no se cierra como una actividad aislada. Se cierra como el inicio de una investigación escolar aplicada sobre residuos, sostenibilidad e innovación.
