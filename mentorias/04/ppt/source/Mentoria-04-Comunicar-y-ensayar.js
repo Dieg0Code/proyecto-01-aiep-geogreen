@@ -82,6 +82,14 @@ const IMG = {
     "fotos",
     "prototipo-oled-geogreen-landscape.png",
   ),
+  systemFlow: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "generadas",
+    "sistema-geogreen-sensor-dato-respuesta.png",
+  ),
 };
 
 function addImageCrop(slide, imagePath, x, y, w, h, opts = {}) {
@@ -1087,6 +1095,758 @@ function addStepCircle(slide, x, y, number, color, label, body) {
     margin: 0,
   });
   addFooter(slide, 6, { white: true });
+  addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 07 · Apertura Bloque 2
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  components.addPill(slide, SH, "BLOQUE 2 · 15 MINUTOS", {
+    x: 0.76,
+    y: 0.56,
+    w: 2.72,
+    h: 0.42,
+    fill: C.red,
+    line: C.red,
+    color: C.white,
+    fontSize: 10.8,
+  });
+  slide.addText("Una buena idea necesita\nun orden que se pueda seguir", {
+    x: 0.76,
+    y: 1.34,
+    w: 6.18,
+    h: 1.24,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 31,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("El guion decide qué necesita saber primero una persona que escucha la propuesta por primera vez.", {
+    x: 0.8,
+    y: 2.9,
+    w: 5.86,
+    h: 0.76,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 16,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  const openerSteps = [
+    { y: 1.4, n: "01", label: "PROBLEMA", color: C.red, x: 7.72 },
+    { y: 2.12, n: "02", label: "PERSONAS", color: C.cyan, x: 8.12 },
+    { y: 2.84, n: "03", label: "SOLUCIÓN", color: C.gold, x: 8.52 },
+    { y: 3.56, n: "04", label: "FUNCIÓN", color: C.green, x: 8.92 },
+    { y: 4.28, n: "05", label: "EVIDENCIA", color: C.blue, x: 9.32 },
+    { y: 5.0, n: "06", label: "APORTE", color: C.red, x: 9.72 },
+  ];
+  openerSteps.forEach((step) => {
+    const textColor = step.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: step.x,
+      y: step.y,
+      w: 2.78,
+      h: 0.54,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: step.color, pt: 1.5 },
+    });
+    slide.addShape(SH.ellipse, {
+      x: step.x + 0.1,
+      y: step.y + 0.07,
+      w: 0.4,
+      h: 0.4,
+      fill: { color: step.color },
+      line: { color: step.color },
+    });
+    slide.addText(step.n, {
+      x: step.x + 0.1,
+      y: step.y + 0.18,
+      w: 0.4,
+      h: 0.16,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 9.5,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(step.label, {
+      x: step.x + 0.66,
+      y: step.y + 0.15,
+      w: 1.86,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 13.8,
+      bold: true,
+      color: C.white,
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.8,
+    y: 5.18,
+    w: 5.86,
+    h: 1.02,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("El pitch no es una lista de piezas.", {
+    x: 1.12,
+    y: 5.42,
+    w: 5.2,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 18,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("Es una historia donde cada parte prepara la siguiente.", {
+    x: 1.12,
+    y: 5.78,
+    w: 5.2,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 13.5,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 7, { white: true });
+  addNotesAndValidate(slide);
+}
+
+// 08 · Recorrido narrativo
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Recorrido del pitch",
+    "Cada parte prepara la siguiente",
+    "El orden permite comprender por qué existe la propuesta antes de conocer sus detalles.",
+    8,
+  );
+
+  const story = [
+    { cx: 1.32, n: "01", title: "PROBLEMA", prompt: "¿Qué ocurre?", color: C.red },
+    { cx: 3.43, n: "02", title: "PERSONAS", prompt: "¿A quiénes implica?", color: C.cyan },
+    { cx: 5.54, n: "03", title: "SOLUCIÓN", prompt: "¿Qué proponemos?", color: C.gold },
+    { cx: 7.65, n: "04", title: "FUNCIÓN", prompt: "¿Qué hace?", color: C.green },
+    { cx: 9.76, n: "05", title: "EVIDENCIA", prompt: "¿Qué mostramos?", color: C.blue },
+    { cx: 11.87, n: "06", title: "APORTE", prompt: "¿Qué busca mejorar?", color: C.red },
+  ];
+  slide.addShape(SH.line, {
+    x: 1.32,
+    y: 3.32,
+    w: 10.55,
+    h: 0,
+    line: { color: C.softBlue, pt: 9, endArrowType: "triangle" },
+  });
+  story.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addText(item.title, {
+      x: item.cx - 0.94,
+      y: 2.34,
+      w: 1.88,
+      h: 0.3,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 14.2,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addShape(SH.ellipse, {
+      x: item.cx - 0.43,
+      y: 2.89,
+      w: 0.86,
+      h: 0.86,
+      fill: { color: item.color },
+      line: { color: C.white, pt: 1.8 },
+    });
+    slide.addText(item.n, {
+      x: item.cx - 0.43,
+      y: 3.12,
+      w: 0.86,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 14,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(item.prompt, {
+      x: item.cx - 0.92,
+      y: 4.06,
+      w: 1.84,
+      h: 0.46,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.8,
+      bold: true,
+      color: C.ink,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.14,
+    y: 5.18,
+    w: 11.05,
+    h: 1.08,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  slide.addText("COLUMNA VERTEBRAL", {
+    x: 1.46,
+    y: 5.42,
+    w: 2.1,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 0.9,
+    color: C.cyan,
+    margin: 0,
+  });
+  slide.addText("PROBLEMA  ↔  SOLUCIÓN  ↔  EVIDENCIA", {
+    x: 3.68,
+    y: 5.34,
+    w: 7.72,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 20,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("Si una de estas relaciones se rompe, la historia pierde coherencia.", {
+    x: 3.68,
+    y: 5.76,
+    w: 7.72,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 13.2,
+    color: C.paleInk,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 09 · Lenguaje claro y situado
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Lenguaje para una audiencia diversa",
+    "Explica funciones, contextos y alcances",
+    "La precisión no exige hablar difícil: exige decir qué hace la propuesta y qué puede respaldar.",
+    9,
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.72,
+    y: 2.02,
+    w: 6.16,
+    h: 3.78,
+    rectRadius: 0.04,
+    fill: { color: C.white },
+    line: { color: C.border, pt: 1.2 },
+  });
+  components.addPill(slide, SH, "EJEMPLO GEOGREEN", {
+    x: 0.98,
+    y: 2.26,
+    w: 1.86,
+    h: 0.4,
+    fill: C.navy,
+    line: C.navy,
+    color: C.white,
+    fontSize: 10.5,
+  });
+  addImageContain(slide, IMG.systemFlow, 0.9, 2.7, 5.8, 2.75);
+
+  slide.addShape(SH.roundRect, {
+    x: 7.16,
+    y: 2.02,
+    w: 5.46,
+    h: 3.78,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  const languageRows = [
+    {
+      y: 2.28,
+      label: "FUNCIÓN",
+      color: C.cyan,
+      body: "Un sensor mide la distancia y permite estimar el nivel de llenado.",
+      hint: "Empieza por lo que permite hacer.",
+    },
+    {
+      y: 3.38,
+      label: "CONTEXTO",
+      color: C.gold,
+      body: "En el espacio observado, la separación de residuos no es constante.",
+      hint: "Describe situaciones observables, no culpas.",
+    },
+    {
+      y: 4.48,
+      label: "ALCANCE",
+      color: C.green,
+      body: "La propuesta busca facilitar una acción y muestra una primera evidencia.",
+      hint: "Distingue avance comprobado de aporte esperado.",
+    },
+  ];
+  languageRows.forEach((row, index) => {
+    if (index > 0) {
+      slide.addShape(SH.line, {
+        x: 7.5,
+        y: row.y - 0.16,
+        w: 4.78,
+        h: 0,
+        line: { color: C.blue, pt: 1.1 },
+      });
+    }
+    slide.addShape(SH.rect, {
+      x: 7.5,
+      y: row.y,
+      w: 0.12,
+      h: 0.84,
+      fill: { color: row.color },
+      line: { color: row.color },
+    });
+    slide.addText(row.label, {
+      x: 7.82,
+      y: row.y,
+      w: 1.2,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 10.8,
+      bold: true,
+      charSpacing: 0.8,
+      color: row.color,
+      margin: 0,
+    });
+    slide.addText(row.body, {
+      x: 7.82,
+      y: row.y + 0.27,
+      w: 4.34,
+      h: 0.38,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 13.8,
+      bold: true,
+      color: C.white,
+      margin: 0,
+    });
+    slide.addText(row.hint, {
+      x: 7.82,
+      y: row.y + 0.69,
+      w: 4.34,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.5,
+      italic: true,
+      color: C.paleInk,
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.32,
+    y: 6.06,
+    w: 10.7,
+    h: 0.54,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("SENSAR  →  ENVIAR  →  VISUALIZAR  →  ALERTAR", {
+    x: 1.68,
+    y: 6.21,
+    w: 9.98,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 17,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 10 · Taller de guion
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("ACTIVIDAD · PRIMERA VERSIÓN", {
+    x: 0.74,
+    y: 0.46,
+    w: 4.2,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1.2,
+    color: C.cyan,
+    margin: 0,
+  });
+  slide.addText("Construyan el guion del pitch", {
+    x: 0.74,
+    y: 0.82,
+    w: 7.6,
+    h: 0.56,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 28,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Una idea principal por tramo. Frases breves. Información que el equipo pueda explicar o respaldar.", {
+    x: 0.76,
+    y: 1.43,
+    w: 8.0,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 14.5,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.72,
+    y: 1.94,
+    w: 7.74,
+    h: 4.74,
+    rectRadius: 0.04,
+    fill: { color: C.paper },
+    line: { color: C.white, pt: 1.4 },
+  });
+  const starters = [
+    "En [lugar o contexto] observamos que...",
+    "Esta situación afecta o se relaciona con...",
+    "Frente a este problema, nuestro equipo propone...",
+    "La propuesta funciona de la siguiente manera...",
+    "Podemos respaldar nuestro avance mostrando...",
+    "Con esta propuesta esperamos aportar a...",
+    "La idea principal que queremos dejar es...",
+  ];
+  starters.forEach((starter, index) => {
+    const y = 2.16 + index * 0.61;
+    const accent = [C.red, C.cyan, C.gold, C.green, C.blue, C.cyan, C.red][index];
+    slide.addShape(SH.ellipse, {
+      x: 1.0,
+      y: y + 0.04,
+      w: 0.38,
+      h: 0.38,
+      fill: { color: accent },
+      line: { color: accent },
+    });
+    slide.addText(String(index + 1), {
+      x: 1.0,
+      y: y + 0.14,
+      w: 0.38,
+      h: 0.16,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 9.5,
+      bold: true,
+      color: accent === C.gold ? C.navyDeep : C.white,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(starter, {
+      x: 1.58,
+      y,
+      w: 6.32,
+      h: 0.32,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 13.6,
+      bold: true,
+      color: C.ink,
+      margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: 1.58,
+      y: y + 0.44,
+      w: 6.2,
+      h: 0,
+      line: { color: C.border, pt: 1 },
+    });
+  });
+
+  slide.addText("4 MOVIMIENTOS", {
+    x: 8.86,
+    y: 2.02,
+    w: 3.66,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1,
+    color: C.gold,
+    margin: 0,
+  });
+  const writingMoves = [
+    { y: 2.42, n: "01", title: "ORDENAR", body: "Ubicar cada idea.", color: C.red },
+    { y: 3.22, n: "02", title: "CONECTAR", body: "Explicar relaciones.", color: C.cyan },
+    { y: 4.02, n: "03", title: "DEPURAR", body: "Quitar repeticiones.", color: C.gold },
+    { y: 4.82, n: "04", title: "LEER EN VOZ ALTA", body: "Comprobar naturalidad.", color: C.green },
+  ];
+  writingMoves.forEach((move) => {
+    slide.addShape(SH.roundRect, {
+      x: 8.82,
+      y: move.y,
+      w: 3.78,
+      h: 0.66,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: move.color, pt: 1.3 },
+    });
+    slide.addText(move.n, {
+      x: 9.04,
+      y: move.y + 0.18,
+      w: 0.42,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 10.5,
+      bold: true,
+      color: move.color,
+      margin: 0,
+    });
+    slide.addText(move.title, {
+      x: 9.52,
+      y: move.y + 0.1,
+      w: 2.76,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 13.5,
+      bold: true,
+      color: C.white,
+      margin: 0,
+    });
+    slide.addText(move.body, {
+      x: 9.52,
+      y: move.y + 0.36,
+      w: 2.76,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 11.5,
+      color: C.paleInk,
+      margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 8.82,
+    y: 5.86,
+    w: 3.78,
+    h: 0.82,
+    rectRadius: 0.04,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("7 MINUTOS", {
+    x: 9.06,
+    y: 6.07,
+    w: 1.0,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Primera versión completa", {
+    x: 10.28,
+    y: 6.03,
+    w: 2.0,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 13.5,
+    bold: true,
+    color: C.white,
+    align: "right",
+    margin: 0,
+  });
+  addFooter(slide, 10, { white: true });
+  addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 11 · Prueba de comprensión
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Prueba entre pares",
+    "¿Otra persona puede reconstruir la propuesta?",
+    "La claridad se comprueba cuando alguien entiende el guion sin recibir explicaciones adicionales.",
+    11,
+    { titleFontSize: 25.5 },
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.72,
+    y: 2.08,
+    w: 4.18,
+    h: 3.86,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  const testSteps = [
+    { y: 2.46, n: "1", title: "LEER", body: "Una persona lee el guion completo.", color: C.red },
+    { y: 3.5, n: "2", title: "RECONSTRUIR", body: "Otra persona explica qué entendió.", color: C.cyan },
+    { y: 4.54, n: "3", title: "CORREGIR", body: "El equipo ajusta el punto de quiebre.", color: C.gold },
+  ];
+  testSteps.forEach((step, index) => {
+    slide.addShape(SH.ellipse, {
+      x: 1.08,
+      y: step.y,
+      w: 0.64,
+      h: 0.64,
+      fill: { color: step.color },
+      line: { color: C.white, pt: 1.4 },
+    });
+    slide.addText(step.n, {
+      x: 1.08,
+      y: step.y + 0.17,
+      w: 0.64,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 14,
+      bold: true,
+      color: step.color === C.gold ? C.navyDeep : C.white,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(step.title, {
+      x: 1.98,
+      y: step.y + 0.02,
+      w: 2.38,
+      h: 0.26,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 15.5,
+      bold: true,
+      color: C.white,
+      margin: 0,
+    });
+    slide.addText(step.body, {
+      x: 1.98,
+      y: step.y + 0.33,
+      w: 2.42,
+      h: 0.32,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.5,
+      color: C.paleInk,
+      margin: 0,
+    });
+    if (index < testSteps.length - 1) {
+      slide.addShape(SH.line, {
+        x: 1.4,
+        y: step.y + 0.68,
+        w: 0,
+        h: 0.34,
+        line: { color: C.blue, pt: 2.2, endArrowType: "triangle" },
+      });
+    }
+  });
+
+  slide.addText("SIN MIRAR EL GUION, RESPONDE:", {
+    x: 5.3,
+    y: 2.08,
+    w: 6.86,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1,
+    color: C.red,
+    margin: 0,
+  });
+  const questions = [
+    "¿Cuál es el problema y en qué contexto ocurre?",
+    "¿Qué propone el equipo?",
+    "¿Cómo funciona la propuesta?",
+    "¿Qué evidencia existe y qué aporte se espera?",
+  ];
+  questions.forEach((question, index) => {
+    const y = 2.5 + index * 0.78;
+    slide.addShape(SH.ellipse, {
+      x: 5.32,
+      y: y + 0.02,
+      w: 0.38,
+      h: 0.38,
+      fill: { color: C.white },
+      line: { color: C.border, pt: 1.3 },
+    });
+    slide.addText(String(index + 1), {
+      x: 5.32,
+      y: y + 0.1,
+      w: 0.38,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 10.5,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(question, {
+      x: 5.94,
+      y,
+      w: 6.1,
+      h: 0.42,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 15.2,
+      bold: true,
+      color: C.navy,
+      margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: 5.94,
+      y: y + 0.54,
+      w: 5.94,
+      h: 0,
+      line: { color: C.border, pt: 1 },
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 5.26,
+    y: 5.66,
+    w: 7.02,
+    h: 0.88,
+    rectRadius: 0.04,
+    fill: { color: C.redSoft },
+    line: { color: C.red, pt: 1.3 },
+  });
+  slide.addText("Si necesitan explicar algo fuera del guion, esa parte aún no está clara.", {
+    x: 5.64,
+    y: 5.91,
+    w: 6.26,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 16,
+    bold: true,
+    color: C.red,
+    align: "center",
+    margin: 0,
+  });
   addNotesAndValidate(slide, { ignoreLines: true });
 }
 
