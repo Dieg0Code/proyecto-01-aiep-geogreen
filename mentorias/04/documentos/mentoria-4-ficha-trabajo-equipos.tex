@@ -1,0 +1,292 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=13mm,bottom=14mm,left=14mm,right=14mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{C9D2DE}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9EEF4}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 4}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{Ficha de trabajo por equipo · \thepage/4}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.18}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{fieldbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.55pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newtcolorbox{accentfield}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPRed,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newcommand{\writearea}[1]{\vspace{#1}\hrule height 0.35pt\vspace{4mm}\hrule height 0.35pt}
+\newcommand{\checkline}[1]{$\square$\hspace{1.5mm}#1}
+\newcommand{\pagehead}[2]{%
+  {\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · MENTORÍA 4}}\par
+  \vspace{2mm}
+  {\LARGE\bfseries\color{AIEPNavy}#1\par}
+  {\normalsize\color{AIEPMuted}#2\par}
+  \vspace{4mm}
+}
+
+\begin{document}
+
+\pagehead{Recuperar la historia del proyecto}{Ficha de trabajo por equipo · Conservar como base de la presentación}
+
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{25mm}Y >{\bfseries\color{AIEPNavy}}p{29mm}p{38mm}@{}}
+Equipo & \rule{57mm}{0.35pt} & Proyecto & \rule{36mm}{0.35pt} \\
+Integrantes & \multicolumn{3}{l}{\rule{145mm}{0.35pt}} \\
+\end{tabularx}
+
+\vspace{3mm}
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Productos de entrada:}\hspace{4mm}
+\checkline{Mentoría 1}\hspace{5mm}
+\checkline{Mentoría 2}\hspace{5mm}
+\checkline{Mentoría 3}
+\end{tcolorbox}
+
+{\large\bfseries\color{AIEPNavy}1. Inventario narrativo}\par
+{\small Escriban una frase breve por anclaje. Si falta respaldo, registren ``falta comprobar''.}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=42mm]{Problema y contexto}
+¿Qué ocurre, dónde ocurre y quiénes se relacionan con la situación?
+\writearea{10mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=42mm]{Solución propuesta}
+¿Qué propone el equipo y de qué manera responde al problema?
+\writearea{10mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=42mm]{Evidencia de avance}
+¿Qué construimos, probamos, representamos o aprendimos?
+\writearea{10mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=42mm]{Aprendizaje o aporte esperado}
+¿Qué comprendimos mejor y qué mejora busca favorecer la propuesta?
+\writearea{10mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{accentfield}[height=42mm]{Idea principal que queremos dejar}
+Si la audiencia recordara una sola idea, debería recordar que:
+\writearea{12mm}
+\end{accentfield}
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Comprobación:} \checkline{Las cuatro frases se conectan.}\quad
+\checkline{Podemos explicar de dónde salió cada una.}\quad
+\checkline{No presentamos expectativas como resultados.}
+\end{tcolorbox}
+
+\newpage
+\pagehead{Construir el guion del pitch}{Una idea principal por tramo · Frases breves · Información que el equipo pueda explicar}
+
+{\large\bfseries\color{AIEPNavy}2. Orden de la historia}\par
+{\small Completen con palabras clave. El guion orienta la explicación; no es un texto para leer de manera continua.}
+
+\small
+\begin{tabularx}{\textwidth}{|C{13mm}|p{34mm}|p{52mm}|Y|}
+\hline
+\textbf{N.º} & \textbf{Tramo} & \textbf{Pregunta que debe responder} & \textbf{Idea principal del equipo} \\
+\hline
+\rule{0pt}{18mm}1 & Problema & ¿Qué ocurre y en qué contexto? & \\
+\hline
+\rule{0pt}{18mm}2 & Personas & ¿A quiénes involucra o afecta? & \\
+\hline
+\rule{0pt}{18mm}3 & Solución & ¿Qué proponemos y por qué? & \\
+\hline
+\rule{0pt}{18mm}4 & Funcionamiento & ¿Qué hace la propuesta durante su uso? & \\
+\hline
+\rule{0pt}{18mm}5 & Evidencia & ¿Qué podemos mostrar y qué demuestra? & \\
+\hline
+\rule{0pt}{18mm}6 & Aporte y cierre & ¿Qué busca mejorar y qué idea debe recordarse? & \\
+\hline
+\end{tabularx}
+\normalsize
+
+\vspace{4mm}
+\begin{accentfield}[height=35mm]{Apertura del pitch}
+En \rule{36mm}{0.35pt} observamos que \rule{92mm}{0.35pt}.\par
+Esta situación involucra o afecta a \rule{85mm}{0.35pt}.
+\end{accentfield}
+
+\begin{accentfield}[height=35mm]{Cierre del pitch}
+Podemos respaldar nuestro avance mostrando \rule{80mm}{0.35pt}.\par
+Con esta propuesta esperamos aportar a \rule{83mm}{0.35pt}.
+\end{accentfield}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\textbf{Prueba de comprensión}\par
+Sin mirar esta ficha, otra persona debe poder responder: ¿cuál es el problema?, ¿qué propone el equipo?, ¿cómo funciona? y ¿qué evidencia existe? Si necesita una explicación adicional, revisen el orden o la precisión del tramo.
+\end{tcolorbox}
+
+\newpage
+\pagehead{Preparar la presentación compartida}{Soporte visual · Seis voces · Acciones · Transiciones · Tiempos}
+
+{\large\bfseries\color{AIEPNavy}3. Soporte visual con propósito}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=37mm]{Recurso elegido}
+¿Qué mostraremos: imagen, diagrama, video, maqueta, simulación, prototipo u otro recurso?
+\writearea{6mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=37mm]{Función comunicativa}
+Marquen una: \checkline{situar}\quad\checkline{explicar}\quad\checkline{demostrar}
+\writearea{6mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{fieldbox}[height=32mm]{Qué debe observar y comprender la audiencia}
+No basta con mostrar el recurso: indiquen qué evidencia contiene y por qué importa.
+\writearea{5mm}
+\end{fieldbox}
+
+{\large\bfseries\color{AIEPNavy}4. Pauta de seis intervenciones}\par
+{\small Cada integrante registra una idea sustantiva, una acción y una frase que entregue el hilo a quien continúa.}
+
+\scriptsize
+\begin{tabularx}{\textwidth}{|C{8mm}|p{25mm}|p{36mm}|p{30mm}|p{17mm}|Y|}
+\hline
+\textbf{N.º} & \textbf{Rol e integrante} & \textbf{Idea principal} & \textbf{Soporte o acción} & \textbf{Tiempo} & \textbf{Transición de salida} \\
+\hline
+\rule{0pt}{18mm}1 & Coordinación: & & & & \\
+\hline
+\rule{0pt}{18mm}2 & Investigación: & & & & \\
+\hline
+\rule{0pt}{18mm}3 & Diseño: & & & & \\
+\hline
+\rule{0pt}{18mm}4 & Tecnología: & & & & \\
+\hline
+\rule{0pt}{18mm}5 & Pruebas y evidencia: & & & & \\
+\hline
+\rule{0pt}{18mm}6 & Comunicación: & & & & \\
+\hline
+\end{tabularx}
+\normalsize
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Antes de ensayar:} \checkline{Las seis personas aportan contenido.}\quad
+\checkline{El soporte tiene responsable.}\quad
+\checkline{Las transiciones conectan ideas.}\quad
+\checkline{Todos conocen la secuencia completa.}
+\end{tcolorbox}
+
+\newpage
+\pagehead{Ensayar, retroalimentar y corregir}{Ejecutar una versión · Observar acciones · Cambiar una parte · Volver a probar}
+
+{\large\bfseries\color{AIEPNavy}5. Pauta común de observación}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{3mm}}Y@{}}
+\begin{fieldbox}[height=31mm]{Se entiende}
+¿Problema, contexto e idea principal usan lenguaje claro?\par
+\checkline{Sí}\quad\checkline{Aún no}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=31mm]{Se conecta}
+¿Problema, solución y aporte mantienen una relación coherente?\par
+\checkline{Sí}\quad\checkline{Aún no}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=31mm]{Se demuestra}
+¿La evidencia se muestra, se explica y respalda lo afirmado?\par
+\checkline{Sí}\quad\checkline{Aún no}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=31mm]{Se coordina}
+¿Roles, soporte, transiciones y tiempos funcionan como equipo?\par
+\checkline{Sí}\quad\checkline{Aún no}
+\end{fieldbox}
+\end{tabularx}
+
+{\large\bfseries\color{AIEPNavy}6. Retroalimentación accionable}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{3mm}}Y@{\hspace{3mm}}Y@{}}
+\begin{fieldbox}[height=41mm]{Observación}
+¿Qué ocurrió de manera concreta?
+\writearea{8mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=41mm]{Efecto}
+¿Qué facilitó o dificultó comprender?
+\writearea{8mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=41mm]{Ajuste}
+¿Qué acción específica volveremos a probar?
+\writearea{8mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{accentfield}[height=38mm]{Corrección comprobada}
+Antes, \rule{55mm}{0.35pt}. Cambiamos \rule{68mm}{0.35pt}.\par
+Al reensayar, observamos que \rule{99mm}{0.35pt}.
+\end{accentfield}
+
+{\large\bfseries\color{AIEPNavy}7. Lista de salida obligatoria}\par
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\checkline{Guion del pitch actualizado}\hspace{5mm}
+\checkline{Soporte visual identificado}\par
+\checkline{Seis roles, transiciones y tiempos}\hspace{5mm}
+\checkline{Registro de mejora incorporado}
+\end{tcolorbox}
+
+\begin{fieldbox}[height=32mm]{Versión que continuará preparando el equipo}
+La idea que queremos que la audiencia recuerde es:
+\writearea{5mm}
+\end{fieldbox}
+
+\end{document}

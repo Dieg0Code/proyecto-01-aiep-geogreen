@@ -1,0 +1,111 @@
+\documentclass[9pt,a4paper]{article}
+
+\usepackage[a4paper,top=12mm,bottom=12mm,left=15mm,right=15mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{microtype}
+\usepackage{array}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{D8DEE6}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=1pt,itemsep=1pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.08}
+
+\newtcolorbox{softbox}[1]{
+  colback=AIEPSoft,
+  colframe=AIEPLine,
+  boxrule=0.5pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=1.7mm,bottom=1.7mm,
+  before skip=3pt,after skip=3pt,
+  title={\scriptsize\bfseries\MakeUppercase{#1}},
+  coltitle=AIEPNavy,
+  attach title to upper={\par\vspace{0.5mm}}
+}
+
+\newtcolorbox{accentbox}[1]{
+  colback=white,
+  colframe=AIEPRed,
+  boxrule=0.65pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=1.7mm,bottom=1.7mm,
+  before skip=3pt,after skip=3pt,
+  title={\scriptsize\bfseries\MakeUppercase{#1}},
+  coltitle=AIEPRed,
+  attach title to upper={\par\vspace{0.5mm}}
+}
+
+\begin{document}
+
+{\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · AIEP OSORNO}}\par
+\vspace{2mm}
+{\Huge\bfseries\color{AIEPNavy}Léeme — Mentoría 4\par}
+\vspace{1mm}
+{\Large\bfseries\color{AIEPInk}Comunicar y ensayar\par}
+{\normalsize\color{AIEPMuted}Material base para el equipo docente de Desarrollo Social\par}
+
+\vspace{4mm}
+Esta carpeta reúne los materiales para ejecutar la Mentoría 4 de GeoGreen Escolar. Puede utilizarlos directamente o ajustar su mediación al grupo. La organización, los productos de entrada y la salida obligatoria corresponden a la lógica común del programa y deben preservarse.
+
+\begin{softbox}{Qué hace esta mentoría}
+La sesión transforma el trabajo desarrollado por cada equipo en una presentación comprensible, coherente y compartida. Para ello, el grupo:
+\begin{enumerate}
+  \item recupera la relación entre problema, contexto, solución y evidencia;
+  \item construye un relato breve con una idea principal por tramo;
+  \item selecciona un apoyo visual que permita explicar o demostrar;
+  \item distribuye contenido, acciones y transiciones entre sus seis integrantes;
+  \item ensaya, recibe retroalimentación y comprueba una corrección concreta.
+\end{enumerate}
+\end{softbox}
+
+\begin{accentbox}{Condiciones de ejecución}
+\begin{tabular}{@{}>{\bfseries\color{AIEPNavy}\raggedright\arraybackslash}p{39mm}@{\hspace{5mm}}>{\raggedright\arraybackslash}p{\dimexpr\linewidth-44mm\relax}@{}}
+\strut Duración & \strut 60 minutos por bloque. \\[1mm]
+\strut Organización & \strut 5 equipos de 6 estudiantes por bloque. \\[1mm]
+\strut Entradas obligatorias & \strut Problema y contexto M1, solución y recursos M2, y evidencia de avance M3. \\[1mm]
+\strut Salida obligatoria & \strut Guion del pitch, apoyo visual, seis roles con tiempos y una corrección comprobada. \\[1mm]
+\strut Rol de la mentoría & \strut Estructurar, observar y retroalimentar; la preparación continúa con trabajo del equipo antes de la presentación final. \\
+\end{tabular}
+\end{accentbox}
+
+\begin{softbox}{Preparación breve}
+Revise la presentación e imprima una ficha por equipo —cinco por bloque—. Solicite que cada grupo lleve sus productos de las mentorías anteriores y el recurso visual que desea mostrar. Disponga un cronómetro visible para los ensayos.
+\end{softbox}
+
+{\bfseries\color{AIEPNavy}Qué hay en esta carpeta}\par
+\begin{itemize}
+  \item \textbf{LEEME.pdf} — esta guía de orientación.
+  \item \textbf{Mentoría 4 - mapa de la clase.png} — síntesis visual de la sesión, útil para compartir y proyectar.
+  \item \textbf{GeoGreen Escolar - resumen del proyecto.png} y \textbf{GeoGreen Escolar - lógica del proyecto.png} — panorama general y secuencia de talleres, mentorías y productos.
+  \item \textbf{Documentos/} — planificación docente completa y ficha imprimible para el trabajo de cada equipo.
+  \item \textbf{Presentacion/} — apoyo visual para conducir la sesión en PowerPoint.
+\end{itemize}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=1.8mm,bottom=1.8mm,before skip=3pt]
+\textbf{Resultado esperado:} cada equipo dispone de una presentación ensayada en la que seis voces construyen una misma historia, la evidencia cumple una función clara y al menos una mejora queda incorporada.
+\end{tcolorbox}
+
+\vfill
+{\footnotesize\color{AIEPMuted}GeoGreen Escolar · AIEP Osorno — Programación, Electricidad y Electrónica, y Trabajo Social.}
+
+\end{document}

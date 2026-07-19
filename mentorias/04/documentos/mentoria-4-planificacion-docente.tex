@@ -1,0 +1,355 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=16mm,bottom=17mm,left=17mm,right=17mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPDeep}{HTML}{031D3B}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{D8DEE6}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9EEF4}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 4 · Planificación docente}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.16}
+
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{2pt}{6pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{docbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.5pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=4pt,after skip=4pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPMuted,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{accentbox}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{navybox}[2][]{
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  coltext=white,
+  boxrule=0pt,
+  arc=1.2mm,
+  left=3.5mm,right=3.5mm,top=3mm,bottom=3mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPGold,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newcommand{\eyebrow}[1]{%
+  {\small\bfseries\textcolor{AIEPRed}{\MakeUppercase{#1}}}\par
+  \vspace{7mm}
+  {\color{AIEPRed}\rule{18mm}{0.9pt}}\par
+  \vspace{9mm}
+}
+
+\newcommand{\criterion}[3]{%
+  \begin{tcolorbox}[colback=#3!7,colframe=#3,boxrule=0.5pt,arc=1mm,left=2mm,right=2mm,top=1.6mm,bottom=1.6mm,before skip=2pt,after skip=2pt]
+  {\bfseries\textcolor{AIEPNavy}{#1}}\hfill{\small #2}
+  \end{tcolorbox}
+}
+
+\begin{document}
+
+\eyebrow{GeoGreen Escolar · AIEP Osorno}
+
+{\Huge\bfseries\color{AIEPNavy}Mentoría 4\par}
+\vspace{2mm}
+{\LARGE\bfseries\color{AIEPInk}Comunicar la propuesta y ensayar el pitch\par}
+\vspace{4mm}
+{\large\color{AIEPMuted}Planificación docente para Desarrollo Social\par}
+
+\vspace{9mm}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{40mm}Y@{}}
+Programa & GeoGreen Escolar Osorno \\
+Fecha & Lunes 28 de septiembre de 2026 \\
+Duración & 60 minutos por bloque \\
+Participantes & 60 estudiantes, distribuidos en dos bloques de 30 \\
+Organización & 5 equipos de 6 estudiantes por bloque \\
+Área responsable & Desarrollo Social \\
+Apoyo técnico & Programación y Análisis de Sistemas \\
+Responsable & [Nombre del/de la docente] \\
+\end{tabularx}
+
+\vspace{7mm}
+\begin{accentbox}{Sentido de la mentoría}
+La sesión transforma el trabajo acumulado por cada equipo en una presentación breve, comprensible y respaldada. La comunicación se aborda como parte del proceso de intervención: reconstruir la trayectoria, distinguir lo esencial, distribuir responsabilidades, mostrar evidencia y convertir la retroalimentación en una mejora observable.
+\end{accentbox}
+
+\begin{navybox}{Entregable obligatorio de salida}
+Cada equipo debe finalizar con un \textbf{guion del pitch}, un \textbf{soporte visual identificado}, una \textbf{pauta de seis intervenciones con transiciones y tiempos}, y una \textbf{presentación corregida} a partir del ensayo y la retroalimentación.
+\end{navybox}
+
+\newpage
+\section{Propósito, objetivos y condiciones de ejecución}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=64mm]{Objetivo general}
+Al finalizar la sesión, cada equipo podrá integrar problema, contexto, solución y evidencia en una presentación clara y coherente; distribuir la participación entre sus integrantes; utilizar un soporte visual pertinente; y aplicar una corrección verificable antes del cierre.
+
+\vspace{2mm}
+La presentación comunica lo que el equipo puede explicar y respaldar. No convierte expectativas en resultados ni sustituye evidencia por recursos visuales.
+\end{docbox}
+&
+\begin{docbox}[height=64mm]{Objetivos específicos}
+\begin{itemize}
+  \item Recuperar la información esencial de las tres mentorías anteriores.
+  \item Construir un guion que conecte problema, solución, evidencia y aporte.
+  \item Seleccionar un soporte visual con una función comunicativa clara.
+  \item Coordinar seis intervenciones, acciones y transiciones.
+  \item Ensayar y comprobar al menos una mejora.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Productos obligatorios de entrada}
+Cada equipo dispone sobre la mesa de:
+\begin{enumerate}
+  \item el problema validado y contexto afectado de la Mentoría 1;
+  \item la solución propuesta y los recursos definidos en la Mentoría 2;
+  \item la evidencia de avance producida para la Mentoría 3.
+\end{enumerate}
+
+Si falta un producto, el equipo registra una brecha de respaldo. Trabaja con lo disponible y no completa la historia mediante afirmaciones improvisadas.
+
+\subsection{Condiciones que deben preservarse}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{docbox}[height=46mm]{Lógica del programa}
+\begin{itemize}
+  \item Cinco equipos de seis estudiantes por bloque.
+  \item Los seis roles definidos desde el Taller 1 se mantienen.
+  \item La evidencia se muestra y también se interpreta.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=46mm]{Continuidad}
+\begin{itemize}
+  \item La mentoría orienta, contrasta y devuelve decisiones.
+  \item El equipo desarrolla y mejora su presentación.
+  \item La versión corregida continúa preparándose antes del evento final.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\newpage
+\section{Enfoque metodológico y preparación}
+
+\begin{navybox}{Rol docente}
+El/la docente ayuda a reconstruir la trazabilidad del proyecto, formula preguntas de precisión, observa la distribución de la palabra y devuelve una retroalimentación focalizada. No redacta el guion, no asigna el discurso completo y no resuelve dudas técnicas mediante explicaciones improvisadas.
+\end{navybox}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=76mm]{Principios de facilitación}
+\begin{itemize}
+  \item \textbf{Trazabilidad:} cada afirmación se vincula con un producto anterior.
+  \item \textbf{Síntesis:} se conserva la información necesaria para comprender.
+  \item \textbf{Responsabilidad:} se diferencia evidencia de aporte esperado.
+  \item \textbf{Participación efectiva:} cada integrante comunica una idea sustantiva.
+  \item \textbf{Mejora verificable:} la devolución termina en una acción que vuelve a probarse.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=76mm]{Preparación antes de la sesión}
+\begin{itemize}
+  \item Revisar la presentación y esta planificación.
+  \item Imprimir una ficha por equipo: cinco por bloque.
+  \item Solicitar los tres productos de entrada.
+  \item Disponer proyector, computador y control de tiempo.
+  \item Organizar cinco zonas de ensayo con distancia suficiente.
+  \item Comprobar previamente imágenes, videos u otros apoyos.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Cuidado comunicacional}
+La devolución se dirige a acciones observables y modificables, no a rasgos personales. Evite expresiones como ``le falta personalidad'' o ``no sirve para presentar''. Prefiera describir qué ocurrió, qué efecto produjo y qué ajuste puede probarse.
+\end{accentbox}
+
+\subsection{Uso del apoyo técnico}
+Programación y Análisis de Sistemas puede contrastar dudas sobre sensores, conexiones, programas o afirmaciones técnicas. Durante la mentoría, esas dudas se registran y se derivan; no se reemplazan por una respuesta no verificada.
+
+\subsection{Material disponible para el equipo}
+Ficha de trabajo, productos de las Mentorías 1--3, soporte visual elegido, lápices, temporizador y los archivos o recursos que el equipo haya preparado para mostrar evidencia.
+
+\newpage
+\section{Plan minuto a minuto}
+
+\small
+\begin{tabularx}{\textwidth}{@{}C{17mm}p{34mm}Y p{41mm}@{}}
+\textbf{\color{AIEPNavy}Tiempo} & \textbf{\color{AIEPNavy}Momento} & \textbf{\color{AIEPNavy}Acción docente} & \textbf{\color{AIEPNavy}Evidencia} \\
+\hline
+0--10 & \textbf{Bloque 1}\newline Recuperar la historia & Comprobar los tres productos de entrada y orientar cuatro anclajes: problema y contexto, solución, evidencia y aporte esperado. & Inventario narrativo con una frase respaldada por anclaje. \\
+\hline
+10--25 & \textbf{Bloque 2}\newline Construir el guion & Modelar el orden del relato, promover escritura breve y conducir una prueba de comprensión entre pares. & Guion comprensible: problema, personas, solución, función, evidencia y aporte. \\
+\hline
+25--38 & \textbf{Bloque 3}\newline Preparar la presentación & Contrastar la función del soporte, distribuir seis intervenciones y revisar entradas, acciones, salidas y tiempos. & Pauta con soporte, responsables, transiciones y tiempos previstos. \\
+\hline
+38--57 & \textbf{Bloque 4}\newline Ensayar y mejorar & Organizar ensayos simultáneos, observar cuatro dimensiones y entregar una devolución focalizada por equipo. & Primera pasada, observación concreta, corrección aplicada y reensayo del tramo. \\
+\hline
+57--60 & \textbf{Cierre}\newline Resguardar versión & Comprobar los cuatro productos y pedir que el cambio quede incorporado en los archivos o la pauta. & Guion, soporte, pauta y registro de mejora actualizados. \\
+\end{tabularx}
+\normalsize
+
+\vspace{6mm}
+\begin{accentbox}{Administración del tiempo}
+El Bloque 4 utiliza 19 minutos: 2 para preparar, 6 para presentar, 5 para observar, 3 para corregir y 3 para reensayar. Los cinco equipos trabajan en paralelo. La primera pasada no se detiene ni se reinicia.
+\end{accentbox}
+
+\subsection{Rondas docentes focalizadas}
+\begin{tabularx}{\textwidth}{@{}p{36mm}Y@{}}
+\textbf{Ronda 1 · trazabilidad} & ¿Qué producto previo respalda cada anclaje del relato? \\
+\textbf{Ronda 2 · comprensión} & ¿Una persona externa puede reconstruir por qué existe la propuesta? \\
+\textbf{Ronda 3 · coordinación} & ¿Cada integrante aporta una idea y conoce qué ocurre antes y después? \\
+\textbf{Ronda 4 · mejora} & ¿Qué ajuste tendría el mayor efecto y cómo sabrán si funcionó? \\
+\end{tabularx}
+
+\newpage
+\section{Guía práctica de facilitación}
+
+\subsection{Bloque 1 · recuperar lo esencial}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=58mm]{Preguntas clave}
+\begin{itemize}
+  \item ¿Qué problema validado permanece en el centro?
+  \item ¿Qué propone el equipo y cómo responde?
+  \item ¿Qué puede mostrar para respaldar su avance?
+  \item ¿Qué aporte espera favorecer sin presentarlo como resultado logrado?
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=58mm]{Señales de avance}
+\begin{itemize}
+  \item Cada frase se relaciona con un producto previo.
+  \item La solución no aparece como una lista de componentes.
+  \item La evidencia representa una prueba, decisión o aprendizaje.
+  \item Las brechas quedan visibles y no se rellenan.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Bloque 2 · construir una historia comprensible}
+\begin{enumerate}
+  \item \textbf{Ordenar:} problema y contexto antes de los detalles de la solución.
+  \item \textbf{Conectar:} cada parte prepara la pregunta que responde la siguiente.
+  \item \textbf{Depurar:} retirar repeticiones y términos que no puedan explicarse.
+  \item \textbf{Probar:} otra persona reconstruye problema, propuesta, funcionamiento y evidencia sin mirar el guion.
+\end{enumerate}
+
+\begin{navybox}{Prueba de comprensión}
+Si el equipo necesita agregar una explicación fuera del guion para que otra persona entienda, esa parte todavía necesita precisión, orden o una relación más visible con el problema.
+\end{navybox}
+
+\subsection{Bloque 3 · soporte y presentación colectiva}
+\begin{tabularx}{\textwidth}{@{}p{35mm}Y@{}}
+\textbf{Situar} & El recurso muestra dónde ocurre, a quiénes involucra o qué contexto importa. \\
+\textbf{Explicar} & El recurso permite seguir una función, proceso, flujo o experiencia de uso. \\
+\textbf{Demostrar} & El recurso presenta una prueba, comparación, resultado o error corregido. \\
+\end{tabularx}
+
+La pregunta orientadora es: \textbf{¿ayuda a comprender y mantiene el foco en la propuesta?} Una imagen, video o prototipo necesita una explicación oral que indique qué observa la audiencia y por qué importa.
+
+\newpage
+\section{Ensayo, retroalimentación y continuidad}
+
+\subsection{Pauta común de observación}
+\criterion{Se entiende}{Problema, contexto e idea principal usan lenguaje claro.}{AIEPRed}
+\criterion{Se conecta}{Problema, solución y aporte mantienen una relación coherente.}{AIEPCyan}
+\criterion{Se demuestra}{La evidencia se muestra, se explica y respalda lo afirmado.}{AIEPGold}
+\criterion{Se coordina}{Roles, soporte, transiciones y tiempos funcionan como equipo.}{AIEPGreen}
+
+\subsection{Retroalimentación accionable}
+\begin{tabularx}{\textwidth}{@{}p{36mm}Y@{}}
+\textbf{Observación} & Describir qué ocurrió de manera concreta. \\
+\textbf{Efecto} & Explicar qué facilitó o dificultó comprender. \\
+\textbf{Ajuste} & Acordar una acción específica que pueda volver a probarse. \\
+\end{tabularx}
+
+\begin{accentbox}{Ejemplo de devolución}
+\textbf{Observación:} la solución apareció antes del problema. \textbf{Efecto:} no se comprendió por qué existía la propuesta. \textbf{Ajuste:} mover el problema al inicio del relato y reensayar la entrada, el aporte y la salida del tramo intervenido.
+\end{accentbox}
+
+\subsection{Verificadores del cierre}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=59mm]{El equipo conserva}
+\begin{itemize}
+  \item guion del pitch con una idea principal por tramo;
+  \item soporte visual identificado y ordenado;
+  \item pauta de seis intervenciones, acciones y tiempos;
+  \item registro de observación, corrección y comprobación.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=59mm]{La mejora es verificable si}
+\begin{itemize}
+  \item se puede describir qué parte cambió;
+  \item responde a una observación concreta;
+  \item quedó incorporada al guion, soporte o pauta;
+  \item el reensayo permite comprobar su efecto.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\begin{navybox}{Continuidad}
+La versión corregida reemplaza la versión anterior como referencia del equipo. Antes del evento final, sus integrantes continúan practicando, fortaleciendo el soporte y resolviendo las brechas de respaldo que hayan quedado registradas.
+\end{navybox}
+
+\end{document}
