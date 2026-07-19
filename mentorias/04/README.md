@@ -444,3 +444,200 @@ Durante esta organización, el/la docente observa especialmente la distribución
 - Puente: en el siguiente bloque, el equipo ejecutará la presentación, medirá su funcionamiento real y utilizará retroalimentación para realizar una corrección verificable.
 
 ---
+
+# BLOQUE 4: Ensayar, retroalimentar y corregir
+
+- Duración: 19 minutos
+- Objetivo del bloque: ejecutar una primera pasada de la presentación, observar su claridad, coherencia, respaldo y coordinación mediante una pauta común, y aplicar al menos una corrección verificable antes del cierre.
+- Modalidad: ensayo simultáneo por equipos, autoobservación guiada, retroalimentación docente focalizada y reensayo del tramo corregido.
+
+### Distribución interna del tiempo
+
+| Minutos | Acción del equipo |
+|---:|---|
+| 0–2 | Preparar el espacio, disponer el soporte y revisar la pauta de observación. |
+| 2–8 | Ejecutar la primera pasada completa sin detenerse para corregir. |
+| 8–13 | Contrastar la experiencia con la pauta y recibir una devolución focalizada. |
+| 13–16 | Aplicar una corrección prioritaria al guion, soporte, distribución o transición. |
+| 16–19 | Reensayar el tramo corregido y comprobar si la mejora resulta observable. |
+
+## Desarrollo
+
+### 4.1 Ensayar es producir evidencia sobre la presentación
+
+El ensayo no busca descubrir quién “tiene facilidad para hablar”. Su propósito es observar cómo funciona la presentación cuando el equipo debe coordinar voz, contenido, soporte visual, evidencia y participación en tiempo real. Por esta razón, la retroalimentación se dirige a **acciones observables y modificables**, no a rasgos personales.
+
+El/la docente puede abrir el bloque con el siguiente encuadre:
+
+> Ensayar no consiste en repetir hasta memorizar. Consiste en ejecutar una versión, observar qué comprende la audiencia y tomar una decisión concreta para mejorarla.
+
+La primera pasada se realiza utilizando la pauta construida en el Bloque 3. Las cinco agrupaciones trabajan de forma simultánea y se distribuyen en el espacio para reducir interferencias. Cada equipo dispone sus apoyos en el orden previsto y comprueba que las seis personas conozcan su punto de entrada.
+
+La observación se concentra en cuatro dimensiones:
+
+```text
+SE ENTIENDE
+¿La propuesta puede comprenderse con lenguaje claro?
+        ↓
+SE CONECTA
+¿Problema, solución y aporte mantienen una relación coherente?
+        ↓
+SE DEMUESTRA
+¿La evidencia respalda lo que el equipo afirma?
+        ↓
+SE COORDINA
+¿Roles, soporte, transiciones y tiempos funcionan como una presentación colectiva?
+```
+
+Desde Desarrollo Social se observa especialmente la claridad del problema, el tratamiento respetuoso del contexto, la participación efectiva, la organización del relato y su adecuación a una audiencia diversa. Si surge una duda sobre el funcionamiento de un sensor, una conexión, un programa o una afirmación técnica, se registra para revisión con el apoyo de Programación y Análisis de Sistemas; no se resuelve mediante una explicación improvisada.
+
+### 4.2 Primera pasada: ejecutar sin interrumpir
+
+Cada equipo presenta su versión completa de trabajo. El ensayo comienza desde la apertura y termina con la frase de cierre. Durante esta primera pasada se aplican las siguientes reglas:
+
+- utilizar el guion como pauta y no como texto para leer de manera continua;
+- ejecutar las seis intervenciones y las transiciones previstas;
+- mostrar el soporte visual o la evidencia en el momento registrado;
+- medir la duración total y anotar diferencias relevantes respecto de los tiempos previstos;
+- no detener la presentación para corregir una palabra, discutir una decisión o comenzar nuevamente;
+- si un recurso no funciona, continuar con la explicación acordada y registrar el incidente para corregirlo después.
+
+La continuidad permite observar dificultades que no aparecen durante una lectura aislada: una transición que no entrega el hilo, dos personas que explican la misma idea, una imagen que aparece tarde, una evidencia que se muestra sin interpretación o un cierre que introduce información nueva.
+
+Mientras los equipos ensayan, el/la docente circula y registra una observación de alto impacto por equipo. La intervención no busca entregar una lista extensa de errores, sino identificar el ajuste que podría producir la mejora más visible dentro del tiempo restante.
+
+### 4.3 Retroalimentar con evidencia
+
+Al terminar la primera pasada, el equipo completa una revisión rápida. Cada integrante aporta una observación sobre su propio tramo y otra sobre la continuidad general. Las opiniones se formulan mediante una secuencia común:
+
+```text
+OBSERVACIÓN
+¿Qué ocurrió de manera concreta?
+        ↓
+EFECTO
+¿Qué facilitó o dificultó comprender?
+        ↓
+AJUSTE
+¿Qué acción específica podría mejorar el resultado?
+```
+
+Este formato evita devoluciones generales como “estuvo bien”, “faltó seguridad” o “hay que practicar más”, porque no indican qué debe mantenerse o modificarse.
+
+| Devolución general | Retroalimentación accionable |
+|---|---|
+| “No se entendió mucho.” | “La solución apareció antes de explicar el problema; cambiar el orden permitiría comprender por qué se propone.” |
+| “La diapositiva está muy cargada.” | “El texto no puede leerse a distancia; conservar el diagrama y reemplazar el párrafo por una frase clave.” |
+| “Faltó explicar el prototipo.” | “Se mostró el prototipo, pero no se indicó qué prueba representa; agregar una frase que describa qué se comprobó.” |
+| “Tienen que coordinarse mejor.” | “Hubo un silencio entre evidencia y cierre; incorporar una transición que conecte el resultado con el aporte esperado.” |
+
+La pauta breve se completa con información observable:
+
+| Dimensión | Sí | Aún no | Evidencia u observación |
+|---|:---:|:---:|---|
+| Se entiende el problema, el contexto y la idea principal. | | | |
+| La solución responde al problema y el aporte esperado está formulado con responsabilidad. | | | |
+| La evidencia se muestra, se explica y respalda las afirmaciones realizadas. | | | |
+| Las seis intervenciones, el soporte, las transiciones y los tiempos funcionan de manera coordinada. | | | |
+
+El/la docente incorpora su devolución dentro de estas mismas dimensiones. Se evita modificar simultáneamente todo el pitch: el equipo identifica primero aquello que afecta la comprensión, la coherencia o el respaldo de la propuesta.
+
+### 4.4 Corregir y comprobar
+
+Cada equipo selecciona al menos una corrección prioritaria. La decisión debe poder describirse como un cambio entre una versión inicial y una versión ajustada.
+
+```text
+ANTES
+¿Qué parte no estaba funcionando?
+
+RETROALIMENTACIÓN UTILIZADA
+¿Qué observación permitió reconocerlo?
+
+CAMBIO APLICADO
+¿Qué modificamos en el guion, el soporte o la coordinación?
+
+COMPROBACIÓN
+¿Qué debería ocurrir ahora para considerar que mejoró?
+```
+
+Son correcciones verificables, por ejemplo:
+
+- adelantar la descripción del problema para recuperar el sentido del relato;
+- sustituir un término técnico por una explicación de su función;
+- diferenciar un resultado observado de un aporte todavía esperado;
+- ampliar, recortar o reemplazar un apoyo visual que no se comprendía;
+- agregar la interpretación oral de una fotografía, una prueba o un prototipo;
+- redistribuir una idea para asegurar una participación sustantiva;
+- escribir una transición que conecte dos segmentos;
+- retirar contenido repetido para recuperar fluidez.
+
+Una indicación como “hablar mejor” o “tener más confianza” no constituye una corrección verificable. Debe traducirse en una acción concreta: reducir una frase, marcar una pausa, mirar a la audiencia después de una idea clave, dejar de leer un párrafo o practicar una transición específica.
+
+El equipo reensaya únicamente el tramo intervenido junto con su entrada y su salida. La comprobación responde a una pregunta simple: **¿el cambio resolvió la dificultad que habíamos observado?** Si la respuesta es negativa, la corrección se reformula y queda registrada en la pauta.
+
+Al finalizar, se actualizan los tiempos reales, los responsables y cualquier cambio realizado al soporte. La versión corregida reemplaza la versión anterior como referencia del equipo.
+
+### Preguntas guía
+
+- ¿Qué comprendimos recién al ejecutar la presentación completa?
+- ¿En qué momento se pierde el vínculo entre problema, solución y evidencia?
+- ¿Qué afirmación necesita mayor precisión o respaldo?
+- ¿El soporte aparece cuando la audiencia lo necesita?
+- ¿Las seis intervenciones aportan al relato y se conectan entre sí?
+- ¿Qué observación describe un hecho y cuál expresa solamente una impresión?
+- ¿Qué corrección tendría el mayor efecto sobre la comprensión?
+- ¿Cómo comprobaremos que el ajuste realmente funcionó?
+
+### Cierre del bloque
+
+- Idea clave: la retroalimentación adquiere valor cuando se transforma en una decisión observable y vuelve a ponerse a prueba.
+- Comprobación breve: cada equipo puede mostrar el antes, la observación recibida, el cambio aplicado y el resultado del reensayo.
+- Producto del bloque: presentación corregida, pauta de observación completada y registro de al menos una mejora verificada.
+- Puente: el cierre de la mentoría permitirá consolidar los productos y dejar claramente identificada la versión que el equipo continuará preparando para el evento final.
+
+---
+
+# CIERRE: Presentación preparada
+
+- Duración: 3 minutos
+- Objetivo del cierre: verificar que cada equipo conserva una versión coherente, respaldada y coordinada de su presentación, junto con los recursos necesarios para continuar su preparación.
+- Modalidad: comprobación interna por equipos, actualización de productos y síntesis final.
+
+## Lista de salida obligatoria
+
+Cada equipo reúne y revisa los cuatro productos construidos durante la mentoría:
+
+1. **Guion del pitch:** integra problema, contexto, personas relacionadas, solución, funcionamiento, evidencia y aporte esperado.
+2. **Soporte visual o evidencia:** se encuentra identificado, ordenado y vinculado con una parte concreta del relato.
+3. **Pauta de presentación:** registra las seis intervenciones, responsables, transiciones, acciones y tiempos actualizados.
+4. **Registro de mejora:** consigna la dificultad observada, la retroalimentación utilizada, la corrección aplicada y su comprobación.
+
+El equipo resguarda la versión corregida de sus archivos y materiales en el medio definido para la actividad. No se considera cerrada la mentoría si el cambio permanece solamente en una conversación y no fue incorporado al guion, al soporte o a la pauta correspondiente.
+
+## Declaración de preparación
+
+Como síntesis, los seis integrantes completan y validan una declaración breve:
+
+```text
+Nuestro equipo presentará:
+
+El problema y contexto que explicaremos es:
+
+La evidencia principal que mostraremos es:
+
+La idea que queremos que la audiencia recuerde es:
+
+La corrección que incorporamos después del ensayo fue:
+```
+
+Esta declaración permite comprobar que el equipo comparte una misma versión del proyecto y que puede reconocer la diferencia entre su propuesta, la evidencia disponible y el aporte que espera generar.
+
+La presentación podrá seguir fortaleciéndose con el trabajo del equipo antes del evento final. Las mentorías orientan, contrastan y ayudan a detectar puntos críticos; el desarrollo y la mejora de la propuesta continúan siendo responsabilidad de sus integrantes.
+
+## Síntesis final
+
+- Idea final: una propuesta se vuelve comunicable cuando conecta diagnóstico, solución y evidencia; se vuelve colectiva cuando distribuye responsabilidades; y mejora cuando el equipo convierte la retroalimentación en una nueva versión.
+- Comprobación final: los seis integrantes pueden identificar qué presentarán, qué mostrarán, qué parte comunicarán y qué cambio incorporaron después del ensayo.
+- Entregable final: guion, soporte visual, pauta de roles y tiempos, y presentación corregida a partir de retroalimentación verificable.
+- Continuidad: el equipo conserva esta versión como base de preparación para el evento final de GeoGreen Escolar.
+
+---
