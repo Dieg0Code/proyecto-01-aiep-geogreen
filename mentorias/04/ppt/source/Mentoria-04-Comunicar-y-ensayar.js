@@ -2536,6 +2536,616 @@ function addStepCircle(slide, x, y, number, color, label, body) {
   addNotesAndValidate(slide);
 }
 
+// 17 · Apertura Bloque 4 y organización del ensayo
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  components.addPill(slide, SH, "BLOQUE 4 · 19 MINUTOS", {
+    x: 0.76,
+    y: 0.56,
+    w: 2.72,
+    h: 0.42,
+    fill: C.red,
+    line: C.red,
+    color: C.white,
+    fontSize: 10.8,
+  });
+  slide.addText("Ensayar es descubrir cómo funciona la presentación", {
+    x: 0.76,
+    y: 1.28,
+    w: 10.0,
+    h: 0.74,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 29,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Ejecuten una versión completa. Observen lo que ocurre. Corrijan una dificultad y vuelvan a probarla.", {
+    x: 0.8,
+    y: 2.18,
+    w: 9.8,
+    h: 0.56,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 15.5,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  const rehearsal = [
+    { x: 0.78, w: 1.72, min: "2", title: "PREPARAR", body: "Espacio + soporte", color: C.red },
+    { x: 2.64, w: 2.86, min: "6", title: "PRESENTAR", body: "Primera pasada completa", color: C.cyan },
+    { x: 5.64, w: 2.42, min: "5", title: "OBSERVAR", body: "Contrastar con la pauta", color: C.gold },
+    { x: 8.2, w: 1.96, min: "3", title: "CORREGIR", body: "Un ajuste prioritario", color: C.green },
+    { x: 10.3, w: 2.24, min: "3", title: "REENSAYAR", body: "Comprobar el cambio", color: C.blue },
+  ];
+  rehearsal.forEach((phase) => {
+    slide.addShape(SH.roundRect, {
+      x: phase.x,
+      y: 3.22,
+      w: phase.w,
+      h: 2.08,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: phase.color, pt: 1.5 },
+    });
+    slide.addShape(SH.rect, {
+      x: phase.x,
+      y: 3.22,
+      w: phase.w,
+      h: 0.16,
+      fill: { color: phase.color },
+      line: { color: phase.color },
+    });
+    slide.addText(phase.min, {
+      x: phase.x + 0.18,
+      y: 3.56,
+      w: phase.w - 0.36,
+      h: 0.4,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 27,
+      bold: true,
+      color: phase.color,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText("MIN", {
+      x: phase.x + 0.18,
+      y: 4.02,
+      w: phase.w - 0.36,
+      h: 0.18,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.8,
+      bold: true,
+      charSpacing: 0.8,
+      color: C.paleInk,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(phase.title, {
+      x: phase.x + 0.12,
+      y: 4.32,
+      w: phase.w - 0.24,
+      h: 0.26,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: phase.w < 2 ? 12.2 : 13.7,
+      bold: true,
+      color: C.white,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(phase.body, {
+      x: phase.x + 0.16,
+      y: 4.68,
+      w: phase.w - 0.32,
+      h: 0.34,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: phase.w < 2 ? 10.8 : 11.8,
+      color: C.paleInk,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.96,
+    y: 5.86,
+    w: 11.4,
+    h: 0.66,
+    rectRadius: 0.04,
+    fill: { color: C.red },
+    line: { color: C.red },
+  });
+  slide.addText("5 EQUIPOS EN PARALELO · PRIMERA PASADA SIN DETENERSE NI REINICIAR", {
+    x: 1.3,
+    y: 6.05,
+    w: 10.72,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14.2,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 17, { white: true });
+  addNotesAndValidate(slide);
+}
+
+// 18 · Pauta de observación
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Pauta común de observación",
+    "Cuatro preguntas observan el ensayo",
+    "Miren acciones que el equipo puede mantener o modificar, no características personales.",
+    18,
+    { titleFontSize: 25.5 },
+  );
+
+  const criteria = [
+    {
+      x: 0.72,
+      color: C.red,
+      n: "01",
+      title: "SE ENTIENDE",
+      body: "¿Problema, contexto e idea principal se comprenden con lenguaje claro?",
+      key: "CLARIDAD",
+    },
+    {
+      x: 3.76,
+      color: C.cyan,
+      n: "02",
+      title: "SE CONECTA",
+      body: "¿Problema, solución y aporte mantienen una relación coherente?",
+      key: "COHERENCIA",
+    },
+    {
+      x: 6.8,
+      color: C.gold,
+      n: "03",
+      title: "SE DEMUESTRA",
+      body: "¿La evidencia se muestra, se explica y respalda lo que se afirma?",
+      key: "RESPALDO",
+    },
+    {
+      x: 9.84,
+      color: C.green,
+      n: "04",
+      title: "SE COORDINA",
+      body: "¿Roles, soporte, transiciones y tiempos funcionan como un equipo?",
+      key: "EJECUCIÓN",
+    },
+  ];
+  criteria.forEach((criterion) => {
+    const textColor = criterion.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: criterion.x,
+      y: 2.1,
+      w: 2.76,
+      h: 3.8,
+      rectRadius: 0.04,
+      fill: { color: C.white },
+      line: { color: criterion.color, pt: 1.6 },
+    });
+    slide.addShape(SH.ellipse, {
+      x: criterion.x + 0.88,
+      y: 2.42,
+      w: 1.0,
+      h: 1.0,
+      fill: { color: criterion.color },
+      line: { color: C.white, pt: 1.6 },
+    });
+    slide.addText(criterion.n, {
+      x: criterion.x + 0.88,
+      y: 2.72,
+      w: 1.0,
+      h: 0.28,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 15,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(criterion.title, {
+      x: criterion.x + 0.2,
+      y: 3.72,
+      w: 2.36,
+      h: 0.3,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 15.5,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(criterion.body, {
+      x: criterion.x + 0.24,
+      y: 4.28,
+      w: 2.28,
+      h: 0.88,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.6,
+      color: C.ink,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+    slide.addShape(SH.roundRect, {
+      x: criterion.x + 0.42,
+      y: 5.34,
+      w: 1.92,
+      h: 0.38,
+      rectRadius: 0.04,
+      fill: { color: criterion.color },
+      line: { color: criterion.color },
+    });
+    slide.addText(criterion.key, {
+      x: criterion.x + 0.54,
+      y: 5.45,
+      w: 1.68,
+      h: 0.16,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 10.5,
+      bold: true,
+      charSpacing: 0.65,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.36,
+    y: 6.2,
+    w: 10.6,
+    h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  slide.addText("REGISTREN UNA OBSERVACIÓN CONCRETA POR DIMENSIÓN", {
+    x: 1.72,
+    y: 6.34,
+    w: 9.88,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addNotesAndValidate(slide);
+}
+
+// 19 · Retroalimentación y corrección verificable
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("RETROALIMENTACIÓN ACCIONABLE", {
+    x: 0.74,
+    y: 0.46,
+    w: 4.8,
+    h: 0.2,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.8,
+    bold: true,
+    charSpacing: 1.2,
+    color: C.cyan,
+    margin: 0,
+  });
+  slide.addText("Una observación debe producir una decisión", {
+    x: 0.74,
+    y: 0.82,
+    w: 9.0,
+    h: 0.56,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 28,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Describan lo ocurrido, expliquen su efecto y acuerden un cambio que pueda volver a probarse.", {
+    x: 0.76,
+    y: 1.44,
+    w: 9.1,
+    h: 0.36,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 14.5,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  const feedback = [
+    {
+      x: 0.78,
+      n: "01",
+      title: "OBSERVACIÓN",
+      question: "¿Qué ocurrió?",
+      example: "La solución apareció antes del problema.",
+      color: C.red,
+    },
+    {
+      x: 4.43,
+      n: "02",
+      title: "EFECTO",
+      question: "¿Qué dificultó?",
+      example: "No se entendió por qué existía la propuesta.",
+      color: C.gold,
+    },
+    {
+      x: 8.08,
+      n: "03",
+      title: "AJUSTE",
+      question: "¿Qué cambiaremos?",
+      example: "Mover el problema al inicio del relato.",
+      color: C.green,
+    },
+  ];
+  feedback.forEach((item, index) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x,
+      y: 2.22,
+      w: 3.18,
+      h: 2.78,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: item.color, pt: 1.5 },
+    });
+    slide.addShape(SH.ellipse, {
+      x: item.x + 0.22,
+      y: 2.48,
+      w: 0.58,
+      h: 0.58,
+      fill: { color: item.color },
+      line: { color: item.color },
+    });
+    slide.addText(item.n, {
+      x: item.x + 0.22,
+      y: 2.64,
+      w: 0.58,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 10.5,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(item.title, {
+      x: item.x + 0.98,
+      y: 2.54,
+      w: 1.92,
+      h: 0.28,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 15,
+      bold: true,
+      color: item.color,
+      margin: 0,
+    });
+    slide.addText(item.question, {
+      x: item.x + 0.3,
+      y: 3.32,
+      w: 2.58,
+      h: 0.3,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 13,
+      bold: true,
+      color: C.white,
+      align: "center",
+      margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: item.x + 0.42,
+      y: 3.82,
+      w: 2.34,
+      h: 0,
+      line: { color: item.color, pt: 1.1, transparency: 25 },
+    });
+    slide.addText(item.example, {
+      x: item.x + 0.32,
+      y: 4.04,
+      w: 2.54,
+      h: 0.62,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 13.3,
+      bold: true,
+      color: C.paleInk,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+    if (index < feedback.length - 1) {
+      slide.addShape(SH.chevron, {
+        x: item.x + 3.3,
+        y: 3.18,
+        w: 0.24,
+        h: 0.76,
+        fill: { color: C.blue },
+        line: { color: C.blue },
+      });
+    }
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.06,
+    y: 5.5,
+    w: 11.2,
+    h: 1.02,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("CORREGIR", {
+    x: 1.4,
+    y: 5.73,
+    w: 1.4,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11,
+    bold: true,
+    charSpacing: 0.8,
+    color: C.navyDeep,
+    margin: 0,
+  });
+  slide.addText("Cambien una parte prioritaria y reensayen su entrada, aporte y salida.", {
+    x: 2.94,
+    y: 5.68,
+    w: 7.02,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 16,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("¿Ahora se comprende?", {
+    x: 10.02,
+    y: 5.7,
+    w: 1.9,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14,
+    bold: true,
+    color: C.red,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 19, { white: true });
+  addNotesAndValidate(slide, { ignoreLines: true });
+}
+
+// 20 · Cierre de la mentoría
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addImageCrop(slide, IMG.cover, 7.72, 0, 5.61, H);
+  addTopBars(slide);
+  addInstitutionalLockup(slide, {
+    white: true,
+    panel: true,
+    panelFill: C.navyDeep,
+    panelTransparency: 8,
+  });
+  components.addPill(slide, SH, "CIERRE · 3 MINUTOS", {
+    x: 0.76,
+    y: 0.56,
+    w: 2.34,
+    h: 0.42,
+    fill: C.red,
+    line: C.red,
+    color: C.white,
+    fontSize: 10.8,
+  });
+  slide.addText("La presentación preparada deja cuatro productos", {
+    x: 0.76,
+    y: 1.28,
+    w: 6.28,
+    h: 0.82,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 29,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("Resguarden la versión corregida. Será la base para continuar preparando el evento final.", {
+    x: 0.8,
+    y: 2.18,
+    w: 6.12,
+    h: 0.58,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 15,
+    color: C.paleInk,
+    margin: 0,
+  });
+
+  const outputs = [
+    { y: 3.0, n: "01", title: "GUION DEL PITCH", body: "Problema, solución, evidencia y aporte.", color: C.red },
+    { y: 3.76, n: "02", title: "SOPORTE VISUAL", body: "Recurso identificado, ordenado y explicado.", color: C.cyan },
+    { y: 4.52, n: "03", title: "PAUTA DEL EQUIPO", body: "Seis intervenciones, acciones, transiciones y tiempos.", color: C.gold },
+    { y: 5.28, n: "04", title: "REGISTRO DE MEJORA", body: "Observación, corrección aplicada y comprobación.", color: C.green },
+  ];
+  outputs.forEach((output) => {
+    const textColor = output.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.ellipse, {
+      x: 0.84,
+      y: output.y,
+      w: 0.56,
+      h: 0.56,
+      fill: { color: output.color },
+      line: { color: output.color },
+    });
+    slide.addText(output.n, {
+      x: 0.84,
+      y: output.y + 0.15,
+      w: 0.56,
+      h: 0.2,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 10.5,
+      bold: true,
+      color: textColor,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(output.title, {
+      x: 1.66,
+      y: output.y + 0.02,
+      w: 2.42,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 14.2,
+      bold: true,
+      color: output.color,
+      margin: 0,
+    });
+    slide.addText(output.body, {
+      x: 4.1,
+      y: output.y + 0.01,
+      w: 2.82,
+      h: 0.46,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 12.2,
+      color: C.white,
+      valign: "mid",
+      margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.8,
+    y: 6.18,
+    w: 6.18,
+    h: 0.72,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("UNA MEJORA CUENTA CUANDO EL EQUIPO PUEDE MOSTRAR QUÉ CAMBIÓ.", {
+    x: 1.14,
+    y: 6.38,
+    w: 5.5,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 13.7,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 20, { white: true });
+  addNotesAndValidate(slide);
+}
+
 (async () => {
   await pptx.writeFile({ fileName: outputPptx });
   console.log(`PPTX generado: ${outputPptx}`);
