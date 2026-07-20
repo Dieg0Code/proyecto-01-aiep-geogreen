@@ -7,10 +7,16 @@
 - **Audiencia principal:** directivos, jefaturas, docentes y equipo ejecutor del proyecto
 - **Formato previsto:** presentación ejecutiva breve y conversación de articulación
 
-> Esta reunión no vuelve a presentar GeoGreen desde cero ni reemplaza los materiales
-> de ejecución. Su propósito es entregar una lectura común del programa, explicar el
-> aporte de Desarrollo Social y mostrar cómo sus cuatro intervenciones se conectan con
-> la ruta técnica y el evento final.
+> La reunión asume distintos niveles de conocimiento previo sobre GeoGreen. Por eso abre
+> con una introducción breve y atractiva al proyecto, sin reemplazar los materiales de
+> ejecución. Su propósito es instalar una lectura común del programa, explicar el aporte
+> de Desarrollo Social y mostrar cómo sus cuatro intervenciones se conectan con la ruta
+> técnica y el evento final.
+
+El PPT funciona como **apoyo visual de una conversación**, no como un guion rígido ni como
+el centro exclusivo de la reunión. Debe permitir dialogar, detenerse o cambiar el orden sin
+perder el hilo. A la vez, cada diapositiva debe sostenerse por sí sola y recordar al expositor
+los datos, relaciones y mensajes que no conviene omitir.
 
 ## Propósito de la reunión
 
@@ -34,8 +40,9 @@ presentación. Está en la capacidad profesional de sus docentes para formular p
 interpretar el contexto, facilitar la participación, reconocer actores, contrastar supuestos
 y ayudar a que los equipos comuniquen una propuesta con sentido.
 
-Los README, planificaciones, PPT, fichas e infografías funcionan como una base común. Pueden
-utilizarse directamente o adaptarse a la mediación del equipo docente. La adaptación no debe
+Los README, planificaciones, PPT, fichas e infografías funcionan como una **base común lista
+para usar**. El equipo docente puede utilizarla directamente o enriquecerla con su **sello
+profesional**, sus ejemplos y su mediación disciplinar. Esa contextualización no debe
 eliminar la organización compartida, las seis responsabilidades de los estudiantes ni el
 producto obligatorio de cada etapa, porque esos productos alimentan el trabajo posterior.
 
@@ -144,23 +151,38 @@ Cada paquete reúne, según corresponda:
 El PPT de esta reunión muestra el nivel ejecutivo del programa. Los RAR contienen la
 profundización pedagógica y operativa necesaria para preparar cada intervención.
 
+## Presentación de la reunión
+
+- **PPTX editable:** `ppt/Reunion-articulacion-desarrollo-social-2026-07-21.pptx`
+- **Fuente editable:** `ppt/source/Reunion-articulacion-desarrollo-social-2026-07-21.js`
+- **Montaje de revisión:** `ppt/montage-final.png`
+- **Extensión:** 14 diapositivas.
+- **Duración orientativa:** 12 a 15 minutos si se recorre completa, con libertad para
+  detenerse, profundizar o cambiar el ritmo según la conversación.
+
+La presentación contiene notas breves para el expositor y mantiene visibles las cifras,
+fechas, productos y relaciones críticas. Fue renderizada y revisada visualmente, no presenta
+desbordamientos y su estructura OpenXML fue validada para PowerPoint.
+
 ## Estructura prevista del deck
 
-El cuerpo principal tendrá entre **10 y 12 diapositivas**, diseñado para una exposición de
+El cuerpo principal tendrá entre **12 y 14 diapositivas**, diseñado para una exposición de
 aproximadamente **12 a 15 minutos** antes de la conversación.
 
 1. **Portada** · Articulación con Desarrollo Social.
-2. **Propósito de la reunión** · Qué comprensión común busca instalar.
-3. **GeoGreen Escolar hoy** · Socio, estudiantes, áreas, fechas y desafío final.
-4. **De prototipo a programa educativo** · GeoGreen como caso, no como respuesta obligatoria.
-5. **Lógica completa del proyecto** · Problema → material → tecnología → evidencia → pitch.
-6. **Dónde aporta Desarrollo Social** · Diagnóstico situado, participación y comunicación.
-7. **Cuatro momentos de liderazgo** · Talleres 1 y 2, Mentorías 1 y 4.
-8. **Libertad metodológica y continuidad obligatoria** · Qué puede variar y qué permanece.
-9. **Cadena de entregables** · Cómo cada producto alimenta el siguiente.
-10. **Trabajo de los equipos** · Dos bloques, cinco equipos, seis responsabilidades y autonomía.
-11. **Material disponible** · Cuatro paquetes listos para profundizar y ejecutar.
-12. **Cierre** · El aporte de Desarrollo Social al sentido y la comunicabilidad de las propuestas.
+2. **GeoGreen en 60 segundos** · Del contenedor inteligente al programa educativo.
+3. **Hasta dónde puede crecer una idea** · Sensor, prototipo, conectividad, visualización y diseño.
+4. **El desafío escolar** · Socio, estudiantes, áreas, ruta y experiencia final.
+5. **Propósito de la reunión** · Qué comprensión común busca instalar.
+6. **Por qué Desarrollo Social es indispensable** · Del dispositivo a una solución situada.
+7. **Base común + sello profesional** · Material preparado y aporte disciplinar.
+8. **Lógica completa del proyecto** · Problema → material → tecnología → evidencia → presentación.
+9. **Cuatro momentos de liderazgo** · Talleres 1 y 2, Mentorías 1 y 4.
+10. **Lo adaptable y lo que sostiene la continuidad** · Mediación libre, resultados compartidos.
+11. **Cadena de entregables** · Cómo cada producto alimenta el siguiente.
+12. **Trabajo de los equipos** · Dos bloques, cinco equipos, seis responsabilidades y autonomía.
+13. **Material disponible** · Cuatro paquetes listos para profundizar y ejecutar.
+14. **Cierre** · El aporte de Desarrollo Social al sentido y la comunicabilidad de las propuestas.
 
 Podrán añadirse como respaldo las cuatro infografías de sesión, sin incorporarlas al recorrido
 principal si afectan el ritmo ejecutivo.
@@ -176,6 +198,10 @@ La presentación debe avanzar mediante tres movimientos:
 3. **Mostrar una ejecución posible:** existe material base listo y adaptable, conectado mediante
    entregables claros con las etapas técnicas y el evento final.
 
+El primer movimiento debe ser especialmente accesible y atractivo para quienes conocen el
+proyecto por primera vez: explicar primero la idea y su potencial, y solo después entrar en la
+arquitectura de ejecución.
+
 ## Dirección visual
 
 - Formato panorámico 16:9.
@@ -187,6 +213,10 @@ La presentación debe avanzar mediante tres movimientos:
 - Uso protagonista de las infografías vigentes, con recortes o ampliaciones cuando sea necesario.
 - Recursos visuales del proyecto real: estudiantes, sensores, prototipo, dashboard y evidencia.
 - Cada diapositiva debe responder por sí sola: **qué estoy viendo, para qué sirve y qué debo recordar**.
+- El contenido visible debe servir también como memoria del expositor: cifras, fechas, productos
+  y transiciones críticas no pueden depender únicamente de las notas o de la improvisación oral.
+- Evitar párrafos de lectura. Priorizar diagramas, comparaciones, secuencias, cifras y frases de
+  síntesis que sigan siendo comprensibles mientras la conversación ocurre frente a la pantalla.
 
 ## Recursos visuales prioritarios
 
@@ -222,7 +252,7 @@ La presentación debe avanzar mediante tres movimientos:
 - `../../mentorias/01/README.md`
 - `../../mentorias/04/README.md`
 
-## Criterio de cierre del futuro PPT
+## Criterio de cierre del PPT
 
 El deck estará listo cuando una persona que no conoce los detalles del repositorio pueda explicar:
 
@@ -233,4 +263,3 @@ El deck estará listo cuando una persona que no conoce los detalles del reposito
 - qué puede adaptar el equipo docente;
 - cómo esos productos se conectan con la ruta técnica y el evento final;
 - dónde encontrar el material necesario para profundizar y ejecutar.
-
