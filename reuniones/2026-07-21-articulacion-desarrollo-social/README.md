@@ -1,0 +1,236 @@
+# Reunión de articulación con Desarrollo Social · GeoGreen Escolar
+
+- **Fecha:** martes 21 de julio de 2026
+- **Contexto:** coordinación interna AIEP Osorno
+- **Foco:** integración de la Escuela de Desarrollo Social a la ejecución de GeoGreen Escolar
+- **Socio comunitario:** Instituto Comercial Liceo Bicentenario, Osorno
+- **Audiencia principal:** directivos, jefaturas, docentes y equipo ejecutor del proyecto
+- **Formato previsto:** presentación ejecutiva breve y conversación de articulación
+
+> Esta reunión no vuelve a presentar GeoGreen desde cero ni reemplaza los materiales
+> de ejecución. Su propósito es entregar una lectura común del programa, explicar el
+> aporte de Desarrollo Social y mostrar cómo sus cuatro intervenciones se conectan con
+> la ruta técnica y el evento final.
+
+## Propósito de la reunión
+
+Presentar GeoGreen Escolar como un programa educativo interdisciplinario ya estructurado,
+en el que Desarrollo Social sostiene la lectura del problema, el contexto, la participación
+y la comunicación de las propuestas. La reunión debe permitir comprender:
+
+1. qué es GeoGreen Escolar y qué experiencia vivirán los estudiantes;
+2. qué etapas lidera Desarrollo Social;
+3. cómo se conectan sus productos con las etapas técnicas;
+4. qué aspectos puede adaptar cada docente desde su experiencia profesional;
+5. qué elementos comunes deben preservarse para mantener la continuidad del proyecto;
+6. qué materiales se encuentran preparados para profundizar y ejecutar cada sesión.
+
+## Mensaje central
+
+> **Los materiales apoyan. La experiencia docente guía. Los entregables sostienen la continuidad.**
+
+El conocimiento principal que aporta Desarrollo Social no está contenido únicamente en una
+presentación. Está en la capacidad profesional de sus docentes para formular preguntas,
+interpretar el contexto, facilitar la participación, reconocer actores, contrastar supuestos
+y ayudar a que los equipos comuniquen una propuesta con sentido.
+
+Los README, planificaciones, PPT, fichas e infografías funcionan como una base común. Pueden
+utilizarse directamente o adaptarse a la mediación del equipo docente. La adaptación no debe
+eliminar la organización compartida, las seis responsabilidades de los estudiantes ni el
+producto obligatorio de cada etapa, porque esos productos alimentan el trabajo posterior.
+
+## Estado actual del programa
+
+- GeoGreen Escolar se ejecutará con el **Instituto Comercial Liceo Bicentenario** como socio
+  comunitario.
+- La ruta formativa comienza el **lunes 17 de agosto de 2026** y culmina con el cierre interno
+  durante la semana del **12 de octubre de 2026**.
+- Se proyectan **60 estudiantes**, distribuidos en **dos bloques de 30**.
+- La base de trabajo es de **5 equipos de 6 estudiantes por bloque**.
+- Los equipos mantienen seis responsabilidades: **coordinación, investigación, diseño,
+  tecnología, pruebas y evidencia, y comunicación**.
+- Los estudiantes desarrollan y mejoran sus propuestas principalmente entre sesiones.
+- Las mentorías revisan, orientan y destraban; no realizan el proyecto por los equipos.
+- El proceso termina con una competencia ante jurado, retroalimentación y premiación.
+
+## Distribución vigente de la ejecución
+
+| Etapa | Fecha | Liderazgo | Producto de continuidad |
+|---|---|---|---|
+| Taller 1 · problema ambiental | 17 de agosto | Desarrollo Social | Equipos formados + problema ambiental concreto. |
+| Taller 2 · ciencia del reciclaje | 18 de agosto | Desarrollo Social | Ficha de análisis del residuo o material. |
+| Taller 3 · sensores y GeoGreen | 24 de agosto | Programación/Sistemas | Idea tecnológica inicial. |
+| Mentoría 1 · problema y contexto | 31 de agosto | Desarrollo Social | Problema validado + contexto afectado + próximo paso. |
+| Mentoría 2 · solución y recursos | 7 de septiembre | Programación/Sistemas | Solución + recursos definidos. |
+| Mentoría 3 · evidencia de avance | 21 de septiembre | Programación/Sistemas | Maqueta, simulación, diagrama, prototipo u otra evidencia de avance. |
+| Mentoría 4 y ensayo | 28 de septiembre | Desarrollo Social + apoyo técnico | Guion + soporte visual + seis roles y tiempos + presentación corregida. |
+| Hito comunicacional | 2 de octubre | Equipo conjunto | Difusión breve del cierre próximo. |
+| Evento final | 5 de octubre | Equipo conjunto | Propuestas presentadas + jurado + premiación + registro. |
+| Cierre interno | Semana del 12 de octubre | Equipo conjunto | Informe + recomendaciones + materiales reutilizables. |
+
+La semana del **14 de septiembre** se mantiene sin actividades por Fiestas Patrias.
+
+## Los cuatro momentos liderados por Desarrollo Social
+
+### 1. Taller 1 · observar y formular el problema
+
+Instala una lectura ambiental y social del entorno, forma los equipos y ayuda a pasar de
+temas generales a situaciones concretas, observables y abordables.
+
+**Salida obligatoria:** equipos formados y problema ambiental concreto por equipo.
+
+### 2. Taller 2 · comprender el residuo o material
+
+Profundiza la relación entre el problema, el residuo asociado, sus materiales, las condiciones
+de recuperación y los hábitos que favorecen o dificultan una mejor gestión.
+
+**Salida obligatoria:** ficha de análisis del residuo o material conectada con el problema.
+
+### 3. Mentoría 1 · validar problema y contexto
+
+Recupera los productos de los tres talleres, sitúa el problema, identifica a las personas
+relacionadas, contrasta observaciones y supuestos, y devuelve al equipo una decisión de avance.
+
+**Salida obligatoria:** problema validado, contexto afectado, evidencia disponible y próximo
+paso verificable.
+
+### 4. Mentoría 4 y ensayo · convertir el proceso en relato
+
+Integra problema, solución y evidencia en una presentación clara. Coordina las seis voces,
+selecciona soportes visuales, observa el primer ensayo y transforma la retroalimentación en una
+corrección comprobable.
+
+**Salida obligatoria:** guion, soporte visual, seis roles y tiempos, y presentación corregida.
+
+## Marco común que debe preservar el PPT
+
+### Puede adaptarse
+
+- La forma de explicar.
+- Los ejemplos utilizados.
+- Las preguntas de activación y profundización.
+- Las dinámicas de facilitación.
+- La presentación y los recursos visuales.
+- La manera en que cada docente incorpora su experiencia disciplinar.
+
+### Debe preservarse
+
+- La continuidad entre una etapa y la siguiente.
+- La organización por equipos y las seis responsabilidades.
+- El protagonismo de las decisiones estudiantiles.
+- El producto obligatorio de cada taller y mentoría.
+- El trabajo autónomo de los equipos entre sesiones.
+- La distinción entre orientación social, apoyo técnico y trabajo conjunto.
+
+## Material disponible para Desarrollo Social
+
+Se encuentran preparados cuatro paquetes de ejecución, compartidos en formato RAR:
+
+1. **Taller 1 · Conciencia Ambiental**
+2. **Taller 2 · Ciencia del Reciclaje**
+3. **Mentoría 1 · Problema y contexto afectado**
+4. **Mentoría 4 · Comunicar y ensayar**
+
+Cada paquete reúne, según corresponda:
+
+- LEEME de orientación;
+- planificación docente;
+- presentación PowerPoint;
+- fichas o guías de trabajo;
+- infografía de la sesión;
+- infografía general de Desarrollo Social;
+- resumen y lógica vigente de GeoGreen Escolar.
+
+El PPT de esta reunión muestra el nivel ejecutivo del programa. Los RAR contienen la
+profundización pedagógica y operativa necesaria para preparar cada intervención.
+
+## Estructura prevista del deck
+
+El cuerpo principal tendrá entre **10 y 12 diapositivas**, diseñado para una exposición de
+aproximadamente **12 a 15 minutos** antes de la conversación.
+
+1. **Portada** · Articulación con Desarrollo Social.
+2. **Propósito de la reunión** · Qué comprensión común busca instalar.
+3. **GeoGreen Escolar hoy** · Socio, estudiantes, áreas, fechas y desafío final.
+4. **De prototipo a programa educativo** · GeoGreen como caso, no como respuesta obligatoria.
+5. **Lógica completa del proyecto** · Problema → material → tecnología → evidencia → pitch.
+6. **Dónde aporta Desarrollo Social** · Diagnóstico situado, participación y comunicación.
+7. **Cuatro momentos de liderazgo** · Talleres 1 y 2, Mentorías 1 y 4.
+8. **Libertad metodológica y continuidad obligatoria** · Qué puede variar y qué permanece.
+9. **Cadena de entregables** · Cómo cada producto alimenta el siguiente.
+10. **Trabajo de los equipos** · Dos bloques, cinco equipos, seis responsabilidades y autonomía.
+11. **Material disponible** · Cuatro paquetes listos para profundizar y ejecutar.
+12. **Cierre** · El aporte de Desarrollo Social al sentido y la comunicabilidad de las propuestas.
+
+Podrán añadirse como respaldo las cuatro infografías de sesión, sin incorporarlas al recorrido
+principal si afectan el ritmo ejecutivo.
+
+## Dirección narrativa
+
+La presentación debe avanzar mediante tres movimientos:
+
+1. **Comprender el programa:** GeoGreen Escolar ya cuenta con socio comunitario, cronograma,
+   ruta pedagógica, materiales y un desafío final.
+2. **Reconocer el aporte disciplinar:** Desarrollo Social no aparece como apoyo periférico;
+   sostiene la lectura del problema, el contexto, la participación y la comunicación.
+3. **Mostrar una ejecución posible:** existe material base listo y adaptable, conectado mediante
+   entregables claros con las etapas técnicas y el evento final.
+
+## Dirección visual
+
+- Formato panorámico 16:9.
+- Identidad institucional AIEP y Vinculación con el Medio.
+- Lockup AIEP + Vinculación con el Medio en la esquina superior derecha.
+- Paleta institucional: navy, rojo, blanco y apoyos neutros.
+- Titulares grandes, jerarquía clara y texto legible desde una sala.
+- Una idea dominante por diapositiva.
+- Uso protagonista de las infografías vigentes, con recortes o ampliaciones cuando sea necesario.
+- Recursos visuales del proyecto real: estudiantes, sensores, prototipo, dashboard y evidencia.
+- Cada diapositiva debe responder por sí sola: **qué estoy viendo, para qué sirve y qué debo recordar**.
+
+## Recursos visuales prioritarios
+
+- `../../cronograma/infografias/infografia-maestra-pseudocronograma-geogreen.png`
+- `../../docs/infografias/infografia-ruta-desarrollo-social-geogreen-gptimage.png`
+- `../../docs/infografias/infografia-resumen-proyecto-geogreen.png`
+- `../../talleres/01/infografias/infografia-taller-1-resumen-docente-gptimage.png`
+- `../../talleres/02/infografias/infografia-taller-2-resumen-docente-gptimage.png`
+- `../../mentorias/01/infografias/infografia-mentoria-1-resumen-docente-gptimage.png`
+- `../../mentorias/04/infografias/infografia-mentoria-4-mapa-clase-gptimage.png`
+- fotografías, renders, aplicación y evidencia técnica ya disponibles en el repositorio.
+
+## Límites editoriales
+
+- No incluir comentarios internos, notas de producción ni lenguaje dirigido al autor del deck.
+- No presentar el material base como una imposición metodológica.
+- No convertir la reunión en una capacitación técnica de Arduino o sensores.
+- No insinuar que las mentorías construyen el proyecto durante sus 60 minutos.
+- No confundir la Mentoría 4 con el evento final: después del ensayo continúa la preparación.
+- No presentar la competencia como único propósito del programa.
+- No usar cronogramas anteriores ni expresiones como “coordinación pendiente”.
+- No inventar compromisos, responsables adicionales, requisitos o decisiones que no estén en las
+  fuentes vigentes.
+
+## Fuentes de verdad
+
+- `../../cronograma/documentos/cronograma-vigente-2026.md`
+- `../../cronograma/documentos/lineamientos-transversales-equipos-entregables-geogreen.pdf`
+- `../../cronograma/documentos/talleres-y-mentorias-geogreen.md`
+- `../../PLAN-GEOGREEN-ESCOLAR.md`
+- `../../talleres/01/README.md`
+- `../../talleres/02/README.md`
+- `../../mentorias/01/README.md`
+- `../../mentorias/04/README.md`
+
+## Criterio de cierre del futuro PPT
+
+El deck estará listo cuando una persona que no conoce los detalles del repositorio pueda explicar:
+
+- qué es GeoGreen Escolar;
+- por qué Desarrollo Social es una parte estructural del programa;
+- qué cuatro intervenciones lidera;
+- qué producto debe salir de cada una;
+- qué puede adaptar el equipo docente;
+- cómo esos productos se conectan con la ruta técnica y el evento final;
+- dónde encontrar el material necesario para profundizar y ejecutar.
+
