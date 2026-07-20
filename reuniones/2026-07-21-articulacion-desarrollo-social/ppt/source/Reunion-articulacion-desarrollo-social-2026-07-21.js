@@ -491,10 +491,10 @@ function addNotesAndValidate(slide, notes, opts = {}) {
     margin: 0,
   });
   const stats = [
-    { x: 0.8, n: "60", label: "ESTUDIANTES", sub: "Instituto Comercial", color: C.red },
-    { x: 3.52, n: "2", label: "BLOQUES", sub: "30 estudiantes cada uno", color: C.cyan },
-    { x: 6.24, n: "10", label: "EQUIPOS", sub: "5 equipos por bloque", color: C.gold },
-    { x: 8.96, n: "6", label: "RESPONSABILIDADES", sub: "una por integrante", color: C.green },
+    { x: 1.38, n: "60", label: "ESTUDIANTES", sub: "Instituto Comercial", color: C.red },
+    { x: 4.1, n: "2", label: "BLOQUES", sub: "30 estudiantes cada uno", color: C.cyan },
+    { x: 6.82, n: "10", label: "EQUIPOS", sub: "5 equipos por bloque", color: C.gold },
+    { x: 9.54, n: "6", label: "RESPONSABILIDADES", sub: "una por integrante", color: C.green },
   ];
   stats.forEach((s) => {
     addCard(slide, s.x, 2.34, 2.42, 1.84, { fill: C.darkPanel, line: "28435F", shadow: false });
