@@ -587,42 +587,107 @@ function addNotesAndValidate(slide, notes, opts = {}) {
 // 05 · Propósito de la reunión
 {
   const slide = pptx.addSlide();
-  addHeader(slide, "Hoy", "Una conversación con tres resultados claros", "El PPT ordena el mapa; la reunión permite enriquecerlo con la experiencia de cada área.", 5);
+  addHeader(slide, "Hoy", "Una conversación para salir con un mapa común", "Tres movimientos ordenan el diálogo sin convertirlo en una exposición rígida.", 5);
+  slide.addShape(SH.roundRect, {
+    x: 0.82,
+    y: 1.92,
+    w: 11.7,
+    h: 4.16,
+    rectRadius: 0.05,
+    fill: { color: C.navy },
+    line: { color: C.navy },
+  });
+  slide.addText("PUNTO DE PARTIDA", {
+    x: 1.14,
+    y: 2.27,
+    w: 1.55,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 9.8,
+    bold: true,
+    charSpacing: 0.9,
+    color: C.paleInk,
+    align: "center",
+    margin: 0,
+  });
+  addCircleText(slide, "HOY", 1.38, 2.78, 1.02, { fill: C.white, line: C.cyan, linePt: 2, color: C.navy, fontSize: 15 });
+  slide.addShape(SH.line, {
+    x: 2.38,
+    y: 3.42,
+    w: 7.2,
+    h: 0.72,
+    flipV: true,
+    line: { color: "54708D", pt: 3, beginArrowType: "none", endArrowType: "triangle" },
+  });
   const outcomes = [
-    { x: 0.82, n: "01", title: "COMPRENDER", body: "Qué experiencia vivirán los estudiantes y cómo avanza la ruta completa.", color: C.red },
-    { x: 4.5, n: "02", title: "ARTICULAR", body: "Dónde lidera Desarrollo Social y cómo sus productos alimentan las etapas técnicas.", color: C.cyan },
-    { x: 8.18, n: "03", title: "CONTINUAR", body: "Qué puede adaptarse y qué elementos comunes sostienen la cadena del proyecto.", color: C.gold },
+    { x: 3.0, y: 3.44, n: "01", title: "COMPRENDER", body: "La experiencia completa que vivirán los estudiantes.", color: C.red },
+    { x: 5.72, y: 3.05, n: "02", title: "ARTICULAR", body: "El liderazgo de Desarrollo Social y sus conexiones.", color: C.cyan },
+    { x: 8.44, y: 2.66, n: "03", title: "CONTINUAR", body: "Lo que puede variar y lo que debe permanecer.", color: C.gold },
   ];
   outcomes.forEach((o) => {
-    addCard(slide, o.x, 1.95, 3.36, 3.62, { fill: C.white, line: C.border, accent: o.color });
-    addCircleText(slide, o.n, o.x + 1.29, 2.28, 0.78, { fill: o.color, color: o.color === C.gold ? C.navyDeep : C.white, fontSize: 15 });
+    addCircleText(slide, o.n, o.x, o.y, 0.78, { fill: o.color, color: o.color === C.gold ? C.navyDeep : C.white, fontSize: 14.5 });
     slide.addText(o.title, {
-      x: o.x + 0.3,
-      y: 3.35,
-      w: 2.76,
-      h: 0.34,
+      x: o.x - 0.48,
+      y: o.y + 1.02,
+      w: 1.74,
+      h: 0.28,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 17,
+      fontSize: 13.6,
       bold: true,
-      color: C.navy,
+      color: o.color,
       align: "center",
       margin: 0,
     });
     slide.addText(o.body, {
-      x: o.x + 0.38,
-      y: 3.98,
-      w: 2.6,
-      h: 1.0,
+      x: o.x - 0.65,
+      y: o.y + 1.48,
+      w: 2.08,
+      h: 0.72,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 13.2,
-      color: C.ink,
+      fontSize: 11.7,
+      color: C.white,
       align: "center",
-      valign: "mid",
       margin: 0,
     });
   });
-  addTakeaway(slide, "Resultado esperado: una lectura común del proyecto y de sus conexiones.");
-  addNotesAndValidate(slide, "Usar esta lámina como agenda flexible. No es necesario leerla completa: sirve para recordar los tres acuerdos cognitivos que debe dejar la conversación.");
+  slide.addShape(SH.roundRect, {
+    x: 10.34,
+    y: 2.43,
+    w: 1.72,
+    h: 2.62,
+    rectRadius: 0.05,
+    fill: { color: C.white },
+    line: { color: C.gold, pt: 2 },
+  });
+  slide.addText("SALIMOS CON", {
+    x: 10.56,
+    y: 2.78,
+    w: 1.28,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 9.5,
+    bold: true,
+    color: C.slate,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("UN MAPA\nCOMÚN", {
+    x: 10.53,
+    y: 3.28,
+    w: 1.34,
+    h: 0.88,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 18.5,
+    bold: true,
+    color: C.navy,
+    align: "center",
+    valign: "mid",
+    margin: 0,
+  });
+  addPill(slide, "PROYECTO + ROLES + CONTINUIDAD", 9.96, 5.36, 2.5, { fill: C.gold, line: C.gold, color: C.navyDeep, fontSize: 8.8, h: 0.38 });
+  addTakeaway(slide, "Resultado esperado: comprender la ruta, reconocer el aporte y resguardar sus conexiones.");
+  // La línea de recorrido atraviesa deliberadamente los nodos para construir una ruta visual.
+  addNotesAndValidate(slide, "Usar esta lámina como agenda flexible. No es necesario leerla completa: sirve para recordar los tres acuerdos cognitivos que debe dejar la conversación.", { skipOverlap: true });
 }
 
 // 06 · Desarrollo Social es indispensable
@@ -669,131 +734,223 @@ function addNotesAndValidate(slide, notes, opts = {}) {
 // 07 · Base común + sello profesional
 {
   const slide = pptx.addSlide();
-  addHeader(slide, "Forma de trabajo", "Base común + sello profesional", "El material reduce la carga de preparación; la experiencia docente le da profundidad y pertinencia.", 7);
-  addCard(slide, 0.8, 1.94, 3.25, 3.74, { fill: C.white, line: C.border, accent: C.red });
-  addPill(slide, "BASE LISTA PARA USAR", 1.12, 2.25, 2.62, { fill: C.red, line: C.red, color: C.white, fontSize: 10.7 });
-  ["README de la sesión", "planificación docente", "PPT y fichas de trabajo", "infografías de apoyo"].forEach((t, i) => {
-    addCircleText(slide, String(i + 1), 1.14, 3.0 + i * 0.57, 0.34, { fill: C.redSoft, line: C.red, color: C.red, fontSize: 9.6 });
-    slide.addText(t, {
-      x: 1.62,
-      y: 3.05 + i * 0.57,
-      w: 2.05,
-      h: 0.24,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 12.7,
-      color: C.ink,
-      margin: 0,
-    });
-  });
-  slide.addShape(SH.chevron, { x: 4.38, y: 3.27, w: 0.72, h: 1.0, fill: { color: C.cyan }, line: { color: C.cyan } });
-  addCard(slide, 5.32, 1.94, 3.25, 3.74, { fill: C.cyanSoft, line: C.cyan, accent: C.cyan, shadow: false });
-  addPill(slide, "SELLO PROFESIONAL", 5.64, 2.25, 2.62, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 10.7 });
-  ["preguntas pertinentes", "ejemplos del territorio", "lectura de actores", "mediación del grupo"].forEach((t, i) => {
-    addCircleText(slide, String(i + 1), 5.66, 3.0 + i * 0.57, 0.34, { fill: C.white, line: C.cyan, color: C.navy, fontSize: 9.6 });
-    slide.addText(t, {
-      x: 6.14,
-      y: 3.05 + i * 0.57,
-      w: 2.05,
-      h: 0.24,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 12.7,
-      color: C.ink,
-      margin: 0,
-    });
-  });
-  slide.addShape(SH.chevron, { x: 8.9, y: 3.27, w: 0.72, h: 1.0, fill: { color: C.gold }, line: { color: C.gold } });
-  addCard(slide, 9.84, 1.94, 2.7, 3.74, { fill: C.navy, line: C.navy, accent: C.gold, shadow: false });
-  slide.addText("RESULTADO", {
-    x: 10.15,
-    y: 2.34,
-    w: 2.08,
-    h: 0.3,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 16,
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addLockup(slide, { white: true });
+  slide.addText("FORMA DE TRABAJO", {
+    x: 0.72,
+    y: 0.35,
+    w: 3.2,
+    h: 0.22,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 10.5,
     bold: true,
-    color: C.gold,
-    align: "center",
+    charSpacing: 1.25,
+    color: C.cyan,
     margin: 0,
   });
-  slide.addText("Una experiencia coherente entre sesiones, enriquecida por quienes la facilitan.", {
-    x: 10.18,
-    y: 3.08,
-    w: 2.02,
-    h: 1.45,
+  slide.addText("Base común + sello profesional", {
+    x: 0.72,
+    y: 0.72,
+    w: 8.2,
+    h: 0.58,
     fontFace: TYPOGRAPHY.display,
-    fontSize: 18,
+    fontSize: 28,
+    bold: true,
+    color: C.white,
+    margin: 0,
+  });
+  slide.addText("El material entrega estructura; la experiencia docente aporta profundidad y pertinencia.", {
+    x: 0.74,
+    y: 1.36,
+    w: 8.9,
+    h: 0.36,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 14.5,
+    color: C.paleInk,
+    margin: 0,
+  });
+  addPill(slide, "BASE LISTA PARA USAR", 0.86, 1.98, 2.45, { fill: C.red, line: C.red, color: C.white, fontSize: 10.4 });
+  const previews = [
+    { x: 0.94, y: 2.56, image: IMG.t1, rotate: -5, color: C.red },
+    { x: 1.98, y: 2.42, image: IMG.t2, rotate: -1.5, color: C.cyan },
+    { x: 3.02, y: 2.5, image: IMG.m1, rotate: 2.5, color: C.gold },
+    { x: 4.06, y: 2.62, image: IMG.m4, rotate: 5, color: C.green },
+  ];
+  previews.forEach((p) => {
+    slide.addShape(SH.roundRect, {
+      x: p.x - 0.06,
+      y: p.y - 0.06,
+      w: 1.48,
+      h: 2.72,
+      rotate: p.rotate,
+      rectRadius: 0.03,
+      fill: { color: C.white },
+      line: { color: p.color, pt: 1.5 },
+      shadow: { type: "outer", color: "000000", opacity: 0.25, blur: 2, angle: 45, distance: 1.5 },
+    });
+    addImageCrop(slide, p.image, p.x, p.y, 1.36, 2.6, { rotate: p.rotate });
+  });
+  slide.addText("README · planificación · PPT · fichas · infografías", {
+    x: 0.96,
+    y: 5.54,
+    w: 4.5,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11.8,
     bold: true,
     color: C.white,
     align: "center",
-    valign: "mid",
     margin: 0,
   });
-  addTakeaway(slide, "Los materiales apoyan. La experiencia docente guía. Los entregables sostienen la continuidad.");
-  addNotesAndValidate(slide, "Presentar los materiales como una ventaja y una invitación profesional, no como una pauta cerrada. El equipo puede usar, adaptar o enriquecer la base; lo importante es que la salida de cada sesión llegue completa a la siguiente.");
+  addCircleText(slide, "+", 5.76, 3.28, 0.9, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 25 });
+  addPill(slide, "SELLO PROFESIONAL", 7.0, 1.98, 2.38, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 10.4 });
+  addCircleText(slide, "MIRADA\nDOCENTE", 8.16, 2.72, 2.12, { fill: C.white, line: C.cyan, linePt: 2.2, color: C.navy, fontSize: 18 });
+  const lenses = [
+    { x: 6.42, y: 2.58, text: "PREGUNTAS\nPERTINENTES", color: C.red },
+    { x: 10.48, y: 2.58, text: "EJEMPLOS DEL\nTERRITORIO", color: C.gold },
+    { x: 6.42, y: 4.52, text: "LECTURA DE\nACTORES", color: C.green },
+    { x: 10.48, y: 4.52, text: "MEDIACIÓN\nDEL GRUPO", color: C.cyan },
+  ];
+  lenses.forEach((l) => {
+    slide.addShape(SH.roundRect, {
+      x: l.x,
+      y: l.y,
+      w: 1.52,
+      h: 0.72,
+      rectRadius: 0.04,
+      fill: { color: C.darkPanel },
+      line: { color: l.color, pt: 1.5 },
+    });
+    slide.addText(l.text, {
+      x: l.x + 0.12,
+      y: l.y + 0.14,
+      w: 1.28,
+      h: 0.4,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.8,
+      bold: true,
+      color: C.white,
+      align: "center",
+      valign: "mid",
+      margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 6.78,
+    y: 5.64,
+    w: 5.36,
+    h: 0.82,
+    rectRadius: 0.04,
+    fill: { color: C.gold },
+    line: { color: C.gold },
+  });
+  slide.addText("EXPERIENCIA COHERENTE ENTRE SESIONES", {
+    x: 7.08,
+    y: 5.88,
+    w: 4.76,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 14.8,
+    bold: true,
+    color: C.navyDeep,
+    align: "center",
+    margin: 0,
+  });
+  slide.addText("Los materiales apoyan. La experiencia docente guía. Los entregables sostienen la continuidad.", {
+    x: 0.86,
+    y: 6.62,
+    w: 11.45,
+    h: 0.28,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 13.8,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addFooter(slide, 7, { white: true });
+  addNotesAndValidate(slide, "Presentar los materiales como una ventaja y una invitación profesional, no como una pauta cerrada. El equipo puede usar, adaptar o enriquecer la base; lo importante es que la salida de cada sesión llegue completa a la siguiente.", { skipOverlap: true });
 }
 
 // 08 · Lógica completa
 {
   const slide = pptx.addSlide();
-  addHeader(slide, "Ruta del proyecto", "Cada etapa recibe algo, lo transforma y entrega el siguiente punto de partida", "La continuidad permite que distintas disciplinas acompañen un mismo proyecto sin fragmentarlo.", 8, { titleFontSize: 24.5 });
-  addCard(slide, 0.78, 1.82, 4.1, 4.92, { fill: C.white, line: C.border });
-  addImageContain(slide, IMG.logic, 1.05, 1.98, 3.56, 4.58);
-  slide.addShape(SH.roundRect, {
-    x: 5.2,
-    y: 2.12,
-    w: 7.28,
-    h: 3.96,
-    rectRadius: 0.04,
-    fill: { color: C.navy },
-    line: { color: C.navy },
-  });
-  const chain = [
-    { x: 5.58, n: "1", title: "PROBLEMA", sub: "situado", color: C.red },
-    { x: 6.95, n: "2", title: "MATERIAL", sub: "comprendido", color: C.cyan },
-    { x: 8.32, n: "3", title: "TECNOLOGÍA", sub: "propuesta", color: C.gold },
-    { x: 9.69, n: "4", title: "EVIDENCIA", sub: "visible", color: C.green },
-    { x: 11.06, n: "5", title: "RELATO", sub: "comunicable", color: C.red },
+  addHeader(slide, "Ruta completa", "Diez etapas. Una sola cadena.", "Cada encuentro recibe un avance concreto y deja preparado el siguiente punto de partida.", 8);
+  const roleColors = { social: C.red, tech: C.blue, joint: C.green };
+  const stages = [
+    { n: "01", x: 0.78, y: 2.08, code: "T1 · 17 AGO", title: "PROBLEMA", output: "Equipo + problema concreto", role: "social" },
+    { n: "02", x: 3.2, y: 2.08, code: "T2 · 18 AGO", title: "MATERIAL", output: "Ficha de análisis", role: "social" },
+    { n: "03", x: 5.62, y: 2.08, code: "T3 · 24 AGO", title: "IDEA", output: "Propuesta tecnológica", role: "tech" },
+    { n: "04", x: 8.04, y: 2.08, code: "M1 · 31 AGO", title: "CONTEXTO", output: "Problema validado", role: "social" },
+    { n: "05", x: 10.46, y: 2.08, code: "M2 · 07 SEP", title: "SOLUCIÓN", output: "Solución + recursos", role: "tech" },
+    { n: "06", x: 0.78, y: 4.32, code: "M3 · 21 SEP", title: "EVIDENCIA", output: "Avance comprobable", role: "tech" },
+    { n: "07", x: 3.2, y: 4.32, code: "M4 · 28 SEP", title: "PITCH", output: "Presentación corregida", role: "social" },
+    { n: "08", x: 5.62, y: 4.32, code: "HITO · 02 OCT", title: "DIFUSIÓN", output: "Cierre próximo", role: "joint" },
+    { n: "09", x: 8.04, y: 4.32, code: "EVENTO · 05 OCT", title: "PRESENTAR", output: "Jurado + premiación", role: "joint" },
+    { n: "10", x: 10.46, y: 4.32, code: "CIERRE · 12 OCT", title: "APRENDER", output: "Informe + mejoras", role: "joint" },
   ];
-  slide.addShape(SH.line, { x: 5.88, y: 3.35, w: 5.76, h: 0, line: { color: "54708D", pt: 2 } });
-  chain.forEach((c) => {
-    addCircleText(slide, c.n, c.x, 3.02, 0.66, { fill: c.color, color: c.color === C.gold ? C.navyDeep : C.white, fontSize: 14 });
-    slide.addText(c.title, {
-      x: c.x - 0.28,
-      y: 3.93,
-      w: 1.22,
-      h: 0.26,
-      fontFace: TYPOGRAPHY.display,
-      fontSize: 11,
-      bold: true,
-      color: c.color,
-      align: "center",
-      margin: 0,
-    });
-    slide.addText(c.sub, {
-      x: c.x - 0.28,
-      y: 4.3,
-      w: 1.22,
-      h: 0.26,
+  stages.forEach((s, index) => {
+    const color = roleColors[s.role];
+    addCard(slide, s.x, s.y, 2.08, 1.56, { fill: C.white, line: color, linePt: 1.4, accent: color, shadow: false });
+    addCircleText(slide, s.n, s.x + 0.16, s.y + 0.16, 0.42, { fill: color, line: color, fontSize: 9.4 });
+    slide.addText(s.code, {
+      x: s.x + 0.72,
+      y: s.y + 0.2,
+      w: 1.14,
+      h: 0.2,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 10.5,
-      color: C.white,
-      align: "center",
+      fontSize: 8.8,
+      bold: true,
+      color,
+      align: "right",
       margin: 0,
     });
+    slide.addText(s.title, {
+      x: s.x + 0.22,
+      y: s.y + 0.67,
+      w: 1.64,
+      h: 0.25,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 12.8,
+      bold: true,
+      color: C.navy,
+      margin: 0,
+    });
+    slide.addText(s.output, {
+      x: s.x + 0.22,
+      y: s.y + 1.08,
+      w: 1.64,
+      h: 0.3,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.8,
+      color: C.ink,
+      margin: 0,
+    });
+    const isEndOfRow = index === 4 || index === 9;
+    if (!isEndOfRow) {
+      slide.addShape(SH.chevron, {
+        x: s.x + 2.12,
+        y: s.y + 0.59,
+        w: 0.22,
+        h: 0.38,
+        fill: { color: C.border },
+        line: { color: C.border },
+      });
+    }
   });
-  slide.addText("La pregunta clave no es solo “¿qué hacemos hoy?”, sino “¿qué debe quedar listo para que el equipo pueda avanzar después?”.", {
-    x: 5.72,
-    y: 5.08,
-    w: 6.2,
-    h: 0.55,
-    fontFace: TYPOGRAPHY.display,
-    fontSize: 15.2,
-    bold: true,
-    color: C.white,
-    align: "center",
-    margin: 0,
+  slide.addShape(SH.line, {
+    x: 11.55,
+    y: 3.72,
+    w: 0,
+    h: 0.42,
+    line: { color: C.gold, pt: 2.3, endArrowType: "triangle" },
   });
-  addNotesAndValidate(slide, "La infografía completa queda disponible como referencia. En la conversación, usar la síntesis de cinco pasos para explicar la lógica: cada sesión transforma una entrada en un producto verificable.", { ignoreLines: true });
+  addPill(slide, "DESARROLLO SOCIAL", 0.8, 1.76, 1.66, { fill: C.red, line: C.red, color: C.white, fontSize: 8.8, h: 0.26 });
+  addPill(slide, "PROGRAMACIÓN / SISTEMAS", 2.58, 1.76, 2.18, { fill: C.blue, line: C.blue, color: C.white, fontSize: 8.4, h: 0.26 });
+  addPill(slide, "EQUIPO CONJUNTO", 4.88, 1.76, 1.66, { fill: C.green, line: C.green, color: C.white, fontSize: 8.5, h: 0.26 });
+  addTakeaway(slide, "Regla de continuidad: lo que un equipo produce hoy alimenta la etapa siguiente.", { y: 6.32 });
+  addNotesAndValidate(slide, "Recorrer el mapa en dos filas. Los colores identifican el liderazgo de cada etapa; el énfasis debe estar en el producto que viaja hacia la siguiente sesión, no en memorizar fechas.", { ignoreLines: true });
 }
 
 // 09 · Cuatro momentos de liderazgo
@@ -801,64 +958,149 @@ function addNotesAndValidate(slide, notes, opts = {}) {
   const slide = pptx.addSlide();
   addHeader(slide, "Ruta de Desarrollo Social", "Cuatro momentos conectan sentido, contexto y comunicación", "Dos talleres instalan la base; dos mentorías validan y preparan la presentación.", 9);
   const sessions = [
-    { x: 0.76, date: "17 AGO", code: "T1", title: "OBSERVAR", body: "Formar equipos y formular un problema ambiental concreto.", output: "Equipo + problema", color: C.red },
-    { x: 3.75, date: "18 AGO", code: "T2", title: "COMPRENDER", body: "Relacionar problema, residuo, materiales y condiciones de recuperación.", output: "Ficha de material", color: C.cyan },
-    { x: 6.74, date: "31 AGO", code: "M1", title: "VALIDAR", body: "Situar el problema, reconocer actores y definir un próximo paso.", output: "Problema validado", color: C.gold },
-    { x: 9.73, date: "28 SEP", code: "M4", title: "COMUNICAR", body: "Integrar la propuesta, distribuir seis voces, ensayar y corregir.", output: "Presentación preparada", color: C.green },
+    { x: 0.82, date: "17 AGO", code: "T1", title: "OBSERVAR", body: "Problema ambiental concreto", output: "EQUIPO + PROBLEMA", color: C.red, image: IMG.t1 },
+    { x: 3.85, date: "18 AGO", code: "T2", title: "COMPRENDER", body: "Residuo, material y hábitos", output: "FICHA DE MATERIAL", color: C.cyan, image: IMG.t2 },
+    { x: 6.88, date: "31 AGO", code: "M1", title: "VALIDAR", body: "Contexto, actores y contraste", output: "PROBLEMA VALIDADO", color: C.gold, image: IMG.m1 },
+    { x: 9.91, date: "28 SEP", code: "M4", title: "COMUNICAR", body: "Seis voces, ensayo y mejora", output: "PRESENTACIÓN PREPARADA", color: C.green, image: IMG.m4 },
   ];
-  sessions.forEach((s, index) => {
-    addCard(slide, s.x, 1.88, 2.82, 4.18, { fill: C.white, line: C.border, accent: s.color });
-    addPill(slide, s.date, s.x + 0.28, 2.18, 1.05, { fill: s.color, line: s.color, color: s.color === C.gold ? C.navyDeep : C.white, fontSize: 10.2 });
-    addCircleText(slide, s.code, s.x + 1.86, 2.08, 0.62, { fill: C.navy, line: C.navy, fontSize: 12 });
+  slide.addShape(SH.line, { x: 1.78, y: 3.62, w: 9.18, h: 0, line: { color: C.border, pt: 4, endArrowType: "triangle" } });
+  sessions.forEach((s) => {
+    slide.addShape(SH.roundRect, {
+      x: s.x,
+      y: 1.92,
+      w: 2.58,
+      h: 1.46,
+      rectRadius: 0.04,
+      fill: { color: C.white },
+      line: { color: s.color, pt: 1.8 },
+      shadow: { type: "outer", color: "A5AFBB", opacity: 0.18, blur: 1.5, angle: 45, distance: 1 },
+    });
+    addImageCrop(slide, s.image, s.x + 0.13, 2.05, 2.32, 1.2);
+    addCircleText(slide, s.code, s.x + 0.9, 3.28, 0.78, { fill: C.navy, line: s.color, linePt: 2, fontSize: 13 });
+    addPill(slide, s.date, s.x + 0.08, 4.26, 0.98, { fill: s.color, line: s.color, color: s.color === C.gold ? C.navyDeep : C.white, fontSize: 9.4, h: 0.34 });
     slide.addText(s.title, {
-      x: s.x + 0.28,
-      y: 3.0,
-      w: 2.26,
-      h: 0.34,
+      x: s.x + 1.18,
+      y: 4.3,
+      w: 1.3,
+      h: 0.26,
       fontFace: TYPOGRAPHY.display,
-      fontSize: 16.2,
+      fontSize: 11.8,
       bold: true,
       color: C.navy,
+      align: "right",
       margin: 0,
     });
     slide.addText(s.body, {
-      x: s.x + 0.28,
-      y: 3.56,
-      w: 2.26,
-      h: 1.1,
+      x: s.x + 0.08,
+      y: 4.88,
+      w: 2.42,
+      h: 0.34,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 12.4,
+      fontSize: 10.7,
       color: C.ink,
-      valign: "top",
+      align: "center",
       margin: 0,
     });
-    const outputFill = s.color === C.gold ? C.goldSoft : s.color === C.red ? C.redSoft : s.color === C.cyan ? C.cyanSoft : C.greenSoft;
-    addPill(slide, s.output, s.x + 0.28, 5.18, 2.26, { fill: outputFill, line: s.color, color: C.navy, fontSize: 10.2, h: 0.48 });
+    addPill(slide, s.output, s.x + 0.12, 5.4, 2.34, { fill: C.white, line: s.color, color: C.navy, fontSize: 8.8, h: 0.42 });
   });
   addTakeaway(slide, "Desarrollo Social acompaña el arco completo: del problema observado a la propuesta comunicable.");
-  addNotesAndValidate(slide, "Nombrar con precisión las cuatro intervenciones y su salida. T1 y T2 construyen la base; M1 valida; M4 recupera todo lo anterior para ensayar. Las mentorías intermedias técnicas ocurren entre M1 y M4.");
+  addNotesAndValidate(slide, "Nombrar con precisión las cuatro intervenciones y su salida. T1 y T2 construyen la base; M1 valida; M4 recupera todo lo anterior para ensayar. Las mentorías intermedias técnicas ocurren entre M1 y M4.", { ignoreLines: true, skipOverlap: true });
 }
 
 // 10 · Adaptable y continuidad
 {
   const slide = pptx.addSlide();
-  addHeader(slide, "Marco común", "La mediación puede cambiar. La cadena de aprendizaje debe permanecer.", "La flexibilidad pedagógica y la continuidad del proyecto cumplen funciones distintas y complementarias.", 10, { titleFontSize: 25 });
-  addCard(slide, 0.82, 1.92, 5.72, 4.18, { fill: C.cyanSoft, line: C.cyan, accent: C.cyan, shadow: false });
-  addPill(slide, "SE PUEDE ADAPTAR", 1.22, 2.25, 2.6, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 11.2 });
-  const flexible = ["forma de explicar", "ejemplos y preguntas", "dinámicas de facilitación", "recursos y presentación", "experiencia disciplinar incorporada"];
-  flexible.forEach((t, i) => {
-    addCircleText(slide, "✓", 1.22, 3.05 + i * 0.5, 0.32, { fill: C.white, line: C.cyan, color: C.navy, fontSize: 10.2 });
-    slide.addText(t, { x: 1.7, y: 3.08 + i * 0.5, w: 4.25, h: 0.24, fontFace: TYPOGRAPHY.body, fontSize: 13.2, color: C.ink, margin: 0 });
+  addHeader(slide, "Marco común", "El cómo se adapta. El qué sostiene la continuidad.", "La experiencia docente puede transformar la mediación sin cortar la cadena del proyecto.", 10);
+  addPill(slide, "EL DOCENTE ADAPTA EL CÓMO", 0.92, 1.78, 3.0, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 10.8 });
+  const flexible = [
+    { x: 1.0, w: 3.28, title: "LENGUAJE + EJEMPLOS", sub: "La explicación se acerca al grupo." },
+    { x: 4.58, w: 3.28, title: "PREGUNTAS + DINÁMICA", sub: "La mediación activa su experiencia." },
+    { x: 8.16, w: 3.28, title: "RECURSOS + PRESENTACIÓN", sub: "El soporte puede cambiar." },
+  ];
+  flexible.forEach((f) => {
+    addCard(slide, f.x, 2.34, f.w, 0.98, { fill: C.cyanSoft, line: C.cyan, accent: C.cyan, shadow: false });
+    slide.addText(f.title, {
+      x: f.x + 0.24,
+      y: 2.52,
+      w: f.w - 0.48,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 12.2,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(f.sub, {
+      x: f.x + 0.24,
+      y: 2.85,
+      w: f.w - 0.48,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.9,
+      color: C.slate,
+      align: "center",
+      margin: 0,
+    });
+    slide.addShape(SH.line, { x: f.x + f.w / 2, y: 3.32, w: 0, h: 0.38, line: { color: C.cyan, pt: 1.4, dash: "dash" } });
   });
-  addCard(slide, 6.8, 1.92, 5.72, 4.18, { fill: C.redSoft, line: C.red, accent: C.red, shadow: false });
-  addPill(slide, "SE DEBE PRESERVAR", 7.2, 2.25, 2.82, { fill: C.red, line: C.red, color: C.white, fontSize: 11.2 });
-  const fixed = ["equipos y seis responsabilidades", "protagonismo estudiantil", "producto obligatorio de la etapa", "trabajo autónomo entre sesiones", "entrada clara para la etapa siguiente"];
-  fixed.forEach((t, i) => {
-    addCircleText(slide, "•", 7.2, 3.05 + i * 0.5, 0.32, { fill: C.white, line: C.red, color: C.red, fontSize: 12 });
-    slide.addText(t, { x: 7.68, y: 3.08 + i * 0.5, w: 4.25, h: 0.24, fontFace: TYPOGRAPHY.body, fontSize: 13.2, color: C.ink, margin: 0 });
+  slide.addShape(SH.roundRect, {
+    x: 0.9,
+    y: 3.72,
+    w: 11.58,
+    h: 0.88,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.navy },
   });
-  addTakeaway(slide, "Libertad para enseñar desde la experiencia; claridad para entregar continuidad.", { fill: C.navy });
-  addNotesAndValidate(slide, "Este es el acuerdo más importante. La presentación o dinámica puede cambiar. Lo que no puede desaparecer es el producto que el siguiente equipo docente necesita recibir, junto con la organización y el protagonismo de los estudiantes.");
+  slide.addText("CONTINUIDAD ENTRE SESIONES", {
+    x: 3.3,
+    y: 3.98,
+    w: 6.8,
+    h: 0.3,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 18,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addPill(slide, "EL PROYECTO PRESERVA EL QUÉ", 0.92, 4.82, 3.12, { fill: C.red, line: C.red, color: C.white, fontSize: 10.8 });
+  const fixed = [
+    { x: 0.94, title: "EQUIPOS", sub: "6 responsabilidades" },
+    { x: 3.25, title: "PROTAGONISMO", sub: "decisiones estudiantiles" },
+    { x: 5.56, title: "PRODUCTO", sub: "salida obligatoria" },
+    { x: 7.87, title: "AUTONOMÍA", sub: "trabajo entre sesiones" },
+    { x: 10.18, title: "CONEXIÓN", sub: "entrada siguiente" },
+  ];
+  fixed.forEach((f, index) => {
+    addCircleText(slide, String(index + 1).padStart(2, "0"), f.x + 0.62, 5.34, 0.62, { fill: C.white, line: C.red, color: C.red, fontSize: 10.5 });
+    slide.addText(f.title, {
+      x: f.x,
+      y: 6.08,
+      w: 1.86,
+      h: 0.24,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: 11.4,
+      bold: true,
+      color: C.navy,
+      align: "center",
+      margin: 0,
+    });
+    slide.addText(f.sub, {
+      x: f.x,
+      y: 6.39,
+      w: 1.86,
+      h: 0.22,
+      fontFace: TYPOGRAPHY.body,
+      fontSize: 9.8,
+      color: C.slate,
+      align: "center",
+      margin: 0,
+    });
+  });
+  addTakeaway(slide, "Libertad para enseñar desde la experiencia; claridad para entregar continuidad.", { fill: C.navy, y: 6.7, w: 10.46, h: 0.34, fontSize: 11.2 });
+  addNotesAndValidate(slide, "Este es el acuerdo más importante. La presentación o dinámica puede cambiar. Lo que no puede desaparecer es el producto que el siguiente equipo docente necesita recibir, junto con la organización y el protagonismo de los estudiantes.", { ignoreLines: true });
 }
 
 // 11 · Cadena de entregables
