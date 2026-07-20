@@ -535,12 +535,12 @@ function addNotesAndValidate(slide, notes, opts = {}) {
     });
   });
   const milestones = [
-    { x: 1.02, date: "17 AGO", title: "COMIENZA LA RUTA", color: C.red },
-    { x: 4.3, date: "3 TALLERES", title: "BASE COMÚN", color: C.cyan },
-    { x: 7.58, date: "4 MENTORÍAS", title: "DESARROLLO Y MEJORA", color: C.gold },
-    { x: 10.08, date: "05 OCT", title: "EVENTO FINAL", color: C.green },
+    { x: 1.7, date: "17 AGO", title: "COMIENZA LA RUTA", color: C.red },
+    { x: 4.9, date: "3 TALLERES", title: "BASE COMÚN", color: C.cyan },
+    { x: 8.1, date: "4 MENTORÍAS", title: "DESARROLLO Y MEJORA", color: C.gold },
+    { x: 11.3, date: "05 OCT", title: "EVENTO FINAL", color: C.green },
   ];
-  slide.addShape(SH.line, { x: 1.45, y: 5.17, w: 9.65, h: 0, line: { color: "54708D", pt: 2 } });
+  slide.addShape(SH.line, { x: 1.91, y: 5.17, w: 9.6, h: 0, line: { color: "54708D", pt: 2 } });
   milestones.forEach((m) => {
     addCircleText(slide, "", m.x, 4.96, 0.42, { fill: m.color, line: m.color });
     slide.addText(m.date, {
@@ -610,19 +610,18 @@ function addNotesAndValidate(slide, notes, opts = {}) {
     align: "center",
     margin: 0,
   });
-  addCircleText(slide, "HOY", 1.38, 2.78, 1.02, { fill: C.white, line: C.cyan, linePt: 2, color: C.navy, fontSize: 15 });
+  addCircleText(slide, "HOY", 1.38, 2.91, 1.02, { fill: C.white, line: C.cyan, linePt: 2, color: C.navy, fontSize: 15 });
   slide.addShape(SH.line, {
     x: 2.38,
     y: 3.42,
     w: 7.2,
-    h: 0.72,
-    flipV: true,
+    h: 0,
     line: { color: "54708D", pt: 3, beginArrowType: "none", endArrowType: "triangle" },
   });
   const outcomes = [
-    { x: 3.0, y: 3.44, n: "01", title: "COMPRENDER", body: "La experiencia completa que vivirán los estudiantes.", color: C.red },
-    { x: 5.72, y: 3.05, n: "02", title: "ARTICULAR", body: "El liderazgo de Desarrollo Social y sus conexiones.", color: C.cyan },
-    { x: 8.44, y: 2.66, n: "03", title: "CONTINUAR", body: "Lo que puede variar y lo que debe permanecer.", color: C.gold },
+    { x: 3.0, y: 3.03, n: "01", title: "COMPRENDER", body: "La experiencia completa que vivirán los estudiantes.", color: C.red },
+    { x: 5.72, y: 3.03, n: "02", title: "ARTICULAR", body: "El liderazgo de Desarrollo Social y sus conexiones.", color: C.cyan },
+    { x: 8.44, y: 3.03, n: "03", title: "CONTINUAR", body: "Lo que puede variar y lo que debe permanecer.", color: C.gold },
   ];
   outcomes.forEach((o) => {
     addCircleText(slide, o.n, o.x, o.y, 0.78, { fill: o.color, color: o.color === C.gold ? C.navyDeep : C.white, fontSize: 14.5 });
@@ -693,41 +692,103 @@ function addNotesAndValidate(slide, notes, opts = {}) {
 // 06 · Desarrollo Social es indispensable
 {
   const slide = pptx.addSlide();
-  addHeader(slide, "Aporte disciplinar", "La tecnología responde al cómo. Desarrollo Social ayuda a comprender el para qué y con quién.", "Una solución cobra sentido cuando parte de un problema situado y puede ser comprendida por su comunidad.", 6, { titleFontSize: 25, titleH: 0.9, subtitleY: 1.62 });
-  addCard(slide, 0.82, 2.25, 3.5, 3.3, { fill: C.softBlue, line: C.softBlue, accent: C.blue, shadow: false });
-  addPill(slide, "CAPACIDAD TÉCNICA", 1.12, 2.56, 2.9, { fill: C.blue, line: C.blue, color: C.white, fontSize: 11 });
-  ["¿Qué podemos medir?", "¿Cómo construimos?", "¿Cómo mostramos evidencia?"].forEach((t, i) => {
-    slide.addText(t, {
-      x: 1.12,
-      y: 3.25 + i * 0.58,
-      w: 2.9,
-      h: 0.32,
+  addHeader(slide, "Aporte disciplinar", "La tecnología entrega capacidad. La mirada social le da sentido.", "Un dispositivo puede medir y alertar; una propuesta pertinente comprende el problema, las personas y su contexto.", 6, { titleFontSize: 27, titleH: 0.72, subtitleY: 1.5 });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.8,
+    y: 2.22,
+    w: 5.65,
+    h: 3.42,
+    rectRadius: 0.04,
+    fill: { color: C.white },
+    line: { color: C.blue, pt: 1.5 },
+    shadow: { type: "outer", color: "16304A", opacity: 0.14, blur: 2, angle: 45, distance: 1.2 },
+  });
+  addImageCrop(slide, IMG.system, 0.88, 2.3, 5.49, 2.68);
+  slide.addShape(SH.rect, { x: 0.88, y: 4.64, w: 5.49, h: 0.34, fill: { color: C.navy, transparency: 5 }, line: { color: C.navy, transparency: 100 } });
+  slide.addText("SENSAR  →  PROCESAR  →  VISUALIZAR  →  ALERTAR", {
+    x: 1.08,
+    y: 4.71,
+    w: 5.09,
+    h: 0.18,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 10.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addPill(slide, "CAPACIDAD TÉCNICA", 1.06, 5.13, 2.06, { fill: C.blue, line: C.blue, color: C.white, fontSize: 9.8, h: 0.32 });
+  slide.addText("Lo que el sistema puede medir, construir y comunicar.", {
+    x: 3.26,
+    y: 5.12,
+    w: 2.82,
+    h: 0.34,
+    fontFace: TYPOGRAPHY.body,
+    fontSize: 11.4,
+    color: C.ink,
+    valign: "mid",
+    margin: 0,
+  });
+
+  addCircleText(slide, "+", 6.64, 3.48, 0.64, { fill: C.cyan, line: C.cyan, color: C.navyDeep, fontSize: 22 });
+  addPill(slide, "LECTURA SOCIAL", 8.75, 2.16, 2.18, { fill: C.green, line: C.green, color: C.white, fontSize: 10.3, h: 0.34 });
+  const socialQuestions = [
+    { x: 7.28, y: 2.72, w: 2.48, text: "¿QUÉ PROBLEMA\nIMPORTA?", color: C.red },
+    { x: 10.0, y: 2.72, w: 2.48, text: "¿A QUIÉN AFECTA\nY CÓMO?", color: C.gold },
+    { x: 7.28, y: 3.82, w: 2.48, text: "¿QUÉ CONTEXTO\nDEBEMOS LEER?", color: C.green },
+    { x: 10.0, y: 3.82, w: 2.48, text: "¿CÓMO PARTICIPARÁ\nLA COMUNIDAD?", color: C.cyan },
+  ];
+  socialQuestions.forEach((q) => {
+    slide.addShape(SH.roundRect, {
+      x: q.x,
+      y: q.y,
+      w: q.w,
+      h: 0.78,
+      rectRadius: 0.04,
+      fill: { color: C.white },
+      line: { color: q.color, pt: 1.5 },
+    });
+    slide.addText(q.text, {
+      x: q.x + 0.14,
+      y: q.y + 0.16,
+      w: q.w - 0.28,
+      h: 0.46,
       fontFace: TYPOGRAPHY.body,
-      fontSize: 14,
-      bold: i === 0,
+      fontSize: 10.5,
+      bold: true,
       color: C.navy,
+      align: "center",
+      valign: "mid",
       margin: 0,
     });
   });
-  addCard(slide, 9.02, 2.25, 3.5, 3.3, { fill: C.greenSoft, line: C.greenSoft, accent: C.green, shadow: false });
-  addPill(slide, "LECTURA SOCIAL", 9.32, 2.56, 2.9, { fill: C.green, line: C.green, color: C.white, fontSize: 11 });
-  ["¿Qué problema importa?", "¿A quién afecta y cómo?", "¿Cómo participarán y comprenderán?"].forEach((t, i) => {
-    slide.addText(t, {
-      x: 9.32,
-      y: 3.25 + i * 0.58,
-      w: 2.9,
-      h: 0.32,
-      fontFace: TYPOGRAPHY.body,
-      fontSize: 14,
-      bold: i === 0,
-      color: C.navy,
-      margin: 0,
-    });
+  slide.addShape(SH.line, { x: 8.52, y: 4.6, w: 0, h: 0.32, line: { color: C.border, pt: 1.4 } });
+  slide.addShape(SH.line, { x: 11.24, y: 4.6, w: 0, h: 0.32, line: { color: C.border, pt: 1.4 } });
+  slide.addShape(SH.line, { x: 8.52, y: 4.92, w: 2.72, h: 0, line: { color: C.border, pt: 1.4 } });
+  slide.addShape(SH.line, { x: 9.88, y: 4.92, w: 0, h: 0.24, line: { color: C.border, pt: 1.4 } });
+  slide.addShape(SH.roundRect, {
+    x: 7.68,
+    y: 5.12,
+    w: 4.4,
+    h: 0.66,
+    rectRadius: 0.04,
+    fill: { color: C.navy },
+    line: { color: C.cyan, pt: 2 },
   });
-  slide.addShape(SH.chevron, { x: 4.62, y: 3.47, w: 0.58, h: 0.8, fill: { color: C.cyan }, line: { color: C.cyan } });
-  slide.addShape(SH.chevron, { x: 8.13, y: 3.47, w: 0.58, h: 0.8, rotate: 180, fill: { color: C.cyan }, line: { color: C.cyan } });
-  addCircleText(slide, "PROPUESTA\nCON SENTIDO", 5.38, 2.67, 2.58, { fill: C.navy, line: C.cyan, linePt: 2.2, fontSize: 19 });
-  addTakeaway(slide, "La interdisciplinariedad no suma partes aisladas: conecta decisiones.", { fill: C.red });
+  slide.addText("PROPUESTA CON SENTIDO", {
+    x: 8.0,
+    y: 5.32,
+    w: 3.76,
+    h: 0.24,
+    fontFace: TYPOGRAPHY.display,
+    fontSize: 15.5,
+    bold: true,
+    color: C.white,
+    align: "center",
+    margin: 0,
+  });
+  addTakeaway(slide, "La interdisciplinariedad conecta capacidad técnica, contexto y decisiones.", { fill: C.red });
   addNotesAndValidate(slide, "Aquí está el argumento central para Desarrollo Social. Su aporte no es decorar una solución terminada: es sostener la formulación del problema, la lectura del contexto, la participación y la comunicación durante la ruta.");
 }
 
@@ -938,13 +999,6 @@ function addNotesAndValidate(slide, notes, opts = {}) {
         line: { color: C.border },
       });
     }
-  });
-  slide.addShape(SH.line, {
-    x: 11.55,
-    y: 3.72,
-    w: 0,
-    h: 0.42,
-    line: { color: C.gold, pt: 2.3, endArrowType: "triangle" },
   });
   addPill(slide, "DESARROLLO SOCIAL", 0.8, 1.76, 1.66, { fill: C.red, line: C.red, color: C.white, fontSize: 8.8, h: 0.26 });
   addPill(slide, "PROGRAMACIÓN / SISTEMAS", 2.58, 1.76, 2.18, { fill: C.blue, line: C.blue, color: C.white, fontSize: 8.4, h: 0.26 });
