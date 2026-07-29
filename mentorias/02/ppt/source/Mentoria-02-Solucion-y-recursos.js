@@ -5044,74 +5044,103 @@ function redesignSlide21(slide) {
 // 24 · Recursos visibles e invisibles
 {
   const slide = pptx.addSlide();
-  addHeader(
-    slide,
-    "Planificación real",
-    "Los componentes son solo la parte visible",
-    "El proyecto también necesita lugar, permisos, software, herramientas y tiempo de personas.",
-    24,
-    { titleFontSize: 26 },
-  );
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("PLANIFICACIÓN REAL", {
+    x: 0.76, y: 0.46, w: 3.4, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.2, color: C.cyan, margin: 0,
+  });
+  slide.addText("Los componentes son solo la parte visible", {
+    x: 0.76, y: 0.9, w: 8.65, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 27.5, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Un prototipo también se sostiene con software, espacio, permisos y tiempo de personas.", {
+    x: 0.78, y: 1.58, w: 9.3, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14.2,
+    color: C.paleInk, margin: 0,
+  });
 
-  slide.addShape(SH.triangle, {
-    x: 4.52, y: 2.03, w: 4.28, h: 1.85,
-    fill: { color: C.cyanSoft }, line: { color: C.cyan, pt: 1.2 },
+  slide.addShape(SH.roundRect, {
+    x: 0.76, y: 2.22, w: 4.25, h: 3.92,
+    rectRadius: 0.06,
+    fill: { color: C.white, transparency: 94 },
+    line: { color: C.cyan, transparency: 35, pt: 1.2 },
   });
-  slide.addText("LO VISIBLE", {
-    x: 5.63, y: 2.38, w: 2.06, h: 0.22,
-    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
-    charSpacing: 1, color: C.cyan, align: "center", margin: 0,
+  addImageCrop(slide, IMG.prototype, 0.94, 2.4, 3.89, 2.62);
+  slide.addShape(SH.roundRect, {
+    x: 1.12, y: 4.65, w: 3.53, h: 0.44,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 8 },
+    line: { color: C.cyan, pt: 1 },
   });
-  slide.addText("sensor · placa · cables", {
-    x: 5.2, y: 2.86, w: 2.92, h: 0.3,
-    fontFace: TYPOGRAPHY.display, fontSize: 15.5, bold: true,
-    color: C.navy, align: "center", margin: 0,
+  slide.addText("LO VISIBLE · sensor + placa + cables", {
+    x: 1.35, y: 4.79, w: 3.07, h: 0.16,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+    charSpacing: 0.55, color: C.white, align: "center", margin: 0,
   });
-  addImageContain(slide, IMG.sensorDistance, 5.73, 3.2, 1.86, 0.78);
+  slide.addText("Es lo primero que se ve.", {
+    x: 1.22, y: 5.42, w: 3.31, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.2, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
 
-  slide.addShape(SH.trapezoid, {
-    x: 2.15, y: 3.72, w: 9.03, h: 2.68,
-    fill: { color: C.navy }, line: { color: C.navy },
-  });
-  slide.addText("LO QUE TAMBIÉN SOSTIENE EL PROYECTO", {
-    x: 3.72, y: 4.08, w: 5.9, h: 0.24,
+  slide.addText("LO QUE LO MANTIENE EN PIE", {
+    x: 5.62, y: 2.24, w: 3.36, h: 0.22,
     fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
-    charSpacing: 1, color: C.gold, align: "center", margin: 0,
+    charSpacing: 1.0, color: C.gold, margin: 0,
   });
-  const hidden = [
-    { x: 2.95, y: 4.65, title: "MAQUETA", body: "soporte y materiales", color: C.red },
-    { x: 5.11, y: 4.65, title: "SOFTWARE", body: "registro o panel", color: C.cyan },
-    { x: 7.27, y: 4.65, title: "LUGAR", body: "espacio y permiso", color: C.gold },
-    { x: 9.43, y: 4.65, title: "PERSONAS", body: "tiempo y responsables", color: C.green },
+  const supports = [
+    { y: 2.72, n: "01", title: "SOFTWARE", body: "registra, muestra o compara", color: C.cyan, dx: 0.0 },
+    { y: 3.54, n: "02", title: "LUGAR + PERMISO", body: "permite instalar y presentar", color: C.gold, dx: 0.32 },
+    { y: 4.36, n: "03", title: "HERRAMIENTAS", body: "permiten construir y probar", color: C.red, dx: 0.64 },
+    { y: 5.18, n: "04", title: "PERSONAS + TIEMPO", body: "hacen que el plan ocurra", color: C.green, dx: 0.96 },
   ];
-  hidden.forEach((item) => {
+  supports.forEach((item) => {
     slide.addShape(SH.roundRect, {
-      x: item.x, y: item.y, w: 1.74, h: 1.13,
+      x: 5.62 + item.dx, y: item.y, w: 6.16 - item.dx, h: 0.64,
       rectRadius: 0.04,
-      fill: { color: C.white, transparency: 6 },
-      line: { color: item.color, pt: 1.1 },
+      fill: { color: C.white },
+      line: { color: item.color, pt: 1.2 },
+      shadow: { type: "outer", color: "000000", opacity: 0.2, blur: 1.2, angle: 45, distance: 0.8 },
     });
+    addNumberCircle(
+      slide,
+      5.83 + item.dx,
+      item.y + 0.12,
+      0.4,
+      item.n,
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
     slide.addText(item.title, {
-      x: item.x + 0.16, y: item.y + 0.24, w: 1.42, h: 0.22,
-      fontFace: TYPOGRAPHY.display, fontSize: 11.3, bold: true,
-      color: item.color === C.gold ? C.navy : item.color,
-      align: "center", margin: 0,
+      x: 6.42 + item.dx, y: item.y + 0.15, w: 2.18, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 11.7, bold: true,
+      color: C.navy, margin: 0,
     });
     slide.addText(item.body, {
-      x: item.x + 0.16, y: item.y + 0.64, w: 1.42, h: 0.28,
-      fontFace: TYPOGRAPHY.body, fontSize: 9.2,
-      color: C.slate, align: "center", margin: 0,
+      x: 8.75 + item.dx * 0.15, y: item.y + 0.16, w: 2.72, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.6,
+      color: C.slate, align: "right", margin: 0,
     });
   });
-  slide.addShape(SH.line, {
-    x: 0.78, y: 3.72, w: 11.76, h: 0,
-    line: { color: C.red, pt: 2.5, dash: "dash" },
+  slide.addShape(SH.chevron, {
+    x: 4.88, y: 3.72, w: 0.64, h: 0.74,
+    fill: { color: C.gold }, line: { color: C.gold },
   });
-  slide.addText("Si falta la parte invisible, las piezas no se convierten en proyecto.", {
-    x: 1.44, y: 6.61, w: 10.46, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.6, bold: true,
-    color: C.red, align: "center", margin: 0,
+  slide.addShape(SH.roundRect, {
+    x: 1.2, y: 6.5, w: 10.92, h: 0.44,
+    rectRadius: 0.04,
+    fill: { color: C.red }, line: { color: C.red },
   });
+  slide.addText("Si una capa falta, las piezas todavía no forman un proyecto viable.", {
+    x: 1.52, y: 6.63, w: 10.28, h: 0.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.4, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addFooter(slide, 24, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -5128,72 +5157,98 @@ function redesignSlide21(slide) {
   const columns = [
     {
       x: 0.78, n: "01", title: "YA LO TENEMOS", color: C.green,
-      body: "Disponible en el programa o aportado por el equipo.",
-      question: "¿Dónde está y quién lo trae?",
+      icon: "✓", body: "Disponible y localizado",
+      cards: ["¿Dónde está?", "¿Quién lo trae?"],
     },
     {
       x: 4.59, n: "02", title: "DEBEMOS CONSEGUIRLO", color: C.gold,
-      body: "Hay que pedir, comprar o solicitar con responsable y fecha.",
-      question: "¿Depende realmente de nosotros?",
+      icon: "→", body: "Responsable + fecha",
+      cards: ["¿Quién lo gestiona?", "¿Para cuándo?"],
     },
     {
       x: 8.4, n: "03", title: "LO REPRESENTAMOS", color: C.cyan,
-      body: "Se muestra mediante maqueta, simulación, diagrama o registro.",
-      question: "¿Qué evidencia lo reemplaza?",
+      icon: "◇", body: "Alternativa verificable",
+      cards: ["Maqueta · simulación", "Diagrama · registro"],
     },
   ];
   columns.forEach((item) => {
     const textColor = item.color === C.gold ? C.navyDeep : C.white;
     slide.addShape(SH.roundRect, {
-      x: item.x, y: 2.0, w: 3.35, h: 4.45,
+      x: item.x, y: 2.0, w: 3.35, h: 4.36,
       rectRadius: 0.06,
-      fill: { color: C.white }, line: { color: item.color, pt: 1.4 },
+      fill: { color: item.color, transparency: 92 },
+      line: { color: item.color, pt: 1.5 },
+      shadow: { type: "outer", color: "84909D", opacity: 0.14, blur: 1.4, angle: 45, distance: 0.8 },
     });
     slide.addShape(SH.rect, {
-      x: item.x, y: 2.0, w: 3.35, h: 0.62,
+      x: item.x, y: 2.0, w: 3.35, h: 0.72,
       fill: { color: item.color }, line: { color: item.color },
     });
-    slide.addText(item.n, {
-      x: item.x + 0.24, y: 2.2, w: 0.42, h: 0.18,
-      fontFace: TYPOGRAPHY.display, fontSize: 10.5, bold: true,
-      color: textColor, margin: 0,
-    });
+    addNumberCircle(slide, item.x + 0.22, 2.16, 0.4, item.n, C.navyDeep, C.white);
     slide.addText(item.title, {
-      x: item.x + 0.72, y: 2.18, w: 2.34, h: 0.22,
+      x: item.x + 0.72, y: 2.22, w: 2.34, h: 0.22,
       fontFace: TYPOGRAPHY.display,
       fontSize: item.title.length > 18 ? 10.7 : 12.5,
       bold: true, color: textColor, align: "center", margin: 0,
     });
-    slide.addText(item.body, {
-      x: item.x + 0.34, y: 3.02, w: 2.67, h: 0.76,
-      fontFace: TYPOGRAPHY.body, fontSize: 12,
-      color: C.slate, align: "center", valign: "mid", margin: 0,
+    slide.addText(item.icon, {
+      x: item.x + 1.26, y: 2.98, w: 0.83, h: 0.72,
+      fontFace: TYPOGRAPHY.display, fontSize: 30, bold: true,
+      color: item.color === C.gold ? C.navy : item.color,
+      align: "center", valign: "mid", margin: 0,
     });
-    [4.02, 4.61, 5.2].forEach((y) => {
-      slide.addShape(SH.line, {
-        x: item.x + 0.42, y, w: 2.51, h: 0,
-        line: { color: C.border, pt: 1.2, dash: "dash" },
+    slide.addText(item.body, {
+      x: item.x + 0.35, y: 3.78, w: 2.65, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 12.3, bold: true,
+      color: C.navy, align: "center", margin: 0,
+    });
+    item.cards.forEach((text, index) => {
+      const y = 4.28 + index * 0.7;
+      slide.addShape(SH.roundRect, {
+        x: item.x + 0.31, y, w: 2.73, h: 0.5,
+        rectRadius: 0.04,
+        fill: { color: C.white },
+        line: { color: item.color, transparency: 45, pt: 1 },
+      });
+      slide.addText(text, {
+        x: item.x + 0.51, y: y + 0.15, w: 2.33, h: 0.18,
+        fontFace: TYPOGRAPHY.body, fontSize: 10.5, bold: true,
+        color: C.navy, align: "center", margin: 0,
       });
     });
     slide.addShape(SH.roundRect, {
-      x: item.x + 0.28, y: 5.65, w: 2.79, h: 0.48,
+      x: item.x + 0.31, y: 5.78, w: 2.73, h: 0.38,
       rectRadius: 0.04,
-      fill: { color: item.color, transparency: item.color === C.gold ? 12 : 88 },
-      line: { color: item.color, transparency: 50 },
+      fill: { color: item.color }, line: { color: item.color },
     });
-    slide.addText(item.question, {
-      x: item.x + 0.44, y: 5.78, w: 2.47, h: 0.2,
-      fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
-      color: item.color === C.gold ? C.navyDeep : item.color,
+    slide.addText(
+      item.n === "01" ? "CONFIRMADO" : item.n === "02" ? "ACCIÓN PENDIENTE" : "EVIDENCIA DEFINIDA",
+      {
+      x: item.x + 0.51, y: 5.89, w: 2.33, h: 0.16,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.5, bold: true,
+      charSpacing: 0.65, color: textColor,
       align: "center", margin: 0,
     });
   });
-  slide.addText("Una lista útil incluye componentes, materiales, software, lugar, permisos y personas.", {
-    x: 1.15, y: 6.68, w: 11.0, h: 0.24,
-    fontFace: TYPOGRAPHY.display, fontSize: 13.7, bold: true,
-    color: C.navy, align: "center", margin: 0,
+  slide.addShape(SH.chevron, {
+    x: 4.18, y: 3.93, w: 0.34, h: 0.54,
+    fill: { color: C.navy, transparency: 18 }, line: { color: C.navy, transparency: 18 },
   });
-  addNotesAndValidate(slide, { ignoreLines: true });
+  slide.addShape(SH.chevron, {
+    x: 7.99, y: 3.93, w: 0.34, h: 0.54,
+    fill: { color: C.navy, transparency: 18 }, line: { color: C.navy, transparency: 18 },
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.14, y: 6.62, w: 11.04, h: 0.38,
+    rectRadius: 0.04,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("Cada recurso termina en una decisión: confirmado · gestionar · representar.", {
+    x: 1.45, y: 6.73, w: 10.42, h: 0.16,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.5, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
 }
 
 // 26 · Ejemplo GeoGreen y filtro de función
@@ -5450,111 +5505,142 @@ function redesignSlide21(slide) {
 // 29 · Tres niveles de software
 {
   const slide = pptx.addSlide();
-  addHeader(
-    slide,
-    "Elegir lo sostenible",
-    "Comprometan un nivel que puedan mantener",
-    "La mejor opción no es la más vistosa: es la que responde la pregunta del destinatario.",
-    29,
-  );
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("ELEGIR LO SOSTENIBLE", {
+    x: 0.76, y: 0.46, w: 3.5, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.2, color: C.gold, margin: 0,
+  });
+  slide.addText("Comprometan un nivel que puedan mantener", {
+    x: 0.76, y: 0.9, w: 9.2, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 27.2, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Más alcance exige más datos, conexión y pruebas. Elijan lo que realmente pueden demostrar.", {
+    x: 0.78, y: 1.58, w: 10.0, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
   const levels = [
     {
-      x: 0.78, y: 3.85, w: 3.48, h: 2.35, n: "1", title: "REGISTRO",
-      body: "Fecha + valor ordenados en el tiempo.", place: "planilla o archivo", color: C.green,
+      x: 0.72, n: "1", title: "REGISTRO",
+      body: "Fecha + valor", place: "planilla o archivo", color: C.green,
     },
     {
-      x: 4.66, y: 2.95, w: 3.48, h: 3.25, n: "2", title: "PANEL",
-      body: "Estado actual + historial reciente.", place: "página en el computador", color: C.cyan,
+      x: 4.55, n: "2", title: "PANEL",
+      body: "Estado + historial", place: "página en el computador", color: C.cyan,
     },
     {
-      x: 8.54, y: 2.05, w: 3.98, h: 4.15, n: "3", title: "PANEL CONECTADO",
-      body: "Varios puntos + ubicación + evolución.", place: "WiFi y mapa", color: C.gold,
+      x: 8.38, n: "3", title: "PANEL CONECTADO",
+      body: "Ubicación + evolución", place: "WiFi y mapa", color: C.gold,
     },
   ];
   levels.forEach((item) => {
     const labelColor = item.color === C.gold ? C.navyDeep : C.white;
     slide.addShape(SH.roundRect, {
-      x: item.x, y: item.y, w: item.w, h: item.h,
+      x: item.x, y: 2.25, w: 3.48, h: 4.15,
       rectRadius: 0.06,
-      fill: { color: C.white }, line: { color: item.color, pt: 1.4 },
-      shadow: { type: "outer", color: "7A8794", opacity: 0.14, blur: 1.3, angle: 45, distance: 0.8 },
+      fill: { color: C.white }, line: { color: item.color, pt: 1.5 },
+      shadow: { type: "outer", color: "000000", opacity: 0.22, blur: 1.4, angle: 45, distance: 0.9 },
     });
     slide.addShape(SH.rect, {
-      x: item.x, y: item.y, w: item.w, h: 0.58,
+      x: item.x, y: 2.25, w: 3.48, h: 0.66,
       fill: { color: item.color }, line: { color: item.color },
     });
-    slide.addText(item.n, {
-      x: item.x + 0.22, y: item.y + 0.19, w: 0.36, h: 0.18,
-      fontFace: TYPOGRAPHY.display, fontSize: 10.2, bold: true,
-      color: labelColor, margin: 0,
-    });
+    addNumberCircle(slide, item.x + 0.2, 2.38, 0.4, item.n, C.navyDeep, C.white);
     slide.addText(item.title, {
-      x: item.x + 0.68, y: item.y + 0.17, w: item.w - 0.95, h: 0.22,
+      x: item.x + 0.72, y: 2.47, w: 2.45, h: 0.2,
       fontFace: TYPOGRAPHY.display,
       fontSize: item.title.length > 12 ? 11.1 : 13.2,
       bold: true, color: labelColor, align: "center", margin: 0,
     });
     if (item.n === "1") {
+      slide.addText("HORA", {
+        x: item.x + 0.38, y: 3.2, w: 0.72, h: 0.16,
+        fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
+        color: C.slate, margin: 0,
+      });
+      slide.addText("VALOR", {
+        x: item.x + 2.34, y: 3.2, w: 0.72, h: 0.16,
+        fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
+        color: C.slate, align: "right", margin: 0,
+      });
       const rows = [
         ["09:00", "32 %"],
         ["11:00", "51 %"],
         ["13:00", "78 %"],
       ];
       rows.forEach((row, index) => {
-        const y = item.y + 0.83 + index * 0.38;
+        const y = 3.56 + index * 0.46;
         slide.addText(row[0], {
           x: item.x + 0.38, y, w: 0.78, h: 0.18,
-          fontFace: "Consolas", fontSize: 9.2, color: C.slate, margin: 0,
+          fontFace: "Consolas", fontSize: 10.2, color: C.slate, margin: 0,
         });
         slide.addText(row[1], {
-          x: item.x + 2.22, y, w: 0.72, h: 0.18,
-          fontFace: "Consolas", fontSize: 9.2, bold: true,
+          x: item.x + 2.22, y, w: 0.82, h: 0.18,
+          fontFace: "Consolas", fontSize: 10.2, bold: true,
           color: [C.green, C.gold, C.red][index], align: "right", margin: 0,
         });
         slide.addShape(SH.line, {
-          x: item.x + 0.38, y: y + 0.25, w: 2.55, h: 0,
+          x: item.x + 0.38, y: y + 0.3, w: 2.66, h: 0,
           line: { color: C.border, pt: 0.8 },
         });
       });
     } else if (item.n === "2") {
-      addImageCrop(slide, IMG.dashboardDetail, item.x + 0.24, item.y + 0.8, item.w - 0.48, 1.42);
+      addImageCrop(slide, IMG.dashboardDetail, item.x + 0.24, 3.16, 3.0, 1.65);
     } else {
-      addImageCrop(slide, IMG.dashboardMap, item.x + 0.24, item.y + 0.8, item.w - 0.48, 2.24);
+      addImageCrop(slide, IMG.dashboardMap, item.x + 0.24, 3.16, 3.0, 1.65);
     }
     slide.addText(item.body, {
-      x: item.x + 0.34,
-      y: item.y + item.h - 0.88,
-      w: item.w - 0.68,
-      h: 0.28,
-      fontFace: TYPOGRAPHY.display, fontSize: 11.4, bold: true,
+      x: item.x + 0.34, y: 5.18, w: 2.8, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 12.2, bold: true,
       color: C.navy, align: "center", margin: 0,
     });
     slide.addText(item.place, {
-      x: item.x + 0.34,
-      y: item.y + item.h - 0.48,
-      w: item.w - 0.68,
-      h: 0.2,
-      fontFace: TYPOGRAPHY.body, fontSize: 9.5,
+      x: item.x + 0.34, y: 5.63, w: 2.8, h: 0.2,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.2,
       color: item.color === C.gold ? C.navy : item.color,
       align: "center", margin: 0,
     });
+    slide.addShape(SH.roundRect, {
+      x: item.x + 0.38, y: 5.98, w: 2.72, h: 0.25,
+      rectRadius: 0.03,
+      fill: { color: item.color, transparency: item.color === C.gold ? 12 : 86 },
+      line: { color: item.color, transparency: 55, pt: 0.8 },
+    });
+    slide.addText(
+      item.n === "1" ? "MENOR DEPENDENCIA" : item.n === "2" ? "MÁS LECTURA" : "MÁS INFRAESTRUCTURA",
+      {
+        x: item.x + 0.55, y: 6.05, w: 2.38, h: 0.12,
+        fontFace: TYPOGRAPHY.body, fontSize: 7.8, bold: true,
+        charSpacing: 0.55, color: item.color === C.gold ? C.navy : item.color,
+        align: "center", margin: 0,
+      },
+    );
   });
-  slide.addShape(SH.line, {
-    x: 1.16, y: 6.53, w: 10.92, h: 0,
-    line: { color: C.navy, pt: 2.2, endArrowType: "triangle" },
+  slide.addShape(SH.chevron, {
+    x: 4.27, y: 3.82, w: 0.28, h: 0.56,
+    fill: { color: C.cyan }, line: { color: C.cyan },
   });
-  slide.addText("más alcance exige más datos, conexión y pruebas", {
-    x: 4.42, y: 6.65, w: 4.55, h: 0.2,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.8, bold: true,
-    charSpacing: 0.55, color: C.slate, align: "center", margin: 0,
+  slide.addShape(SH.chevron, {
+    x: 8.1, y: 3.82, w: 0.28, h: 0.56,
+    fill: { color: C.gold }, line: { color: C.gold },
   });
+  slide.addText("El mejor nivel es el que pueden construir, probar y explicar.", {
+    x: 1.15, y: 6.7, w: 11.0, h: 0.22,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addFooter(slide, 29, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
 // 30 · Pregunta del destinatario
 {
   const slide = pptx.addSlide();
-  slide.background = { color: C.navy };
+  slide.background = { color: C.navyDeep };
   addTopBars(slide);
   addInstitutionalLockup(slide, { white: true });
   slide.addText("ANTES DE PROGRAMAR", {
@@ -5567,90 +5653,104 @@ function redesignSlide21(slide) {
     fontFace: TYPOGRAPHY.display, fontSize: 28.5, bold: true,
     color: C.white, margin: 0,
   });
-  slide.addText("La interfaz sirve cuando ayuda a una persona concreta a saber y decidir algo.", {
+  slide.addText("Una pantalla útil conecta a una persona con una decisión concreta.", {
     x: 0.78, y: 1.64, w: 8.8, h: 0.36,
     fontFace: TYPOGRAPHY.body, fontSize: 14.3,
     color: C.paleInk, margin: 0,
   });
 
   slide.addShape(SH.roundRect, {
-    x: 0.9, y: 2.42, w: 11.54, h: 1.58,
+    x: 0.76, y: 2.28, w: 2.22, h: 3.98,
     rectRadius: 0.06,
-    fill: { color: C.white }, line: { color: C.cyan, pt: 1.5 },
+    fill: { color: C.white, transparency: 94 },
+    line: { color: C.cyan, pt: 1.3 },
   });
-  slide.addText("QUIEN MIRE ESTO", {
-    x: 1.25, y: 2.78, w: 2.1, h: 0.22,
-    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
-    charSpacing: 1, color: C.cyan, margin: 0,
+  addNumberCircle(slide, 1.43, 2.72, 0.9, "1", C.cyan, C.navyDeep);
+  slide.addText("PERSONA", {
+    x: 1.05, y: 3.92, w: 1.65, h: 0.25,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.5, bold: true,
+    color: C.white, align: "center", margin: 0,
   });
-  slide.addText("va a poder saber", {
-    x: 1.25, y: 3.2, w: 2.12, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 16.2, bold: true,
-    color: C.navy, margin: 0,
+  slide.addText("¿Quién mira?", {
+    x: 1.05, y: 4.42, w: 1.65, h: 0.24,
+    fontFace: TYPOGRAPHY.body, fontSize: 11.2, bold: true,
+    color: C.cyan, align: "center", margin: 0,
   });
-  slide.addShape(SH.line, {
-    x: 3.6, y: 3.43, w: 3.12, h: 0,
-    line: { color: C.border, pt: 1.5, dash: "dash" },
-  });
-  slide.addShape(SH.chevron, {
-    x: 6.96, y: 2.92, w: 0.72, h: 0.58,
-    fill: { color: C.gold }, line: { color: C.gold },
-  });
-  slide.addText("y decidir", {
-    x: 7.92, y: 3.2, w: 1.4, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 16.2, bold: true,
-    color: C.navy, margin: 0,
-  });
-  slide.addShape(SH.line, {
-    x: 9.48, y: 3.43, w: 2.36, h: 0,
-    line: { color: C.border, pt: 1.5, dash: "dash" },
+  slide.addText("Ejemplo:\nencargado del retiro", {
+    x: 1.02, y: 4.9, w: 1.71, h: 0.58,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.5,
+    color: C.paleInk, align: "center", margin: 0,
   });
 
-  slide.addText("EJEMPLO GEOGREEN", {
-    x: 1.02, y: 4.53, w: 2.18, h: 0.2,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
-    charSpacing: 0.85, color: C.cyan, margin: 0,
-  });
-  slide.addShape(SH.roundRect, {
-    x: 0.9, y: 4.9, w: 4.82, h: 1.22,
-    rectRadius: 0.05,
-    fill: { color: C.white, transparency: 4 },
-    line: { color: C.cyan, pt: 1.2 },
-  });
-  slide.addText("SABER", {
-    x: 1.24, y: 5.23, w: 0.94, h: 0.22,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.5, bold: true,
-    charSpacing: 0.8, color: C.cyan, margin: 0,
-  });
-  slide.addText("qué contenedor necesita atención", {
-    x: 2.17, y: 5.15, w: 3.15, h: 0.34,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
-    color: C.navy, margin: 0,
-  });
   slide.addShape(SH.chevron, {
-    x: 5.95, y: 5.22, w: 0.72, h: 0.58,
+    x: 3.12, y: 3.8, w: 0.55, h: 0.7,
     fill: { color: C.gold }, line: { color: C.gold },
   });
+
   slide.addShape(SH.roundRect, {
-    x: 6.9, y: 4.9, w: 5.52, h: 1.22,
-    rectRadius: 0.05,
-    fill: { color: C.white, transparency: 4 },
-    line: { color: C.gold, pt: 1.2 },
+    x: 3.82, y: 2.28, w: 4.95, h: 3.98,
+    rectRadius: 0.06,
+    fill: { color: C.white },
+    line: { color: C.cyan, pt: 1.4 },
   });
-  slide.addText("DECIDIR", {
-    x: 7.24, y: 5.23, w: 1.02, h: 0.22,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.5, bold: true,
-    charSpacing: 0.8, color: C.gold, margin: 0,
+  slide.addShape(SH.rect, {
+    x: 3.82, y: 2.28, w: 4.95, h: 0.54,
+    fill: { color: C.cyan }, line: { color: C.cyan },
   });
-  slide.addText("qué retirar primero y antes de cuándo", {
-    x: 8.34, y: 5.15, w: 3.65, h: 0.34,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
-    color: C.navy, margin: 0,
+  slide.addText("2  INFORMACIÓN QUE NECESITA", {
+    x: 4.15, y: 2.46, w: 4.28, h: 0.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 11.5, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
   });
-  slide.addText("Si no cambia una decisión, la pantalla está mostrando ruido.", {
-    x: 1.52, y: 6.56, w: 10.3, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.6, bold: true,
-    color: C.red, align: "center", margin: 0,
+  addImageCrop(slide, IMG.dashboardDetail, 4.04, 3.02, 4.51, 2.72);
+  slide.addShape(SH.roundRect, {
+    x: 4.22, y: 5.43, w: 4.15, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 7 },
+    line: { color: C.cyan, pt: 1 },
+  });
+  slide.addText("SABER · qué contenedor necesita atención", {
+    x: 4.48, y: 5.58, w: 3.63, h: 0.17,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.3, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 8.94, y: 3.8, w: 0.55, h: 0.7,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 9.66, y: 2.28, w: 2.9, h: 3.98,
+    rectRadius: 0.06,
+    fill: { color: C.gold },
+    line: { color: C.gold, pt: 1.4 },
+  });
+  addNumberCircle(slide, 10.66, 2.72, 0.9, "3", C.navyDeep, C.white);
+  slide.addText("DECISIÓN", {
+    x: 10.03, y: 3.92, w: 2.16, h: 0.25,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.5, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addText("¿Qué hará con el dato?", {
+    x: 10.03, y: 4.42, w: 2.16, h: 0.24,
+    fontFace: TYPOGRAPHY.body, fontSize: 11.2, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  slide.addText("Retirar primero\ny antes del desborde", {
+    x: 10.0, y: 4.93, w: 2.22, h: 0.64,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.8, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.27, y: 6.58, w: 10.8, h: 0.4,
+    rectRadius: 0.04,
+    fill: { color: C.red }, line: { color: C.red },
+  });
+  slide.addText("Si no ayuda a decidir, la pantalla está mostrando ruido.", {
+    x: 1.58, y: 6.7, w: 10.18, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.3, bold: true,
+    color: C.white, align: "center", margin: 0,
   });
   addFooter(slide, 30, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
@@ -6329,59 +6429,92 @@ function redesignSlide21(slide) {
     "La placa se reserva para aquello que solo puede hacerse con ella.",
     39,
   );
+
   slide.addShape(SH.roundRect, {
-    x: 0.78, y: 2.02, w: 7.05, h: 4.38,
+    x: 0.78, y: 2.02, w: 7.42, h: 4.36,
     rectRadius: 0.06,
-    fill: { color: C.cyanSoft }, line: { color: C.cyan, pt: 1.3 },
+    fill: { color: C.navyDeep }, line: { color: C.navyDeep, pt: 1.3 },
   });
-  slide.addText("SIN LA PLACA", {
-    x: 1.12, y: 2.34, w: 2.05, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true,
-    color: C.navy, margin: 0,
+  slide.addText("ANTES DEL TURNO", {
+    x: 1.15, y: 2.34, w: 2.48, h: 0.27,
+    fontFace: TYPOGRAPHY.display, fontSize: 16.2, bold: true,
+    color: C.white, margin: 0,
   });
-  slide.addText("puede avanzar en paralelo", {
-    x: 4.96, y: 2.38, w: 2.38, h: 0.2,
+  slide.addShape(SH.roundRect, {
+    x: 5.18, y: 2.28, w: 2.55, h: 0.4,
+    rectRadius: 0.04,
+    fill: { color: C.cyan }, line: { color: C.cyan },
+  });
+  slide.addText("SIN LA PLACA · EN PARALELO", {
+    x: 5.42, y: 2.4, w: 2.08, h: 0.16,
     fontFace: TYPOGRAPHY.body, fontSize: 10.2, bold: true,
-    color: C.cyan, align: "right", margin: 0,
+    color: C.navyDeep, align: "center", margin: 0,
   });
   const withoutBoard = [
-    "Regla y umbral",
-    "Simulación y diagrama",
-    "Software con datos de prueba",
-    "Registro y maqueta",
-    "Explicación y evidencia",
+    { title: "REGLA", body: "variable + umbral", color: C.red },
+    { title: "SIMULACIÓN", body: "diagrama + prueba", color: C.cyan },
+    { title: "SOFTWARE", body: "datos de prueba", color: C.green },
+    { title: "MAQUETA", body: "soporte + montaje", color: C.gold },
+    { title: "EVIDENCIA", body: "guion + registro", color: C.blue },
   ];
-  withoutBoard.forEach((text, index) => {
-    const y = 2.92 + index * 0.61;
-    addNumberCircle(slide, 1.13, y, 0.4, String(index + 1), C.cyan, C.navyDeep);
-    slide.addText(text, {
-      x: 1.74, y: y + 0.07, w: 4.82, h: 0.22,
-      fontFace: TYPOGRAPHY.display, fontSize: 12.5, bold: true,
+  withoutBoard.forEach((item, index) => {
+    const col = index % 2;
+    const row = Math.floor(index / 2);
+    const x = 1.12 + col * 3.32;
+    const y = 2.98 + row * 0.95;
+    slide.addShape(SH.roundRect, {
+      x, y, w: index === 4 ? 6.28 : 2.95, h: 0.72,
+      rectRadius: 0.04,
+      fill: { color: C.white, transparency: 4 },
+      line: { color: item.color, pt: 1.1 },
+    });
+    addNumberCircle(
+      slide,
+      x + 0.17,
+      y + 0.16,
+      0.4,
+      String(index + 1),
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(item.title, {
+      x: x + 0.76, y: y + 0.14, w: index === 4 ? 1.6 : 1.25, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.7, bold: true,
       color: C.navy, margin: 0,
     });
-    slide.addShape(SH.line, {
-      x: 1.74, y: y + 0.4, w: 4.96, h: 0,
-      line: { color: C.border, pt: 0.9 },
+    slide.addText(item.body, {
+      x: x + 0.76, y: y + 0.4, w: index === 4 ? 4.96 : 1.92, h: 0.16,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.2,
+      color: C.slate, margin: 0,
     });
   });
+
   slide.addShape(SH.chevron, {
-    x: 7.74, y: 3.76, w: 0.74, h: 0.72,
+    x: 8.04, y: 3.72, w: 0.66, h: 0.82,
     fill: { color: C.gold }, line: { color: C.gold },
   });
+
   slide.addShape(SH.roundRect, {
-    x: 8.56, y: 2.02, w: 3.96, h: 4.38,
+    x: 8.82, y: 2.02, w: 3.72, h: 4.36,
     rectRadius: 0.06,
-    fill: { color: C.goldSoft }, line: { color: C.gold, pt: 1.3 },
+    fill: { color: C.goldSoft }, line: { color: C.gold, pt: 1.5 },
+    shadow: { type: "outer", color: "84909D", opacity: 0.16, blur: 1.4, angle: 45, distance: 0.8 },
   });
-  slide.addText("CON LA PLACA", {
-    x: 8.94, y: 2.34, w: 1.98, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true,
+  slide.addText("TURNO CON LA PLACA", {
+    x: 9.14, y: 2.32, w: 3.08, h: 0.26,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.2, bold: true,
     color: C.navy, margin: 0,
   });
-  slide.addText("turno reservado", {
-    x: 10.77, y: 2.39, w: 1.35, h: 0.2,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.8, bold: true,
-    color: C.gold, align: "right", margin: 0,
+  addImageContain(slide, IMG.arduinoR4, 9.12, 2.72, 3.12, 1.36);
+  slide.addShape(SH.roundRect, {
+    x: 9.32, y: 3.82, w: 2.72, h: 0.34,
+    rectRadius: 0.04,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+  slide.addText("LLEGAR LISTOS PARA PROBAR", {
+    x: 9.55, y: 3.92, w: 2.26, h: 0.14,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.3, bold: true,
+    charSpacing: 0.55, color: C.navyDeep, align: "center", margin: 0,
   });
   const withBoard = [
     "Prueba mínima",
@@ -6390,28 +6523,23 @@ function redesignSlide21(slide) {
     "Prueba completa",
   ];
   withBoard.forEach((text, index) => {
-    const y = 3.05 + index * 0.68;
-    addNumberCircle(slide, 8.95, y, 0.42, String(index + 1), C.gold, C.navyDeep);
+    const y = 4.4 + index * 0.44;
+    addNumberCircle(slide, 9.2, y, 0.32, String(index + 1), C.navyDeep, C.white);
     slide.addText(text, {
-      x: 9.58, y: y + 0.08, w: 2.25, h: 0.22,
-      fontFace: TYPOGRAPHY.display, fontSize: 12.2, bold: true,
+      x: 9.71, y: y + 0.06, w: 2.18, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.8, bold: true,
       color: C.navy, margin: 0,
     });
   });
   slide.addShape(SH.roundRect, {
-    x: 8.95, y: 5.83, w: 3.14, h: 0.38,
+    x: 1.23, y: 6.62, w: 10.88, h: 0.4,
     rectRadius: 0.04,
-    fill: { color: C.gold }, line: { color: C.gold },
+    fill: { color: C.red }, line: { color: C.red },
   });
-  slide.addText("LLEGUEN PREPARADOS AL TURNO", {
-    x: 9.18, y: 5.94, w: 2.68, h: 0.16,
-    fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
-    charSpacing: 0.5, color: C.navyDeep, align: "center", margin: 0,
-  });
-  slide.addText("El cuello de botella no es compartir: es llegar al turno sin preparación.", {
-    x: 1.55, y: 6.66, w: 10.26, h: 0.23,
-    fontFace: TYPOGRAPHY.display, fontSize: 13.4, bold: true,
-    color: C.red, align: "center", margin: 0,
+  slide.addText("El cuello de botella no es compartir: es llegar sin preparación.", {
+    x: 1.54, y: 6.74, w: 10.26, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.1, bold: true,
+    color: C.white, align: "center", margin: 0,
   });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
@@ -6419,85 +6547,140 @@ function redesignSlide21(slide) {
 // 40 · Alcance y alternativas
 {
   const slide = pptx.addSlide();
-  addHeader(
-    slide,
-    "Decisión de diseño",
-    "Comprometer menos puede permitir demostrar más",
-    "El alcance se declara antes de construir: qué llega a la Mentoría 3 y qué queda para después.",
-    40,
-    { titleFontSize: 25.5 },
-  );
-  slide.addShape(SH.roundRect, {
-    x: 0.78, y: 2.0, w: 5.65, h: 1.72,
-    rectRadius: 0.06,
-    fill: { color: C.greenSoft }, line: { color: C.green, pt: 1.4 },
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("DECISIÓN DE DISEÑO", {
+    x: 0.76, y: 0.46, w: 3.4, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.2, color: C.red, margin: 0,
   });
-  slide.addText("COMPROMETIDO PARA EL 21 DE SEPTIEMBRE", {
-    x: 1.12, y: 2.35, w: 4.98, h: 0.24,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.6, bold: true,
-    charSpacing: 0.75, color: C.green, margin: 0,
+  slide.addText("Comprometer menos puede permitir demostrar más", {
+    x: 0.76, y: 0.9, w: 9.35, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 27, bold: true,
+    color: C.white, margin: 0,
   });
-  slide.addShape(SH.line, {
-    x: 1.12, y: 3.16, w: 4.92, h: 0,
-    line: { color: C.green, pt: 1.5, dash: "dash" },
-  });
-  slide.addShape(SH.roundRect, {
-    x: 6.88, y: 2.0, w: 5.65, h: 1.72,
-    rectRadius: 0.06,
-    fill: { color: C.redSoft }, line: { color: C.red, pt: 1.4 },
-  });
-  slide.addText("FUERA DE ALCANCE POR AHORA", {
-    x: 7.22, y: 2.35, w: 4.98, h: 0.24,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.6, bold: true,
-    charSpacing: 0.75, color: C.red, margin: 0,
-  });
-  slide.addShape(SH.line, {
-    x: 7.22, y: 3.16, w: 4.92, h: 0,
-    line: { color: C.red, pt: 1.5, dash: "dash" },
+  slide.addText("La frontera del MVP separa lo que sí llega a la Mentoría 3 de lo que puede esperar.", {
+    x: 0.78, y: 1.58, w: 9.75, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
   });
 
-  slide.addText("SI FALLA UNA DEPENDENCIA", {
-    x: 0.84, y: 4.18, w: 2.7, h: 0.2,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.4, bold: true,
-    charSpacing: 0.8, color: C.navy, margin: 0,
+  slide.addShape(SH.roundRect, {
+    x: 0.78, y: 2.14, w: 5.72, h: 1.62,
+    rectRadius: 0.06,
+    fill: { color: C.green }, line: { color: C.green, pt: 1.5 },
+  });
+  addNumberCircle(slide, 1.1, 2.45, 0.68, "✓", C.white, C.green);
+  slide.addText("SÍ LLEGA A LA MENTORÍA 3", {
+    x: 2.04, y: 2.42, w: 3.92, h: 0.25,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.2, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Una versión que funciona, se prueba y se explica.", {
+    x: 2.04, y: 2.9, w: 3.92, h: 0.28,
+    fontFace: TYPOGRAPHY.body, fontSize: 11.2,
+    color: C.white, margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 2.02, y: 3.32, w: 3.78, h: 0.24,
+    rectRadius: 0.03,
+    fill: { color: C.white, transparency: 78 },
+    line: { color: C.white, transparency: 100 },
+  });
+  slide.addText("compromiso verificable", {
+    x: 2.28, y: 3.39, w: 3.26, h: 0.11,
+    fontFace: TYPOGRAPHY.body, fontSize: 7.8, bold: true,
+    charSpacing: 0.6, color: C.white, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 6.45, y: 2.56, w: 0.44, h: 0.64,
+    rotate: 180,
+    fill: { color: C.red }, line: { color: C.red },
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 6.86, y: 2.14, w: 5.68, h: 1.62,
+    rectRadius: 0.06,
+    fill: { color: C.white, transparency: 4 }, line: { color: C.red, pt: 1.5 },
+  });
+  addNumberCircle(slide, 7.18, 2.45, 0.68, "—", C.red, C.white);
+  slide.addText("TODAVÍA NO LO PROMETEMOS", {
+    x: 8.12, y: 2.42, w: 3.96, h: 0.25,
+    fontFace: TYPOGRAPHY.display, fontSize: 14.8, bold: true,
+    color: C.navy, margin: 0,
+  });
+  slide.addText("Funciones que agregan riesgo antes de asegurar lo esencial.", {
+    x: 8.12, y: 2.9, w: 3.96, h: 0.3,
+    fontFace: TYPOGRAPHY.body, fontSize: 11,
+    color: C.slate, margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 8.1, y: 3.32, w: 3.82, h: 0.24,
+    rectRadius: 0.03,
+    fill: { color: C.red, transparency: 88 },
+    line: { color: C.red, transparency: 60 },
+  });
+  slide.addText("queda para la siguiente versión", {
+    x: 8.36, y: 3.39, w: 3.3, h: 0.11,
+    fontFace: TYPOGRAPHY.body, fontSize: 7.8, bold: true,
+    charSpacing: 0.55, color: C.red, align: "center", margin: 0,
+  });
+
+  slide.addText("PLAN B · MISMA META, OTRA EVIDENCIA", {
+    x: 0.82, y: 4.18, w: 4.4, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
+    charSpacing: 0.9, color: C.gold, margin: 0,
   });
   const fallbacks = [
-    { x: 0.78, risk: "No llega material", alt: "maqueta / simulación", color: C.red },
-    { x: 4.65, risk: "Sensor no responde", alt: "registro manual / otro sensor", color: C.gold },
-    { x: 8.52, risk: "No hay instalación", alt: "montaje de mesa", color: C.cyan },
+    { x: 0.78, n: "01", risk: "NO LLEGA MATERIAL", alt: "maqueta + simulación", color: C.red },
+    { x: 4.65, n: "02", risk: "SENSOR NO RESPONDE", alt: "registro u otro sensor", color: C.gold },
+    { x: 8.52, n: "03", risk: "NO HAY INSTALACIÓN", alt: "montaje de mesa", color: C.cyan },
   ];
   fallbacks.forEach((item) => {
     slide.addShape(SH.roundRect, {
-      x: item.x, y: 4.58, w: 3.48, h: 1.53,
+      x: item.x, y: 4.6, w: 3.48, h: 1.5,
       rectRadius: 0.05,
-      fill: { color: C.white }, line: { color: item.color, pt: 1.2 },
+      fill: { color: C.white }, line: { color: item.color, pt: 1.3 },
+      shadow: { type: "outer", color: "000000", opacity: 0.18, blur: 1.2, angle: 45, distance: 0.7 },
     });
+    addNumberCircle(
+      slide,
+      item.x + 0.26,
+      4.86,
+      0.46,
+      item.n,
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
     slide.addText(item.risk, {
-      x: item.x + 0.27, y: 4.88, w: 1.36, h: 0.28,
-      fontFace: TYPOGRAPHY.display, fontSize: 11.7, bold: true,
-      color: C.navy, align: "center", margin: 0,
+      x: item.x + 0.95, y: 4.82, w: 2.2, h: 0.2,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.5, bold: true,
+      color: C.navy, margin: 0,
     });
     slide.addShape(SH.chevron, {
-      x: item.x + 1.56, y: 4.91, w: 0.5, h: 0.4,
+      x: item.x + 1.48, y: 5.22, w: 0.5, h: 0.4,
       fill: { color: item.color }, line: { color: item.color },
     });
     slide.addText(item.alt, {
-      x: item.x + 2.06, y: 4.86, w: 1.13, h: 0.54,
-      fontFace: TYPOGRAPHY.body, fontSize: 9.8, bold: true,
+      x: item.x + 0.36, y: 5.69, w: 2.76, h: 0.2,
+      fontFace: TYPOGRAPHY.display, fontSize: 11.2, bold: true,
       color: item.color === C.gold ? C.navy : item.color,
       align: "center", margin: 0,
     });
-    slide.addText("misma meta: evidencia", {
-      x: item.x + 0.45, y: 5.65, w: 2.58, h: 0.18,
-      fontFace: TYPOGRAPHY.body, fontSize: 8.7, bold: true,
-      charSpacing: 0.5, color: C.slate, align: "center", margin: 0,
-    });
   });
-  slide.addText("Decir “esta versión no incluye WiFi” demuestra control si pueden explicar por qué.", {
-    x: 1.31, y: 6.57, w: 10.7, h: 0.28,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
-    color: C.navy, align: "center", margin: 0,
+  slide.addShape(SH.roundRect, {
+    x: 1.06, y: 6.55, w: 11.2, h: 0.42,
+    rectRadius: 0.04,
+    fill: { color: C.gold }, line: { color: C.gold },
   });
+  slide.addText("Control del alcance = decir qué funciona, qué no incluye y qué harán si algo falla.", {
+    x: 1.4, y: 6.68, w: 10.52, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.9, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  addFooter(slide, 40, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
