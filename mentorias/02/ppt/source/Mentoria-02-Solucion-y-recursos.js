@@ -138,6 +138,44 @@ const IMG = {
     "oficiales",
     "esp32-devkitc-v4-vista-funcional-oficial.jpg",
   ),
+  rolesTeam: path.join(
+    repoRoot,
+    "docs",
+    "infografias",
+    "infografia-roles-equipo-geogreen-gptimage.png",
+  ),
+  wokwiDiagram: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "oficiales",
+    "wokwi-diagrama-vscode-oficial.png",
+  ),
+  pcbKicad: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "fotos",
+    "pcb-v1-kicad-2026-07-02.jpeg",
+  ),
+  enclosure3d: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "fotos",
+    "render-carcasa-3d-felipe-poster.jpg",
+  ),
+  competition: path.join(
+    repoRoot,
+    "talleres",
+    "03",
+    "media",
+    "generadas",
+    "cierre-competencia-prototipos-jurado.png",
+  ),
 };
 
 function addImageCrop(slide, imagePath, x, y, w, h, opts = {}) {
@@ -6765,6 +6803,922 @@ function redesignSlide21(slide) {
     color: C.white, align: "center", margin: 0,
   });
   addFooter(slide, 41);
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 42 · Apertura del Bloque 4
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+
+  slide.addText("BLOQUE 4 · 12 MINUTOS", {
+    x: 0.76, y: 0.5, w: 3.4, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2, bold: true,
+    charSpacing: 1.2, color: C.cyan, margin: 0,
+  });
+  slide.addText("El proyecto avanza cuando\nel trabajo tiene nombre", {
+    x: 0.76, y: 1.0, w: 5.48, h: 1.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 26.5, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Responsable · fecha · forma de comprobar", {
+    x: 0.78, y: 2.42, w: 5.7, h: 0.34,
+    fontFace: TYPOGRAPHY.display, fontSize: 16.5, bold: true,
+    color: C.gold, margin: 0,
+  });
+  slide.addText("La mentoría termina aquí. El desarrollo continúa con el trabajo del equipo entre sesiones.", {
+    x: 0.78, y: 3.0, w: 5.35, h: 0.72,
+    fontFace: TYPOGRAPHY.body, fontSize: 15,
+    color: C.paleInk, margin: 0,
+  });
+
+  const outcomes = [
+    { n: "01", title: "REPARTIR", body: "una tarea por responsabilidad", color: C.red },
+    { n: "02", title: "ELEGIR", body: "una rama de profundización", color: C.cyan },
+    { n: "03", title: "COMPROMETER", body: "una evidencia para la Mentoría 3", color: C.green },
+  ];
+  outcomes.forEach((item, index) => {
+    const y = 4.08 + index * 0.73;
+    slide.addShape(SH.roundRect, {
+      x: 0.78, y, w: 5.25, h: 0.58,
+      rectRadius: 0.04,
+      fill: { color: C.white, transparency: 94 },
+      line: { color: item.color, transparency: 30, pt: 1.1 },
+    });
+    addNumberCircle(
+      slide,
+      1.0,
+      y + 0.1,
+      0.38,
+      item.n,
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(item.title, {
+      x: 1.62, y: y + 0.13, w: 1.5, h: 0.18,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: item.title.length > 9 ? 9.5 : 11.3,
+      bold: true,
+      color: C.white, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: 3.2, y: y + 0.13, w: 2.47, h: 0.26,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.3,
+      color: C.paleInk, margin: 0,
+    });
+  });
+
+  addImageCrop(slide, IMG.cover, 6.55, 1.55, 6.78, 5.95);
+  slide.addShape(SH.rect, {
+    x: 6.35, y: 0, w: 0.48, h: H,
+    fill: { color: C.navyDeep }, line: { color: C.navyDeep },
+  });
+  slide.addShape(SH.roundRect, {
+    x: 7.0, y: 6.63, w: 5.78, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 7 },
+    line: { color: C.gold, pt: 1.1 },
+  });
+  slide.addText("HOY DEFINEN EL PLAN · ESTA SEMANA PRODUCEN LA EVIDENCIA", {
+    x: 7.34, y: 6.78, w: 5.1, h: 0.17,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+    charSpacing: 0.55, color: C.white, align: "center", margin: 0,
+  });
+  addFooter(slide, 42, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 43 · Responsabilidades convertidas en productos
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Trabajo distribuido",
+    "Cada responsabilidad deja algo que se puede mostrar",
+    "Los roles organizan el trabajo. El proyecto y sus decisiones siguen perteneciendo a los seis.",
+    43,
+    { titleFontSize: 24.7 },
+  );
+
+  const responsibilities = [
+    { x: 0.78, y: 2.02, n: "01", role: "COORDINACIÓN", output: "plan + turnos + fechas", color: C.red },
+    { x: 4.59, y: 2.02, n: "02", role: "INVESTIGACIÓN", output: "fuentes + datos + umbral", color: C.cyan },
+    { x: 8.4, y: 2.02, n: "03", role: "DISEÑO", output: "boceto + montaje + ubicación", color: C.gold },
+    { x: 0.78, y: 4.14, n: "04", role: "TECNOLOGÍA", output: "diagrama + primera versión", color: C.green },
+    { x: 4.59, y: 4.14, n: "05", role: "PRUEBAS Y EVIDENCIA", output: "prueba + mediciones + registro", color: C.blue },
+    { x: 8.4, y: 4.14, n: "06", role: "COMUNICACIÓN", output: "explicación + fotos ordenadas", color: C.red },
+  ];
+  responsibilities.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: 3.35, h: 1.72,
+      rectRadius: 0.06,
+      fill: { color: C.white },
+      line: { color: item.color, pt: 1.35 },
+      shadow: { type: "outer", color: "84909D", opacity: 0.13, blur: 1.3, angle: 45, distance: 0.8 },
+    });
+    slide.addShape(SH.rect, {
+      x: item.x, y: item.y, w: 0.68, h: 1.72,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    addNumberCircle(slide, item.x + 0.14, item.y + 0.18, 0.4, item.n, C.navyDeep, C.white);
+    slide.addText(item.role, {
+      x: item.x + 0.94, y: item.y + 0.28, w: 2.05, h: 0.28,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: item.role.length > 16 ? 10.3 : 12.2,
+      bold: true, color: C.navy, margin: 0,
+    });
+    slide.addText("DEJA LISTO", {
+      x: item.x + 0.94, y: item.y + 0.78, w: 1.12, h: 0.16,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
+      charSpacing: 0.65, color: item.color === C.gold ? C.navy : item.color, margin: 0,
+    });
+    slide.addText(item.output, {
+      x: item.x + 0.94, y: item.y + 1.08, w: 2.02, h: 0.36,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.8, bold: true,
+      color: C.slate, margin: 0,
+    });
+    slide.addShape(SH.roundRect, {
+      x: item.x + 2.84, y: item.y + 1.22, w: 0.28, h: 0.28,
+      rectRadius: 0.03,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    slide.addText("✓", {
+      x: item.x + 2.88, y: item.y + 1.26, w: 0.2, h: 0.12,
+      fontFace: TYPOGRAPHY.display, fontSize: 8.4, bold: true,
+      color: textColor, align: "center", margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.18, y: 6.35, w: 10.98, h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("En el desafío final, cualquier integrante puede ser consultado sobre cualquier parte.", {
+    x: 1.52, y: 6.5, w: 10.3, h: 0.2,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.8, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 44 · Ramas de profundización
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("UNA DECISIÓN QUE LOS DISTINGUE", {
+    x: 0.76, y: 0.46, w: 4.4, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.gold, margin: 0,
+  });
+  slide.addText("Elijan dónde serán notoriamente buenos", {
+    x: 0.76, y: 0.9, w: 8.5, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Todos cumplen el mismo mínimo. Una sola rama concentra el esfuerzo extra.", {
+    x: 0.78, y: 1.58, w: 9.0, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
+  const branches = [
+    { x: 0.72, y: 2.24, w: 3.82, h: 1.82, title: "SIMULACIÓN", body: "probar antes de montar", image: IMG.wokwiDiagram, color: C.cyan },
+    { x: 4.76, y: 2.24, w: 3.82, h: 1.82, title: "ELECTRÓNICA", body: "montaje estable", image: IMG.pcbKicad, color: C.red },
+    { x: 8.8, y: 2.24, w: 3.82, h: 1.82, title: "SOFTWARE Y DATOS", body: "historial, alertas o mapa", image: IMG.dashboardDetail, color: C.green },
+    { x: 2.74, y: 4.42, w: 3.82, h: 1.82, title: "DISEÑO FÍSICO", body: "carcasa, maqueta o instalación", image: IMG.enclosure3d, color: C.gold },
+    { x: 6.78, y: 4.42, w: 3.82, h: 1.82, title: "COMUNICACIÓN", body: "pruebas, errores y mejoras", image: IMG.prototype, color: C.blue },
+  ];
+  branches.forEach((item, index) => {
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: item.w, h: item.h,
+      rectRadius: 0.05,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.2 },
+      shadow: { type: "outer", color: "000000", opacity: 0.24, blur: 1.3, angle: 45, distance: 0.8 },
+    });
+    addImageCrop(slide, item.image, item.x + 0.12, item.y + 0.12, 1.52, 1.58);
+    addNumberCircle(
+      slide,
+      item.x + 1.82,
+      item.y + 0.2,
+      0.4,
+      String(index + 1),
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(item.title, {
+      x: item.x + 1.82, y: item.y + 0.76, w: 1.7, h: 0.36,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: item.title.length > 14 ? 9.2 : 10.6,
+      bold: true, color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 1.82, y: item.y + 1.24, w: 1.68, h: 0.34,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.5,
+      color: C.slate, margin: 0,
+    });
+  });
+  slide.addText("UNA RAMA · UNA RAZÓN · UNA EVIDENCIA", {
+    x: 3.88, y: 6.68, w: 5.58, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.4, bold: true,
+    charSpacing: 1.1, color: C.gold, align: "center", margin: 0,
+  });
+  addFooter(slide, 44, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 45 · Reglas de la rama
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Profundizar con sentido",
+    "La rama amplifica el MVP; no lo reemplaza",
+    "La habilidad extra vale cuando fortalece la solución que el equipo ya definió.",
+    45,
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.78, y: 2.05, w: 4.4, h: 4.22,
+    rectRadius: 0.06,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("MÍNIMO COMÚN", {
+    x: 1.18, y: 2.43, w: 3.58, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.8, bold: true,
+    charSpacing: 1.0, color: C.cyan, align: "center", margin: 0,
+  });
+  const core = [
+    { n: "1", text: "MIDE", color: C.cyan },
+    { n: "2", text: "DECIDE", color: C.gold },
+    { n: "3", text: "RESPONDE", color: C.red },
+    { n: "4", text: "MUESTRA", color: C.green },
+  ];
+  core.forEach((item, index) => {
+    const y = 2.92 + index * 0.67;
+    addNumberCircle(
+      slide,
+      1.18,
+      y,
+      0.42,
+      item.n,
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(item.text, {
+      x: 1.85, y: y + 0.08, w: 1.45, h: 0.2,
+      fontFace: TYPOGRAPHY.display, fontSize: 12, bold: true,
+      color: C.white, margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: 3.35, y: y + 0.22, w: 1.05, h: 0,
+      line: { color: item.color, pt: 2.2, endArrowType: "triangle" },
+    });
+  });
+  slide.addText("Se entrega siempre.", {
+    x: 1.35, y: 5.88, w: 3.28, h: 0.24,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.2, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 5.35, y: 3.7, w: 0.72, h: 0.78,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+  const rules = [
+    { y: 2.08, n: "01", title: "PROFUNDIZA", body: "Agrega calidad al mínimo; no lo sustituye.", color: C.cyan },
+    { y: 3.47, n: "02", title: "SE CONECTA", body: "Responde al problema y a la regla del equipo.", color: C.green },
+    { y: 4.86, n: "03", title: "SE ELIGE UNA", body: "Más profundidad; menos frentes abiertos.", color: C.red },
+  ];
+  rules.forEach((item) => {
+    slide.addShape(SH.roundRect, {
+      x: 6.32, y: item.y, w: 6.18, h: 1.1,
+      rectRadius: 0.05,
+      fill: { color: item.color, transparency: 90 },
+      line: { color: item.color, pt: 1.3 },
+    });
+    addNumberCircle(
+      slide,
+      6.64,
+      item.y + 0.23,
+      0.58,
+      item.n,
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(item.title, {
+      x: 7.53, y: item.y + 0.24, w: 1.62, h: 0.23,
+      fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: 9.18, y: item.y + 0.22, w: 2.88, h: 0.42,
+      fontFace: TYPOGRAPHY.body, fontSize: 11,
+      color: C.slate, margin: 0,
+    });
+  });
+  slide.addText("Si no pueden explicar la rama, todavía no la dominan.", {
+    x: 6.72, y: 6.45, w: 5.4, h: 0.24,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.4, bold: true,
+    color: C.red, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 46 · Fórmula de un compromiso verificable
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("PLAN QUE SE PUEDE REVISAR", {
+    x: 0.76, y: 0.46, w: 4.0, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.cyan, margin: 0,
+  });
+  slide.addText("Una tarea completa tiene cuatro datos", {
+    x: 0.76, y: 0.9, w: 8.1, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Si otra persona no puede comprobarla, todavía es una intención.", {
+    x: 0.78, y: 1.58, w: 8.8, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
+  const commitment = [
+    { x: 0.78, n: "01", title: "QUÉ", body: "resultado concreto", color: C.red },
+    { x: 3.88, n: "02", title: "QUIÉN", body: "persona responsable", color: C.cyan },
+    { x: 6.98, n: "03", title: "CUÁNDO", body: "fecha real", color: C.gold },
+    { x: 10.08, n: "04", title: "COMPRUEBA", body: "foto · archivo · prueba", color: C.green },
+  ];
+  commitment.forEach((item, index) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: 2.5, w: 2.48, h: 2.36,
+      rectRadius: 0.06,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.5 },
+      shadow: { type: "outer", color: "000000", opacity: 0.24, blur: 1.3, angle: 45, distance: 0.8 },
+    });
+    slide.addShape(SH.rect, {
+      x: item.x, y: 2.5, w: 2.48, h: 0.58,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    addNumberCircle(slide, item.x + 0.22, 2.64, 0.38, item.n, C.navyDeep, C.white);
+    slide.addText(item.title, {
+      x: item.x + 0.75, y: 2.71, w: 1.42, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 11.8, bold: true,
+      color: textColor, align: "center", margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 0.26, y: 3.48, w: 1.96, h: 0.58,
+      fontFace: TYPOGRAPHY.display, fontSize: 14, bold: true,
+      color: C.navy, align: "center", valign: "mid", margin: 0,
+    });
+    slide.addText(index === 0 ? "¿qué quedará listo?" : index === 1 ? "¿quién responde?" : index === 2 ? "¿antes de qué día?" : "¿cómo se demuestra?", {
+      x: item.x + 0.25, y: 4.4, w: 1.98, h: 0.2,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.2,
+      color: C.slate, align: "center", margin: 0,
+    });
+    if (index < commitment.length - 1) {
+      slide.addShape(SH.chevron, {
+        x: item.x + 2.62, y: 3.36, w: 0.34, h: 0.56,
+        fill: { color: C.gold }, line: { color: C.gold },
+      });
+    }
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.08, y: 5.45, w: 11.18, h: 1.08,
+    rectRadius: 0.05,
+    fill: { color: C.white, transparency: 4 },
+    line: { color: C.cyan, pt: 1.2 },
+  });
+  slide.addText("EJEMPLO", {
+    x: 1.42, y: 5.78, w: 1.02, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
+    charSpacing: 0.8, color: C.cyan, margin: 0,
+  });
+  slide.addText("Mostrar la lectura del sensor cambiando · Camila · jueves · video de 15 segundos", {
+    x: 2.5, y: 5.68, w: 9.15, h: 0.34,
+    fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
+    color: C.navy, margin: 0,
+  });
+  slide.addText("La evidencia está incluida dentro de la tarea, no agregada al final.", {
+    x: 2.5, y: 6.1, w: 8.8, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2,
+    color: C.slate, margin: 0,
+  });
+  addFooter(slide, 46, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 47 · De intención a tarea verificable
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Precisión del plan",
+    "“Avanzar” no es una tarea",
+    "La acción debe terminar en algo que otra persona pueda abrir, mirar, probar o revisar.",
+    47,
+  );
+
+  const examples = [
+    {
+      y: 2.18,
+      weak: "Ver cómo funciona el sensor.",
+      strong: "Conectar solo el sensor y mostrar su lectura cambiando.",
+      proof: "video + valor visible",
+      color: C.cyan,
+    },
+    {
+      y: 4.35,
+      weak: "Hacer el panel.",
+      strong: "Mostrar estado actual y las últimas diez mediciones.",
+      proof: "archivo que abre en el PC",
+      color: C.green,
+    },
+  ];
+  examples.forEach((item, index) => {
+    slide.addShape(SH.roundRect, {
+      x: 0.78, y: item.y, w: 3.55, h: 1.52,
+      rectRadius: 0.06,
+      fill: { color: C.redSoft }, line: { color: C.red, pt: 1.2 },
+    });
+    addNumberCircle(slide, 1.05, item.y + 0.27, 0.54, String(index + 1), C.red, C.white);
+    slide.addText("INTENCIÓN", {
+      x: 1.82, y: item.y + 0.29, w: 1.28, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 9, bold: true,
+      charSpacing: 0.7, color: C.red, margin: 0,
+    });
+    slide.addText(item.weak, {
+      x: 1.05, y: item.y + 0.83, w: 2.9, h: 0.38,
+      fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
+      color: C.navy, align: "center", margin: 0,
+    });
+
+    slide.addShape(SH.chevron, {
+      x: 4.55, y: item.y + 0.46, w: 0.64, h: 0.62,
+      fill: { color: C.gold }, line: { color: C.gold },
+    });
+
+    slide.addShape(SH.roundRect, {
+      x: 5.42, y: item.y, w: 7.1, h: 1.52,
+      rectRadius: 0.06,
+      fill: { color: item.color, transparency: 90 },
+      line: { color: item.color, pt: 1.3 },
+    });
+    slide.addText("TAREA VERIFICABLE", {
+      x: 5.78, y: item.y + 0.29, w: 2.15, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 9, bold: true,
+      charSpacing: 0.7, color: item.color, margin: 0,
+    });
+    slide.addText(item.strong, {
+      x: 5.78, y: item.y + 0.7, w: 4.45, h: 0.42,
+      fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addShape(SH.roundRect, {
+      x: 10.38, y: item.y + 0.44, w: 1.8, h: 0.64,
+      rectRadius: 0.04,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    slide.addText("SE COMPRUEBA CON", {
+      x: 10.58, y: item.y + 0.57, w: 1.4, h: 0.14,
+      fontFace: TYPOGRAPHY.body, fontSize: 7.2, bold: true,
+      charSpacing: 0.45,
+      color: item.color === C.gold ? C.navyDeep : C.white,
+      align: "center", margin: 0,
+    });
+    slide.addText(item.proof, {
+      x: 10.53, y: item.y + 0.83, w: 1.5, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 9.2, bold: true,
+      color: item.color === C.gold ? C.navyDeep : C.white,
+      align: "center", margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.34, y: 6.38, w: 10.65, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("Una tarea termina en evidencia. Una intención termina en otra conversación.", {
+    x: 1.68, y: 6.52, w: 9.97, h: 0.19,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.9, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 48 · La primera semana y la prueba mínima
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("ORDEN DEL TRABAJO", {
+    x: 0.76, y: 0.46, w: 3.2, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.red, margin: 0,
+  });
+  slide.addText("Primero demuestren una señal real", {
+    x: 0.76, y: 0.9, w: 8.1, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("La primera tarea de todos es la prueba mínima. Después se construye la rama.", {
+    x: 0.78, y: 1.58, w: 9.2, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
+  const pathItems = [
+    { x: 0.82, n: "01", title: "PRUEBA MÍNIMA", body: "una lectura cambia", color: C.red },
+    { x: 3.98, n: "02", title: "REGLA", body: "el umbral activa algo", color: C.gold },
+    { x: 7.14, n: "03", title: "RAMA", body: "profundidad elegida", color: C.cyan },
+    { x: 10.3, n: "04", title: "EVIDENCIA", body: "se muestra y explica", color: C.green },
+  ];
+  slide.addShape(SH.line, {
+    x: 1.35, y: 3.18, w: 10.5, h: 0,
+    line: { color: C.white, transparency: 48, pt: 2, endArrowType: "triangle" },
+  });
+  pathItems.forEach((item, index) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    addNumberCircle(slide, item.x + 0.65, 2.69, 0.92, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x, y: 3.9, w: 2.2, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 13.3, bold: true,
+      color: item.color, align: "center", margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x, y: 4.4, w: 2.2, h: 0.42,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.6,
+      color: C.paleInk, align: "center", margin: 0,
+    });
+    if (index === 0) {
+      slide.addShape(SH.roundRect, {
+        x: item.x + 0.15, y: 5.05, w: 1.9, h: 0.42,
+        rectRadius: 0.04,
+        fill: { color: C.red }, line: { color: C.red },
+      });
+      slide.addText("EMPIEZA ESTA SEMANA", {
+        x: item.x + 0.33, y: 5.18, w: 1.54, h: 0.15,
+        fontFace: TYPOGRAPHY.body, fontSize: 7.7, bold: true,
+        charSpacing: 0.55, color: C.white, align: "center", margin: 0,
+      });
+    }
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.06, y: 5.95, w: 11.2, h: 0.83,
+    rectRadius: 0.05,
+    fill: { color: C.white }, line: { color: C.white },
+  });
+  slide.addText("VENTANA PRINCIPAL", {
+    x: 1.4, y: 6.2, w: 1.82, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+    charSpacing: 0.65, color: C.red, margin: 0,
+  });
+  slide.addText("del lunes 7 al viernes 11 de septiembre", {
+    x: 3.23, y: 6.12, w: 4.15, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 14.6, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  slide.addText("El 21 se muestra evidencia, no intención.", {
+    x: 8.08, y: 6.17, w: 3.65, h: 0.24,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.3, bold: true,
+    color: C.red, align: "right", margin: 0,
+  });
+  addFooter(slide, 48, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 49 · Formatos de evidencia para la Mentoría 3
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Preparar la revisión",
+    "La evidencia puede tomar varias formas",
+    "El formato cambia. La exigencia no: debe mostrar algo que el equipo construyó, probó o registró.",
+    49,
+    { titleFontSize: 25.2 },
+  );
+
+  const evidence = [
+    { x: 0.78, y: 2.0, title: "PROTOTIPO", image: IMG.prototype, color: C.red },
+    { x: 4.59, y: 2.0, title: "SIMULACIÓN", image: IMG.wokwiDiagram, color: C.cyan },
+    { x: 8.4, y: 2.0, title: "DIAGRAMA", image: IMG.systemFlow, color: C.gold },
+    { x: 0.78, y: 4.22, title: "MAQUETA", image: IMG.enclosure3d, color: C.green },
+    { x: 4.59, y: 4.22, title: "REGISTRO", image: IMG.prototype, color: C.blue },
+    { x: 8.4, y: 4.22, title: "PANEL", image: IMG.dashboardDetail, color: C.red },
+  ];
+  evidence.forEach((item, index) => {
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: 3.35, h: 1.82,
+      rectRadius: 0.05,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.2 },
+      shadow: { type: "outer", color: "84909D", opacity: 0.12, blur: 1.2, angle: 45, distance: 0.7 },
+    });
+    addImageCrop(slide, item.image, item.x + 0.12, item.y + 0.12, 2.1, 1.1);
+    addNumberCircle(
+      slide,
+      item.x + 2.48,
+      item.y + 0.2,
+      0.4,
+      String(index + 1),
+      item.color,
+      item.color === C.gold ? C.navyDeep : C.white,
+    );
+    slide.addText(
+      index === 0 ? "mide y responde" :
+      index === 1 ? "prueba circuito y lógica" :
+      index === 2 ? "explica conexiones" :
+      index === 3 ? "sitúa la solución" :
+      index === 4 ? "ordena datos y fechas" :
+      "permite interpretar",
+      {
+        x: item.x + 2.34, y: item.y + 0.78, w: 0.76, h: 0.36,
+        fontFace: TYPOGRAPHY.body, fontSize: 8.3,
+        color: C.slate, align: "center", margin: 0,
+      },
+    );
+    slide.addShape(SH.roundRect, {
+      x: item.x + 0.12, y: item.y + 1.36, w: 3.11, h: 0.34,
+      rectRadius: 0.03,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    slide.addText(item.title, {
+      x: item.x + 0.38, y: item.y + 1.46, w: 2.59, h: 0.15,
+      fontFace: TYPOGRAPHY.display, fontSize: 9.4, bold: true,
+      color: item.color === C.gold ? C.navyDeep : C.white,
+      align: "center", margin: 0,
+    });
+  });
+  slide.addText("ELIJAN EL FORMATO QUE MEJOR DEMUESTRE SU AVANCE", {
+    x: 3.1, y: 6.57, w: 7.14, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.6, bold: true,
+    charSpacing: 0.9, color: C.navy, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 50 · Regla de la evidencia y cierre del bloque
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("COMPROBACIÓN DEL BLOQUE", {
+    x: 0.76, y: 0.46, w: 4.0, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.cyan, margin: 0,
+  });
+  slide.addText("La evidencia responde dos preguntas", {
+    x: 0.76, y: 0.9, w: 8.2, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Una prueba fallida y documentada enseña más que una afirmación sin respaldo.", {
+    x: 0.78, y: 1.58, w: 9.45, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
+  addImageCrop(slide, IMG.prototype, 0.78, 2.25, 4.22, 3.95);
+  slide.addShape(SH.roundRect, {
+    x: 1.03, y: 5.48, w: 3.72, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 6 },
+    line: { color: C.cyan, pt: 1 },
+  });
+  slide.addText("RESULTADO REAL · incluso si algo falla", {
+    x: 1.32, y: 5.63, w: 3.14, h: 0.17,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+
+  const questions = [
+    {
+      y: 2.34, n: "01", label: "QUÉ PROBAMOS",
+      body: "sensor · regla · respuesta · software",
+      color: C.cyan,
+    },
+    {
+      y: 4.16, n: "02", label: "QUÉ APRENDIMOS",
+      body: "qué funcionó · qué falló · qué cambiaremos",
+      color: C.gold,
+    },
+  ];
+  questions.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: 5.52, y: item.y, w: 6.94, h: 1.48,
+      rectRadius: 0.06,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.4 },
+    });
+    addNumberCircle(slide, 5.86, item.y + 0.34, 0.66, item.n, item.color, textColor);
+    slide.addText(item.label, {
+      x: 6.84, y: item.y + 0.36, w: 2.12, h: 0.24,
+      fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: 6.84, y: item.y + 0.88, w: 4.9, h: 0.28,
+      fontFace: TYPOGRAPHY.body, fontSize: 11.2, bold: true,
+      color: item.color === C.gold ? C.navy : item.color, margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.14, y: 6.55, w: 11.06, h: 0.42,
+    rectRadius: 0.04,
+    fill: { color: C.red }, line: { color: C.red },
+  });
+  slide.addText("Cada equipo declara ahora: su rama · su primera tarea · la evidencia que llevará.", {
+    x: 1.48, y: 6.68, w: 10.38, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.6, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addFooter(slide, 50, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 51 · Entregable obligatorio de la Mentoría 2
+{
+  const slide = pptx.addSlide();
+  addHeader(
+    slide,
+    "Cierre · 3 minutos",
+    "La ficha convierte todas las decisiones en un solo plan",
+    "No se reemplaza por una explicación oral: queda registrada y acompaña el trabajo entre sesiones.",
+    51,
+    { titleFontSize: 24.8 },
+  );
+
+  const sections = [
+    {
+      x: 0.78, y: 2.02, n: "01", title: "SOLUCIÓN",
+      body: "variable · unidad · sensor · umbral · respuesta",
+      color: C.red,
+    },
+    {
+      x: 6.86, y: 2.02, n: "02", title: "CAPA QUE MUESTRA",
+      body: "software · destinatario · decisión",
+      color: C.cyan,
+    },
+    {
+      x: 0.78, y: 3.73, n: "03", title: "RECURSOS Y SEGURIDAD",
+      body: "tenemos · conseguir · representar · revisar",
+      color: C.gold,
+    },
+    {
+      x: 6.86, y: 3.73, n: "04", title: "ALCANCE Y PLAN B",
+      body: "qué llega · qué queda fuera · alternativa",
+      color: C.green,
+    },
+    {
+      x: 0.78, y: 5.44, n: "05", title: "TAREAS",
+      body: "responsabilidad · persona · fecha · comprobación",
+      color: C.blue,
+    },
+    {
+      x: 6.86, y: 5.44, n: "06", title: "EVIDENCIA M3",
+      body: "qué probamos · qué aprendimos",
+      color: C.red,
+    },
+  ];
+  sections.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: 5.66, h: 1.34,
+      rectRadius: 0.05,
+      fill: { color: item.color, transparency: 91 },
+      line: { color: item.color, pt: 1.3 },
+    });
+    addNumberCircle(slide, item.x + 0.28, item.y + 0.31, 0.62, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x + 1.2, y: item.y + 0.3, w: 2.5, h: 0.23,
+      fontFace: TYPOGRAPHY.display, fontSize: 13.4, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 1.2, y: item.y + 0.78, w: 3.98, h: 0.3,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.5, bold: true,
+      color: item.color === C.gold ? C.navy : item.color, margin: 0,
+    });
+  });
+  slide.addText("COMPLETA = COMPRENSIBLE + CONSTRUIBLE + COMPROBABLE", {
+    x: 2.68, y: 6.94, w: 7.96, h: 0.19,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
+    charSpacing: 0.85, color: C.navy, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+// 52 · Continuidad y cierre final
+{
+  const slide = pptx.addSlide();
+  slide.background = { color: C.navyDeep };
+  addImageCrop(slide, IMG.competition, 0, 0, W, H);
+  slide.addShape(SH.rect, {
+    x: 0, y: 0, w: W, h: H,
+    fill: { color: C.navyDeep, transparency: 10 },
+    line: { color: C.navyDeep, transparency: 100 },
+  });
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+
+  slide.addText("CONTINUIDAD DEL PROYECTO", {
+    x: 0.76, y: 0.48, w: 4.2, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.2, color: C.cyan, margin: 0,
+  });
+  slide.addText("Hoy dejaron un plan. Ahora toca convertirlo en evidencia.", {
+    x: 0.76, y: 0.98, w: 8.55, h: 1.05,
+    fontFace: TYPOGRAPHY.display, fontSize: 29, bold: true,
+    color: C.white, margin: 0,
+  });
+
+  const continuity = [
+    {
+      x: 0.78, n: "1", title: "MENTORÍA 2",
+      body: "solución + recursos + plan",
+      color: C.red,
+    },
+    {
+      x: 4.58, n: "2", title: "ENTRE SESIONES",
+      body: "construir + probar + registrar",
+      color: C.gold,
+    },
+    {
+      x: 8.38, n: "3", title: "MENTORÍA 3",
+      body: "mostrar avance + aprender",
+      color: C.green,
+    },
+  ];
+  continuity.forEach((item, index) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: 2.72, w: 3.35, h: 2.0,
+      rectRadius: 0.06,
+      fill: { color: C.navyDeep, transparency: 7 },
+      line: { color: item.color, pt: 1.5 },
+    });
+    addNumberCircle(slide, item.x + 1.2, 2.98, 0.86, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x + 0.42, y: 4.02, w: 2.52, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
+      color: C.white, align: "center", margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 0.37, y: 4.42, w: 2.62, h: 0.25,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.2,
+      color: C.paleInk, align: "center", margin: 0,
+    });
+    if (index < continuity.length - 1) {
+      slide.addShape(SH.chevron, {
+        x: item.x + 3.47, y: 3.34, w: 0.48, h: 0.7,
+        fill: { color: C.white, transparency: 15 },
+        line: { color: C.white, transparency: 15 },
+      });
+    }
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 1.12, y: 5.42, w: 11.08, h: 1.02,
+    rectRadius: 0.06,
+    fill: { color: C.white, transparency: 5 },
+    line: { color: C.cyan, pt: 1.3 },
+  });
+  slide.addText("NUESTRO MVP VA A", {
+    x: 1.5, y: 5.72, w: 2.15, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
+    charSpacing: 0.8, color: C.cyan, margin: 0,
+  });
+  slide.addShape(SH.line, {
+    x: 3.65, y: 6.0, w: 2.92, h: 0,
+    line: { color: C.border, pt: 1.3, dash: "dash" },
+  });
+  slide.addText("Y EL 21 DE SEPTIEMBRE DEMOSTRAREMOS QUE", {
+    x: 6.87, y: 5.72, w: 3.7, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
+    charSpacing: 0.65, color: C.green, margin: 0,
+  });
+  slide.addShape(SH.line, {
+    x: 10.52, y: 6.0, w: 1.24, h: 0,
+    line: { color: C.border, pt: 1.3, dash: "dash" },
+  });
+  slide.addText("La siguiente mentoría revisa lo que construyeron, probaron y registraron.", {
+    x: 1.58, y: 6.77, w: 10.2, h: 0.26,
+    fontFace: TYPOGRAPHY.display, fontSize: 14, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addFooter(slide, 52, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
