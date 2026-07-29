@@ -361,3 +361,6 @@ La ejecución del evento se apoya en los siguientes instrumentos:
 4. ficha de identificación y orden de presentación de equipos;
 5. programa operativo del evento final;
 6. formato de retroalimentación para los equipos.
+
+La guía visual para las personas que integran el jurado está disponible en
+[`infografias/infografia-guia-jurado-concurso-final-geogreen-gptimage.png`](infografias/infografia-guia-jurado-concurso-final-geogreen-gptimage.png).

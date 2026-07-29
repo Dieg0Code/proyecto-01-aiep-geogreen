@@ -55,6 +55,8 @@ El Taller 3 incluye:
   institucional lista para distribución.
 - `concurso/documentos/lineamientos-concurso-final-geogreen.tex`: fuente
   editable del documento.
+- `concurso/infografias/infografia-guia-jurado-concurso-final-geogreen-gptimage.png`:
+  guía visual de funciones, criterios y procedimiento para el jurado.
 
 ## Dispositivo y software
 
