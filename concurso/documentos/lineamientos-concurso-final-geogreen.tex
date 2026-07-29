@@ -1,0 +1,555 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=14mm,bottom=16mm,left=14mm,right=14mm]{geometry}
+\usepackage{fontspec}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPBlue}{HTML}{1B6CA8}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+\definecolor{AIEPGold}{HTML}{D8A928}
+\definecolor{AIEPSoftBlue}{HTML}{E8F1F8}
+\definecolor{AIEPGreenSoft}{HTML}{EAF5EF}
+\definecolor{AIEPGoldSoft}{HTML}{FFF5D8}
+\definecolor{AIEPRedSoft}{HTML}{FCEBED}
+\definecolor{Line}{HTML}{D2DAE3}
+\definecolor{White}{HTML}{FFFFFF}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\scriptsize\textcolor{AIEPSlate}{Concurso Final GeoGreen Escolar 2026}}
+\fancyfoot[R]{\scriptsize\textcolor{AIEPSlate}{AIEP Osorno · \thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.5pt}
+\setlist[itemize]{leftmargin=4.4mm,topsep=1pt,itemsep=1.1pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=5.2mm,topsep=1pt,itemsep=1.2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.18}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPInk}}{}{0pt}{}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{card}[1][]{
+  enhanced,colback=White,colframe=Line,boxrule=.5pt,arc=1.2mm,
+  left=3.2mm,right=3.2mm,top=2.7mm,bottom=2.7mm,#1
+}
+\newtcolorbox{softcard}[2][]{
+  enhanced,colback=#2!10,colframe=#2,boxrule=.55pt,arc=1.2mm,
+  left=3.2mm,right=3.2mm,top=2.7mm,bottom=2.7mm,#1
+}
+\newcommand{\kicker}[1]{%
+  {\color{AIEPRed}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{2.4mm}
+  {\color{AIEPRed}\rule{13mm}{1.2pt}}\vspace{3mm}
+}
+\newcommand{\labeltext}[1]{%
+  {\scriptsize\bfseries\color{AIEPSlate}\MakeUppercase{#1}}\par\vspace{1.2mm}
+}
+\newcommand{\level}[2]{%
+  \fcolorbox{#1}{#1}{\textcolor{White}{\bfseries\strut #2}}%
+}
+
+\begin{document}
+
+% 1 ---------------------------------------------------------------------------
+\thispagestyle{fancy}
+\kicker{GeoGreen Escolar · AIEP Osorno}
+{\Huge\bfseries\color{AIEPNavy} Concurso Final GeoGreen Escolar 2026}\par
+\vspace{2mm}
+{\large\color{AIEPSlate} Lineamientos de participación, presentación y evaluación}\par
+\vspace{7mm}
+
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{softcard}[height=33mm,valign=top]{AIEPRed}
+\labeltext{Fecha}
+{\Large\bfseries\color{AIEPNavy}5 de octubre}\par
+Lunes · evento final.
+\end{softcard}
+&
+\begin{softcard}[height=33mm,valign=top]{AIEPCyan}
+\labeltext{Participación}
+{\Large\bfseries\color{AIEPNavy}10 equipos}\par
+6 estudiantes por equipo.
+\end{softcard}
+&
+\begin{softcard}[height=33mm,valign=top]{AIEPGreen}
+\labeltext{Evaluación}
+{\Large\bfseries\color{AIEPNavy}3 jurados}\par
+Tres perspectivas complementarias.
+\end{softcard}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{card}
+\labeltext{Datos del evento}
+\begin{tabularx}{\textwidth}{@{}L{39mm}Y@{}}
+\textbf{Socio comunitario} & Instituto Comercial Liceo Bicentenario, Osorno.\\
+\textbf{Instancias previas} & Tres talleres y cuatro mentorías.\\
+\textbf{Responsabilidad} & Equipo conjunto AIEP y socio comunitario.\\
+\textbf{Resultado} & Propuestas presentadas, evaluación del jurado, retroalimentación, reconocimiento y registro institucional.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{Propósito}
+El concurso constituye el cierre público, pedagógico y competitivo del programa. Cada equipo
+presenta una propuesta de innovación sostenible desarrollada a partir de un problema real,
+explica las decisiones tomadas, demuestra la evidencia reunida y comunica qué valor podría
+aportar su solución.
+\end{softcard}
+
+\begin{card}
+\labeltext{Trayectoria que se evalúa}
+\centering
+{\large\bfseries\color{AIEPNavy}
+Problema → contexto y personas → solución → tecnología y datos → pruebas y mejoras → comunicación pública}
+\end{card}
+
+\begin{softcard}{AIEPGold}
+\labeltext{GeoGreen como referente}
+GeoGreen demuestra hasta dónde puede crecer una idea, pero no constituye una solución que deba
+copiarse. Una propuesta puede ser más simple, diferente o superar el referente, siempre que sus
+decisiones sean coherentes y su avance pueda explicarse mediante evidencia.
+\end{softcard}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Alcance de estos lineamientos}
+Este marco regula participación, presentación, jurado, evaluación, desempates, seguridad y
+registros. La cantidad de reconocimientos, las categorías y los premios se determinan mediante
+la coordinación institucional correspondiente.
+\end{softcard}
+
+\newpage
+% 2 ---------------------------------------------------------------------------
+\kicker{Criterios comunes}
+{\LARGE\bfseries\color{AIEPNavy} Principios y condiciones de participación}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=84mm,valign=top]
+\labeltext{Principios del concurso}
+\begin{enumerate}
+  \item Se evalúa el proceso, no solamente el objeto final.
+  \item La evidencia vale más que la apariencia.
+  \item La tecnología debe cumplir un propósito.
+  \item Las mentorías orientan; el desarrollo pertenece al equipo.
+  \item Todos conocen anticipadamente criterios, tiempos y condiciones.
+  \item La seguridad está por encima de la demostración.
+  \item La comunicación distingue entre lo construido, probado, simulado y proyectado.
+  \item La inteligencia artificial puede apoyar; el equipo debe verificar, comprender y defender sus decisiones.
+\end{enumerate}
+\end{card}
+&
+\begin{card}[height=84mm,valign=top]
+\labeltext{Condiciones comunes}
+\begin{itemize}
+  \item Participan los diez equipos constituidos durante el programa.
+  \item Cada equipo presenta una sola propuesta.
+  \item La propuesta se relaciona con sostenibilidad, medioambiente, residuos, reciclaje, uso responsable de recursos o una necesidad comunitaria asociada.
+  \item No es obligatorio llegar con un producto industrial terminado.
+  \item La madurez alcanzada se valora cuando está respaldada por pruebas, aprendizajes y decisiones verificables.
+  \item El costo o la cantidad de componentes no entrega puntaje por sí mismo.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Formas válidas de evidencia}
+Prototipo físico · simulación · interfaz · maqueta · diagrama · video · fotografía · registro de
+prueba · análisis de datos · comparación de versiones · explicación documentada de un error.
+\end{softcard}
+
+\begin{card}
+\labeltext{Requisitos mínimos de la propuesta}
+El equipo debe poder explicar:
+\begin{enumerate}
+  \item qué problema aborda y en qué contexto ocurre;
+  \item a quién afecta o beneficia;
+  \item qué solución propone;
+  \item qué variable observa y qué función cumple la tecnología;
+  \item qué ocurre desde la entrada hasta la respuesta del sistema;
+  \item qué construyó, simuló, investigó o probó;
+  \item qué resultado obtuvo, qué error encontró o qué decisión mejoró;
+  \item qué alcance real tiene actualmente la propuesta.
+\end{enumerate}
+\end{card}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Participación del equipo}
+Las seis personas realizan un aporte sustantivo. La contribución puede expresarse mediante
+explicación oral, operación de la demostración, presentación de evidencia, soporte visual,
+respuesta a preguntas o coordinación de una parte del relato.
+\end{softcard}
+
+\newpage
+% 3 ---------------------------------------------------------------------------
+\kicker{Presentación pública}
+{\LARGE\bfseries\color{AIEPNavy} Formato, soportes y composición del jurado}\par
+\vspace{4mm}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Bloque máximo por equipo · 8 minutos}
+\begin{tabularx}{\textwidth}{@{}L{50mm}C{34mm}Y@{}}
+\textbf{Pitch y demostración} & \textbf{4 minutos} & Problema, solución, funcionamiento, evidencia y aporte.\\
+\textbf{Preguntas del jurado} & \textbf{2 minutos} & Decisiones, límites, pruebas y aprendizajes.\\
+\textbf{Registro y transición} & \textbf{2 minutos} & Cierre de puntajes y preparación del equipo siguiente.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{card}
+\labeltext{Secuencia recomendada del pitch}
+\begin{enumerate}
+  \item Problema y contexto.
+  \item Personas o comunidad relacionada.
+  \item Solución propuesta.
+  \item Funcionamiento: entrada, procesamiento, comunicación y respuesta.
+  \item Evidencia de prueba, error, aprendizaje o mejora.
+  \item Aporte esperado y estado actual del proyecto.
+\end{enumerate}
+\end{card}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Uso de soportes}
+El equipo puede utilizar presentación, afiche, imágenes, video breve, diagrama, simulación,
+interfaz, maqueta o prototipo. Cada soporte debe ayudar a situar, explicar o demostrar. La
+demostración y los videos forman parte de los cuatro minutos del pitch.
+\end{softcard}
+
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{card}[height=58mm,valign=top]
+\labeltext{Perfil técnico}
+Programación, electrónica, tecnología o innovación.\par
+\vspace{3mm}
+Observa funcionamiento, datos, evidencia técnica, seguridad y alcance.
+\end{card}
+&
+\begin{card}[height=58mm,valign=top]
+\labeltext{Perfil social y ambiental}
+Pertinencia, sostenibilidad e impacto comunitario.\par
+\vspace{3mm}
+Observa problema, personas relacionadas, relevancia y uso responsable de recursos.
+\end{card}
+&
+\begin{card}[height=58mm,valign=top]
+\labeltext{Perfil educativo}
+Representación educativa o del socio comunitario.\par
+\vspace{3mm}
+Observa contexto escolar, comprensión, participación y valor formativo.
+\end{card}
+\end{tabularx}
+
+\begin{card}
+\labeltext{Moderación y secretaría · sin derecho a voto}
+Una cuarta persona presenta a los equipos, controla los tiempos, ordena las preguntas, resguarda
+las pautas, consolida puntajes, aplica el desempate y registra el resultado en el acta.
+\end{card}
+
+\begin{softcard}{AIEPGold}
+\labeltext{Actuación del jurado}
+Cada integrante evalúa individualmente con la misma rúbrica, completa su pauta antes de deliberar,
+formula preguntas breves y entrega una fortaleza y una oportunidad de mejora por equipo. Antes de
+comenzar se realiza una calibración común de criterios y niveles.
+\end{softcard}
+
+\newpage
+% 4 ---------------------------------------------------------------------------
+\kicker{Evaluación común}
+{\LARGE\bfseries\color{AIEPNavy} Rúbrica oficial · 100 puntos}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{@{}L{55mm}C{18mm}Y@{}}
+\rowcolor{AIEPNavy}
+\textcolor{White}{\bfseries Criterio} &
+\textcolor{White}{\bfseries Peso} &
+\textcolor{White}{\bfseries Qué observa}\\
+Problema y pertinencia ambiental o comunitaria & 15 & Claridad, contexto, personas relacionadas y relevancia sostenible.\\
+\rowcolor{AIEPSoftBlue}
+Coherencia entre problema, solución y personas usuarias & 20 & Relación lógica, utilidad, adaptación propia y comprensión de la necesidad.\\
+Uso pertinente de tecnología y datos & 15 & Función del sensor, flujo entrada–proceso–salida y propósito técnico.\\
+\rowcolor{AIEPGreenSoft}
+Evidencia, pruebas, aprendizaje e iteración & 25 & Respaldo, pruebas, resultados, errores reconocidos y mejoras aplicadas.\\
+Viabilidad, seguridad y uso responsable de recursos & 10 & Alcance realista, límites, materiales, riesgos y próximos pasos.\\
+\rowcolor{AIEPGoldSoft}
+Trabajo del equipo y comunicación & 15 & Coordinación, participación, claridad, soporte y respuesta a preguntas.\\
+\end{tabularx}
+
+\vspace{5mm}
+\begin{card}
+\labeltext{Niveles de desempeño}
+\begin{tabularx}{\textwidth}{@{}C{14mm}L{31mm}Y@{}}
+\level{AIEPGreen}{4} & \textbf{Sólido} & La dimensión es clara, coherente, verificable y está bien integrada.\\
+\level{AIEPBlue}{3} & \textbf{Logrado} & Se comprende y cuenta con respaldo suficiente, aunque admite mejoras.\\
+\level{AIEPGold}{2} & \textbf{En desarrollo} & Existe una base pertinente, con vacíos o evidencia parcial.\\
+\level{AIEPRed}{1} & \textbf{Inicial} & Aparece de forma general y todavía no sostiene la propuesta.\\
+\level{AIEPSlate}{0} & \textbf{No observable} & No fue presentada o no existe información para evaluarla.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Cálculo}
+\centering
+{\large\bfseries\color{AIEPNavy}
+Puntaje del criterio = (nivel obtenido ÷ 4) × peso del criterio}
+\par\vspace{2mm}
+El resultado del equipo corresponde al promedio de los puntajes totales asignados por las tres
+personas del jurado.
+\end{softcard}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Criterio central}
+La evidencia, las pruebas y las mejoras concentran el mayor peso. Un proyecto no obtiene ventaja
+por verse más complejo: obtiene ventaja cuando demuestra qué hizo, qué aprendió y cómo esa
+evidencia mejoró la propuesta.
+\end{softcard}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Imparcialidad}
+No se otorgan ventajas por afinidad, estética, costo, cantidad de componentes o complejidad
+aparente. El jurado valora aquello que el equipo presenta, explica y demuestra.
+\end{softcard}
+
+\newpage
+% 5 ---------------------------------------------------------------------------
+\kicker{Descriptores de evaluación}
+{\LARGE\bfseries\color{AIEPNavy} Problema, coherencia y tecnología}\par
+\vspace{4mm}
+
+\begin{softcard}{AIEPRed}
+\labeltext{1 · Problema y pertinencia ambiental o comunitaria · 15 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & Problema concreto, situado y relevante; identifica personas o contexto y explica con claridad su relación con sostenibilidad.\\
+\textbf{3} & El problema y su relevancia se comprenden; el contexto o sus respaldos admiten mayor profundidad.\\
+\textbf{2} & Problema general y pertinente, con contexto, destinatarios o relevancia poco precisos.\\
+\textbf{1} & Tema amplio sin delimitación clara de la situación que se busca abordar.\\
+\textbf{0} & No presenta un problema reconocible.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{2 · Coherencia entre problema, solución y personas usuarias · 20 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & La solución responde directamente al problema, considera a quienes se relacionan con él y muestra decisiones propias justificadas.\\
+\textbf{3} & Existe una relación clara, con aspectos de uso o adaptación todavía mejorables.\\
+\textbf{2} & La solución se relaciona parcialmente con el problema y mantiene supuestos no resueltos.\\
+\textbf{1} & La propuesta se describe, pero no demuestra por qué respondería a la necesidad.\\
+\textbf{0} & Problema y solución no guardan una relación observable.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{3 · Uso pertinente de tecnología y datos · 15 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & Explica correctamente qué observa, cómo procesa el dato y qué respuesta produce; cada recurso técnico cumple una función necesaria.\\
+\textbf{3} & El funcionamiento principal es comprensible y mayormente coherente, con detalles técnicos incompletos.\\
+\textbf{2} & Identifica componentes o funciones, pero el flujo del sistema presenta vacíos.\\
+\textbf{1} & Enumera tecnología sin explicar cómo contribuye a resolver el problema.\\
+\textbf{0} & No presenta uso de tecnología o datos.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{card}
+\labeltext{Pregunta transversal del jurado}
+{\large\bfseries\color{AIEPNavy}
+¿Se puede seguir el recorrido entre lo que el equipo observó, lo que decidió construir y la
+respuesta que espera producir?}
+\end{card}
+
+\newpage
+% 6 ---------------------------------------------------------------------------
+\kicker{Descriptores de evaluación}
+{\LARGE\bfseries\color{AIEPNavy} Evidencia, viabilidad y comunicación}\par
+\vspace{4mm}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{4 · Evidencia, pruebas, aprendizaje e iteración · 25 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & Presenta evidencia clara de pruebas, interpreta resultados, reconoce errores y demuestra mejoras derivadas de lo aprendido.\\
+\textbf{3} & Muestra al menos una prueba pertinente y explica qué resultado o aprendizaje produjo.\\
+\textbf{2} & Presenta evidencia parcial o poco interpretada; su relación con las decisiones es débil.\\
+\textbf{1} & Formula afirmaciones sobre el proyecto sin respaldo suficiente.\\
+\textbf{0} & No presenta pruebas, registros ni evidencia verificable.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{softcard}{AIEPGold}
+\labeltext{5 · Viabilidad, seguridad y uso responsable de recursos · 10 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & Reconoce alcance, límites, recursos y riesgos; la propuesta es segura y plantea una ruta realista.\\
+\textbf{3} & La propuesta es realizable y segura, aunque algunos recursos, límites o pasos requieren precisión.\\
+\textbf{2} & Mantiene dudas importantes de alcance, recursos o seguridad.\\
+\textbf{1} & Depende de supuestos o recursos no explicados y no aborda adecuadamente los riesgos.\\
+\textbf{0} & La demostración es insegura o no existe información para analizar la viabilidad.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{6 · Trabajo del equipo y comunicación · 15 puntos}
+\begin{tabularx}{\textwidth}{@{}C{11mm}Y@{}}
+\textbf{4} & El equipo se coordina, distribuye aportes sustantivos, utiliza el soporte con propósito y responde con claridad y honestidad.\\
+\textbf{3} & La presentación es comprensible y coordinada, con oportunidades menores de síntesis, participación o uso del soporte.\\
+\textbf{2} & Se comprende la idea principal, pero existen desequilibrios de participación, lectura excesiva o una secuencia poco integrada.\\
+\textbf{1} & La presentación dificulta comprender el proyecto o depende de una sola persona.\\
+\textbf{0} & El equipo no logra presentar una versión evaluable.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{card}
+\labeltext{Pregunta transversal del jurado}
+{\large\bfseries\color{AIEPNavy}
+¿El equipo puede demostrar qué hizo, explicar qué aprendió y reconocer con honestidad el estado
+actual de su propuesta?}
+\end{card}
+
+\newpage
+% 7 ---------------------------------------------------------------------------
+\kicker{Aplicación de la evaluación}
+{\LARGE\bfseries\color{AIEPNavy} Procedimiento, desempate y seguridad}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=105mm,valign=top]
+\labeltext{Procedimiento}
+\begin{enumerate}
+  \item La moderación identifica al equipo y activa el tiempo.
+  \item El equipo realiza su pitch y demostración.
+  \item El jurado formula preguntas.
+  \item Cada integrante completa su pauta individual sin deliberación.
+  \item La secretaría recibe las pautas y consolida los puntajes.
+  \item Una vez presentados todos los equipos, se revisan los resultados agregados.
+  \item Si existe empate relevante para el reconocimiento, se aplica el procedimiento establecido.
+  \item El acta registra puntajes, desempate y resultado final.
+\end{enumerate}
+\end{card}
+&
+\begin{card}[height=105mm,valign=top]
+\labeltext{Desempate}
+Los empates se resuelven en este orden:
+\begin{enumerate}
+  \item mayor promedio en evidencia, pruebas, aprendizaje e iteración;
+  \item mayor promedio en coherencia entre problema, solución y personas usuarias;
+  \item mayor promedio en problema y pertinencia ambiental o comunitaria;
+  \item deliberación fundada y votación de las tres personas del jurado.
+\end{enumerate}
+\vspace{3mm}
+La aplicación del desempate queda registrada en el acta.
+\end{card}
+\end{tabularx}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Seguridad durante las demostraciones}
+\begin{itemize}
+  \item La moderación o el perfil técnico puede detener una demostración que implique riesgo.
+  \item Una conexión insegura no se energiza durante el evento.
+  \item Detener una demostración no elimina la participación: se evalúa la evidencia segura disponible.
+  \item No se improvisan cambios eléctricos durante la presentación.
+\end{itemize}
+\end{softcard}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Contingencias}
+Los equipos deben contar con fotografías, video o registros que permitan explicar una prueba si
+el prototipo falla. Un fallo en vivo no constituye automáticamente un fracaso: se evalúa la
+capacidad de explicar qué ocurrió, qué evidencia previa existe y cómo se enfrentaría el problema.
+\end{softcard}
+
+\begin{softcard}{AIEPGold}
+\labeltext{Orden y equidad}
+Todos los equipos disponen del mismo tiempo máximo, reciben preguntas dentro del mismo bloque y
+son evaluados con idénticos criterios. El orden de presentación se comunica antes del inicio.
+\end{softcard}
+
+\newpage
+% 8 ---------------------------------------------------------------------------
+\kicker{Cierre y trazabilidad}
+{\LARGE\bfseries\color{AIEPNavy} Retroalimentación, registros y reconocimientos}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=63mm,valign=top]
+\labeltext{Cada equipo recibe}
+\begin{itemize}
+  \item puntaje consolidado por criterio;
+  \item una fortaleza observada;
+  \item una oportunidad concreta de mejora.
+\end{itemize}
+\vspace{3mm}
+La devolución describe acciones y evidencias; no califica rasgos personales.
+\end{card}
+&
+\begin{card}[height=63mm,valign=top]
+\labeltext{El evento conserva}
+\begin{itemize}
+  \item pautas individuales del jurado;
+  \item acta de consolidación y resultado;
+  \item registro de desempate, si se utiliza;
+  \item identificación de las propuestas;
+  \item fotografías y registro audiovisual institucional.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Instrumentos operativos asociados}
+\begin{enumerate}
+  \item pauta individual de evaluación;
+  \item planilla o acta de consolidación de puntajes;
+  \item guía breve de jurado y calibración;
+  \item ficha de identificación y orden de presentación;
+  \item programa operativo del evento;
+  \item formato de retroalimentación para los equipos.
+\end{enumerate}
+\end{softcard}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Modalidad de reconocimiento}
+La dirección, coordinación y administración responsables determinan la cantidad de equipos
+reconocidos, la existencia de posiciones o categorías y las características de los premios. La
+modalidad seleccionada se comunica antes del evento y se aplica de manera consistente a los
+resultados obtenidos mediante esta evaluación.
+\end{softcard}
+
+\begin{card}
+\labeltext{Compatibilidad del sistema}
+La rúbrica y el procedimiento se mantienen sin modificaciones si se decide reconocer a un equipo,
+establecer un podio o entregar reconocimientos por categorías. La evaluación produce un resultado
+comparable y trazable; la modalidad de premiación define cómo se traduce ese resultado en
+reconocimientos.
+\end{card}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{Sentido del cierre}
+La competencia reconoce una trayectoria de observación, colaboración, desarrollo, prueba y
+comunicación. El resultado final permite celebrar los avances y conservar evidencia útil para
+fortalecer futuras versiones de GeoGreen Escolar.
+\end{softcard}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,arc=1.2mm,halign=center,top=3mm,bottom=3mm]
+{\large\bfseries\color{White}Una propuesta se fortalece cuando puede explicarse, probarse y mejorarse.}
+\end{tcolorbox}
+
+\end{document}

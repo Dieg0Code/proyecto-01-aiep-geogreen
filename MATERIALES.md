@@ -47,6 +47,15 @@ El Taller 3 incluye:
 - `cronograma/documentos/lineamientos-transversales-equipos-entregables-geogreen.*`:
   continuidad, productos y criterios comunes.
 
+## Concurso final
+
+- `concurso/README.md`: lineamientos de participación, presentación, jurado,
+  evaluación, desempate, seguridad y reconocimientos.
+- `concurso/documentos/lineamientos-concurso-final-geogreen.pdf`: versión
+  institucional lista para distribución.
+- `concurso/documentos/lineamientos-concurso-final-geogreen.tex`: fuente
+  editable del documento.
+
 ## Dispositivo y software
 
 - `arduino/`: firmware base, simulación Wokwi, pruebas, cableado y módulo 3D.

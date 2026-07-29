@@ -72,6 +72,12 @@ GeoGreen muestra hasta dónde puede crecer una idea, pero no es una solución qu
 los equipos deban copiar. La competencia valora la relación entre problema,
 sensor, respuesta, evidencia, mejora y claridad de la presentación.
 
+Los lineamientos comunes de participación, presentación, jurado, evaluación,
+desempate y seguridad se encuentran en
+[`concurso/README.md`](concurso/README.md). La versión institucional para
+distribución está disponible en
+[`concurso/documentos/lineamientos-concurso-final-geogreen.pdf`](concurso/documentos/lineamientos-concurso-final-geogreen.pdf).
+
 ## Inicio rápido
 
 ### Simulación y pruebas del firmware base
@@ -120,6 +126,7 @@ Abrir `http://localhost:8099/` para el contenedor o
 ├── web/                     # Contenedor 3D y plano interactivo
 ├── talleres/01-03/          # Paquetes pedagógicos de los talleres
 ├── banco-ideas/             # Ideas semilla y sensores seleccionados
+├── concurso/                # Lineamientos y documentos del evento final
 ├── cronograma/              # Calendario operativo vigente
 ├── reuniones/               # Materiales y antecedentes de coordinación
 ├── docs/                    # Inventario, infografías, presupuestos y guías
@@ -146,6 +153,8 @@ Abrir `http://localhost:8099/` para el contenedor o
 - [`cronograma/documentos/cronograma-vigente-2026.md`](cronograma/documentos/cronograma-vigente-2026.md)
   — fuente única de fechas operativas.
 - [`talleres/03/README.md`](talleres/03/README.md) — fuente pedagógica del Taller 3.
+- [`concurso/README.md`](concurso/README.md) — lineamientos del Concurso Final
+  GeoGreen Escolar 2026.
 
 ---
 
