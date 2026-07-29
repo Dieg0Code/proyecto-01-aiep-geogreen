@@ -285,6 +285,807 @@ function addNotesAndValidate(slide, opts = {}) {
   warnIfSlideElementsOutOfBounds(slide, pptx);
 }
 
+function resetSlideForRedesign(slide, background = C.paper) {
+  // Reconstrucción completa de una lámina ya creada dentro del mismo bloque.
+  slide._slideObjects = [];
+  slide.background = { color: background };
+}
+
+function redesignSlide09(slide) {
+  resetSlideForRedesign(slide);
+  addHeader(
+    slide,
+    "Variable observable",
+    "Del propósito al dato",
+    "Una intención inspira. Una variable permite medir, comparar y decidir.",
+    9,
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.78, y: 2.0, w: 3.25, h: 2.95,
+    rectRadius: 0.08,
+    fill: { color: C.redSoft },
+    line: { color: C.red, pt: 1.4 },
+  });
+  slide.addText("INTENCIÓN", {
+    x: 1.08, y: 2.31, w: 1.5, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2, bold: true,
+    charSpacing: 1.2, color: C.red, margin: 0,
+  });
+  slide.addText("“Queremos\ncuidar el agua”", {
+    x: 1.08, y: 2.82, w: 2.64, h: 1.0,
+    fontFace: TYPOGRAPHY.display, fontSize: 24, bold: true,
+    color: C.navy, valign: "mid", margin: 0,
+  });
+  slide.addText("Propósito valioso.\nTodavía no produce un dato.", {
+    x: 1.1, y: 4.12, w: 2.56, h: 0.52,
+    fontFace: TYPOGRAPHY.body, fontSize: 12.2,
+    color: C.slate, margin: 0,
+  });
+
+  slide.addShape(SH.chevron, {
+    x: 4.22, y: 2.0, w: 2.05, h: 2.95,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("PREGUNTA\nCLAVE", {
+    x: 4.51, y: 2.5, w: 1.22, h: 0.46,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.4, bold: true,
+    charSpacing: 0.8, color: C.cyan, align: "center", margin: 0,
+  });
+  slide.addText("¿QUÉ\nCAMBIA?", {
+    x: 4.4, y: 3.17, w: 1.42, h: 0.72,
+    fontFace: TYPOGRAPHY.display, fontSize: 19.5, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("cuando el problema\nmejora o empeora", {
+    x: 4.36, y: 4.16, w: 1.46, h: 0.4,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.5,
+    color: C.paleInk, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 6.46, y: 2.0, w: 6.05, h: 2.95,
+    rectRadius: 0.08,
+    fill: { color: C.cyanSoft },
+    line: { color: C.cyan, pt: 1.4 },
+  });
+  slide.addText("VARIABLE OBSERVABLE", {
+    x: 6.8, y: 2.31, w: 2.48, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2, bold: true,
+    charSpacing: 1.15, color: C.cyan, margin: 0,
+  });
+  slide.addText("Nivel de agua", {
+    x: 6.8, y: 2.82, w: 3.25, h: 0.42,
+    fontFace: TYPOGRAPHY.display, fontSize: 24, bold: true,
+    color: C.navy, margin: 0,
+  });
+  addImageContain(slide, IMG.sensorWater, 9.62, 2.5, 2.28, 1.24);
+  slide.addShape(SH.roundRect, {
+    x: 6.8, y: 3.57, w: 2.35, h: 0.72,
+    rectRadius: 0.05,
+    fill: { color: C.white },
+    line: { color: C.cyan, pt: 1.1 },
+  });
+  slide.addText("cm  o  %", {
+    x: 7.06, y: 3.75, w: 1.82, h: 0.3,
+    fontFace: TYPOGRAPHY.display, fontSize: 21, bold: true,
+    color: C.cyan, align: "center", margin: 0,
+  });
+  slide.addText("TIENE UNIDAD", {
+    x: 9.38, y: 3.69, w: 1.34, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.7, bold: true,
+    charSpacing: 0.7, color: C.green, margin: 0,
+  });
+  slide.addText("cambia · se registra · permite decidir", {
+    x: 9.38, y: 3.98, w: 2.62, h: 0.28,
+    fontFace: TYPOGRAPHY.body, fontSize: 11,
+    color: C.slate, margin: 0,
+  });
+  slide.addText("Si no pueden nombrar la unidad o los dos estados, todavía tienen un deseo.", {
+    x: 6.8, y: 4.51, w: 5.12, h: 0.22,
+    fontFace: TYPOGRAPHY.display, fontSize: 11.2, bold: true,
+    color: C.red, margin: 0,
+  });
+
+  const transformations = [
+    { x: 0.8, intent: "SALA SALUDABLE", variable: "Humedad del aire", unit: "%", color: C.green },
+    { x: 4.94, intent: "PATIO MÁS LIMPIO", variable: "Cantidad de residuos", unit: "unid.", color: C.gold },
+    { x: 9.08, intent: "TAPA CERRADA", variable: "Estado de la tapa", unit: "A / C", color: C.blue },
+  ];
+  transformations.forEach((item) => {
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: 5.38, w: 3.52, h: 1.14,
+      rectRadius: 0.05,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.2 },
+    });
+    slide.addText(item.intent, {
+      x: item.x + 0.22, y: 5.59, w: 1.62, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.7, bold: true,
+      charSpacing: 0.65, color: item.color, margin: 0,
+    });
+    slide.addShape(SH.chevron, {
+      x: item.x + 1.68, y: 5.55, w: 0.5, h: 0.35,
+      fill: { color: item.color }, line: { color: item.color },
+    });
+    slide.addText(item.variable, {
+      x: item.x + 0.22, y: 5.95, w: 2.3, h: 0.24,
+      fontFace: TYPOGRAPHY.display, fontSize: 12.2, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addText(item.unit, {
+      x: item.x + 2.65, y: 5.83, w: 0.58, h: 0.42,
+      fontFace: TYPOGRAPHY.display, fontSize: 15, bold: true,
+      color: item.color === C.gold ? C.navy : item.color,
+      align: "center", valign: "mid", margin: 0,
+    });
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide10(slide) {
+  resetSlideForRedesign(slide, C.navy);
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("ALCANCE INTELIGENTE", {
+    x: 0.76, y: 0.48, w: 3.6, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.5, bold: true,
+    charSpacing: 1.3, color: C.gold, margin: 0,
+  });
+  slide.addText("Una variable bien probada vale más\nque cuatro a medias", {
+    x: 0.76, y: 0.88, w: 10.2, h: 1.05,
+    fontFace: TYPOGRAPHY.display, fontSize: 28.5, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("El foco hace que el MVP sea construible, explicable y demostrable.", {
+    x: 0.78, y: 1.94, w: 8.8, h: 0.36,
+    fontFace: TYPOGRAPHY.body, fontSize: 14.5,
+    color: C.paleInk, margin: 0,
+  });
+
+  slide.addShape(SH.ellipse, {
+    x: 0.94, y: 2.3, w: 4.0, h: 4.0,
+    fill: { color: C.cyan }, line: { color: C.white, pt: 1.5 },
+  });
+  addCenteredTextInCircle(slide, "1", {
+    x: 0.94, y: 2.16, d: 4.0, fontSize: 73, color: C.navyDeep,
+  });
+  slide.addText("VARIABLE PRINCIPAL", {
+    x: 1.48, y: 4.93, w: 2.92, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 15.2, bold: true,
+    charSpacing: 0.8, color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addText("medida", {
+    x: 1.32, y: 5.42, w: 1.08, h: 0.32,
+    fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addText("explicada", {
+    x: 2.42, y: 5.42, w: 1.08, h: 0.32,
+    fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addText("probada", {
+    x: 3.52, y: 5.42, w: 1.08, h: 0.32,
+    fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  slide.addText(">", {
+    x: 5.05, y: 3.43, w: 1.02, h: 1.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 56, bold: true,
+    color: C.gold, align: "center", margin: 0,
+  });
+
+  const extras = [
+    { x: 6.25, y: 2.42, label: "LUZ" },
+    { x: 8.37, y: 2.42, label: "HUMEDAD" },
+    { x: 6.25, y: 4.34, label: "SONIDO" },
+    { x: 8.37, y: 4.34, label: "NIVEL" },
+  ];
+  extras.forEach((item, index) => {
+    slide.addShape(SH.ellipse, {
+      x: item.x, y: item.y, w: 1.58, h: 1.58,
+      fill: { color: C.white, transparency: 90 },
+      line: { color: C.white, transparency: 55, pt: 1.1 },
+    });
+    addCenteredTextInCircle(slide, String(index + 1), {
+      x: item.x, y: item.y - 0.13, d: 1.58, fontSize: 22, color: C.paleInk,
+    });
+    slide.addText(item.label, {
+      x: item.x + 0.2, y: item.y + 1.08, w: 1.18, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.5, bold: true,
+      color: C.paleInk, align: "center", margin: 0,
+    });
+  });
+  slide.addShape(SH.line, {
+    x: 6.0, y: 2.28, w: 4.1, h: 3.82,
+    line: { color: C.red, pt: 5 },
+  });
+  slide.addShape(SH.line, {
+    x: 6.0, y: 2.28, w: 4.1, h: 3.82,
+    line: { color: C.red, pt: 5 },
+    flipV: true,
+  });
+  slide.addText("CUATRO MEDIDAS A MEDIAS", {
+    x: 6.06, y: 6.24, w: 3.98, h: 0.24,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.2, bold: true,
+    charSpacing: 0.7, color: C.red, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 10.42, y: 2.32, w: 2.16, h: 4.12,
+    rectRadius: 0.06,
+    fill: { color: C.white }, line: { color: C.gold, pt: 1.5 },
+  });
+  slide.addText("+1", {
+    x: 10.86, y: 2.68, w: 1.28, h: 0.72,
+    fontFace: TYPOGRAPHY.display, fontSize: 34, bold: true,
+    color: C.gold, align: "center", margin: 0,
+  });
+  slide.addText("UNA SEGUNDA\nVARIABLE SOLO SI…", {
+    x: 10.71, y: 3.64, w: 1.58, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.8, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  slide.addText("permite tomar una decisión que la primera no permite.", {
+    x: 10.73, y: 4.55, w: 1.54, h: 0.78,
+    fontFace: TYPOGRAPHY.body, fontSize: 11.1,
+    color: C.slate, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 10.7, y: 5.58, w: 1.6, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.redSoft }, line: { color: C.red, pt: 1 },
+  });
+  slide.addText("SI NO, QUEDA FUERA", {
+    x: 10.83, y: 5.73, w: 1.34, h: 0.16,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.1, bold: true,
+    charSpacing: 0.45, color: C.red, align: "center", margin: 0,
+  });
+  addFooter(slide, 10, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide11(slide) {
+  resetSlideForRedesign(slide);
+  addHeader(
+    slide,
+    "Orden de decisión",
+    "El sensor se elige después de la variable",
+    "El ejemplo GeoGreen: una necesidad se convierte en un dato y recién entonces en una pieza.",
+    11,
+    { titleFontSize: 26 },
+  );
+
+  slide.addShape(SH.line, {
+    x: 1.62, y: 2.64, w: 9.98, h: 0,
+    line: { color: C.navy, pt: 3, endArrowType: "triangle" },
+  });
+  const stages = [
+    { x: 0.82, n: "01", title: "PROBLEMA", color: C.red, q: "¿Qué necesita cambiar?" },
+    { x: 4.45, n: "02", title: "VARIABLE", color: C.cyan, q: "¿Qué dato lo representa?" },
+    { x: 8.08, n: "03", title: "SENSOR", color: C.green, q: "¿Qué pieza produce ese dato?" },
+  ];
+  stages.forEach((stage) => {
+    const textColor = stage.color === C.cyan ? C.navyDeep : C.white;
+    addNumberCircle(slide, stage.x + 0.9, 2.23, 0.82, stage.n, stage.color, textColor);
+    slide.addText(stage.title, {
+      x: stage.x, y: 3.12, w: 2.62, h: 0.3,
+      fontFace: TYPOGRAPHY.display, fontSize: 17, bold: true,
+      color: stage.color === C.cyan ? C.navy : stage.color,
+      align: "center", margin: 0,
+    });
+    slide.addText(stage.q, {
+      x: stage.x + 0.06, y: 5.76, w: 2.5, h: 0.22,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.1, bold: true,
+      color: stage.color, align: "center", margin: 0,
+    });
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 0.82, y: 3.58, w: 2.62, h: 1.9,
+    rectRadius: 0.06,
+    fill: { color: C.redSoft }, line: { color: C.red, pt: 1.2 },
+  });
+  slide.addShape(SH.rect, {
+    x: 1.16, y: 4.05, w: 0.72, h: 0.92,
+    fill: { color: C.slate }, line: { color: C.navy, pt: 1 },
+  });
+  slide.addShape(SH.rect, {
+    x: 1.16, y: 4.61, w: 0.72, h: 0.36,
+    fill: { color: C.red }, line: { color: C.red },
+  });
+  slide.addText("DESBORDE", {
+    x: 2.03, y: 4.01, w: 1.02, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+    charSpacing: 0.5, color: C.red, margin: 0,
+  });
+  slide.addText("No hay margen\npara retirar.", {
+    x: 2.02, y: 4.37, w: 1.05, h: 0.48,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.3, bold: true,
+    color: C.navy, margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 4.45, y: 3.58, w: 2.62, h: 1.9,
+    rectRadius: 0.06,
+    fill: { color: C.cyanSoft }, line: { color: C.cyan, pt: 1.2 },
+  });
+  slide.addText("DISTANCIA", {
+    x: 4.78, y: 3.94, w: 1.96, h: 0.25,
+    fontFace: TYPOGRAPHY.display, fontSize: 16, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  slide.addShape(SH.chevron, {
+    x: 5.2, y: 4.37, w: 1.12, h: 0.42,
+    fill: { color: C.cyan }, line: { color: C.cyan },
+  });
+  slide.addText("% DE LLENADO", {
+    x: 4.77, y: 4.99, w: 1.98, h: 0.2,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.4, bold: true,
+    color: C.cyan, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 8.08, y: 3.58, w: 3.72, h: 1.9,
+    rectRadius: 0.06,
+    fill: { color: C.greenSoft }, line: { color: C.green, pt: 1.2 },
+  });
+  addImageContain(slide, IMG.sensorDistance, 8.36, 3.84, 1.52, 1.34);
+  slide.addText("HC-SR04", {
+    x: 9.98, y: 3.93, w: 1.46, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 16.5, bold: true,
+    color: C.navy, margin: 0,
+  });
+  slide.addText("Mide distancia\nsin tocar el contenido.", {
+    x: 9.98, y: 4.35, w: 1.5, h: 0.6,
+    fontFace: TYPOGRAPHY.body, fontSize: 11.3,
+    color: C.slate, margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 11.98, y: 3.58, w: 0.54, h: 1.9,
+    rectRadius: 0.05,
+    fill: { color: C.red }, line: { color: C.red },
+  });
+  slide.addText("NO\nEMPIECEN\nAQUÍ", {
+    x: 12.05, y: 3.91, w: 0.4, h: 0.78,
+    fontFace: TYPOGRAPHY.body, fontSize: 7.8, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.38, y: 6.22, w: 10.56, h: 0.55,
+    rectRadius: 0.04,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("Problema → variable → sensor. Si invierten el orden, la pieza empieza a mandar sobre la idea.", {
+    x: 1.78, y: 6.37, w: 9.76, h: 0.2,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.8, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide14(slide) {
+  resetSlideForRedesign(slide);
+  addHeader(
+    slide,
+    "Aprender tecnología nueva",
+    "Cómo dominar un componente desconocido",
+    "Primero se reduce la incertidumbre. Después se toca el hardware.",
+    14,
+  );
+
+  slide.addShape(SH.roundRect, {
+    x: 0.78, y: 2.0, w: 11.76, h: 1.95,
+    rectRadius: 0.06,
+    fill: { color: C.softBlue }, line: { color: C.border, pt: 1 },
+  });
+  slide.addText("ANTES DE CONECTAR", {
+    x: 1.1, y: 2.28, w: 2.4, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
+    charSpacing: 1, color: C.navy, margin: 0,
+  });
+  const before = [
+    { x: 3.18, n: "1", title: "IDENTIFICAR", body: "Etiqueta exacta", color: C.red },
+    { x: 6.18, n: "2", title: "REDUCIR", body: "medida · voltaje · cables", color: C.cyan },
+    { x: 9.18, n: "3", title: "PREGUNTAR", body: "componente + placa + objetivo", color: C.gold },
+  ];
+  before.forEach((item, index) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    addNumberCircle(slide, item.x, 2.38, 0.72, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x + 0.9, y: 2.39, w: 1.72, h: 0.24,
+      fontFace: TYPOGRAPHY.display, fontSize: 13, bold: true,
+      color: item.color === C.gold ? C.navy : item.color, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 0.9, y: 2.82, w: 1.92, h: 0.4,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.4,
+      color: C.slate, margin: 0,
+    });
+    if (index < 2) {
+      slide.addShape(SH.chevron, {
+        x: item.x + 2.52, y: 2.48, w: 0.36, h: 0.45,
+        fill: { color: item.color }, line: { color: item.color },
+      });
+    }
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.08, y: 2.74, w: 1.62, h: 0.7,
+    rectRadius: 0.05,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("3 DATOS\nSON SUFICIENTES", {
+    x: 1.29, y: 2.91, w: 1.2, h: 0.36,
+    fontFace: TYPOGRAPHY.display, fontSize: 10.4, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.downArrow, {
+    x: 5.98, y: 4.0, w: 1.2, h: 0.66,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addShape(SH.roundRect, {
+    x: 0.78, y: 4.55, w: 11.76, h: 1.85,
+    rectRadius: 0.06,
+    fill: { color: C.navy }, line: { color: C.navy },
+  });
+  slide.addText("CON EL COMPONENTE REAL", {
+    x: 1.1, y: 4.87, w: 2.7, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
+    charSpacing: 0.9, color: C.cyan, margin: 0,
+  });
+  const real = [
+    { x: 4.05, n: "4", title: "PROBAR", body: "Sensor solo → lectura visible", color: C.green },
+    { x: 8.0, n: "5", title: "CONTRASTAR", body: "Cambiar el mundo → cambia el dato", color: C.blue },
+  ];
+  real.forEach((item, index) => {
+    addNumberCircle(slide, item.x, 4.86, 0.78, item.n, item.color, C.white);
+    slide.addText(item.title, {
+      x: item.x + 0.98, y: 4.86, w: 1.78, h: 0.26,
+      fontFace: TYPOGRAPHY.display, fontSize: 15, bold: true,
+      color: C.white, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 0.98, y: 5.3, w: 2.42, h: 0.35,
+      fontFace: TYPOGRAPHY.body, fontSize: 11.2,
+      color: C.paleInk, margin: 0,
+    });
+    if (index === 0) {
+      slide.addShape(SH.chevron, {
+        x: 7.38, y: 5.0, w: 0.42, h: 0.52,
+        fill: { color: C.green }, line: { color: C.green },
+      });
+    }
+  });
+  slide.addText("RÁPIDO CON INFORMACIÓN", {
+    x: 1.12, y: 3.57, w: 2.4, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.5, bold: true,
+    charSpacing: 0.7, color: C.cyan, margin: 0,
+  });
+  slide.addText("LENTO CON ELECTRICIDAD", {
+    x: 9.62, y: 6.08, w: 2.54, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.5, bold: true,
+    charSpacing: 0.7, color: C.red, align: "right", margin: 0,
+  });
+  slide.addText("El método se repite con sensores, pantallas, software y herramientas nuevas.", {
+    x: 1.58, y: 6.64, w: 9.8, h: 0.22,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.7, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide16(slide) {
+  resetSlideForRedesign(slide, C.navyDeep);
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("CUANDO ALGO NO FUNCIONA", {
+    x: 0.76, y: 0.46, w: 4.2, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.5, bold: true,
+    charSpacing: 1.25, color: C.red, margin: 0,
+  });
+  slide.addText("Tres puertas antes de culpar al código", {
+    x: 0.76, y: 0.88, w: 8.3, h: 0.62,
+    fontFace: TYPOGRAPHY.display, fontSize: 28.5, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Solo pasan a la siguiente cuando la anterior está comprobada.", {
+    x: 0.78, y: 1.58, w: 8.4, h: 0.36,
+    fontFace: TYPOGRAPHY.body, fontSize: 14.3,
+    color: C.paleInk, margin: 0,
+  });
+
+  const gates = [
+    {
+      x: 0.78, n: "1", title: "ENERGÍA", q1: "¿La placa enciende?", q2: "¿El voltaje corresponde?",
+      action: "CORREGIR ALIMENTACIÓN", color: C.red,
+    },
+    {
+      x: 4.55, n: "2", title: "CABLES", q1: "¿Cada cable está bien?", q2: "¿Hay polaridad y tierra común?",
+      action: "CORREGIR MONTAJE", color: C.gold,
+    },
+    {
+      x: 8.32, n: "3", title: "PROGRAMA", q1: "¿El pin coincide?", q2: "¿La lectura usa el módulo real?",
+      action: "REVISAR LÓGICA", color: C.cyan,
+    },
+  ];
+  gates.forEach((gate, index) => {
+    const textColor = gate.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: gate.x, y: 2.32, w: 3.2, h: 3.86,
+      rectRadius: 0.06,
+      fill: { color: C.white }, line: { color: gate.color, pt: 1.5 },
+    });
+    addNumberCircle(slide, gate.x + 1.12, 2.65, 0.96, gate.n, gate.color, textColor);
+    slide.addText(gate.title, {
+      x: gate.x + 0.42, y: 3.82, w: 2.36, h: 0.34,
+      fontFace: TYPOGRAPHY.display, fontSize: 19, bold: true,
+      color: C.navy, align: "center", margin: 0,
+    });
+    [gate.q1, gate.q2].forEach((q, qIndex) => {
+      const y = 4.43 + qIndex * 0.5;
+      slide.addShape(SH.ellipse, {
+        x: gate.x + 0.38, y: y + 0.02, w: 0.2, h: 0.2,
+        fill: { color: gate.color }, line: { color: gate.color },
+      });
+      slide.addText(q, {
+        x: gate.x + 0.72, y, w: 2.12, h: 0.26,
+        fontFace: TYPOGRAPHY.body, fontSize: 10.8,
+        color: C.slate, margin: 0,
+      });
+    });
+    slide.addShape(SH.roundRect, {
+      x: gate.x + 0.38, y: 5.57, w: 2.44, h: 0.38,
+      rectRadius: 0.04,
+      fill: { color: gate.color, transparency: gate.color === C.gold ? 12 : 88 },
+      line: { color: gate.color, transparency: 50 },
+    });
+    slide.addText(gate.action, {
+      x: gate.x + 0.53, y: 5.68, w: 2.14, h: 0.15,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
+      charSpacing: 0.45,
+      color: gate.color === C.gold ? C.navyDeep : gate.color,
+      align: "center", margin: 0,
+    });
+    if (index < 2) {
+      slide.addShape(SH.chevron, {
+        x: gate.x + 3.3, y: 3.88, w: 0.36, h: 0.58,
+        fill: { color: gate.color }, line: { color: gate.color },
+      });
+      slide.addText("SÍ", {
+        x: gate.x + 3.26, y: 4.59, w: 0.46, h: 0.16,
+        fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
+        color: gate.color, align: "center", margin: 0,
+      });
+    }
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.36, y: 6.44, w: 10.6, h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.white }, line: { color: C.white },
+  });
+  slide.addText("Antes de energizar: etiqueta real + voltaje + polaridad + revisión del montaje.", {
+    x: 1.76, y: 6.58, w: 9.82, h: 0.2,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.1, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  addFooter(slide, 16, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide18(slide) {
+  resetSlideForRedesign(slide);
+  addHeader(
+    slide,
+    "Criterio verificable",
+    "Cuatro caminos para justificar un umbral",
+    "La fuente del número debe poder mostrarse, explicarse o comprobarse.",
+    18,
+  );
+
+  slide.addShape(SH.ellipse, {
+    x: 5.31, y: 2.64, w: 2.7, h: 2.7,
+    fill: { color: C.navy }, line: { color: C.white, pt: 1.5 },
+  });
+  addCenteredTextInCircle(slide, "UMBRAL", {
+    x: 5.31, y: 2.35, d: 2.7, fontSize: 21, color: C.white,
+  });
+  slide.addText("número + origen", {
+    x: 5.73, y: 4.21, w: 1.86, h: 0.24,
+    fontFace: TYPOGRAPHY.body, fontSize: 11, bold: true,
+    color: C.cyan, align: "center", margin: 0,
+  });
+
+  const origins = [
+    {
+      x: 0.78, y: 2.0, w: 4.0, h: 1.92, n: "01", title: "MEDICIÓN PREVIA",
+      body: "Comparar normal ↔ problemático", example: "vacío ↔ casi lleno", color: C.red,
+    },
+    {
+      x: 8.55, y: 2.0, w: 4.0, h: 1.92, n: "02", title: "CÁLCULO",
+      body: "Deducir desde una relación conocida", example: "(altura − distancia) / altura", color: C.cyan,
+    },
+    {
+      x: 0.78, y: 4.5, w: 4.0, h: 1.92, n: "03", title: "DATO PUBLICADO",
+      body: "Usar y citar una fuente identificable", example: "rango saludable", color: C.gold,
+    },
+    {
+      x: 8.55, y: 4.5, w: 4.0, h: 1.92, n: "04", title: "ACUERDO PROVISIONAL",
+      body: "Partir, probar y corregir", example: "70 % → prueba → ajuste", color: C.green,
+    },
+  ];
+  origins.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: item.w, h: item.h,
+      rectRadius: 0.06,
+      fill: { color: C.white }, line: { color: item.color, pt: 1.35 },
+    });
+    addNumberCircle(slide, item.x + 0.28, item.y + 0.28, 0.7, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x + 1.15, y: item.y + 0.3, w: 2.48, h: 0.28,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: item.title.length > 17 ? 12.5 : 14.5,
+      bold: true, color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 1.15, y: item.y + 0.76, w: 2.48, h: 0.38,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.7,
+      color: C.slate, margin: 0,
+    });
+    slide.addShape(SH.roundRect, {
+      x: item.x + 1.15, y: item.y + 1.31, w: 2.48, h: 0.34,
+      rectRadius: 0.04,
+      fill: { color: item.color, transparency: item.color === C.gold ? 12 : 88 },
+      line: { color: item.color, transparency: 55 },
+    });
+    slide.addText(item.example, {
+      x: item.x + 1.28, y: item.y + 1.41, w: 2.22, h: 0.14,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+      color: item.color === C.gold ? C.navyDeep : item.color,
+      align: "center", margin: 0,
+    });
+  });
+  [
+    { x: 4.78, y: 2.92, w: 0.55, h: 0.55, color: C.red },
+    { x: 8.01, y: 2.92, w: 0.55, h: 0.55, color: C.cyan, flipH: true },
+    { x: 4.78, y: 4.92, w: 0.55, h: 0.55, color: C.gold },
+    { x: 8.01, y: 4.92, w: 0.55, h: 0.55, color: C.green, flipH: true },
+  ].forEach((arrow) => {
+    slide.addShape(SH.chevron, {
+      x: arrow.x, y: arrow.y, w: arrow.w, h: arrow.h,
+      fill: { color: arrow.color }, line: { color: arrow.color },
+      flipH: arrow.flipH,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 4.86, y: 5.82, w: 3.62, h: 0.62,
+    rectRadius: 0.05,
+    fill: { color: C.redSoft }, line: { color: C.red, pt: 1.1 },
+  });
+  slide.addText("“SONABA BIEN”", {
+    x: 5.16, y: 5.92, w: 3.02, h: 0.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 10.8, bold: true,
+    color: C.red, align: "center", margin: 0,
+  });
+  slide.addText("no es una quinta fuente", {
+    x: 5.16, y: 6.17, w: 3.02, h: 0.16,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.6,
+    color: C.navy, align: "center", margin: 0,
+  });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
+function redesignSlide21(slide) {
+  resetSlideForRedesign(slide, C.navy);
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("PRODUCTO DEL BLOQUE 2", {
+    x: 0.76, y: 0.46, w: 4.2, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.5, bold: true,
+    charSpacing: 1.25, color: C.cyan, margin: 0,
+  });
+  slide.addText("Escriban la regla completa de su MVP", {
+    x: 0.76, y: 0.87, w: 8.2, h: 0.62,
+    fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Tres frases. Una cadena completa de decisiones.", {
+    x: 0.78, y: 1.55, w: 7.2, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14.2,
+    color: C.paleInk, margin: 0,
+  });
+
+  const rows = [
+    {
+      y: 2.15,
+      leftLabel: "MEDIMOS",
+      leftHint: "variable + unidad",
+      rightLabel: "CON",
+      rightHint: "sensor o fuente de datos",
+      color: C.cyan,
+    },
+    {
+      y: 3.55,
+      leftLabel: "SE ACTIVA CUANDO",
+      leftHint: "umbral + origen",
+      rightLabel: "ENTONCES",
+      rightHint: "respuesta perceptible",
+      color: C.gold,
+    },
+    {
+      y: 4.95,
+      leftLabel: "Y MUESTRA",
+      leftHint: "dónde aparece la información",
+      rightLabel: "PARA QUE",
+      rightHint: "persona + acción posible",
+      color: C.green,
+    },
+  ];
+  rows.forEach((row, index) => {
+    const labelColor = row.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: 0.82, y: row.y, w: 11.68, h: 1.05,
+      rectRadius: 0.05,
+      fill: { color: C.white }, line: { color: row.color, pt: 1.4 },
+    });
+    slide.addShape(SH.rect, {
+      x: 0.82, y: row.y, w: 2.28, h: 1.05,
+      fill: { color: row.color }, line: { color: row.color },
+    });
+    slide.addText(row.leftLabel, {
+      x: 1.06, y: row.y + 0.2, w: 1.78, h: 0.25,
+      fontFace: TYPOGRAPHY.display,
+      fontSize: row.leftLabel.length > 12 ? 11.8 : 14.5,
+      bold: true, color: labelColor, margin: 0,
+    });
+    slide.addText(row.leftHint, {
+      x: 1.06, y: row.y + 0.62, w: 1.82, h: 0.2,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.5,
+      color: labelColor, transparency: 12, margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: 3.48, y: row.y + 0.68, w: 2.85, h: 0,
+      line: { color: C.border, pt: 1.4, dash: "dash" },
+    });
+    slide.addShape(SH.chevron, {
+      x: 6.56, y: row.y + 0.28, w: 0.7, h: 0.5,
+      fill: { color: row.color }, line: { color: row.color },
+    });
+    slide.addText(row.rightLabel, {
+      x: 7.45, y: row.y + 0.19, w: 1.55, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 14.5, bold: true,
+      color: row.color === C.gold ? C.navy : row.color, margin: 0,
+    });
+    slide.addText(row.rightHint, {
+      x: 7.45, y: row.y + 0.59, w: 2.28, h: 0.22,
+      fontFace: TYPOGRAPHY.body, fontSize: 10.5,
+      color: C.slate, margin: 0,
+    });
+    slide.addShape(SH.line, {
+      x: 9.76, y: row.y + 0.68, w: 2.28, h: 0,
+      line: { color: C.border, pt: 1.4, dash: "dash" },
+    });
+    slide.addText(String(index + 1).padStart(2, "0"), {
+      x: 12.08, y: row.y + 0.39, w: 0.28, h: 0.22,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.5, bold: true,
+      color: row.color, align: "center", margin: 0,
+    });
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.46, y: 6.45, w: 10.4, h: 0.5,
+    rectRadius: 0.04,
+    fill: { color: C.white }, line: { color: C.white },
+  });
+  slide.addText("dato → decisión → respuesta → persona", {
+    x: 1.84, y: 6.58, w: 9.62, h: 0.2,
+    fontFace: TYPOGRAPHY.display, fontSize: 13.4, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  addFooter(slide, 21, { white: true });
+  addNotesAndValidate(slide, { skipOverlap: true });
+}
+
 // 01 · Portada
 {
   const slide = pptx.addSlide();
@@ -1964,6 +2765,7 @@ function addNotesAndValidate(slide, opts = {}) {
     align: "center",
     margin: 0,
   });
+  redesignSlide09(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -2145,6 +2947,7 @@ function addNotesAndValidate(slide, opts = {}) {
     margin: 0,
   });
   addFooter(slide, 10, { white: true });
+  redesignSlide10(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -2303,6 +3106,7 @@ function addNotesAndValidate(slide, opts = {}) {
     align: "center",
     margin: 0,
   });
+  redesignSlide11(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -2754,6 +3558,7 @@ function addNotesAndValidate(slide, opts = {}) {
     margin: 0,
   });
   addFooter(slide, 14);
+  redesignSlide14(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -3102,6 +3907,7 @@ function addNotesAndValidate(slide, opts = {}) {
     margin: 0,
   });
   addFooter(slide, 16, { white: true });
+  redesignSlide16(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -3427,6 +4233,7 @@ function addNotesAndValidate(slide, opts = {}) {
     align: "center",
     margin: 0,
   });
+  redesignSlide18(slide);
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -3984,6 +4791,7 @@ function addNotesAndValidate(slide, opts = {}) {
     margin: 0,
   });
   addFooter(slide, 21, { white: true });
+  redesignSlide21(slide);
   addNotesAndValidate(slide, { ignoreLines: true });
 }
 
