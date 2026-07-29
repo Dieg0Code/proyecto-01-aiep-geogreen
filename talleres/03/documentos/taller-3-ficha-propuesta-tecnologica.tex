@@ -1,0 +1,266 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=13mm,bottom=14mm,left=14mm,right=14mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{C9D2DE}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9F1F8}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{D8A928}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Taller 3}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{Ficha de propuesta tecnológica · \thepage/4}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.16}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{fieldbox}[2][]{
+  colback=white,colframe=AIEPLine,boxrule=0.55pt,arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},coltitle=AIEPNavy,fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},#1
+}
+\newtcolorbox{accentfield}[2][]{
+  colback=AIEPSoft,colframe=AIEPRed,boxrule=0.7pt,arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},coltitle=AIEPRed,fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},#1
+}
+\newcommand{\writearea}[1]{\vspace{#1}\hrule height 0.35pt\vspace{4mm}\hrule height 0.35pt}
+\newcommand{\checkline}[1]{$\square$\hspace{1.5mm}#1}
+\newcommand{\pagehead}[2]{%
+  {\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · TALLER 3}}\par
+  \vspace{2mm}
+  {\LARGE\bfseries\color{AIEPNavy}#1\par}
+  {\normalsize\color{AIEPMuted}#2\par}
+  \vspace{4mm}
+}
+
+\begin{document}
+
+% 1 ---------------------------------------------------------------------------
+\pagehead{De una necesidad a una idea}{Ficha de propuesta tecnológica inicial · Completar en equipo}
+
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{23mm}Y >{\bfseries\color{AIEPNavy}}p{29mm}p{40mm}@{}}
+Equipo & \rule{58mm}{0.35pt} & Proyecto & \rule{38mm}{0.35pt}\\
+Curso/bloque & \rule{58mm}{0.35pt} & Fecha & \rule{38mm}{0.35pt}\\
+\end{tabularx}
+
+\begin{accentfield}{La idea en una frase}
+Queremos crear \rule{55mm}{0.35pt} para ayudar a \rule{42mm}{0.35pt}
+porque \rule{55mm}{0.35pt}.
+\vspace{4mm}
+\end{accentfield}
+
+\begin{fieldbox}[height=43mm]{Problema y contexto}
+¿Qué situación quieren abordar? ¿Dónde y cuándo ocurre? Descríbanla con hechos observables, no solo con una opinión.
+\writearea{14mm}
+\end{fieldbox}
+
+\begin{fieldbox}[height=35mm]{Personas o comunidad afectada}
+¿Quién vive esta situación? ¿Qué cambia para esas personas si el problema mejora?
+\writearea{9mm}
+\end{fieldbox}
+
+\begin{fieldbox}[height=38mm]{Punto de partida}
+¿Qué recuperan del Taller 1 y del Taller 2? Anoten el problema priorizado y el dato más útil sobre el material o residuo analizado.
+\writearea{11mm}
+\end{fieldbox}
+
+\begin{fieldbox}[height=35mm]{Qué hará propia nuestra propuesta}
+Puede ser el contexto, la forma de medir, la respuesta, la experiencia de uso o la combinación de componentes. No basta con copiar GeoGreen.
+\writearea{9mm}
+\end{fieldbox}
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPCyan,boxrule=.6pt,arc=1mm]
+\textbf{\color{AIEPNavy}Antes de avanzar:} una idea tecnológica comienza a tomar forma cuando el equipo puede nombrar
+qué desea observar y para qué servirá ese dato.
+\end{tcolorbox}
+
+\newpage
+% 2 ---------------------------------------------------------------------------
+\pagehead{Del mundo físico al dato}{Definir variable, sensor y comportamiento del sistema}
+
+\begin{fieldbox}[height=40mm]{Variable observable}
+¿Qué cambia en el mundo real y podría medirse? Ejemplos: distancia, humedad, temperatura, luz, movimiento, sonido o presencia.
+\writearea{13mm}
+\end{fieldbox}
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{fieldbox}[height=47mm]{Sensor elegido}
+Nombre o tipo:\par\vspace{7mm}\hrule
+\vspace{5mm}
+¿Qué detecta?\par\vspace{7mm}\hrule
+\end{fieldbox}
+&
+\begin{fieldbox}[height=47mm]{Por qué es coherente}
+Expliquen la relación entre el sensor, la variable y el problema.
+\writearea{16mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{accentfield}{La regla inicial}
+{\large\bfseries\color{AIEPNavy}Cuando} \rule{63mm}{0.35pt}
+\quad {\large\bfseries\color{AIEPRed}entonces} \rule{63mm}{0.35pt}
+\vspace{5mm}
+\end{accentfield}
+
+\begin{fieldbox}[height=54mm]{El ciclo completo}
+\begin{tabularx}{\textwidth}{@{}C{30mm}C{5mm}C{30mm}C{5mm}C{30mm}C{5mm}C{30mm}@{}}
+\textbf{\color{AIEPNavy}ENTRADA} & $\rightarrow$ &
+\textbf{\color{AIEPNavy}PROCESO} & $\rightarrow$ &
+\textbf{\color{AIEPNavy}COMUNICACIÓN} & $\rightarrow$ &
+\textbf{\color{AIEPNavy}ACCIÓN}\\
+sensor y dato && regla o cálculo && LED, pantalla o app && alerta o respuesta\\
+\end{tabularx}
+\vspace{7mm}
+\hrule
+\vspace{8mm}
+\hrule
+\end{fieldbox}
+
+\begin{fieldbox}[height=43mm]{Componentes que imaginamos}
+Marquen y completen: \quad
+\checkline{sensor}\quad
+\checkline{placa}\quad
+\checkline{salida}\quad
+\checkline{software}\quad
+\checkline{carcasa}\par
+\vspace{6mm}
+\textbf{¿Qué componente es indispensable para la primera prueba?}\par
+\vspace{7mm}\hrule
+\end{fieldbox}
+
+\newpage
+% 3 ---------------------------------------------------------------------------
+\pagehead{Probar con criterio}{Diseñar una evidencia segura y verificable}
+
+\begin{fieldbox}[height=48mm]{Primera pregunta de prueba}
+¿Qué necesitan comprobar primero? Escríbanlo de modo que la respuesta pueda observarse.
+\writearea{18mm}
+\end{fieldbox}
+
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{fieldbox}[height=62mm]{Procedimiento}
+1. \rule{63mm}{0.35pt}\vspace{7mm}\par
+2. \rule{63mm}{0.35pt}\vspace{7mm}\par
+3. \rule{63mm}{0.35pt}\vspace{7mm}\par
+4. \rule{63mm}{0.35pt}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=62mm]{Resultado esperado}
+¿Qué dato o comportamiento mostraría que la idea funciona?
+\writearea{25mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{accentfield}{Revisión de seguridad antes del USB}
+\checkline{La placa está desconectada mientras conectamos.}\par
+\checkline{Verificamos pinout, voltaje y polaridad.}\par
+\checkline{Los LEDs tienen la resistencia correspondiente.}\par
+\checkline{Existe una tierra común cuando corresponde.}\par
+\checkline{Una persona responsable revisó el circuito antes de energizar.}
+\end{accentfield}
+
+\begin{fieldbox}[height=51mm]{Uso de IA y verificación}
+\textbf{¿Qué le preguntamos?}\par\vspace{6mm}\hrule
+\vspace{5mm}
+\textbf{¿Qué dato, conexión o código verificamos?}\par\vspace{6mm}\hrule
+\vspace{5mm}
+\textbf{¿Qué aceptamos, corregimos o descartamos?}\par\vspace{6mm}\hrule
+\end{fieldbox}
+
+\begin{fieldbox}[height=36mm]{Evidencia obtenida o prueba pendiente}
+\checkline{lectura}\quad
+\checkline{simulación}\quad
+\checkline{diagrama revisado}\quad
+\checkline{código}\quad
+\checkline{fotografía/video}\quad
+\checkline{pendiente}\par
+\writearea{8mm}
+\end{fieldbox}
+
+\newpage
+% 4 ---------------------------------------------------------------------------
+\pagehead{Convertir la idea en una ruta}{Roles, nivel actual, siguiente hito y relato breve}
+
+\begin{fieldbox}[height=74mm]{Seis responsabilidades del equipo}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{52mm}Y@{}}
+Coordinación & Nombre: \rule{91mm}{0.35pt}\\[3mm]
+Problema y propósito & Nombre: \rule{91mm}{0.35pt}\\[3mm]
+Investigación & Nombre: \rule{91mm}{0.35pt}\\[3mm]
+Prototipo físico & Nombre: \rule{91mm}{0.35pt}\\[3mm]
+Programación y datos & Nombre: \rule{91mm}{0.35pt}\\[3mm]
+Relato y evidencia & Nombre: \rule{91mm}{0.35pt}\\
+\end{tabularx}
+\end{fieldbox}
+
+\begin{fieldbox}[height=43mm]{Nivel de madurez actual}
+\checkline{Idea definida}\quad
+\checkline{Sensor elegido}\quad
+\checkline{Circuito o simulación}\par
+\checkline{Código}\quad
+\checkline{Datos visibles}\quad
+\checkline{Prototipo integrado}\par
+\vspace{5mm}
+\textbf{La evidencia que sostiene esta elección es:}\par\vspace{7mm}\hrule
+\end{fieldbox}
+
+\begin{accentfield}{Próximo hito verificable}
+Antes de la siguiente instancia, el equipo tendrá:\par\vspace{4mm}\hrule
+\vspace{5mm}
+Se podrá comprobar mediante: \rule{92mm}{0.35pt}
+\vspace{4mm}
+\end{accentfield}
+
+\begin{fieldbox}[height=54mm]{Pitch relámpago · 30 a 40 segundos}
+\textbf{Problema:} observamos que \rule{120mm}{0.35pt}\par\vspace{5mm}
+\textbf{Propuesta:} queremos usar \rule{106mm}{0.35pt}\par\vspace{5mm}
+\textbf{Funcionamiento:} cuando \rule{46mm}{0.35pt}, entonces \rule{48mm}{0.35pt}\par\vspace{5mm}
+\textbf{Siguiente paso:} ahora necesitamos comprobar \rule{87mm}{0.35pt}
+\end{fieldbox}
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPCyan,boxrule=.6pt,arc=1mm]
+\textbf{\color{AIEPNavy}Salida del taller:}\quad
+\checkline{problema}\quad
+\checkline{variable}\quad
+\checkline{sensor}\quad
+\checkline{regla}\quad
+\checkline{prueba segura}\quad
+\checkline{siguiente hito}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,arc=1mm,halign=center]
+{\large\bfseries\color{white}Una buena idea no se adivina: se observa, se prueba y se mejora.}
+\end{tcolorbox}
+
+\end{document}

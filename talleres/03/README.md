@@ -726,3 +726,17 @@ Como salida, cada estudiante completa oralmente o por escrito una frase breve:
 > “Nuestra propuesta avanzará cuando podamos demostrar que ________.”
 
 El taller termina con una invitación concreta: tomar la referencia de GeoGreen, construir una respuesta propia con trabajo sostenido y utilizar las mentorías para orientar, revisar y destrabar una solución que el propio equipo pueda presentar, defender y llevar a la competencia final.
+
+---
+
+# Material vigente del taller
+
+- **Planificación docente:** [`documentos/taller-3-planificacion-docente.pdf`](documentos/taller-3-planificacion-docente.pdf)
+- **Ficha de propuesta tecnológica inicial:** [`documentos/taller-3-ficha-propuesta-tecnologica.pdf`](documentos/taller-3-ficha-propuesta-tecnologica.pdf)
+- **Guía rápida del paquete:** [`documentos/taller-3-leeme-docentes.pdf`](documentos/taller-3-leeme-docentes.pdf)
+- **Presentación:** [`ppt/Taller-03-De-la-idea-al-prototipo.pptx`](ppt/Taller-03-De-la-idea-al-prototipo.pptx)
+- **Mapa de la clase:** [`infografias/taller-3-mapa-de-la-clase.png`](infografias/taller-3-mapa-de-la-clase.png)
+- **Serie por bloques:** [`infografias/README.md`](infografias/README.md)
+
+La carpeta [`documentos/`](documentos/) distingue el material vigente de dos antecedentes
+históricos que ya no forman parte del paquete de ejecución.

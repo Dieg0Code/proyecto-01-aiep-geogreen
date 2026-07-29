@@ -1,0 +1,147 @@
+\documentclass[9.5pt,a4paper]{article}
+
+\usepackage[a4paper,top=12mm,bottom=12mm,left=13mm,right=13mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{CBD5E1}
+\definecolor{AIEPBlueSoft}{HTML}{E9F1F8}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+\definecolor{AIEPGold}{HTML}{D8A928}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\setlist[itemize]{leftmargin=4.4mm,topsep=1pt,itemsep=.8pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.14}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{boxa}[2][]{
+  enhanced,colback=white,colframe=#2,boxrule=.55pt,arc=1mm,
+  left=3mm,right=3mm,top=2.2mm,bottom=2.2mm,#1
+}
+\newcommand{\labelx}[1]{{\scriptsize\bfseries\color{AIEPRed}\MakeUppercase{#1}}\par}
+
+\begin{document}
+
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,arc=1.5mm,left=5mm,right=5mm,top=4mm,bottom=4mm]
+{\small\bfseries\color{white}GEOGREEN ESCOLAR · AIEP OSORNO}\par
+{\LARGE\bfseries\color{white}Taller 3 · De la idea al prototipo}\par
+{\normalsize\color{white}Guía rápida para ejecutar el paquete docente}
+\end{tcolorbox}
+
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{boxa}[height=28mm,valign=top]{AIEPRed}
+\labelx{Cuándo}
+\textbf{Lunes 24 de agosto}\par
+Bloque A: 09:00–10:30\par
+Bloque B: 10:45–12:15
+\end{boxa}
+&
+\begin{boxa}[height=28mm,valign=top]{AIEPGold}
+\labelx{Organización}
+\textbf{30 estudiantes por bloque}\par
+5 equipos de 6 integrantes
+\end{boxa}
+&
+\begin{boxa}[height=28mm,valign=top]{AIEPGreen}
+\labelx{Responsabilidad}
+\textbf{Programación y Análisis de Sistemas}\par
+Sesión de 90 minutos
+\end{boxa}
+\end{tabularx}
+
+\begin{boxa}{AIEPRed}
+\labelx{Propósito}
+Que cada equipo comprenda cómo una necesidad puede convertirse en un sistema tecnológico y salga con
+una propuesta inicial propia: problema, variable, sensor, regla, prueba segura y siguiente hito.
+GeoGreen funciona como caso inspirador y demuestra el ciclo \textbf{sensar → procesar → comunicar → actuar}.
+\end{boxa}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{boxa}[height=61mm,valign=top]{AIEPNavy}
+\labelx{Mapa de la clase}
+\begin{itemize}
+  \item \textbf{0–15 min · Una idea puede crecer.} GeoGreen, trayectoria y desafío.
+  \item \textbf{15–35 min · Del mundo físico al dato.} Placa, protoboard, sensores, actuadores y seguridad.
+  \item \textbf{35–70 min · Prototipar con sensores e IA.} Variable, sensor, regla, simulación o primera prueba.
+  \item \textbf{70–90 min · Del prototipo al producto.} Madurez, software, carcasa, PCB y siguiente hito.
+\end{itemize}
+\end{boxa}
+&
+\begin{boxa}[height=61mm,valign=top]{AIEPGreen}
+\labelx{Salida obligatoria}
+Cada equipo entrega la \textbf{Ficha de propuesta tecnológica inicial} con:
+\begin{itemize}
+  \item problema, contexto y personas afectadas;
+  \item variable y sensor justificado;
+  \item regla “cuando..., entonces...”;
+  \item evidencia inicial o prueba pendiente;
+  \item revisión de seguridad;
+  \item seis responsabilidades y próximo hito.
+\end{itemize}
+\end{boxa}
+\end{tabularx}
+
+\begin{boxa}{AIEPGold}
+\labelx{Material incluido}
+\begin{tabularx}{\textwidth}{@{}L{43mm}Y@{}}
+\textbf{Planificación docente} & Secuencia completa, mediación, seguridad, evaluación y continuidad.\\
+\textbf{Presentación} & Apoyo visual de 67 diapositivas con videos integrados.\\
+\textbf{Ficha de equipo} & Documento imprimible; cinco copias por bloque.\\
+\textbf{Mapa e infografías} & Resumen de la clase y una lámina vertical por bloque.\\
+\textbf{Contexto GeoGreen} & Resumen del proyecto, lógica general y roles de los equipos.\\
+\end{tabularx}
+\end{boxa}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{boxa}[height=42mm,valign=top]{AIEPRed}
+\labelx{Antes de comenzar}
+\begin{itemize}
+  \item Probar el PPT y sus dos videos.
+  \item Disponer cinco estaciones de exploración.
+  \item Revisar sensores, cables y alimentación.
+  \item Imprimir cinco fichas por bloque.
+  \item Dejar el prototipo GeoGreen listo para demostrar.
+\end{itemize}
+\end{boxa}
+&
+\begin{boxa}[height=42mm,valign=top]{AIEPNavy}
+\labelx{Regla de seguridad}
+La placa permanece desconectada durante el armado. Antes del USB se revisan pinout, voltaje,
+polaridad, resistencias y tierra común. La IA puede proponer; el equipo y quien facilita deben
+verificar antes de conectar o ejecutar.
+\end{boxa}
+\end{tabularx}
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPNavy,boxrule=.65pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\labelx{Criterio de ejecución}
+La demostración abre posibilidades; no reemplaza el trabajo del equipo. Proteger el tramo práctico,
+recoger todas las fichas y dejar claro el avance esperado antes de la Mentoría 1.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=AIEPRed,colframe=AIEPRed,arc=1mm,halign=center,top=2.5mm,bottom=2.5mm]
+{\large\bfseries\color{white}GeoGreen demuestra hasta dónde puede crecer una idea. Hoy comienza la de ustedes.}
+\end{tcolorbox}
+
+\end{document}

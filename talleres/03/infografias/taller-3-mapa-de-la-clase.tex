@@ -1,0 +1,126 @@
+\documentclass[11pt]{article}
+
+\usepackage[paperwidth=180mm,paperheight=300mm,top=9mm,bottom=9mm,left=10mm,right=10mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{ragged2e}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{Navy}{HTML}{082B5C}
+\definecolor{Red}{HTML}{D62027}
+\definecolor{Cyan}{HTML}{35B7C6}
+\definecolor{Green}{HTML}{2E8B57}
+\definecolor{Gold}{HTML}{D8A928}
+\definecolor{Ink}{HTML}{243B53}
+\definecolor{Muted}{HTML}{5F6B7A}
+\definecolor{Paper}{HTML}{F7F4EE}
+\definecolor{Line}{HTML}{D5DDE6}
+\definecolor{White}{HTML}{FFFFFF}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+\newtcolorbox{stepbox}[3][]{
+  enhanced,colback=White,colframe=#2,boxrule=.8pt,arc=2mm,
+  borderline west={3.5mm}{0pt}{#2},
+  left=7mm,right=4mm,top=3.2mm,bottom=3.2mm,
+  title={\large\bfseries\color{Navy}#3},
+  coltitle=Navy,fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newcommand{\numbercircle}[2]{%
+  \tikz[baseline=(n.base)]\node[circle,fill=#1,minimum size=10mm,inner sep=0pt]
+  (n){\bfseries\color{white}#2};%
+}
+
+\begin{document}
+\pagecolor{Paper}
+
+\begin{tcolorbox}[colback=Navy,colframe=Navy,arc=2.5mm,left=7mm,right=7mm,top=4mm,bottom=4mm]
+{\small\bfseries\color{Cyan}GEOGREEN ESCOLAR · AIEP OSORNO}\par
+\vspace{1mm}
+{\fontsize{27}{29}\selectfont\bfseries\color{White}Taller 3}\par
+{\fontsize{18}{21}\selectfont\bfseries\color{White}De la idea al prototipo}\par
+\vspace{2mm}
+{\large\color{White}90 minutos para observar, elegir, probar y proyectar una solución tecnológica.}
+\end{tcolorbox}
+
+\vspace{2mm}
+\begin{tcolorbox}[colback=White,colframe=Line,boxrule=.7pt,arc=2mm,left=5mm,right=5mm,top=3mm,bottom=3mm]
+{\small\bfseries\color{Red}EL DESAFÍO}\par
+\vspace{1mm}
+{\large\bfseries\color{Navy}¿Qué situación de nuestro entorno podríamos observar con un sensor para crear una respuesta útil?}
+\end{tcolorbox}
+
+\vspace{2mm}
+\begin{stepbox}[height=31mm,valign=center]{Red}{\numbercircle{Red}{1}\quad Una idea puede crecer \hfill \textcolor{Red}{0–15 min}}
+\textbf{GeoGreen como caso inspirador.} Una necesidad puede evolucionar por capas: sensor, reglas,
+alertas, conectividad, visualización, carcasa y PCB.\par
+\vspace{1.5mm}
+\textbf{\color{Red}Idea clave:} no hay que comenzar con un producto terminado; hay que comenzar con una pregunta valiosa.
+\end{stepbox}
+
+\vspace{2mm}
+\begin{stepbox}[height=31mm,valign=center]{Cyan}{\numbercircle{Cyan}{2}\quad Del mundo físico al dato \hfill \textcolor{Cyan}{15–35 min}}
+\textbf{Placa + protoboard + sensor + salida.} Comprender el flujo
+\textbf{entrada → proceso → comunicación → acción} y revisar cada conexión antes del USB.\par
+\vspace{1.5mm}
+\textbf{\color{Cyan}Idea clave:} el sensor detecta una variable; el programa convierte esa señal en una decisión.
+\end{stepbox}
+
+\vspace{2mm}
+\begin{stepbox}[height=35mm,valign=center]{Green}{\numbercircle{Green}{3}\quad Prototipar con sensores e IA \hfill \textcolor{Green}{35–70 min}}
+Cada equipo elige \textbf{qué observar}, justifica un sensor y formula una regla
+\textbf{“cuando..., entonces...”}. La IA ayuda a investigar, simular y depurar; las personas
+verifican pinout, voltaje, conexiones, código y resultados.\par
+\vspace{1.5mm}
+\textbf{\color{Green}Evidencia:} una lectura, simulación, esquema revisado o próximo ensayo definido.
+\end{stepbox}
+
+\vspace{2mm}
+\begin{stepbox}[height=31mm,valign=center]{Gold}{\numbercircle{Gold}{4}\quad Del prototipo al producto \hfill \textcolor{Gold}{70–90 min}}
+Reconocer la escalera de madurez: \textbf{circuito → código → datos → interfaz → carcasa → PCB}.
+Elegir la próxima mejora que realmente permita aprender algo nuevo.\par
+\vspace{1.5mm}
+\textbf{\color{Gold}Idea clave:} profesionalizar no es agregar todo; es resolver mejor y demostrarlo.
+\end{stepbox}
+
+\vspace{2mm}
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\begin{tcolorbox}[height=30mm,colback=White,colframe=Green,boxrule=.75pt,arc=2mm,left=4mm,right=4mm,top=2.5mm,bottom=2.5mm]
+{\small\bfseries\color{Green}SALIDA DEL EQUIPO}\par
+\vspace{1mm}
+\textbf{\color{Navy}Propuesta tecnológica inicial:}\par
+problema · variable · sensor · regla · prueba segura · siguiente hito.
+\end{tcolorbox}
+&
+\begin{tcolorbox}[height=30mm,colback=White,colframe=Navy,boxrule=.75pt,arc=2mm,left=4mm,right=4mm,top=2.5mm,bottom=2.5mm]
+{\small\bfseries\color{Navy}LO QUE SIGUE}\par
+\vspace{1mm}
+Las mentorías orientan y desbloquean. El equipo desarrolla, prueba, registra y mejora entre sesiones.
+\end{tcolorbox}
+\end{tabularx}
+
+\vspace{2mm}
+\begin{tcolorbox}[colback=Red,colframe=Red,arc=2mm,halign=center,top=3mm,bottom=3mm]
+{\large\bfseries\color{White}GeoGreen demuestra hasta dónde puede crecer una idea.\\Hoy comienza la de ustedes.}
+\end{tcolorbox}
+
+\end{document}

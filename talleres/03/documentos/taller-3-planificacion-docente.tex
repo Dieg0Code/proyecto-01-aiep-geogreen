@@ -1,0 +1,430 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=14mm,top=14mm,bottom=16mm]{geometry}
+\usepackage{fontspec}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{ragged2e}
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{243B53}
+\definecolor{AIEPSlate}{HTML}{52606D}
+\definecolor{AIEPBlue}{HTML}{1B6CA8}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+\definecolor{AIEPGold}{HTML}{D8A928}
+\definecolor{AIEPPaper}{HTML}{F8F3EC}
+\definecolor{AIEPSoftBlue}{HTML}{E8F1F8}
+\definecolor{AIEPGreenSoft}{HTML}{EAF5EF}
+\definecolor{AIEPGoldSoft}{HTML}{FFF5D8}
+\definecolor{Line}{HTML}{D2DAE3}
+\definecolor{White}{HTML}{FFFFFF}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\scriptsize\textcolor{AIEPSlate}{Planificación docente - Taller 3}}
+\fancyfoot[R]{\scriptsize\textcolor{AIEPSlate}{GeoGreen Escolar Osorno - \thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.7pt}
+\setlist[itemize]{leftmargin=4.3mm,topsep=1pt,itemsep=1.2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=5mm,topsep=1pt,itemsep=1.2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.18}
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPInk}}{}{0pt}{}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newtcolorbox{card}[1][]{
+  enhanced,colback=White,colframe=Line,boxrule=0.5pt,arc=1.2mm,
+  left=3.2mm,right=3.2mm,top=2.8mm,bottom=2.8mm,#1
+}
+\newtcolorbox{softcard}[2][]{
+  enhanced,colback=#2!10,colframe=#2,boxrule=0.55pt,arc=1.2mm,
+  left=3.2mm,right=3.2mm,top=2.8mm,bottom=2.8mm,#1
+}
+\newcommand{\kicker}[1]{%
+  {\color{AIEPRed}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{2.5mm}
+  {\color{AIEPRed}\rule{13mm}{1.2pt}}\vspace{3mm}
+}
+\newcommand{\labeltext}[1]{%
+  {\scriptsize\bfseries\color{AIEPSlate}\MakeUppercase{#1}}\par\vspace{1.2mm}
+}
+\newcommand{\minute}[1]{%
+  \fcolorbox{AIEPNavy}{AIEPNavy}{\textcolor{White}{\bfseries\strut #1}}
+}
+
+\begin{document}
+
+% 1 ---------------------------------------------------------------------------
+\thispagestyle{fancy}
+\kicker{GeoGreen Escolar Osorno}
+{\Huge\bfseries\color{AIEPNavy} Taller 3 - De la idea al prototipo}\par
+\vspace{2mm}
+{\large\color{AIEPSlate} Planificación lectiva para facilitar una experiencia de sensores, prototipado y desarrollo asistido por inteligencia artificial.}\par
+\vspace{6mm}
+
+\begin{tabularx}{\textwidth}{Y Y Y}
+\begin{softcard}[height=33mm,valign=top]{AIEPBlue}
+\labeltext{Duración}
+{\Large\bfseries\color{AIEPNavy}90 minutos}\par
+Sesión presencial por bloque.
+\end{softcard}
+&
+\begin{softcard}[height=33mm,valign=top]{AIEPCyan}
+\labeltext{Organización}
+{\Large\bfseries\color{AIEPNavy}5 equipos}\par
+6 estudiantes por equipo.
+\end{softcard}
+&
+\begin{softcard}[height=33mm,valign=top]{AIEPGreen}
+\labeltext{Producto}
+{\Large\bfseries\color{AIEPNavy}1 propuesta}\par
+Tecnológica inicial por equipo.
+\end{softcard}
+\end{tabularx}
+
+\vspace{4mm}
+\begin{card}
+\labeltext{Datos de ejecución}
+\begin{tabularx}{\textwidth}{@{}L{36mm}Y@{}}
+\textbf{Fecha} & Lunes 24 de agosto de 2026.\\
+\textbf{Bloque A} & 09:00 a 10:30.\\
+\textbf{Bloque B} & 10:45 a 12:15.\\
+\textbf{Participantes} & 60 estudiantes de tercero medio, distribuidos en dos bloques de 30.\\
+\textbf{Responsabilidad} & Área de Programación y Análisis de Sistemas.\\
+\textbf{Continuidad} & Cuatro mentorías de desarrollo y evento final del programa.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Sentido formativo}
+GeoGreen se presenta como un caso real de innovación: una necesidad observable se transforma en
+datos, reglas, alertas, software y un producto físico. El taller no busca convertir la sesión en una
+clase extensa de electrónica; busca que cada equipo comprenda el ciclo completo, explore tecnología
+de forma segura y formule una idea propia que pueda desarrollar después.
+\end{softcard}
+
+\begin{softcard}{AIEPGold}
+\labeltext{Pregunta movilizadora}
+{\large\bfseries\color{AIEPNavy}¿Qué situación de nuestro entorno podríamos observar con un sensor para crear una respuesta útil?}
+\end{softcard}
+
+\begin{card}
+\labeltext{Principio de facilitación}
+Mostrar posibilidades abre el horizonte; las preguntas, decisiones y pruebas pertenecen a los
+equipos. La docencia orienta, hace visible el razonamiento técnico y resguarda la seguridad, sin
+resolver el proyecto por ellos.
+\end{card}
+
+\newpage
+% 2 ---------------------------------------------------------------------------
+\kicker{Propósito y resultados}
+{\LARGE\bfseries\color{AIEPNavy}Qué deben comprender, decidir y producir}\par
+\vspace{4mm}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{Objetivo general}
+Comprender cómo una idea puede convertirse en un prototipo tecnológico mediante la relación entre
+problema, variable observable, sensor, programación, evidencia y evolución del producto.
+\end{softcard}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=69mm,valign=top]
+\labeltext{Objetivos específicos}
+Al finalizar, las y los estudiantes podrán:
+\begin{itemize}
+  \item reconocer el ciclo \textbf{sensar → procesar → comunicar → actuar};
+  \item diferenciar placa, sensor, actuador, protoboard y software;
+  \item seleccionar un sensor coherente con una variable observable;
+  \item formular una regla inicial en formato \textbf{“cuando..., entonces...”};
+  \item usar IA como apoyo para explorar, explicar y prototipar, verificando sus respuestas;
+  \item definir una prueba segura y un siguiente paso verificable.
+\end{itemize}
+\end{card}
+&
+\begin{card}[height=69mm,valign=top]
+\labeltext{Aprendizajes clave}
+\begin{itemize}
+  \item Un sensor no “resuelve” el problema: entrega una señal que debe interpretarse.
+  \item Un prototipo sirve para reducir incertidumbre mediante pruebas.
+  \item Simular permite corregir antes de conectar hardware real.
+  \item La IA acelera el proceso, pero no sustituye la comprobación humana.
+  \item La calidad crece por iteraciones: idea, circuito, código, evidencia, interfaz y producto.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Salida obligatoria por equipo}
+Una \textbf{ficha de propuesta tecnológica inicial} que contenga: problema y contexto; personas
+afectadas; variable observable; sensor elegido y fundamento; regla de funcionamiento; primera
+evidencia o prueba pendiente; nivel de madurez; roles; y próximo hito verificable.
+\end{softcard}
+
+\begin{card}
+\labeltext{Entradas que el equipo recupera}
+\begin{tabularx}{\textwidth}{@{}L{39mm}Y@{}}
+\textbf{Desde Taller 1} & Problema ambiental priorizado y contexto en que ocurre.\\
+\textbf{Desde Taller 2} & Material o residuo analizado y hallazgos de su ficha técnica.\\
+\textbf{En Taller 3} & Una idea tecnológica que conecte la necesidad con una variable medible.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPGold}
+\labeltext{Indicador de logro}
+El equipo puede explicar, en 30 a 40 segundos, \textbf{qué quiere observar, con qué sensor, qué hará
+el sistema con ese dato y cuál será su siguiente prueba}.
+\end{softcard}
+
+\newpage
+% 3 ---------------------------------------------------------------------------
+\kicker{Metodología y condiciones}
+{\LARGE\bfseries\color{AIEPNavy}Explorar con autonomía, trabajar con seguridad}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{Y Y}
+\begin{card}[height=73mm,valign=top]
+\labeltext{Enfoque metodológico}
+\begin{itemize}
+  \item \textbf{Caso inspirador:} GeoGreen muestra una trayectoria posible, no una respuesta que deba copiarse.
+  \item \textbf{Demostración breve:} cada concepto aparece conectado a una función visible.
+  \item \textbf{Aprender haciendo:} los equipos manipulan, preguntan, comparan y documentan.
+  \item \textbf{Desarrollo asistido:} la IA ayuda a investigar, proponer y depurar.
+  \item \textbf{Verificación humana:} pinout, voltaje, conexiones, código y resultados se comprueban.
+  \item \textbf{Progresión:} el taller inicia la propuesta; el desarrollo continúa entre mentorías.
+\end{itemize}
+\end{card}
+&
+\begin{card}[height=73mm,valign=top]
+\labeltext{Rol de quien facilita}
+\begin{itemize}
+  \item contextualizar el proyecto y hacer visible el ciclo completo;
+  \item traducir conceptos técnicos con ejemplos concretos;
+  \item modelar preguntas útiles para trabajar con IA;
+  \item revisar conexiones antes de energizar;
+  \item acompañar decisiones sin apropiarse de la idea;
+  \item proteger el tiempo de trabajo de los equipos;
+  \item recoger evidencia y asegurar la salida obligatoria.
+\end{itemize}
+\end{card}
+\end{tabularx}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Protocolo de seguridad antes del USB}
+\begin{enumerate}
+  \item Mantener la placa \textbf{sin alimentación} mientras se arma o modifica el circuito.
+  \item Confirmar el \textbf{pinout}, la polaridad, el voltaje y la tierra común.
+  \item Usar la \textbf{resistencia correspondiente} con cada LED.
+  \item Solicitar revisión docente antes de conectar el cable USB.
+  \item Si la placa o un componente se calienta, desconectar de inmediato y avisar.
+\end{enumerate}
+\textbf{Precisión técnica:} el HC-SR04 entrega 5 V en Echo. En UNO R4 WiFi puede conectarse de forma
+directa; en una placa ESP32 de 3,3 V necesita divisor de tensión o adaptación de nivel.
+\end{softcard}
+
+\begin{card}
+\labeltext{Materiales a disponer por bloque}
+\begin{itemize}
+  \item computador y proyector; presentación, videos e infografías del taller;
+  \item prototipo GeoGreen y, si es posible, acceso al dashboard para mostrar el ciclo completo;
+  \item cinco estaciones de exploración con placa, protoboard, cable USB, jumpers y sensores del banco;
+  \item componentes de salida disponibles: LEDs, resistencias, buzzer o pantalla;
+  \item cinco copias de la ficha de propuesta tecnológica inicial y lápices;
+  \item equipos con acceso a Wokwi y a una herramienta de IA cuando la conectividad lo permita.
+\end{itemize}
+\end{card}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Organización del equipo}
+Se mantienen seis responsabilidades: coordinación, problema y propósito, investigación, prototipo
+físico, programación y datos, y relato/evidencia. Las responsabilidades ordenan el trabajo; las
+decisiones relevantes se toman como equipo.
+\end{softcard}
+
+\newpage
+% 4 ---------------------------------------------------------------------------
+\kicker{Secuencia de 90 minutos}
+{\LARGE\bfseries\color{AIEPNavy}Mapa operativo de la sesión}\par
+\vspace{4mm}
+
+\begin{tabularx}{\textwidth}{@{}L{22mm}L{48mm}Y@{}}
+\rowcolor{AIEPNavy}
+\textcolor{White}{\bfseries Tiempo} &
+\textcolor{White}{\bfseries Momento} &
+\textcolor{White}{\bfseries Acción y evidencia}\\
+\minute{0–5} &
+\textbf{Apertura} &
+Presentar el desafío: observar una situación real y convertirla en una respuesta tecnológica útil. Recuperar los equipos y sus productos anteriores.\\[1.8mm]
+\minute{5–15} &
+\textbf{Bloque 1}\newline Una idea puede crecer &
+Mostrar GeoGreen como proyecto emblemático y recorrer su evolución: necesidad, sensor, semáforo y buzzer, WiFi, visualización, carcasa y PCB. Cerrar con la pregunta movilizadora.\\[1.8mm]
+\minute{15–25} &
+\textbf{Bloque 2}\newline Del mundo físico al dato &
+Explicar placa, protoboard, sensor, actuador y flujo entrada–proceso–salida. Hacer visible cómo se conectan los rieles y las filas de la protoboard.\\[1.8mm]
+\minute{25–35} &
+\textbf{Demostración segura} &
+Modelar el protocolo previo al USB y una lectura simple. Comparar UNO R4 WiFi y ESP32 solo desde sus casos de uso y voltajes relevantes.\\[1.8mm]
+\minute{35–45} &
+\textbf{Bloque 3}\newline Elegir qué observar &
+Cada equipo recupera su problema, identifica una variable y selecciona un sensor. Si no existe una elección clara, explora el banco disponible y justifica una alternativa.\\[1.8mm]
+\minute{45–60} &
+\textbf{Prototipar con IA} &
+Formular una consulta con contexto, placa, sensor, objetivo y restricciones. Revisar la propuesta; simular o preparar una conexión física segura. Registrar decisiones y correcciones.\\[1.8mm]
+\minute{60–70} &
+\textbf{Primera evidencia} &
+Obtener una lectura, una simulación, un esquema revisado o dejar descrito el próximo ensayo exacto. Completar la regla “cuando..., entonces...”.\\[1.8mm]
+\minute{70–80} &
+\textbf{Bloque 4}\newline Del prototipo al producto &
+Presentar la escalera de madurez: circuito, código, comunicación, software, carcasa y PCB. Conectar cada nivel con una pregunta de mejora.\\[1.8mm]
+\minute{80–87} &
+\textbf{Propuesta y siguiente hito} &
+Completar la ficha, verificar que las seis responsabilidades estén cubiertas y acordar un avance realizable antes de la Mentoría 1.\\[1.8mm]
+\minute{87–90} &
+\textbf{Cierre relámpago} &
+Dos o tres equipos comparten su propuesta en 30–40 segundos. Recoger todas las fichas y cerrar con la ruta de continuidad.\\
+\end{tabularx}
+
+\vspace{4mm}
+\begin{softcard}{AIEPGold}
+\labeltext{Regla de manejo del tiempo}
+La exposición habilita la acción. Si un momento se extiende, recortar explicación secundaria antes
+que el tramo de trabajo de equipos. La sesión debe terminar con una decisión y un siguiente paso,
+no solo con información.
+\end{softcard}
+
+\newpage
+% 5 ---------------------------------------------------------------------------
+\kicker{Mediación por bloque}
+{\LARGE\bfseries\color{AIEPNavy}Preguntas que hacen avanzar el razonamiento}\par
+\vspace{4mm}
+
+\begin{softcard}{AIEPBlue}
+\labeltext{Bloque 1 · GeoGreen como caso de innovación}
+\textbf{Preguntas:} ¿qué problema observa?, ¿qué fue necesario agregar para que el dato se entendiera?,
+¿qué parte pertenece al hardware y cuál al software?, ¿qué mejora aporta valor y cuál solo decora?\par
+\textbf{Señal de progreso:} el grupo identifica que un proyecto tecnológico puede evolucionar por
+capas y que su propia idea no necesita comenzar “terminada”.
+\end{softcard}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Bloque 2 · Del mundo físico al dato}
+\textbf{Preguntas:} ¿qué variable cambia?, ¿qué componente la detecta?, ¿qué señal recibe la placa?,
+¿qué salida permitiría entender el resultado?, ¿qué debemos comprobar antes de energizar?\par
+\textbf{Señal de progreso:} el grupo puede narrar el flujo entrada → decisión → salida y reconoce
+qué conexiones están realmente unidas en la protoboard.
+\end{softcard}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Bloque 3 · Prototipar con sensores y agentes}
+\textbf{Preguntas:} ¿qué quieren medir exactamente?, ¿por qué este sensor y no otro?, ¿qué placa
+están usando?, ¿qué dato falta para confiar en la respuesta de la IA?, ¿cómo sabrán que la prueba funcionó?\par
+\textbf{Señal de progreso:} el equipo justifica sensor y regla, realiza una verificación técnica y
+obtiene evidencia o deja definido un ensayo concreto.
+\end{softcard}
+
+\begin{softcard}{AIEPGold}
+\labeltext{Bloque 4 · Del prototipo al producto}
+\textbf{Preguntas:} ¿en qué nivel de madurez está la idea?, ¿qué debería ver una persona usuaria?,
+¿cómo viajaría el dato?, ¿qué protegería el circuito?, ¿qué mejora es la próxima y cuál puede esperar?\par
+\textbf{Señal de progreso:} el equipo diferencia “posibilidades futuras” de “siguiente hito” y elige
+un avance verificable.
+\end{softcard}
+
+\begin{card}
+\labeltext{Cómo modelar el trabajo con IA}
+Usar una estructura observable: \textbf{contexto + placa + componente + objetivo + restricciones +
+formato de respuesta}. Pedir pinout o fuente técnica, contrastar la respuesta, revisar voltajes y
+probar por partes. Si algo falla, describir el síntoma y cambiar una variable por vez. La evidencia
+vale más que una respuesta convincente.
+\end{card}
+
+\begin{softcard}{AIEPRed}
+\labeltext{Evitar}
+Entregar una solución completa para copiar; reducir el taller a comandos o definiciones; energizar
+sin revisión; presentar el PCB como punto de partida; prometer que toda idea será fabricada; o
+confundir la exploración inicial con el desarrollo completo que ocurrirá después.
+\end{softcard}
+
+\newpage
+% 6 ---------------------------------------------------------------------------
+\kicker{Evaluación formativa y continuidad}
+{\LARGE\bfseries\color{AIEPNavy}Cerrar con evidencia y una ruta de avance}\par
+\vspace{4mm}
+
+\begin{card}
+\labeltext{Criterios de revisión de la ficha}
+\begin{tabularx}{\textwidth}{@{}L{42mm}Y@{}}
+\textbf{Coherencia} & El sensor elegido permite observar la variable asociada al problema.\\
+\textbf{Funcionalidad} & La regla “cuando..., entonces...” describe una respuesta comprensible.\\
+\textbf{Seguridad} & La prueba considera placa, voltaje, polaridad, resistencia y revisión previa.\\
+\textbf{Verificación} & Existe evidencia inicial o un procedimiento de prueba definido con precisión.\\
+\textbf{Autonomía} & El equipo registra qué aceptó, corrigió o descartó de la asistencia de IA.\\
+\textbf{Continuidad} & El próximo hito puede comprobarse antes de la siguiente instancia.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPGreen}
+\labeltext{Escala rápida de avance}
+\begin{tabularx}{\textwidth}{@{}L{28mm}Y@{}}
+\textbf{Iniciado} & Hay problema e idea, pero la variable o el sensor aún no son claros.\\
+\textbf{Encaminado} & Variable, sensor y regla son coherentes; falta prueba o evidencia.\\
+\textbf{Verificable} & Existe evidencia inicial y el equipo puede explicar qué comprobó.\\
+\textbf{Proyectado} & Además, el equipo prioriza una mejora y define su siguiente hito.\\
+\end{tabularx}
+\end{softcard}
+
+\begin{card}
+\labeltext{Ruta posterior al taller}
+\begin{tabularx}{\textwidth}{@{}L{33mm}Y@{}}
+\textbf{Mentoría 1 · 31 ago} & Validar el problema y comprender el contexto afectado.\\
+\textbf{Mentoría 2 · 7 sep} & Afinar solución, recursos y factibilidad.\\
+\textbf{Mentoría 3 · 21 sep} & Revisar prototipo, pruebas y evidencia.\\
+\textbf{Mentoría 4 · 28 sep} & Construir relato, pitch y ensayo del equipo.\\
+\textbf{Evento final · 5 oct} & Comunicar el proyecto y demostrar su avance.\\
+\end{tabularx}
+\end{card}
+
+\begin{softcard}{AIEPCyan}
+\labeltext{Sentido de las mentorías}
+Las mentorías sirven para orientar, contrastar decisiones y desbloquear dificultades. El desarrollo
+principal ocurre con el trabajo del equipo entre sesiones: investigar, construir, probar, documentar
+y mejorar.
+\end{softcard}
+
+\begin{card}
+\labeltext{Lista de cierre para quien facilita}
+\begin{itemize}
+  \item[$\square$] Cada equipo entregó una ficha identificable y legible.
+  \item[$\square$] La variable y el sensor muestran una relación defendible.
+  \item[$\square$] La regla inicial y el siguiente hito quedaron escritos.
+  \item[$\square$] Cualquier prueba física fue revisada antes de energizar.
+  \item[$\square$] Las fichas quedaron disponibles para la Mentoría 1.
+\end{itemize}
+\end{card}
+
+\begin{softcard}{AIEPRed}
+\centering
+{\large\bfseries\color{AIEPNavy}GeoGreen demuestra hasta dónde puede crecer una idea. Hoy comienza la de ustedes.}
+\end{softcard}
+
+\end{document}

@@ -2,6 +2,12 @@
 
 Infografías asociadas al Taller 3.
 
+## Mapa general
+
+- `taller-3-mapa-de-la-clase.png` — recorrido completo de los 90 minutos, salida obligatoria y
+  continuidad posterior; también se conserva en PDF. La fuente editable es
+  `taller-3-mapa-de-la-clase.tex`.
+
 ## Serie por bloques
 
 Láminas verticales para lectura en teléfono, generadas como una familia visual continua. Cada PNG
