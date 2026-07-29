@@ -6224,72 +6224,105 @@ function redesignSlide21(slide) {
 // 36 · Cinco revisiones antes de energizar
 {
   const slide = pptx.addSlide();
-  addHeader(
-    slide,
-    "Revisión física",
-    "Cinco comprobaciones antes de conectar energía",
-    "El orden importa: se revisa el montaje real, no la imagen que debería representar.",
-    36,
-    { titleFontSize: 25.3 },
-  );
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("REVISIÓN FÍSICA", {
+    x: 0.76, y: 0.46, w: 3.2, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.red, margin: 0,
+  });
+  slide.addText("Cinco comprobaciones antes de conectar energía", {
+    x: 0.76, y: 0.9, w: 9.15, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 27.2, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("Se revisa el montaje real, cable por cable. La imagen de referencia no basta.", {
+    x: 0.78, y: 1.58, w: 9.1, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
+  addImageCrop(slide, IMG.safetyReview, 0.76, 2.18, 5.08, 4.28);
   slide.addShape(SH.ellipse, {
-    x: 5.21, y: 2.47, w: 2.92, h: 2.92,
-    fill: { color: C.navy }, line: { color: C.white, pt: 1.5 },
+    x: 1.08, y: 2.5, w: 1.52, h: 1.52,
+    fill: { color: C.red, transparency: 4 },
+    line: { color: C.white, pt: 2 },
   });
   addCenteredTextInCircle(slide, "USB", {
-    x: 5.21, y: 2.16, d: 2.92, fontSize: 27, color: C.white,
+    x: 1.08, y: 2.2, d: 1.52, fontSize: 20, color: C.white,
   });
-  slide.addText("TODAVÍA NO", {
-    x: 5.75, y: 4.25, w: 1.84, h: 0.24,
-    fontFace: TYPOGRAPHY.body, fontSize: 10, bold: true,
-    charSpacing: 0.9, color: C.red, align: "center", margin: 0,
+  slide.addText("DESCONECTADO", {
+    x: 1.2, y: 3.48, w: 1.28, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 7.8, bold: true,
+    charSpacing: 0.65, color: C.white, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.02, y: 5.7, w: 4.56, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 5 },
+    line: { color: C.red, pt: 1.1 },
+  });
+  slide.addText("SI HAY DUDA · NO SE ENERGIZA", {
+    x: 1.32, y: 5.85, w: 3.96, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 11.6, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 6.18, y: 2.18, w: 6.36, h: 4.28,
+    rectRadius: 0.06,
+    fill: { color: C.white }, line: { color: C.cyan, pt: 1.3 },
+  });
+  slide.addText("CONTROL PREVIO", {
+    x: 6.56, y: 2.5, w: 2.15, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.5, bold: true,
+    charSpacing: 0.9, color: C.cyan, margin: 0,
+  });
+  slide.addText("5 / 5 antes del USB", {
+    x: 9.62, y: 2.43, w: 2.45, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
+    color: C.navy, align: "right", margin: 0,
   });
   const checks = [
-    { x: 0.78, y: 2.0, n: "1", title: "VOLTAJE", body: "cada módulo usa la tensión correcta", color: C.red },
-    { x: 0.78, y: 4.52, n: "2", title: "POLARIDAD", body: "alimentación y tierra no están invertidas", color: C.gold },
-    { x: 8.55, y: 2.0, n: "3", title: "TIERRA COMÚN", body: "todas las partes comparten referencia", color: C.cyan },
-    { x: 8.55, y: 4.52, n: "4", title: "RESISTENCIAS", body: "cada LED tiene la suya", color: C.green },
+    { n: "1", title: "VOLTAJE", body: "cada módulo usa la tensión correcta", color: C.red },
+    { n: "2", title: "POLARIDAD", body: "alimentación y tierra no están invertidas", color: C.gold },
+    { n: "3", title: "TIERRA COMÚN", body: "todas las partes comparten referencia", color: C.cyan },
+    { n: "4", title: "RESISTENCIAS", body: "cada LED tiene la suya", color: C.green },
+    { n: "5", title: "MONTAJE", body: "sin cables sueltos ni contactos tocándose", color: C.blue },
   ];
-  checks.forEach((item) => {
+  checks.forEach((item, index) => {
     const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    const y = 2.92 + index * 0.62;
     slide.addShape(SH.roundRect, {
-      x: item.x, y: item.y, w: 4.0, h: 1.85,
-      rectRadius: 0.06,
-      fill: { color: C.white }, line: { color: item.color, pt: 1.3 },
+      x: 6.52, y, w: 5.66, h: 0.5,
+      rectRadius: 0.04,
+      fill: { color: item.color, transparency: 91 },
+      line: { color: item.color, transparency: 34, pt: 1 },
     });
-    addNumberCircle(slide, item.x + 0.28, item.y + 0.28, 0.72, item.n, item.color, textColor);
+    addNumberCircle(slide, 6.7, y + 0.08, 0.34, item.n, item.color, textColor);
     slide.addText(item.title, {
-      x: item.x + 1.18, y: item.y + 0.3, w: 2.48, h: 0.28,
-      fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
+      x: 7.22, y: y + 0.12, w: 1.48, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.8, bold: true,
       color: C.navy, margin: 0,
     });
     slide.addText(item.body, {
-      x: item.x + 1.18, y: item.y + 0.83, w: 2.34, h: 0.5,
-      fontFace: TYPOGRAPHY.body, fontSize: 11,
+      x: 8.74, y: y + 0.11, w: 2.94, h: 0.22,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.6,
       color: C.slate, margin: 0,
     });
   });
   slide.addShape(SH.roundRect, {
-    x: 4.33, y: 5.7, w: 4.66, h: 0.76,
-    rectRadius: 0.05,
-    fill: { color: C.redSoft }, line: { color: C.red, pt: 1.2 },
+    x: 1.18, y: 6.67, w: 10.98, h: 0.4,
+    rectRadius: 0.04,
+    fill: { color: C.green }, line: { color: C.green },
   });
-  addNumberCircle(slide, 4.58, 5.82, 0.5, "5", C.blue, C.white);
-  slide.addText("MONTAJE", {
-    x: 5.3, y: 5.82, w: 1.18, h: 0.22,
-    fontFace: TYPOGRAPHY.display, fontSize: 13.2, bold: true,
-    color: C.navy, margin: 0,
+  slide.addText("5/5 + REVISIÓN CRUZADA  →  RECIÉN ENTONCES ENERGÍA", {
+    x: 1.54, y: 6.79, w: 10.26, h: 0.17,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.4, bold: true,
+    color: C.white, align: "center", margin: 0,
   });
-  slide.addText("sin cables sueltos, contactos tocándose ni piezas sobre metal", {
-    x: 6.45, y: 5.81, w: 2.18, h: 0.34,
-    fontFace: TYPOGRAPHY.body, fontSize: 9.9,
-    color: C.slate, margin: 0,
-  });
-  slide.addText("Después de las cinco: revisión cruzada y recién entonces energía.", {
-    x: 2.1, y: 6.66, w: 9.15, h: 0.23,
-    fontFace: TYPOGRAPHY.display, fontSize: 13.3, bold: true,
-    color: C.red, align: "center", margin: 0,
-  });
+  addFooter(slide, 36, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -6903,56 +6936,81 @@ function redesignSlide21(slide) {
   );
 
   const responsibilities = [
-    { x: 0.78, y: 2.02, n: "01", role: "COORDINACIÓN", output: "plan + turnos + fechas", color: C.red },
-    { x: 4.59, y: 2.02, n: "02", role: "INVESTIGACIÓN", output: "fuentes + datos + umbral", color: C.cyan },
-    { x: 8.4, y: 2.02, n: "03", role: "DISEÑO", output: "boceto + montaje + ubicación", color: C.gold },
-    { x: 0.78, y: 4.14, n: "04", role: "TECNOLOGÍA", output: "diagrama + primera versión", color: C.green },
-    { x: 4.59, y: 4.14, n: "05", role: "PRUEBAS Y EVIDENCIA", output: "prueba + mediciones + registro", color: C.blue },
-    { x: 8.4, y: 4.14, n: "06", role: "COMUNICACIÓN", output: "explicación + fotos ordenadas", color: C.red },
+    { x: 0.78, y: 2.02, n: "01", role: "COORDINACIÓN", output: "plan · turnos · fechas", color: C.red, side: "left" },
+    { x: 0.78, y: 3.48, n: "02", role: "INVESTIGACIÓN", output: "fuentes · datos · umbral", color: C.cyan, side: "left" },
+    { x: 0.78, y: 4.94, n: "03", role: "DISEÑO", output: "boceto · montaje · ubicación", color: C.gold, side: "left" },
+    { x: 9.03, y: 2.02, n: "04", role: "TECNOLOGÍA", output: "diagrama · primera versión", color: C.green, side: "right" },
+    { x: 9.03, y: 3.48, n: "05", role: "PRUEBAS Y EVIDENCIA", output: "prueba · mediciones · registro", color: C.blue, side: "right" },
+    { x: 9.03, y: 4.94, n: "06", role: "COMUNICACIÓN", output: "explicación · fotos ordenadas", color: C.red, side: "right" },
   ];
   responsibilities.forEach((item) => {
     const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    const cardW = 3.52;
     slide.addShape(SH.roundRect, {
-      x: item.x, y: item.y, w: 3.35, h: 1.72,
+      x: item.x, y: item.y, w: cardW, h: 1.02,
       rectRadius: 0.06,
-      fill: { color: C.white },
+      fill: { color: item.color, transparency: 91 },
       line: { color: item.color, pt: 1.35 },
       shadow: { type: "outer", color: "84909D", opacity: 0.13, blur: 1.3, angle: 45, distance: 0.8 },
     });
-    slide.addShape(SH.rect, {
-      x: item.x, y: item.y, w: 0.68, h: 1.72,
-      fill: { color: item.color }, line: { color: item.color },
-    });
-    addNumberCircle(slide, item.x + 0.14, item.y + 0.18, 0.4, item.n, C.navyDeep, C.white);
+    addNumberCircle(slide, item.x + 0.2, item.y + 0.22, 0.54, item.n, item.color, textColor);
     slide.addText(item.role, {
-      x: item.x + 0.94, y: item.y + 0.28, w: 2.05, h: 0.28,
+      x: item.x + 0.98, y: item.y + 0.2, w: 2.18, h: 0.22,
       fontFace: TYPOGRAPHY.display,
-      fontSize: item.role.length > 16 ? 10.3 : 12.2,
+      fontSize: item.role.length > 16 ? 9.8 : 11.7,
       bold: true, color: C.navy, margin: 0,
     });
-    slide.addText("DEJA LISTO", {
-      x: item.x + 0.94, y: item.y + 0.78, w: 1.12, h: 0.16,
-      fontFace: TYPOGRAPHY.body, fontSize: 8.2, bold: true,
-      charSpacing: 0.65, color: item.color === C.gold ? C.navy : item.color, margin: 0,
-    });
     slide.addText(item.output, {
-      x: item.x + 0.94, y: item.y + 1.08, w: 2.02, h: 0.36,
-      fontFace: TYPOGRAPHY.body, fontSize: 10.8, bold: true,
-      color: C.slate, margin: 0,
+      x: item.x + 0.98, y: item.y + 0.6, w: 2.18, h: 0.18,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.7, bold: true,
+      color: item.color === C.gold ? C.navy : item.color, margin: 0,
     });
-    slide.addShape(SH.roundRect, {
-      x: item.x + 2.84, y: item.y + 1.22, w: 0.28, h: 0.28,
-      rectRadius: 0.03,
-      fill: { color: item.color }, line: { color: item.color },
-    });
-    slide.addText("✓", {
-      x: item.x + 2.88, y: item.y + 1.26, w: 0.2, h: 0.12,
-      fontFace: TYPOGRAPHY.display, fontSize: 8.4, bold: true,
-      color: textColor, align: "center", margin: 0,
+
+    const cardCenterY = item.y + 0.51;
+    const targetY = item.y < 3 ? 2.9 : item.y < 4 ? 3.99 : 5.08;
+    const lineY1 = item.side === "left" ? cardCenterY : targetY;
+    const lineY2 = item.side === "left" ? targetY : cardCenterY;
+    slide.addShape(SH.line, {
+      x: item.side === "left" ? item.x + cardW : 8.08,
+      y: Math.min(lineY1, lineY2),
+      w: item.side === "left" ? 0.95 : 0.95,
+      h: Math.abs(lineY2 - lineY1),
+      flipV: lineY2 < lineY1,
+      line: {
+        color: item.color,
+        transparency: 25,
+        pt: 1.4,
+      },
     });
   });
+
+  slide.addShape(SH.ellipse, {
+    x: 4.83, y: 2.34, w: 3.65, h: 3.65,
+    fill: { color: C.navy }, line: { color: C.cyan, pt: 2 },
+    shadow: { type: "outer", color: "84909D", opacity: 0.18, blur: 1.8, angle: 45, distance: 1 },
+  });
+  slide.addText("1 EQUIPO", {
+    x: 5.55, y: 3.48, w: 2.2, h: 0.34,
+    fontFace: TYPOGRAPHY.display, fontSize: 21.5, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("6 APORTES", {
+    x: 5.72, y: 4.02, w: 1.88, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 0.95, color: C.gold, align: "center", margin: 0,
+  });
+  slide.addText("1 MVP", {
+    x: 5.72, y: 4.53, w: 1.88, h: 0.34,
+    fontFace: TYPOGRAPHY.display, fontSize: 22, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("Las decisiones se toman juntos.", {
+    x: 5.32, y: 5.18, w: 2.68, h: 0.26,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2,
+    color: C.paleInk, align: "center", margin: 0,
+  });
   slide.addShape(SH.roundRect, {
-    x: 1.18, y: 6.35, w: 10.98, h: 0.5,
+    x: 1.18, y: 6.38, w: 10.98, h: 0.5,
     rectRadius: 0.04,
     fill: { color: C.navy }, line: { color: C.navy },
   });
@@ -7221,98 +7279,123 @@ function redesignSlide21(slide) {
 // 47 · De intención a tarea verificable
 {
   const slide = pptx.addSlide();
-  addHeader(
-    slide,
-    "Precisión del plan",
-    "“Avanzar” no es una tarea",
-    "La acción debe terminar en algo que otra persona pueda abrir, mirar, probar o revisar.",
-    47,
-  );
-
-  const examples = [
-    {
-      y: 2.18,
-      weak: "Ver cómo funciona el sensor.",
-      strong: "Conectar solo el sensor y mostrar su lectura cambiando.",
-      proof: "video + valor visible",
-      color: C.cyan,
-    },
-    {
-      y: 4.35,
-      weak: "Hacer el panel.",
-      strong: "Mostrar estado actual y las últimas diez mediciones.",
-      proof: "archivo que abre en el PC",
-      color: C.green,
-    },
-  ];
-  examples.forEach((item, index) => {
-    slide.addShape(SH.roundRect, {
-      x: 0.78, y: item.y, w: 3.55, h: 1.52,
-      rectRadius: 0.06,
-      fill: { color: C.redSoft }, line: { color: C.red, pt: 1.2 },
-    });
-    addNumberCircle(slide, 1.05, item.y + 0.27, 0.54, String(index + 1), C.red, C.white);
-    slide.addText("INTENCIÓN", {
-      x: 1.82, y: item.y + 0.29, w: 1.28, h: 0.18,
-      fontFace: TYPOGRAPHY.body, fontSize: 9, bold: true,
-      charSpacing: 0.7, color: C.red, margin: 0,
-    });
-    slide.addText(item.weak, {
-      x: 1.05, y: item.y + 0.83, w: 2.9, h: 0.38,
-      fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
-      color: C.navy, align: "center", margin: 0,
-    });
-
-    slide.addShape(SH.chevron, {
-      x: 4.55, y: item.y + 0.46, w: 0.64, h: 0.62,
-      fill: { color: C.gold }, line: { color: C.gold },
-    });
-
-    slide.addShape(SH.roundRect, {
-      x: 5.42, y: item.y, w: 7.1, h: 1.52,
-      rectRadius: 0.06,
-      fill: { color: item.color, transparency: 90 },
-      line: { color: item.color, pt: 1.3 },
-    });
-    slide.addText("TAREA VERIFICABLE", {
-      x: 5.78, y: item.y + 0.29, w: 2.15, h: 0.18,
-      fontFace: TYPOGRAPHY.body, fontSize: 9, bold: true,
-      charSpacing: 0.7, color: item.color, margin: 0,
-    });
-    slide.addText(item.strong, {
-      x: 5.78, y: item.y + 0.7, w: 4.45, h: 0.42,
-      fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
-      color: C.navy, margin: 0,
-    });
-    slide.addShape(SH.roundRect, {
-      x: 10.38, y: item.y + 0.44, w: 1.8, h: 0.64,
-      rectRadius: 0.04,
-      fill: { color: item.color }, line: { color: item.color },
-    });
-    slide.addText("SE COMPRUEBA CON", {
-      x: 10.58, y: item.y + 0.57, w: 1.4, h: 0.14,
-      fontFace: TYPOGRAPHY.body, fontSize: 7.2, bold: true,
-      charSpacing: 0.45,
-      color: item.color === C.gold ? C.navyDeep : C.white,
-      align: "center", margin: 0,
-    });
-    slide.addText(item.proof, {
-      x: 10.53, y: item.y + 0.83, w: 1.5, h: 0.18,
-      fontFace: TYPOGRAPHY.display, fontSize: 9.2, bold: true,
-      color: item.color === C.gold ? C.navyDeep : C.white,
-      align: "center", margin: 0,
-    });
+  slide.background = { color: C.navyDeep };
+  addTopBars(slide);
+  addInstitutionalLockup(slide, { white: true });
+  slide.addText("PRECISIÓN DEL PLAN", {
+    x: 0.76, y: 0.46, w: 3.4, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    charSpacing: 1.15, color: C.red, margin: 0,
   });
+  slide.addText("Una intención entra. Una tarea verificable sale.", {
+    x: 0.76, y: 0.9, w: 9.4, h: 0.56,
+    fontFace: TYPOGRAPHY.display, fontSize: 27.4, bold: true,
+    color: C.white, margin: 0,
+  });
+  slide.addText("El plan mejora cuando la frase pasa por cuatro filtros concretos.", {
+    x: 0.78, y: 1.58, w: 8.6, h: 0.34,
+    fontFace: TYPOGRAPHY.body, fontSize: 14,
+    color: C.paleInk, margin: 0,
+  });
+
   slide.addShape(SH.roundRect, {
-    x: 1.34, y: 6.38, w: 10.65, h: 0.48,
-    rectRadius: 0.04,
-    fill: { color: C.navy }, line: { color: C.navy },
+    x: 0.76, y: 2.22, w: 2.52, h: 3.8,
+    rectRadius: 0.06,
+    fill: { color: C.red }, line: { color: C.red, pt: 1.4 },
   });
-  slide.addText("Una tarea termina en evidencia. Una intención termina en otra conversación.", {
-    x: 1.68, y: 6.52, w: 9.97, h: 0.19,
-    fontFace: TYPOGRAPHY.display, fontSize: 12.9, bold: true,
+  slide.addText("ENTRA", {
+    x: 1.18, y: 2.62, w: 1.68, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.5, bold: true,
+    charSpacing: 1.0, color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("“Hacer\nel panel”", {
+    x: 1.02, y: 3.28, w: 2.0, h: 1.0,
+    fontFace: TYPOGRAPHY.display, fontSize: 24, bold: true,
+    color: C.white, align: "center", valign: "mid", margin: 0,
+  });
+  slide.addText("No tiene persona,\nfecha ni prueba.", {
+    x: 1.08, y: 4.78, w: 1.88, h: 0.58,
+    fontFace: TYPOGRAPHY.body, fontSize: 11,
     color: C.white, align: "center", margin: 0,
   });
+  slide.addShape(SH.chevron, {
+    x: 3.45, y: 3.76, w: 0.56, h: 0.72,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 4.18, y: 2.22, w: 4.82, h: 3.8,
+    rectRadius: 0.06,
+    fill: { color: C.white }, line: { color: C.cyan, pt: 1.4 },
+  });
+  slide.addText("PASA POR CUATRO FILTROS", {
+    x: 4.58, y: 2.55, w: 4.02, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.7, bold: true,
+    charSpacing: 0.95, color: C.cyan, align: "center", margin: 0,
+  });
+  const filters = [
+    { x: 4.55, y: 3.05, n: "01", title: "QUÉ", body: "estado + 10 mediciones", color: C.red },
+    { x: 6.65, y: 3.05, n: "02", title: "QUIÉN", body: "Matías", color: C.cyan },
+    { x: 4.55, y: 4.45, n: "03", title: "CUÁNDO", body: "viernes 11", color: C.gold },
+    { x: 6.65, y: 4.45, n: "04", title: "EVIDENCIA", body: "abre en el PC", color: C.green },
+  ];
+  filters.forEach((item) => {
+    const textColor = item.color === C.gold ? C.navyDeep : C.white;
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: 1.96, h: 1.05,
+      rectRadius: 0.05,
+      fill: { color: item.color, transparency: 91 },
+      line: { color: item.color, pt: 1.1 },
+    });
+    addNumberCircle(slide, item.x + 0.14, item.y + 0.17, 0.4, item.n, item.color, textColor);
+    slide.addText(item.title, {
+      x: item.x + 0.72, y: item.y + 0.19, w: 1.0, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.2, bold: true,
+      color: C.navy, margin: 0,
+    });
+    slide.addText(item.body, {
+      x: item.x + 0.22, y: item.y + 0.64, w: 1.52, h: 0.2,
+      fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
+      color: item.color === C.gold ? C.navy : item.color,
+      align: "center", margin: 0,
+    });
+  });
+  slide.addShape(SH.chevron, {
+    x: 9.2, y: 3.76, w: 0.56, h: 0.72,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+
+  slide.addShape(SH.roundRect, {
+    x: 9.94, y: 2.22, w: 2.62, h: 3.8,
+    rectRadius: 0.06,
+    fill: { color: C.green }, line: { color: C.green, pt: 1.4 },
+  });
+  slide.addText("SALE", {
+    x: 10.42, y: 2.62, w: 1.66, h: 0.2,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.5, bold: true,
+    charSpacing: 1.0, color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("TAREA\nLISTA", {
+    x: 10.23, y: 3.15, w: 2.04, h: 0.76,
+    fontFace: TYPOGRAPHY.display, fontSize: 23, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addText("Panel con estado y 10 mediciones\n· Matías · viernes 11 · abre en el PC", {
+    x: 10.18, y: 4.38, w: 2.14, h: 0.92,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
+    color: C.white, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 1.34, y: 6.48, w: 10.65, h: 0.48,
+    rectRadius: 0.04,
+    fill: { color: C.gold }, line: { color: C.gold },
+  });
+  slide.addText("Una tarea termina en evidencia. Una intención termina en otra conversación.", {
+    x: 1.68, y: 6.62, w: 9.97, h: 0.19,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.9, bold: true,
+    color: C.navyDeep, align: "center", margin: 0,
+  });
+  addFooter(slide, 47, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
 }
 
@@ -7327,72 +7410,120 @@ function redesignSlide21(slide) {
     fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
     charSpacing: 1.15, color: C.red, margin: 0,
   });
-  slide.addText("Primero demuestren una señal real", {
-    x: 0.76, y: 0.9, w: 8.1, h: 0.56,
+  slide.addText("Cinco días útiles para llegar con evidencia", {
+    x: 0.76, y: 0.9, w: 8.6, h: 0.56,
     fontFace: TYPOGRAPHY.display, fontSize: 28, bold: true,
     color: C.white, margin: 0,
   });
-  slide.addText("La primera tarea de todos es la prueba mínima. Después se construye la rama.", {
+  slide.addText("El tiempo se protege empezando por la prueba mínima y agregando profundidad después.", {
     x: 0.78, y: 1.58, w: 9.2, h: 0.34,
     fontFace: TYPOGRAPHY.body, fontSize: 14,
     color: C.paleInk, margin: 0,
   });
 
-  const pathItems = [
-    { x: 0.82, n: "01", title: "PRUEBA MÍNIMA", body: "una lectura cambia", color: C.red },
-    { x: 3.98, n: "02", title: "REGLA", body: "el umbral activa algo", color: C.gold },
-    { x: 7.14, n: "03", title: "RAMA", body: "profundidad elegida", color: C.cyan },
-    { x: 10.3, n: "04", title: "EVIDENCIA", body: "se muestra y explica", color: C.green },
-  ];
-  slide.addShape(SH.line, {
-    x: 1.35, y: 3.18, w: 10.5, h: 0,
-    line: { color: C.white, transparency: 48, pt: 2, endArrowType: "triangle" },
+  slide.addShape(SH.roundRect, {
+    x: 0.76, y: 2.2, w: 3.42, h: 4.35,
+    rectRadius: 0.06,
+    fill: { color: C.white }, line: { color: C.red, pt: 1.4 },
+    shadow: { type: "outer", color: "000000", opacity: 0.22, blur: 1.4, angle: 45, distance: 0.8 },
   });
-  pathItems.forEach((item, index) => {
+  slide.addText("VENTANA REAL", {
+    x: 1.18, y: 2.55, w: 2.56, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.4, bold: true,
+    charSpacing: 0.95, color: C.red, align: "center", margin: 0,
+  });
+  slide.addText("5", {
+    x: 1.42, y: 2.96, w: 2.1, h: 1.08,
+    fontFace: TYPOGRAPHY.display, fontSize: 50, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  slide.addText("DÍAS ÚTILES", {
+    x: 1.16, y: 4.08, w: 2.62, h: 0.28,
+    fontFace: TYPOGRAPHY.display, fontSize: 16.2, bold: true,
+    color: C.navy, align: "center", margin: 0,
+  });
+  const weekdays = ["L", "M", "X", "J", "V"];
+  weekdays.forEach((day, index) => {
+    const color = [C.red, C.gold, C.cyan, C.green, C.blue][index];
+    addNumberCircle(
+      slide,
+      1.1 + index * 0.52,
+      4.72,
+      0.38,
+      day,
+      color,
+      color === C.gold ? C.navyDeep : C.white,
+    );
+  });
+  slide.addText("07–11 SEP", {
+    x: 1.2, y: 5.43, w: 2.52, h: 0.32,
+    fontFace: TYPOGRAPHY.display, fontSize: 17.5, bold: true,
+    color: C.red, align: "center", margin: 0,
+  });
+  slide.addText("La semana del 14 no tiene\nactividades del programa.", {
+    x: 1.12, y: 5.92, w: 2.68, h: 0.48,
+    fontFace: TYPOGRAPHY.body, fontSize: 10.2,
+    color: C.slate, align: "center", margin: 0,
+  });
+
+  slide.addText("ORDEN QUE REDUCE RIESGO", {
+    x: 4.72, y: 2.25, w: 3.4, h: 0.22,
+    fontFace: TYPOGRAPHY.body, fontSize: 9.6, bold: true,
+    charSpacing: 0.95, color: C.cyan, margin: 0,
+  });
+  const sprint = [
+    { x: 4.72, y: 2.82, w: 3.35, n: "01", title: "PRUEBA MÍNIMA", body: "una lectura cambia", color: C.red },
+    { x: 5.74, y: 3.72, w: 3.35, n: "02", title: "REGLA", body: "el umbral activa algo", color: C.gold },
+    { x: 6.76, y: 4.62, w: 3.35, n: "03", title: "RAMA", body: "profundidad elegida", color: C.cyan },
+    { x: 7.78, y: 5.52, w: 4.1, n: "04", title: "EVIDENCIA", body: "se muestra y se explica", color: C.green },
+  ];
+  sprint.forEach((item, index) => {
     const textColor = item.color === C.gold ? C.navyDeep : C.white;
-    addNumberCircle(slide, item.x + 0.65, 2.69, 0.92, item.n, item.color, textColor);
+    slide.addShape(SH.roundRect, {
+      x: item.x, y: item.y, w: item.w, h: 0.68,
+      rectRadius: 0.05,
+      fill: { color: item.color }, line: { color: item.color },
+      shadow: { type: "outer", color: "000000", opacity: 0.2, blur: 1.2, angle: 45, distance: 0.7 },
+    });
+    addNumberCircle(slide, item.x + 0.18, item.y + 0.13, 0.4, item.n, C.navyDeep, C.white);
     slide.addText(item.title, {
-      x: item.x, y: 3.9, w: 2.2, h: 0.25,
-      fontFace: TYPOGRAPHY.display, fontSize: 13.3, bold: true,
-      color: item.color, align: "center", margin: 0,
+      x: item.x + 0.78, y: item.y + 0.15, w: 1.72, h: 0.18,
+      fontFace: TYPOGRAPHY.display, fontSize: 10.6, bold: true,
+      color: textColor, margin: 0,
     });
     slide.addText(item.body, {
-      x: item.x, y: 4.4, w: 2.2, h: 0.42,
-      fontFace: TYPOGRAPHY.body, fontSize: 10.6,
-      color: C.paleInk, align: "center", margin: 0,
+      x: item.x + 2.02, y: item.y + 0.15, w: item.w - 2.28, h: 0.26,
+      fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
+      color: textColor, align: "right", margin: 0,
     });
-    if (index === 0) {
-      slide.addShape(SH.roundRect, {
-        x: item.x + 0.15, y: 5.05, w: 1.9, h: 0.42,
-        rectRadius: 0.04,
-        fill: { color: C.red }, line: { color: C.red },
-      });
-      slide.addText("EMPIEZA ESTA SEMANA", {
-        x: item.x + 0.33, y: 5.18, w: 1.54, h: 0.15,
-        fontFace: TYPOGRAPHY.body, fontSize: 7.7, bold: true,
-        charSpacing: 0.55, color: C.white, align: "center", margin: 0,
+    if (index < sprint.length - 1) {
+      slide.addShape(SH.line, {
+        x: item.x + item.w - 0.15, y: item.y + 0.55, w: 0.86, h: 0.48,
+        line: { color: C.white, transparency: 42, pt: 1.4, endArrowType: "triangle" },
       });
     }
   });
+  addImageCrop(slide, IMG.prototype, 10.28, 2.3, 1.98, 2.78);
   slide.addShape(SH.roundRect, {
-    x: 1.06, y: 5.95, w: 11.2, h: 0.83,
+    x: 10.42, y: 4.5, w: 1.7, h: 0.4,
+    rectRadius: 0.04,
+    fill: { color: C.navyDeep, transparency: 5 },
+    line: { color: C.cyan, pt: 1 },
+  });
+  slide.addText("SEÑAL REAL PRIMERO", {
+    x: 10.58, y: 4.62, w: 1.38, h: 0.15,
+    fontFace: TYPOGRAPHY.body, fontSize: 7.9, bold: true,
+    charSpacing: 0.5, color: C.white, align: "center", margin: 0,
+  });
+  slide.addShape(SH.roundRect, {
+    x: 4.72, y: 6.5, w: 7.56, h: 0.45,
     rectRadius: 0.05,
     fill: { color: C.white }, line: { color: C.white },
   });
-  slide.addText("VENTANA PRINCIPAL", {
-    x: 1.4, y: 6.2, w: 1.82, h: 0.18,
-    fontFace: TYPOGRAPHY.body, fontSize: 8.8, bold: true,
-    charSpacing: 0.65, color: C.red, margin: 0,
-  });
-  slide.addText("del lunes 7 al viernes 11 de septiembre", {
-    x: 3.23, y: 6.12, w: 4.15, h: 0.28,
-    fontFace: TYPOGRAPHY.display, fontSize: 14.6, bold: true,
-    color: C.navy, align: "center", margin: 0,
-  });
   slide.addText("El 21 se muestra evidencia, no intención.", {
-    x: 8.08, y: 6.17, w: 3.65, h: 0.24,
-    fontFace: TYPOGRAPHY.display, fontSize: 12.3, bold: true,
-    color: C.red, align: "right", margin: 0,
+    x: 5.06, y: 6.63, w: 6.88, h: 0.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.5, bold: true,
+    color: C.red, align: "center", margin: 0,
   });
   addFooter(slide, 48, { white: true });
   addNotesAndValidate(slide, { skipOverlap: true });
@@ -7627,7 +7758,7 @@ function redesignSlide21(slide) {
   addImageCrop(slide, IMG.competition, 0, 0, W, H);
   slide.addShape(SH.rect, {
     x: 0, y: 0, w: W, h: H,
-    fill: { color: C.navyDeep, transparency: 10 },
+    fill: { color: C.navyDeep, transparency: 24 },
     line: { color: C.navyDeep, transparency: 100 },
   });
   addTopBars(slide);
@@ -7638,84 +7769,107 @@ function redesignSlide21(slide) {
     fontFace: TYPOGRAPHY.body, fontSize: 10.3, bold: true,
     charSpacing: 1.2, color: C.cyan, margin: 0,
   });
-  slide.addText("Hoy dejaron un plan. Ahora toca convertirlo en evidencia.", {
-    x: 0.76, y: 0.98, w: 8.55, h: 1.05,
-    fontFace: TYPOGRAPHY.display, fontSize: 29, bold: true,
+  slide.addText("Hoy dejaron un plan.\nEsta semana lo convierten en evidencia.", {
+    x: 0.76, y: 0.92, w: 8.6, h: 1.18,
+    fontFace: TYPOGRAPHY.display, fontSize: 28.5, bold: true,
     color: C.white, margin: 0,
   });
 
   const continuity = [
     {
-      x: 0.78, n: "1", title: "MENTORÍA 2",
+      x: 1.25, y: 4.28, n: "1", title: "PLAN",
       body: "solución + recursos + plan",
       color: C.red,
     },
     {
-      x: 4.58, n: "2", title: "ENTRE SESIONES",
+      x: 5.38, y: 3.55, n: "2", title: "CONSTRUCCIÓN",
       body: "construir + probar + registrar",
       color: C.gold,
     },
     {
-      x: 8.38, n: "3", title: "MENTORÍA 3",
+      x: 9.52, y: 2.82, n: "3", title: "EVIDENCIA",
       body: "mostrar avance + aprender",
       color: C.green,
     },
   ];
+  slide.addShape(SH.roundRect, {
+    x: 8.88, y: 2.4, w: 3.45, h: 2.02,
+    rectRadius: 0.08,
+    fill: { color: C.green, transparency: 78 },
+    line: { color: C.green, transparency: 30, pt: 1.2 },
+  });
+  slide.addText("META DEL RECORRIDO", {
+    x: 9.28, y: 2.58, w: 2.65, h: 0.18,
+    fontFace: TYPOGRAPHY.body, fontSize: 8.4, bold: true,
+    charSpacing: 0.8, color: C.green, align: "center", margin: 0,
+  });
   continuity.forEach((item, index) => {
     const textColor = item.color === C.gold ? C.navyDeep : C.white;
-    slide.addShape(SH.roundRect, {
-      x: item.x, y: 2.72, w: 3.35, h: 2.0,
-      rectRadius: 0.06,
-      fill: { color: C.navyDeep, transparency: 7 },
-      line: { color: item.color, pt: 1.5 },
+    slide.addShape(SH.ellipse, {
+      x: item.x, y: item.y, w: 1.18, h: 1.18,
+      fill: { color: item.color }, line: { color: C.white, pt: 1.8 },
+      shadow: { type: "outer", color: "000000", opacity: 0.34, blur: 1.8, angle: 45, distance: 1 },
     });
-    addNumberCircle(slide, item.x + 1.2, 2.98, 0.86, item.n, item.color, textColor);
+    addCenteredTextInCircle(slide, item.n, {
+      x: item.x, y: item.y - 0.34, d: 1.18, fontSize: 20, color: textColor,
+    });
     slide.addText(item.title, {
-      x: item.x + 0.42, y: 4.02, w: 2.52, h: 0.25,
-      fontFace: TYPOGRAPHY.display, fontSize: 14.2, bold: true,
-      color: C.white, align: "center", margin: 0,
+      x: item.x - 0.38, y: item.y + 1.42, w: 1.94, h: 0.25,
+      fontFace: TYPOGRAPHY.display, fontSize: 13.5, bold: true,
+      color: item.color, align: "center", margin: 0,
     });
     slide.addText(item.body, {
-      x: item.x + 0.37, y: 4.42, w: 2.62, h: 0.25,
+      x: item.x - 0.58, y: item.y + 1.84, w: 2.34, h: 0.42,
       fontFace: TYPOGRAPHY.body, fontSize: 10.2,
       color: C.paleInk, align: "center", margin: 0,
     });
     if (index < continuity.length - 1) {
-      slide.addShape(SH.chevron, {
-        x: item.x + 3.47, y: 3.34, w: 0.48, h: 0.7,
-        fill: { color: C.white, transparency: 15 },
-        line: { color: C.white, transparency: 15 },
+      const next = continuity[index + 1];
+      const startY = item.y + 0.6;
+      const endY = next.y + 0.6;
+      slide.addShape(SH.line, {
+        x: item.x + 1.05,
+        y: Math.min(startY, endY),
+        w: next.x - item.x - 0.93,
+        h: Math.abs(endY - startY),
+        flipV: endY < startY,
+        line: {
+          color: C.white,
+          transparency: 12,
+          pt: 5,
+          endArrowType: "triangle",
+        },
       });
     }
   });
 
   slide.addShape(SH.roundRect, {
-    x: 1.12, y: 5.42, w: 11.08, h: 1.02,
+    x: 1.12, y: 6.42, w: 11.08, h: 0.6,
     rectRadius: 0.06,
     fill: { color: C.white, transparency: 5 },
     line: { color: C.cyan, pt: 1.3 },
   });
   slide.addText("NUESTRO MVP VA A", {
-    x: 1.5, y: 5.72, w: 2.15, h: 0.2,
+    x: 1.5, y: 6.61, w: 2.15, h: 0.2,
     fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
     charSpacing: 0.8, color: C.cyan, margin: 0,
   });
   slide.addShape(SH.line, {
-    x: 3.65, y: 6.0, w: 2.92, h: 0,
+    x: 3.65, y: 6.84, w: 2.66, h: 0,
     line: { color: C.border, pt: 1.3, dash: "dash" },
   });
   slide.addText("Y EL 21 DE SEPTIEMBRE DEMOSTRAREMOS QUE", {
-    x: 6.87, y: 5.72, w: 3.7, h: 0.2,
+    x: 6.66, y: 6.61, w: 3.7, h: 0.2,
     fontFace: TYPOGRAPHY.body, fontSize: 9.2, bold: true,
     charSpacing: 0.65, color: C.green, margin: 0,
   });
   slide.addShape(SH.line, {
-    x: 10.52, y: 6.0, w: 1.24, h: 0,
+    x: 10.42, y: 6.84, w: 1.34, h: 0,
     line: { color: C.border, pt: 1.3, dash: "dash" },
   });
   slide.addText("La siguiente mentoría revisa lo que construyeron, probaron y registraron.", {
-    x: 1.58, y: 6.77, w: 10.2, h: 0.26,
-    fontFace: TYPOGRAPHY.display, fontSize: 14, bold: true,
+    x: 5.24, y: 2.2, w: 3.85, h: 0.26,
+    fontFace: TYPOGRAPHY.display, fontSize: 12.3, bold: true,
     color: C.white, align: "center", margin: 0,
   });
   addFooter(slide, 52, { white: true });
