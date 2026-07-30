@@ -10,7 +10,7 @@
 > La reunión asume distintos niveles de conocimiento previo sobre GeoGreen. Por eso abre
 > con una introducción breve y atractiva al proyecto, sin reemplazar los materiales de
 > ejecución. Su propósito es instalar una lectura común del programa, explicar el aporte
-> de Desarrollo Social y mostrar cómo sus cuatro intervenciones se conectan con la ruta
+> de Desarrollo Social y mostrar cómo sus tres intervenciones se conectan con la ruta
 > técnica y el evento final.
 
 El PPT funciona como **apoyo visual de una conversación**, no como un guion rígido ni como
@@ -65,11 +65,11 @@ producto obligatorio de cada etapa, porque esos productos alimentan el trabajo p
 | Etapa | Fecha | Liderazgo | Producto de continuidad |
 |---|---|---|---|
 | Taller 1 · problema ambiental | 17 de agosto | Desarrollo Social | Equipos formados + problema ambiental concreto. |
-| Taller 2 · ciencia del reciclaje | 18 de agosto | Desarrollo Social | Ficha de análisis del residuo o material. |
-| Taller 3 · sensores y GeoGreen | 24 de agosto | Programación/Sistemas | Idea tecnológica inicial. |
+| Taller 2 · ciencia del reciclaje | 18 de agosto | I/E/T | Ficha de análisis del residuo o material. |
+| Taller 3 · sensores y GeoGreen | 24 de agosto | I/E/T | Idea tecnológica inicial. |
 | Mentoría 1 · problema y contexto | 31 de agosto | Desarrollo Social | Problema validado + contexto afectado + próximo paso. |
-| Mentoría 2 · solución y recursos | 7 de septiembre | Programación/Sistemas | Solución + recursos definidos. |
-| Mentoría 3 · evidencia de avance | 21 de septiembre | Programación/Sistemas | Maqueta, simulación, diagrama, prototipo u otra evidencia de avance. |
+| Mentoría 2 · solución y recursos | 7 de septiembre | I/E/T | Solución + recursos definidos. |
+| Mentoría 3 · evidencia de avance | 21 de septiembre | I/E/T | Maqueta, simulación, diagrama, prototipo u otra evidencia de avance. |
 | Mentoría 4 y ensayo | 28 de septiembre | Desarrollo Social + apoyo técnico | Guion + soporte visual + seis roles y tiempos + presentación corregida. |
 | Hito comunicacional | 2 de octubre | Equipo conjunto | Difusión breve del cierre próximo. |
 | Evento final | 5 de octubre | Equipo conjunto | Propuestas presentadas + jurado + premiación + registro. |
@@ -77,7 +77,7 @@ producto obligatorio de cada etapa, porque esos productos alimentan el trabajo p
 
 La semana del **14 de septiembre** se mantiene sin actividades por Fiestas Patrias.
 
-## Los cuatro momentos liderados por Desarrollo Social
+## Los tres momentos liderados por Desarrollo Social
 
 ### 1. Taller 1 · observar y formular el problema
 
@@ -86,14 +86,7 @@ temas generales a situaciones concretas, observables y abordables.
 
 **Salida obligatoria:** equipos formados y problema ambiental concreto por equipo.
 
-### 2. Taller 2 · comprender el residuo o material
-
-Profundiza la relación entre el problema, el residuo asociado, sus materiales, las condiciones
-de recuperación y los hábitos que favorecen o dificultan una mejor gestión.
-
-**Salida obligatoria:** ficha de análisis del residuo o material conectada con el problema.
-
-### 3. Mentoría 1 · validar problema y contexto
+### 2. Mentoría 1 · validar problema y contexto
 
 Recupera los productos de los tres talleres, sitúa el problema, identifica a las personas
 relacionadas, contrasta observaciones y supuestos, y devuelve al equipo una decisión de avance.
@@ -101,7 +94,7 @@ relacionadas, contrasta observaciones y supuestos, y devuelve al equipo una deci
 **Salida obligatoria:** problema validado, contexto afectado, evidencia disponible y próximo
 paso verificable.
 
-### 4. Mentoría 4 y ensayo · convertir el proceso en relato
+### 3. Mentoría 4 y ensayo · convertir el proceso en relato
 
 Integra problema, solución y evidencia en una presentación clara. Coordina las seis voces,
 selecciona soportes visuales, observa el primer ensayo y transforma la retroalimentación en una
@@ -131,12 +124,11 @@ corrección comprobable.
 
 ## Material disponible para Desarrollo Social
 
-Se encuentran preparados cuatro paquetes de ejecución, compartidos en formato RAR:
+Se encuentran preparados tres paquetes de ejecución para Desarrollo Social, compartidos en formato RAR:
 
 1. **Taller 1 · Conciencia Ambiental**
-2. **Taller 2 · Ciencia del Reciclaje**
-3. **Mentoría 1 · Problema y contexto afectado**
-4. **Mentoría 4 · Comunicar y ensayar**
+2. **Mentoría 1 · Problema y contexto afectado**
+3. **Mentoría 4 · Comunicar y ensayar**
 
 Cada paquete reúne, según corresponda:
 
@@ -177,11 +169,11 @@ aproximadamente **12 a 15 minutos** antes de la conversación.
 6. **Por qué Desarrollo Social es indispensable** · Del dispositivo a una solución situada.
 7. **Base común + sello profesional** · Material preparado y aporte disciplinar.
 8. **Lógica completa del proyecto** · Problema → material → tecnología → evidencia → presentación.
-9. **Cuatro momentos de liderazgo** · Talleres 1 y 2, Mentorías 1 y 4.
+9. **Ruta de articulación presentada** · Talleres y mentorías conectados por productos.
 10. **Lo adaptable y lo que sostiene la continuidad** · Mediación libre, resultados compartidos.
 11. **Cadena de entregables** · Cómo cada producto alimenta el siguiente.
 12. **Trabajo de los equipos** · Dos bloques, cinco equipos, seis responsabilidades y autonomía.
-13. **Material disponible** · Cuatro paquetes listos para profundizar y ejecutar.
+13. **Material disponible** · Paquetes listos para profundizar y ejecutar.
 14. **Cierre** · El aporte de Desarrollo Social al sentido y la comunicabilidad de las propuestas.
 
 Podrán añadirse como respaldo las cuatro infografías de sesión, sin incorporarlas al recorrido
@@ -258,7 +250,7 @@ El deck estará listo cuando una persona que no conoce los detalles del reposito
 
 - qué es GeoGreen Escolar;
 - por qué Desarrollo Social es una parte estructural del programa;
-- qué cuatro intervenciones lidera;
+- qué tres intervenciones lidera;
 - qué producto debe salir de cada una;
 - qué puede adaptar el equipo docente;
 - cómo esos productos se conectan con la ruta técnica y el evento final;

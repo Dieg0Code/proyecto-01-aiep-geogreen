@@ -2,7 +2,8 @@
 
 - Programa: GeoGreen Escolar Osorno
 - Sesión: Taller 2
-- Responsable: [Nombre del/de la docente]
+- Fecha: martes 18 de agosto de 2026
+- Responsable principal: Ingeniería, Energía y Tecnología (I/E/T)
 - Duración: 90 minutos por bloque
 - Bloque A: 09:00 - 10:30
 - Bloque B: 10:45 - 12:15

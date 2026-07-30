@@ -2,7 +2,7 @@
 
 - Programa: GeoGreen Escolar Osorno
 - Sesión: Mentoría 2
-- Área responsable: Programación y Análisis de Sistemas
+- Área responsable: Ingeniería, Energía y Tecnología (I/E/T)
 - Apoyo técnico: Electricidad y Electrónica
 - Responsable: [Nombre del/de la docente]
 - Fecha: lunes 7 de septiembre de 2026

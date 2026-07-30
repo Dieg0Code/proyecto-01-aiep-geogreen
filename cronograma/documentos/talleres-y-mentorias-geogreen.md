@@ -86,7 +86,7 @@ coordinación y decisiones oportunas.
 
 **Fecha:** martes 18 de agosto de 2026
 
-**Responsable principal sugerido:** trabajo conjunto entre DSE e I/E/T  
+**Responsable principal:** Ingeniería, Energía y Tecnología (I/E/T)
 **Verificadores:** lista de asistencia, fotografías y fichas de trabajo.
 
 ### Objetivo
@@ -122,7 +122,7 @@ la recuperación de materiales y reduce la cantidad de residuos mal dispuestos.
 
 **Fecha:** lunes 24 de agosto de 2026
 
-**Responsable principal sugerido:** Ingeniería, Energía y Tecnología  
+**Responsable principal:** Ingeniería, Energía y Tecnología (I/E/T)
 **Verificadores:** lista de asistencia, fotografías y guía del desafío.
 
 ### Objetivo
@@ -172,7 +172,7 @@ entre sesiones; las mentorías revisan y orientan ese avance.
 
 **Periodo:** 31 de agosto al 28 de septiembre de 2026
 
-**Responsable sugerido:** trabajo conjunto entre DSE e I/E/T  
+**Responsabilidad por etapa:** Mentorías 1 y 4 a cargo de Desarrollo Social; Mentorías 2 y 3 a cargo de Ingeniería, Energía y Tecnología (I/E/T).
 **Verificador:** registro de mentorías por equipo.
 
 ### Objetivo

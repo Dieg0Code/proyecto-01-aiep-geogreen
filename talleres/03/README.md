@@ -3,7 +3,7 @@
 - Programa: GeoGreen Escolar Osorno
 - Sesión: Taller 3
 - Fecha: lunes 24 de agosto de 2026
-- Responsable principal: Programación y Análisis de Sistemas
+- Responsable principal: Ingeniería, Energía y Tecnología (I/E/T)
 - Duración: 90 minutos por bloque
 - Bloque A: 09:00 - 10:30
 - Bloque B: 10:45 - 12:15

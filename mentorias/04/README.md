@@ -3,7 +3,7 @@
 - Programa: GeoGreen Escolar Osorno
 - Sesión: Mentoría 4 y ensayo de pitch
 - Área responsable: Desarrollo Social
-- Apoyo técnico: Programación y Análisis de Sistemas
+- Apoyo técnico: Ingeniería, Energía y Tecnología (I/E/T)
 - Responsable: [Nombre del/de la docente]
 - Fecha: lunes 28 de septiembre de 2026
 - Duración: 60 minutos por bloque
@@ -489,7 +489,7 @@ SE COORDINA
 ¿Roles, soporte, transiciones y tiempos funcionan como una presentación colectiva?
 ```
 
-Desde Desarrollo Social se observa especialmente la claridad del problema, el tratamiento respetuoso del contexto, la participación efectiva, la organización del relato y su adecuación a una audiencia diversa. Si surge una duda sobre el funcionamiento de un sensor, una conexión, un programa o una afirmación técnica, se registra para revisión con el apoyo de Programación y Análisis de Sistemas; no se resuelve mediante una explicación improvisada.
+Desde Desarrollo Social se observa especialmente la claridad del problema, el tratamiento respetuoso del contexto, la participación efectiva, la organización del relato y su adecuación a una audiencia diversa. Si surge una duda sobre el funcionamiento de un sensor, una conexión, un programa o una afirmación técnica, se registra para revisión con el apoyo de Ingeniería, Energía y Tecnología (I/E/T); no se resuelve mediante una explicación improvisada.
 
 ### 4.2 Primera pasada: ejecutar sin interrumpir
 

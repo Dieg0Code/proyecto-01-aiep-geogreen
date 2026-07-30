@@ -3,7 +3,7 @@
 ## Brief
 
 - **Audiencia:** mixta; docentes de Desarrollo Social, directivos, estudiantes y equipo AIEP.
-- **Propósito:** explicar qué momentos lidera Desarrollo Social, cuál es el valor de su mediación profesional, qué materiales puede adaptar y qué productos obligatorios debe preservar para no romper la continuidad del proyecto.
+- **Propósito:** explicar qué momentos lidera Desarrollo Social, cómo se articula con los talleres técnicos, cuál es el valor de su mediación profesional, qué materiales puede adaptar y qué productos obligatorios debe preservar para no romper la continuidad del proyecto.
 - **Uso:** lámina vertical larga para WhatsApp, reuniones de coordinación y consulta durante la ejecución.
 - **Formato:** vertical largo, proporción aproximada 1:2, calidad alta.
 - **Identidad:** VIBE AIEP, sin logos.
@@ -25,7 +25,7 @@ FORMATO Y ESTILO
 
 CABECERA
 Título exacto: “DESARROLLO SOCIAL EN GEOGREEN ESCOLAR”
-Subtítulo exacto: “4 momentos que sostienen una sola cadena de aprendizaje”
+Subtítulo exacto: “3 momentos que sostienen una sola cadena de aprendizaje”
 Ilustración de una docente facilitando a seis estudiantes alrededor de una mesa con mapa, fichas, materiales reciclables y una presentación.
 
 SECCIÓN DESTACADA: EL CENTRO ES LA MEDIACIÓN DOCENTE
@@ -37,30 +37,29 @@ Dos tarjetas paralelas:
 2. Título “CONTINUIDAD OBLIGATORIA”
    Texto: “Deben preservarse la organización, los seis roles y el producto de salida de cada etapa.”
 
-SECCIÓN CENTRAL: CUATRO MOMENTOS LIDERADOS POR DESARROLLO SOCIAL
-Representar una ruta vertical continua, numerada 1 a 4, con flechas y productos en carpetas o fichas. Cada tarjeta debe tener fecha, duración, foco y salida obligatoria.
+SECCIÓN CENTRAL: TRES MOMENTOS LIDERADOS POR DESARROLLO SOCIAL
+Representar una ruta vertical continua, numerada 1 a 3, con flechas y productos en carpetas o fichas. Cada tarjeta debe tener fecha, duración, foco y salida obligatoria. Los Talleres 2 y 3 aparecen como una banda técnica intermedia, no como momentos liderados por Desarrollo Social.
 
 1. “TALLER 1 · 17 AGO · 90 MIN”
    Foco: “Observar residuos, hábitos y lugares. Formar los equipos.”
    Salida obligatoria: “Equipos + problema ambiental concreto.”
 
-2. “TALLER 2 · 18 AGO · 90 MIN”
-   Foco: “Comprender el residuo o material asociado y sus condiciones.”
-   Salida obligatoria: “Ficha de análisis del residuo o material.”
-
-Incluir entre las tarjetas 2 y 3 una banda puente más pequeña, claramente diferenciada:
-“TALLER 3 · ÁREA TÉCNICA”
+Incluir entre las tarjetas 1 y 2 una banda puente navy, claramente diferenciada:
+“TALLERES TÉCNICOS”
+“TALLER 2 · 18 AGO · I/E/T”
+“Comprender el residuo y completar su ficha de análisis.”
+“TALLER 3 · 24 AGO · I/E/T”
 “El problema y la ficha de material se convierten en una idea tecnológica inicial.”
 
-3. “MENTORÍA 1 · 31 AGO · 60 MIN”
+2. “MENTORÍA 1 · 31 AGO · 60 MIN”
    Foco: “Validar problema, contexto y personas relacionadas antes de seguir.”
    Salida obligatoria: “Problema validado + contexto afectado + evidencia + próximo paso.”
 
-Incluir entre las tarjetas 3 y 4 una banda puente más pequeña:
+Incluir entre las tarjetas 2 y 3 una banda puente más pequeña:
 “ENTRE SESIONES Y MENTORÍAS TÉCNICAS”
 “El equipo desarrolla: solución + recursos + evidencia de avance.”
 
-4. “MENTORÍA 4 Y ENSAYO · 28 SEP · 60 MIN”
+3. “MENTORÍA 4 Y ENSAYO · 28 SEP · 60 MIN”
    Foco: “Convertir el proceso en un pitch claro, respaldado y coordinado.”
    Salida obligatoria: “Guion + soporte visual + seis roles y tiempos + presentación corregida.”
 

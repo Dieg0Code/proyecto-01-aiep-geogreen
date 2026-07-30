@@ -40,8 +40,12 @@
 
     .page {
       break-after: page;
-      min-height: 265mm;
+      min-height: 260mm;
       position: relative;
+    }
+
+    .page:not(.cover) {
+      padding-bottom: 12mm;
     }
 
     .page:last-child {
@@ -49,7 +53,7 @@
     }
 
     .cover {
-      min-height: 265mm;
+      min-height: 260mm;
       display: grid;
       grid-template-rows: auto 1fr auto;
       border-top: 8mm solid var(--aiep-red);
@@ -326,10 +330,8 @@
     }
 
     .footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: static;
+      margin-top: 6mm;
       border-top: 1px solid var(--line);
       padding-top: 3mm;
       color: var(--muted);
@@ -466,7 +468,7 @@
       <h3>Taller 2: Ciencia del reciclaje</h3>
       <div class="meta">
         <div><strong>Fecha:</strong> martes 18 de agosto de 2026</div>
-        <div><strong>Responsable sugerido:</strong> DSE + I/E/T</div>
+        <div><strong>Responsable principal:</strong> Ingeniería, Energía y Tecnología (I/E/T)</div>
         <div><strong>Verificadores:</strong> lista, fotografías y fichas</div>
         <div><strong>Foco:</strong> materiales, ciclo de vida y separación</div>
       </div>
@@ -501,7 +503,7 @@
       <h3>Taller 3: Innovación con propósito, GeoGreen como caso</h3>
       <div class="meta">
         <div><strong>Fecha:</strong> lunes 24 de agosto de 2026</div>
-        <div><strong>Responsable sugerido:</strong> Ingeniería, Energía y Tecnología</div>
+        <div><strong>Responsable principal:</strong> Ingeniería, Energía y Tecnología (I/E/T)</div>
         <div><strong>Verificadores:</strong> lista, fotografías y guía del desafío</div>
         <div><strong>Foco:</strong> sensores, datos y alertas</div>
       </div>

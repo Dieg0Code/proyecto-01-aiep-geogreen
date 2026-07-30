@@ -2,7 +2,7 @@
 
 ## Brief
 
-- Audiencia: docentes de Desarrollo Social que facilitarán el taller; lectura secundaria por estudiantes, dirección, coordinación y otros integrantes del proyecto.
+- Audiencia: equipo de Ingeniería, Energía y Tecnología (I/E/T) que facilitará el taller; lectura secundaria por estudiantes, dirección, coordinación y otros integrantes del proyecto.
 - Propósito: resumir la lógica pedagógica y operativa del Taller 2 en una pieza vertical compartible por WhatsApp que permita comprender y ejecutar la sesión.
 - Formato: vertical largo 1024 × 1536, alta calidad, legible en teléfono.
 - Fuente de verdad: `talleres/02/README.md`.
@@ -14,7 +14,7 @@
 ```text
 Use case: infographic-diagram
 Asset type: infografía educativa vertical para compartir por WhatsApp
-Primary request: crear una nueva infografía resumen del Taller 2 de GeoGreen Escolar, dirigida principalmente a docentes de Desarrollo Social. Debe explicar la ruta pedagógica completa y ayudar a ejecutar la sesión sin depender de una explicación adicional. Mantener la energía, densidad útil, jerarquía editorial y familia visual de la imagen de referencia del Taller 1, pero crear una composición nueva y cambiar totalmente el contenido. No caer en minimalismo excesivo.
+Primary request: crear una nueva infografía resumen del Taller 2 de GeoGreen Escolar, cuya facilitación estará a cargo de la Escuela de Ingeniería, Energía y Tecnología (I/E/T). Debe explicar la ruta pedagógica completa y ayudar a ejecutar la sesión sin depender de una explicación adicional. Mantener la energía, densidad útil, jerarquía editorial y familia visual de la imagen de referencia del Taller 1, pero crear una composición nueva y cambiar totalmente el contenido. No caer en minimalismo excesivo.
 
 Input images: Image 1 es referencia exclusiva de estilo, jerarquía, ritmo editorial, ilustración e iconografía; no copiar sus textos, números ni contenido del Taller 1.
 
@@ -29,7 +29,7 @@ Text (verbatim; renderizar exactamente en español de Chile, con tildes, signos 
 Cabecera:
 "TALLER 2"
 "Ciencia del reciclaje"
-"DESARROLLO SOCIAL · 90 MINUTOS"
+"I/E/T · 90 MINUTOS"
 "Reciclar bien empieza antes de botar."
 
 Zona de propósito:
@@ -55,8 +55,8 @@ Recorrido central:
 "PROBLEMA DEL TALLER 1 + HALLAZGO DEL MATERIAL = PROBLEMA MÁS PRECISO"
 "Cada equipo comparte material, hallazgo y conexión en 30–45 segundos."
 
-Zona docente:
-"ROL DOCENTE"
+Zona de facilitación:
+"ROL DE FACILITACIÓN"
 "Preguntar por evidencia · pedir condiciones · aceptar la duda · conectar con el problema."
 "Clasificar con criterio, no solo por apariencia."
 

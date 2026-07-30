@@ -2,7 +2,7 @@
 
 Infografías asociadas al Taller 2:
 
-- `infografia-taller-2-resumen-docente-gptimage.png`: síntesis metodológica y operativa de los 90 minutos para docentes de Desarrollo Social.
+- `infografia-taller-2-resumen-docente-gptimage.png`: síntesis metodológica y operativa de los 90 minutos para Ingeniería, Energía y Tecnología (I/E/T).
 - `infografia-taller-2-resumen-docente-gptimage.prompt.md`: prompt reproducible de la síntesis docente.
 - `infografia-taller-2-ciencia-reciclaje.png`: ciencia del reciclaje.
 - `infografia-taller-2-planificacion-docente-2160w.png`: planificación docente visual.

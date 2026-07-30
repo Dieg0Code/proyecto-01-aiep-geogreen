@@ -31,7 +31,7 @@ Ilustración compacta de seis estudiantes construyendo una propuesta ambiental c
 
 LEYENDA DE RESPONSABLES
 - Rojo: “DESARROLLO SOCIAL”
-- Navy: “PROGRAMACIÓN/SISTEMAS”
+- Navy: “I/E/T · INGENIERÍA, ENERGÍA Y TECNOLOGÍA”
 - Verde: “EQUIPO CONJUNTO”
 
 RUTA VERTICAL. Crear diez etapas conectadas. Cada tarjeta muestra fecha, responsable, foco y PRODUCTO.
@@ -42,12 +42,12 @@ Foco: “Observar residuos, hábitos y situaciones del entorno.”
 Producto: “Equipos + problema ambiental concreto.”
 
 2. “18 AGO · TALLER 2”
-Responsable: “DESARROLLO SOCIAL”
+Responsable: “I/E/T”
 Foco: “Comprender el residuo, sus materiales y condiciones.”
 Producto: “Ficha de análisis del residuo o material.”
 
 3. “24 AGO · TALLER 3”
-Responsable: “PROGRAMACIÓN/SISTEMAS”
+Responsable: “I/E/T”
 Foco: “Relacionar problema, variable, sensor y primera prueba.”
 Producto: “Idea tecnológica inicial.”
 
@@ -57,7 +57,7 @@ Foco: “Validar problema, contexto y personas relacionadas.”
 Producto: “Problema validado + contexto afectado + próximo paso.”
 
 5. “7 SEP · MENTORÍA 2”
-Responsable: “PROGRAMACIÓN/SISTEMAS”
+Responsable: “I/E/T”
 Foco: “Ajustar solución, componentes, materiales y recursos.”
 Producto: “Solución + recursos definidos.”
 
@@ -65,7 +65,7 @@ Insertar una banda breve entre etapas:
 “SEMANA 14 SEP · SIN ACTIVIDADES · FIESTAS PATRIAS”
 
 6. “21 SEP · MENTORÍA 3”
-Responsable: “PROGRAMACIÓN/SISTEMAS”
+Responsable: “I/E/T”
 Foco: “Revisar maqueta, simulación, diagrama o prototipo.”
 Producto: “Evidencia de avance.”
 
