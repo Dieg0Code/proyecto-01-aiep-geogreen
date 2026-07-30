@@ -1,0 +1,380 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=16mm,bottom=17mm,left=17mm,right=17mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{D8DEE6}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9EEF4}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 2 · Planificación docente}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{\thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=*,topsep=2pt,itemsep=2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.16}
+
+\titleformat{\section}{\Large\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{AIEPNavy}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{2pt}{6pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{docbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.5pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=4pt,after skip=4pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPMuted,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{accentbox}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1.2mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newtcolorbox{navybox}[2][]{
+  colback=AIEPNavy,
+  colframe=AIEPNavy,
+  coltext=white,
+  boxrule=0pt,
+  arc=1.2mm,
+  left=3.5mm,right=3.5mm,top=3mm,bottom=3mm,
+  before skip=5pt,after skip=5pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPGold,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{1mm}},
+  #1
+}
+
+\newcommand{\eyebrow}[1]{%
+  {\small\bfseries\textcolor{AIEPRed}{\MakeUppercase{#1}}}\par
+  \vspace{7mm}
+  {\color{AIEPRed}\rule{18mm}{0.9pt}}\par
+  \vspace{9mm}
+}
+
+\newcommand{\criterion}[3]{%
+  \begin{tcolorbox}[colback=#3!7,colframe=#3,boxrule=0.5pt,arc=1mm,left=2mm,right=2mm,top=1.6mm,bottom=1.6mm,before skip=2pt,after skip=2pt]
+  {\bfseries\textcolor{AIEPNavy}{#1}}\hfill{\small #2}
+  \end{tcolorbox}
+}
+
+\begin{document}
+
+\eyebrow{GeoGreen Escolar · AIEP Osorno}
+
+{\Huge\bfseries\color{AIEPNavy}Mentoría 2\par}
+\vspace{2mm}
+{\LARGE\bfseries\color{AIEPInk}Solución propuesta y recursos definidos\par}
+\vspace{4mm}
+{\large\color{AIEPMuted}Planificación docente para Ingeniería, Energía y Tecnología (I/E/T)\par}
+
+\vspace{9mm}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{40mm}Y@{}}
+Programa & GeoGreen Escolar Osorno \\
+Fecha & Lunes 7 de septiembre de 2026 \\
+Duración & 60 minutos por bloque \\
+Participantes & 60 estudiantes, distribuidos en dos bloques de 30 \\
+Organización & 5 equipos de 6 estudiantes por bloque \\
+Área responsable & Ingeniería, Energía y Tecnología (I/E/T) \\
+Apoyo técnico & Electricidad y Electrónica \\
+Responsable & [Nombre del/de la docente] \\
+\end{tabularx}
+
+\vspace{7mm}
+\begin{accentbox}{Sentido de la mentoría}
+La sesión transforma un problema validado y una idea tecnológica inicial en un producto mínimo viable definido. Cada equipo debe decidir qué observará, con qué criterio actuará, cómo responderá, dónde mostrará la información y qué recursos necesita para producir evidencia antes de la Mentoría 3.
+\end{accentbox}
+
+\begin{navybox}{Entregable obligatorio de salida}
+Cada equipo finaliza con una \textbf{solución funcionalmente descrita}; variable, sensor o fuente de datos y umbral definidos; \textbf{componentes, materiales y capa de software} identificados; condiciones de seguridad reconocidas; y un \textbf{plan de trabajo verificable} con responsables, fechas y evidencia comprometida.
+\end{navybox}
+
+\newpage
+\section{Propósito, objetivos y condiciones de ejecución}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=67mm]{Objetivo general}
+Al finalizar la sesión, cada equipo podrá traducir su problema validado en un producto mínimo viable que mida una variable real, decida mediante una regla justificable, responda de forma perceptible y muestre información a un destinatario; además, podrá acotar los recursos y distribuir el trabajo necesario para producir evidencia antes del siguiente hito.
+\end{docbox}
+&
+\begin{docbox}[height=67mm]{Objetivos específicos}
+\begin{itemize}
+  \item Describir la solución como observar, decidir, responder y mostrar.
+  \item Seleccionar variable, sensor o fuente de datos y umbral.
+  \item Definir recursos físicos, software, seguridad y alcance.
+  \item Distribuir tareas entre las seis responsabilidades.
+  \item Comprometer una evidencia verificable para la Mentoría 3.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Productos obligatorios de entrada}
+Cada equipo dispone sobre la mesa de:
+\begin{enumerate}
+  \item el problema validado y el contexto afectado de la Mentoría 1;
+  \item la ficha de idea tecnológica inicial del Taller 3;
+  \item el próximo paso verificable comprometido al cierre de la Mentoría 1.
+\end{enumerate}
+
+Si falta un producto, se registra como brecha. La sesión trabaja con los antecedentes disponibles, pero no reemplaza la trazabilidad mediante una explicación improvisada.
+
+\subsection{Condiciones que deben preservarse}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{docbox}[height=53mm]{Lógica del programa}
+\begin{itemize}
+  \item Cinco equipos de seis estudiantes por bloque.
+  \item Se mantienen las seis responsabilidades definidas.
+  \item El problema orienta la tecnología, no al revés.
+  \item La salida escrita es obligatoria.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=53mm]{Continuidad}
+\begin{itemize}
+  \item La mentoría orienta, contrasta y devuelve decisiones.
+  \item El equipo construye, prueba y registra entre sesiones.
+  \item La Mentoría 3 revisa evidencia, no intenciones.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Criterio de alcance}
+Se prioriza una variable principal, una regla comprensible y una prueba mínima. Una solución acotada, verificable y explicable ofrece una base más sólida que varias funciones incompletas.
+\end{accentbox}
+
+\newpage
+\section{Enfoque metodológico y preparación}
+
+\begin{navybox}{Rol docente}
+El/la docente ayuda a convertir intenciones en decisiones técnicas, exige fundamento para variables y umbrales, contrasta disponibilidad y seguridad, y devuelve al equipo la responsabilidad de elegir. No diseña la solución completa, no asigna componentes sin relación con el problema y no valida un montaje que no ha sido revisado físicamente.
+\end{navybox}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=80mm]{Principios de facilitación}
+\begin{itemize}
+  \item \textbf{Función antes que pieza:} definir qué debe hacer el sistema.
+  \item \textbf{Variable antes que sensor:} seleccionar el componente desde la necesidad.
+  \item \textbf{Regla con fundamento:} declarar de dónde proviene el umbral.
+  \item \textbf{Prueba mínima:} comprobar primero una lectura que reacciona.
+  \item \textbf{Seguridad presencial:} revisar el montaje real antes de energizar.
+  \item \textbf{Tarea verificable:} responsable, fecha y forma de comprobación.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=80mm]{Preparación antes de la sesión}
+\begin{itemize}
+  \item Revisar la presentación y esta planificación.
+  \item Imprimir una ficha de solución y recursos por equipo.
+  \item Solicitar los tres productos de entrada.
+  \item Disponer el banco acotado de sensores y salidas.
+  \item Tener disponible el manual del kit de sensores.
+  \item Comprobar proyector, computador y recursos visuales.
+  \item Definir un punto de revisión eléctrica antes del USB.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Dos velocidades de trabajo}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=49mm]{Velocidad alta}
+Investigar, comparar componentes, interpretar documentación, calcular, planificar y construir una primera versión del software pueden acelerarse con apoyo de herramientas digitales y agentes.
+\end{docbox}
+&
+\begin{docbox}[height=49mm]{Velocidad baja}
+Voltaje, polaridad, tierra común, resistencias, conexiones y montaje se comprueban físicamente. Ante cualquier duda, el circuito permanece sin energía.
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Uso supervisado de agentes}
+El equipo entrega contexto, solicita una tarea acotada, contrasta la respuesta y toma la decisión final. Un resultado que no puede explicar o comprobar todavía no forma parte de su proyecto.
+\end{accentbox}
+
+\newpage
+\section{Plan minuto a minuto}
+
+\small
+\begin{tabularx}{\textwidth}{@{}C{17mm}p{35mm}Y p{40mm}@{}}
+\textbf{\color{AIEPNavy}Tiempo} & \textbf{\color{AIEPNavy}Momento} & \textbf{\color{AIEPNavy}Acción docente} & \textbf{\color{AIEPNavy}Evidencia} \\
+\hline
+0--10 & \textbf{Bloque 1}\newline Del problema al producto mínimo & Recuperar los productos de entrada; orientar la cadena observar, decidir, responder y mostrar; precisar el mínimo que ya ofrece utilidad. & Descripción funcional inicial y destinatario de la información. \\
+\hline
+10--25 & \textbf{Bloque 2}\newline Variable, sensor y umbral & Pedir unidad o estados observables; contrastar sensores o fuentes de datos; exigir el origen del umbral; hacer leer la regla completa. & Variable, componente, umbral fundamentado y regla escrita. \\
+\hline
+25--45 & \textbf{Bloque 3}\newline Recursos, software y seguridad & Ordenar recursos disponibles, por conseguir y representados; definir qué mostrará el software; revisar seguridad, tiempo y alcance. & Lista de recursos, nivel de software, alcance y alternativa. \\
+\hline
+45--57 & \textbf{Bloque 4}\newline Trabajo y evidencia & Traducir las seis responsabilidades en tareas verificables; elegir una rama de profundización y precisar qué se mostrará el 21 de septiembre. & Plan con personas, fechas, comprobación y evidencia comprometida. \\
+\hline
+57--60 & \textbf{Cierre}\newline Resguardar decisiones & Verificar la ficha completa y pedir la declaración final del equipo. & Ficha de solución y recursos conservada por el equipo. \\
+\end{tabularx}
+\normalsize
+
+\vspace{6mm}
+\begin{accentbox}{Administración del tiempo}
+La sesión no se utiliza para construir el proyecto completo. Cada bloque deja una decisión registrada y reduce incertidumbre. El avance material, las pruebas, el software y el registro continúan con trabajo del equipo entre sesiones.
+\end{accentbox}
+
+\subsection{Rondas docentes focalizadas}
+\begin{tabularx}{\textwidth}{@{}p{37mm}Y@{}}
+\textbf{Ronda 1 · coherencia} & ¿Qué parte del problema resuelve cada función propuesta? \\
+\textbf{Ronda 2 · medición} & ¿Qué variable cambia, en qué unidad y de dónde proviene el umbral? \\
+\textbf{Ronda 3 · viabilidad} & ¿Qué existe, qué falta, qué se representará y qué requiere revisión? \\
+\textbf{Ronda 4 · compromiso} & ¿Quién hará qué, para cuándo y cómo podrá comprobarse? \\
+\end{tabularx}
+
+\begin{navybox}{Regla temporal}
+El trabajo crítico se organiza entre el 7 y el 11 de septiembre. La semana del 14 no contempla actividades del programa y la Mentoría 3 se realiza el 21 de septiembre.
+\end{navybox}
+
+\newpage
+\section{Guía práctica de facilitación}
+
+\subsection{Bloque 1 · de la idea a una función comprobable}
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=63mm]{Preguntas clave}
+\begin{itemize}
+  \item ¿Qué observa el sistema?
+  \item ¿Con qué condición decide?
+  \item ¿Qué respuesta puede percibirse?
+  \item ¿Dónde se muestra la información?
+  \item ¿Quién la utiliza y para qué?
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=63mm]{Señales de avance}
+\begin{itemize}
+  \item La solución puede explicarse sin enumerar piezas.
+  \item El mínimo mide, decide, responde y muestra.
+  \item Existe un destinatario reconocible.
+  \item La propuesta conserva relación con el problema validado.
+\end{itemize}
+\end{docbox}
+\end{tabularx}
+
+\subsection{Bloque 2 · variable, componente y regla}
+La secuencia de orientación es:
+\begin{enumerate}
+  \item \textbf{Precisar:} identificar una variable principal, unidad o dos estados distinguibles.
+  \item \textbf{Comparar:} revisar componentes desde la variable y las condiciones de uso.
+  \item \textbf{Fundamentar:} obtener el umbral mediante medición, cálculo, fuente o acuerdo provisional declarado.
+  \item \textbf{Formular:} escribir y leer la regla sin explicaciones adicionales.
+\end{enumerate}
+
+\begin{navybox}{Estructura de la regla}
+Cuando \rule{27mm}{0.35pt} pase de \rule{21mm}{0.35pt}, entonces \rule{28mm}{0.35pt}, para que \rule{24mm}{0.35pt} pueda \rule{25mm}{0.35pt}.
+\end{navybox}
+
+\subsection{Bloque 3 · recursos y seguridad}
+\begin{tabularx}{\textwidth}{@{}p{39mm}Y@{}}
+\textbf{Ya disponible} & Componentes, herramientas, conocimientos, permisos y espacios confirmados. \\
+\textbf{Debe conseguirse} & Recurso, responsable, fecha y alternativa si no llega. \\
+\textbf{Se representará} & Simulación, maqueta, diagrama o registro cuando construir no sea viable. \\
+\textbf{Software} & Qué muestra, a quién, con qué datos y dónde debe funcionar. \\
+\end{tabularx}
+
+\begin{accentbox}{Revisión antes de energizar}
+Comprobar voltaje, polaridad, tierra común, resistencias y montaje. El relé y cualquier intervención sobre 220 V requieren supervisión docente. Un montaje dudoso no se conecta.
+\end{accentbox}
+
+\newpage
+\section{Plan de trabajo, evidencias y continuidad}
+
+\subsection{Bloque 4 · convertir responsabilidades en tareas}
+\begin{tabularx}{\textwidth}{@{}p{36mm}Y@{}}
+\textbf{Coordinación} & Calendario, turnos, acuerdos y seguimiento. \\
+\textbf{Investigación} & Fuentes para el sensor, el umbral y el problema. \\
+\textbf{Diseño} & Boceto, montaje, ubicación y experiencia de uso. \\
+\textbf{Tecnología} & Diagrama, conexiones, lógica y primera versión del software. \\
+\textbf{Pruebas y evidencia} & Plan de prueba, mediciones y registro. \\
+\textbf{Comunicación} & Explicación comprensible, fotografías y materiales ordenados. \\
+\end{tabularx}
+
+\begin{navybox}{Formato de compromiso}
+\textbf{Qué} se realizará · \textbf{quién} lo asume · \textbf{para cuándo} · \textbf{cómo se comprueba}. Cada responsabilidad deja al menos una tarea verificable.
+\end{navybox}
+
+\subsection{Verificadores del entregable}
+\criterion{Coherencia}{La solución responde al problema y se describe por funciones.}{AIEPRed}
+\criterion{Medición}{Variable, unidad o estados, sensor y umbral están definidos.}{AIEPCyan}
+\criterion{Viabilidad}{Recursos, software, seguridad, alcance y alternativa son explícitos.}{AIEPGold}
+\criterion{Organización}{Las tareas tienen persona, fecha y forma de comprobación.}{AIEPGreen}
+\criterion{Evidencia}{El equipo sabe qué mostrará y qué aprendizaje explicará.}{AIEPRed}
+
+\subsection{Evidencia aceptable para la Mentoría 3}
+Prototipo parcial funcionando, simulación, diagrama verificado, maqueta instrumentada, registro de mediciones o panel digital. Debe responder con claridad: \textbf{qué probamos} y \textbf{qué aprendimos}.
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{5mm}}Y@{}}
+\begin{docbox}[height=53mm]{El equipo conserva}
+\begin{itemize}
+  \item regla completa del producto mínimo viable;
+  \item lista de recursos y condiciones de seguridad;
+  \item nivel de software y rama de profundización;
+  \item plan de trabajo y alternativa;
+  \item evidencia comprometida.
+\end{itemize}
+\end{docbox}
+&
+\begin{docbox}[height=53mm]{Cierre verbal}
+\textbf{Nuestro producto mínimo viable va a:}
+\vspace{3mm}
+\hrule
+\vspace{5mm}
+\textbf{Antes del 21 de septiembre demostraremos que:}
+\vspace{3mm}
+\hrule
+\end{docbox}
+\end{tabularx}
+
+\begin{accentbox}{Continuidad obligatoria}
+La ficha de solución y recursos se convierte en el plan vigente del equipo. Entre sesiones se ejecutan las tareas, se realizan pruebas y se conserva evidencia. La Mentoría 3 revisa lo construido, probado y registrado, incluyendo errores y ajustes.
+\end{accentbox}
+
+\end{document}
