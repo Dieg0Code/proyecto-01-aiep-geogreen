@@ -1,0 +1,341 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=13mm,bottom=14mm,left=14mm,right=14mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{microtype}
+
+\IfFontExistsTF{Arial}{
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\definecolor{AIEPRed}{HTML}{D62027}
+\definecolor{AIEPNavy}{HTML}{082B5C}
+\definecolor{AIEPInk}{HTML}{182B3A}
+\definecolor{AIEPMuted}{HTML}{5F6B7A}
+\definecolor{AIEPLine}{HTML}{C9D2DE}
+\definecolor{AIEPSoft}{HTML}{F5F2EC}
+\definecolor{AIEPBlueSoft}{HTML}{E9EEF4}
+\definecolor{AIEPCyan}{HTML}{35B7C6}
+\definecolor{AIEPGold}{HTML}{E0BC5A}
+\definecolor{AIEPGreen}{HTML}{2E8B57}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\textcolor{AIEPMuted}{GeoGreen Escolar · Mentoría 2}}
+\fancyfoot[R]{\footnotesize\textcolor{AIEPMuted}{Ficha de trabajo por equipo · \thepage/\pageref{LastPage}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.18}
+\setlist[itemize]{leftmargin=*,topsep=1pt,itemsep=1pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\newtcolorbox{fieldbox}[2][]{
+  colback=white,
+  colframe=AIEPLine,
+  boxrule=0.55pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPNavy,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newtcolorbox{accentfield}[2][]{
+  colback=AIEPSoft,
+  colframe=AIEPRed,
+  boxrule=0.7pt,
+  arc=1mm,
+  left=2.5mm,right=2.5mm,top=2mm,bottom=2mm,
+  before skip=2pt,after skip=2pt,
+  title={\scriptsize\bfseries\MakeUppercase{#2}},
+  coltitle=AIEPRed,
+  fonttitle=\sffamily,
+  attach title to upper={\par\vspace{0.8mm}},
+  #1
+}
+
+\newcommand{\writearea}[1]{\vspace{#1}\hrule height 0.35pt\vspace{4mm}\hrule height 0.35pt}
+\newcommand{\checkline}[1]{$\square$\hspace{1.5mm}#1}
+\newcommand{\pagehead}[2]{%
+  {\small\bfseries\textcolor{AIEPRed}{GEOGREEN ESCOLAR · MENTORÍA 2}}\par
+  \vspace{2mm}
+  {\LARGE\bfseries\color{AIEPNavy}#1\par}
+  {\normalsize\color{AIEPMuted}#2\par}
+  \vspace{4mm}
+}
+
+\begin{document}
+
+\pagehead{Definir el producto mínimo viable}{Solución propuesta y recursos definidos · Conservar para la Mentoría 3}
+
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{AIEPNavy}}p{25mm}Y >{\bfseries\color{AIEPNavy}}p{29mm}p{38mm}@{}}
+Equipo & \rule{57mm}{0.35pt} & Proyecto & \rule{36mm}{0.35pt} \\
+Integrantes & \multicolumn{3}{l}{\rule{145mm}{0.35pt}} \\
+\end{tabularx}
+
+\vspace{3mm}
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Productos de entrada:}\hspace{4mm}
+\checkline{Problema validado M1}\hspace{5mm}
+\checkline{Idea tecnológica T3}\hspace{5mm}
+\checkline{Próximo paso}
+\end{tcolorbox}
+
+{\large\bfseries\color{AIEPNavy}1. Del problema a la solución}\par
+
+\begin{fieldbox}[height=31mm]{Problema validado y contexto afectado}
+¿Qué ocurre, dónde ocurre y quién necesita una respuesta o información?
+\writearea{5mm}
+\end{fieldbox}
+
+\begin{accentfield}[height=40mm]{Nuestra solución en una frase}
+Cuando \rule{37mm}{0.35pt} pase de \rule{29mm}{0.35pt}, entonces \rule{43mm}{0.35pt},\\[5mm]
+para que \rule{42mm}{0.35pt} pueda \rule{66mm}{0.35pt}.
+\end{accentfield}
+
+{\large\bfseries\color{AIEPNavy}2. Regla del sistema}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=35mm]{Variable y unidad}
+¿Qué cambia y cómo se mide o distingue?
+\writearea{7mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=35mm]{Sensor o fuente de datos}
+¿Con qué se obtiene la lectura y por qué sirve?
+\writearea{7mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=35mm]{Umbral y origen}
+¿Cuándo se activa? Marquen:\par
+\checkline{medición}\quad\checkline{cálculo}\quad\checkline{fuente}\quad\checkline{provisional}
+\writearea{5mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=35mm]{Respuesta perceptible}
+¿Qué luz, sonido, texto o acción cambia?
+\writearea{7mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{fieldbox}[height=34mm]{Mostrar: destinatario, información y decisión}
+¿Dónde se verá el resultado, quién lo mirará y qué podrá decidir con esa información?
+\writearea{6mm}
+\end{fieldbox}
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Comprobación:} \checkline{Mide algo real}\quad
+\checkline{Decide con una regla}\quad
+\checkline{Responde}\quad
+\checkline{Se muestra a otra persona}
+\end{tcolorbox}
+
+\newpage
+\pagehead{Recursos, software y seguridad}{Definir lo disponible, lo que debe conseguirse y lo que se representará}
+
+{\large\bfseries\color{AIEPNavy}3. Lista de recursos con función}\par
+{\small Cada recurso debe responder a una parte de la regla. Incluyan componentes, materiales, herramientas, permisos, espacios y conocimientos.}
+
+\small
+\begin{tabularx}{\textwidth}{|p{38mm}|p{49mm}|Y|}
+\hline
+\textbf{Ya lo tenemos} & \textbf{Debemos conseguirlo}\newline Recurso · responsable · fecha & \textbf{Lo representaremos}\newline Simulación · maqueta · diagrama · registro \\
+\hline
+\rule{0pt}{18mm} & & \\
+\hline
+\rule{0pt}{18mm} & & \\
+\hline
+\rule{0pt}{18mm} & & \\
+\hline
+\end{tabularx}
+\normalsize
+
+\begin{fieldbox}[height=26mm]{Función de los recursos principales}
+¿Qué parte de observar, decidir, responder o mostrar cumple cada recurso?
+\writearea{4mm}
+\end{fieldbox}
+
+{\large\bfseries\color{AIEPNavy}4. Capa de software}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=28mm]{Datos que entran}
+¿Qué valor o estado recibe y de dónde viene?
+\writearea{5mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=28mm]{Qué debe mostrar}
+¿Cuál es la información principal?
+\writearea{5mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=28mm]{Quién lo usa}
+¿Qué persona lo mira y qué decide?
+\writearea{5mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=28mm]{Dónde debe funcionar}
+¿Pantalla, computador, navegador, planilla u otro?
+\writearea{5mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{fieldbox}[height=25mm]{Apoyo utilizado y verificación del equipo}
+¿Qué apoyo solicitaron, qué comprobaron y qué decisión tomaron?
+\writearea{4mm}
+\end{fieldbox}
+
+{\large\bfseries\color{AIEPNavy}5. Revisión antes de energizar}\par
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\checkline{Voltaje correcto}\hspace{5mm}
+\checkline{Polaridad correcta}\hspace{5mm}
+\checkline{Tierra común}\par
+\checkline{Resistencias instaladas}\hspace{5mm}
+\checkline{Montaje sin contactos indebidos}\hspace{5mm}
+\checkline{Revisión cruzada}\par
+\vspace{1.5mm}
+\textbf{Si existe una duda, el montaje permanece sin energía y se consulta antes de conectar.}
+\end{tcolorbox}
+
+\newpage
+\pagehead{Alcance y trabajo distribuido}{Una responsabilidad por integrante · Una tarea verificable por responsabilidad}
+
+{\large\bfseries\color{AIEPNavy}6. Alcance comprometido}\par
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{accentfield}[height=33mm]{Comprometido para el 21 de septiembre}
+¿Qué versión mínima podremos mostrar?
+\writearea{9mm}
+\end{accentfield}
+&
+\begin{fieldbox}[height=33mm]{Fuera de alcance por ahora}
+¿Qué función o mejora decidimos postergar?
+\writearea{9mm}
+\end{fieldbox}
+\end{tabularx}
+
+\begin{fieldbox}[height=28mm]{Plan alternativo}
+Si falta un material, falla el sensor o no disponemos de la placa, ¿qué evidencia podremos mostrar igualmente?
+\writearea{5mm}
+\end{fieldbox}
+
+{\large\bfseries\color{AIEPNavy}7. Plan de trabajo de las seis responsabilidades}\par
+{\footnotesize Cada fila debe contener una acción concreta, una fecha anterior a la Mentoría 3 y una forma de comprobarla.}
+
+\footnotesize
+\begin{tabularx}{\textwidth}{|p{27mm}|p{28mm}|Y|p{20mm}|p{38mm}|}
+\hline
+\textbf{Responsabilidad} & \textbf{Integrante} & \textbf{Tarea concreta} & \textbf{Fecha} & \textbf{Cómo se comprueba} \\
+\hline
+\rule{0pt}{14mm}Coordinación & & & & \\
+\hline
+\rule{0pt}{14mm}Investigación & & & & \\
+\hline
+\rule{0pt}{14mm}Diseño & & & & \\
+\hline
+\rule{0pt}{14mm}Tecnología & & & & \\
+\hline
+\rule{0pt}{14mm}Pruebas y evidencia & & & & \\
+\hline
+\rule{0pt}{14mm}Comunicación & & & & \\
+\hline
+\end{tabularx}
+\normalsize
+
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Orden de trabajo:}\quad
+\checkline{Primero una lectura que reacciona}\quad
+\checkline{Luego la regla}\quad
+\checkline{Después la respuesta}\quad
+\checkline{Finalmente integrar y registrar}
+\end{tcolorbox}
+
+\begin{accentfield}[height=26mm]{Turno con la placa o el equipo compartido}
+Antes de nuestro turno dejaremos listo: \rule{99mm}{0.35pt}.\\[4mm]
+Durante el turno probaremos únicamente: \rule{92mm}{0.35pt}.
+\end{accentfield}
+
+\newpage
+\pagehead{Profundización, evidencia y continuidad}{La Mentoría 3 revisa lo construido, probado y registrado}
+
+{\large\bfseries\color{AIEPNavy}8. Rama de profundización}\par
+\begin{tcolorbox}[colback=AIEPSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\checkline{Simulación y verificación}\hspace{4mm}
+\checkline{Electrónica y montaje}\hspace{4mm}
+\checkline{Software y datos}\par
+\checkline{Diseño físico y fabricación}\hspace{4mm}
+\checkline{Comunicación y evidencia}
+\end{tcolorbox}
+
+\begin{fieldbox}[height=33mm]{Por qué esta rama fortalece nuestra propuesta}
+¿Cómo se conecta con el problema y qué hará visible ante otra persona?
+\writearea{5mm}
+\end{fieldbox}
+
+{\large\bfseries\color{AIEPNavy}9. Evidencia comprometida para la Mentoría 3}\par
+\begin{tcolorbox}[colback=AIEPBlueSoft,colframe=AIEPLine,boxrule=0.5pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\checkline{Prototipo parcial}\hspace{4mm}
+\checkline{Simulación}\hspace{4mm}
+\checkline{Diagrama verificado}\hspace{4mm}
+\checkline{Maqueta}\par
+\checkline{Registro de mediciones}\hspace{4mm}
+\checkline{Panel o registro digital}\hspace{4mm}
+\checkline{Otra: \rule{31mm}{0.35pt}}
+\end{tcolorbox}
+
+\begin{tabularx}{\textwidth}{@{}Y@{\hspace{4mm}}Y@{}}
+\begin{fieldbox}[height=39mm]{Qué probaremos}
+¿Qué cambio o funcionamiento debe observarse?
+\writearea{9mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=39mm]{Qué registraremos}
+¿Qué fotografía, video, dato, captura o resultado guardaremos?
+\writearea{9mm}
+\end{fieldbox}
+\\
+\begin{fieldbox}[height=39mm]{Qué esperamos aprender}
+¿Qué decisión podremos mantener o corregir?
+\writearea{9mm}
+\end{fieldbox}
+&
+\begin{fieldbox}[height=39mm]{Qué mostraremos si falla}
+¿Cómo convertiremos el error en evidencia útil?
+\writearea{9mm}
+\end{fieldbox}
+\end{tabularx}
+
+{\large\bfseries\color{AIEPNavy}10. Lista de salida obligatoria}\par
+\begin{tcolorbox}[colback=AIEPNavy,colframe=AIEPNavy,coltext=white,boxrule=0pt,arc=1mm,left=3mm,right=3mm,top=2.5mm,bottom=2.5mm]
+\checkline{Regla completa}\hspace{4mm}
+\checkline{Recursos y seguridad}\hspace{4mm}
+\checkline{Software y destinatario}\par
+\checkline{Alcance y alternativa}\hspace{4mm}
+\checkline{Seis tareas verificables}\hspace{4mm}
+\checkline{Evidencia definida}
+\end{tcolorbox}
+
+\begin{accentfield}[height=42mm]{Declaración del equipo}
+Nuestro producto mínimo viable va a \rule{91mm}{0.35pt}.\\[5mm]
+Antes del 21 de septiembre vamos a demostrar que \rule{77mm}{0.35pt}.
+\end{accentfield}
+
+\begin{tcolorbox}[colback=AIEPSoft,colframe=AIEPRed,boxrule=0.7pt,arc=1mm,left=3mm,right=3mm,top=2mm,bottom=2mm]
+\textbf{Conserven esta ficha.} Entre sesiones ejecuten las tareas, realicen pruebas y guarden evidencia. En la Mentoría 3 deberán mostrar qué probaron y qué aprendieron.
+\end{tcolorbox}
+
+\end{document}
