@@ -27,8 +27,9 @@
   <rect x="0" y="0" width="1080" height="1920" fill="url(#dots)" opacity=".11"/>
 
   <g transform="translate(72 520)">
-    <text x="0" y="0" fill="#61D391" font-family="Arial" font-size="25" font-weight="700"
-      letter-spacing="2.5">GEOGREEN ESCOLAR 2026</text>
+    <rect x="0" y="-42" width="324" height="50" rx="25" fill="#E51B2A"/>
+    <text x="162" y="-9" text-anchor="middle" fill="#FFFFFF" font-family="Arial"
+      font-size="21" font-weight="700" letter-spacing="1.4">GEOGREEN ESCOLAR 2026</text>
     <text x="0" y="92" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="78"
       font-weight="800" letter-spacing="-1.7">DE LA IDEA</text>
     <text x="0" y="174" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="78"
@@ -57,16 +58,17 @@
   </g>
 
   <g transform="translate(72 1202)" filter="url(#shadow)">
-    <rect x="0" y="0" width="936" height="250" rx="30" fill="#FFFFFF" fill-opacity=".97"/>
+    <rect x="0" y="0" width="936" height="250" rx="30" fill="#07345E" fill-opacity=".96"
+      stroke="#E51B2A" stroke-width="2"/>
     <rect x="0" y="0" width="16" height="250" rx="8" fill="#E51B2A"/>
     <text x="48" y="66" fill="#E51B2A" font-family="Arial Narrow, Arial" font-size="48"
       font-weight="800">05 OCT</text>
-    <text x="48" y="128" fill="#002B55" font-family="Arial Narrow, Arial" font-size="43"
+    <text x="48" y="128" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="43"
       font-weight="800">PRESENTACIÓN Y PREMIACIÓN</text>
-    <text x="48" y="184" fill="#3C5268" font-family="Arial" font-size="27">
+    <text x="48" y="184" fill="#DCE8F2" font-family="Arial" font-size="27">
       Los equipos comparten sus soluciones
     </text>
-    <text x="48" y="224" fill="#3C5268" font-family="Arial" font-size="27">
+    <text x="48" y="224" fill="#DCE8F2" font-family="Arial" font-size="27">
       ante la comunidad educativa.
     </text>
   </g>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  
+  <defs>
+    <linearGradient id="topShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#001B36" stop-opacity=".88"/>
+      <stop offset="58%" stop-color="#00294F" stop-opacity=".50"/>
+      <stop offset="100%" stop-color="#00294F" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bottomShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#001A34" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#001326" stop-opacity=".94"/>
+    </linearGradient>
+    <linearGradient id="greenLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22B66B"/>
+      <stop offset="100%" stop-color="#69D69A"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="9" stdDeviation="15" flood-color="#001326" flood-opacity=".34"/>
+    </filter>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.7" fill="#FFFFFF" opacity=".10"/>
+    </pattern>
+  </defs>
+  
+  <rect width="1080" height="620" fill="url(#topShade)"/>
+  <rect y="850" width="1080" height="500" fill="url(#bottomShade)"/>
+  <rect width="1080" height="1350" fill="url(#dots)" opacity=".16"/>
+  
+  <g transform="translate(66 126)">
+    <rect x="0" y="-30" width="318" height="48" rx="24" fill="#E61D2B"/>
+    <text x="159" y="2" text-anchor="middle" fill="#FFFFFF" font-family="Arial"
+      font-size="20" font-weight="700" letter-spacing="1.1">¿QUÉ ES GEOGREEN ESCOLAR?</text>
+    <text x="0" y="82" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="70"
+      font-weight="800" letter-spacing="-1.3">UNA IDEA QUE SE</text>
+    <text x="0" y="154" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="70"
+      font-weight="800" letter-spacing="-1.3">CONVIERTE EN SOLUCIÓN</text>
+    <rect x="0" y="183" width="690" height="8" rx="4" fill="#E61D2B"/>
+    <text x="0" y="244" fill="#E2ECF4" font-family="Arial" font-size="28">
+      <tspan x="0" dy="0">Un programa educativo de Vinculación con el Medio</tspan>
+      <tspan x="0" dy="39">que acompaña a estudiantes en la creación de propuestas</tspan>
+      <tspan x="0" dy="39">tecnológicas para desafíos ambientales de su entorno.</tspan>
+    </text>
+  </g>
+
+  <g transform="translate(66 1035)" filter="url(#shadow)">
+    <rect x="0" y="0" width="948" height="138" rx="25" fill="#00264A" fill-opacity=".92"
+      stroke="#FFFFFF" stroke-opacity=".22"/>
+    <g transform="translate(36 29)">
+      <text x="0" y="38" fill="#61D391" font-family="Arial Narrow, Arial" font-size="43"
+        font-weight="800">60</text>
+      <text x="0" y="75" fill="#FFFFFF" font-family="Arial" font-size="20"
+        font-weight="700">ESTUDIANTES</text>
+    </g>
+    <rect x="274" y="25" width="1" height="88" fill="#FFFFFF" opacity=".28"/>
+    <g transform="translate(323 29)">
+      <text x="0" y="38" fill="#FFFFFF" font-family="Arial Narrow, Arial" font-size="43"
+        font-weight="800">10</text>
+      <text x="0" y="75" fill="#FFFFFF" font-family="Arial" font-size="20"
+        font-weight="700">EQUIPOS</text>
+    </g>
+    <rect x="536" y="25" width="1" height="88" fill="#FFFFFF" opacity=".28"/>
+    <g transform="translate(584 29)">
+      <text x="0" y="38" fill="#E61D2B" font-family="Arial Narrow, Arial" font-size="43"
+        font-weight="800">1</text>
+      <text x="0" y="75" fill="#FFFFFF" font-family="Arial" font-size="20"
+        font-weight="700">DESAFÍO COMÚN</text>
+    </g>
+  </g>
+
+  <g transform="translate(66 1267)">
+    <rect x="0" y="0" width="948" height="1" fill="#FFFFFF" opacity=".40"/>
+    <text x="0" y="42" fill="#D9E6F1" font-family="Arial" font-size="20" font-weight="700">
+      INSTITUTO COMERCIAL LICEO BICENTENARIO · AIEP OSORNO
+    </text>
+    <text x="948" y="42" text-anchor="end" fill="#FFFFFF" font-family="Arial" font-size="21"
+      font-weight="700">02 / 04</text>
+  </g>
+</svg>
