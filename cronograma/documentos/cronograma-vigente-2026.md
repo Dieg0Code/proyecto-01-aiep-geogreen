@@ -1,6 +1,6 @@
 # Cronograma vigente · GeoGreen Escolar 2026
 
-> Actualizado el 13 de julio de 2026. Esta es la fuente principal para coordinar,
+> Actualizado el 30 de julio de 2026. Esta es la fuente principal para coordinar,
 > preparar y comunicar las fechas del programa.
 
 ## Calendario operativo
@@ -12,6 +12,7 @@
 | Lunes 17 de agosto de 2026 | Taller 1: problema ambiental | Observar residuos, hábitos y situaciones del entorno escolar. | Problema definido por equipo. |
 | Martes 18 de agosto de 2026 | Taller 2: ciencia del reciclaje | Comprender materiales, reciclabilidad, separación y contaminación. | Ficha de material por equipo. |
 | Lunes 24 de agosto de 2026 | Taller 3: sensores y GeoGreen | Relacionar el problema con sensores, Arduino, visualización y alertas. | Idea tecnológica inicial. |
+| Martes 25 de agosto de 2026 | Taller 4: del dato a la acción | Comprender cómo el software convierte una medición en estados, información, alertas y decisiones. | Prototipo digital provisional y prueba con datos simulados. |
 | Lunes 31 de agosto de 2026 | Mentoría 1 | Revisar problema, usuario, contexto y primera solución. | Problema validado y próximo paso. |
 | Lunes 7 de septiembre de 2026 | Mentoría 2 | Ajustar solución, recursos, materiales y roles. | Solución y recursos definidos. |
 | Semana del 14 de septiembre de 2026 | Sin actividades | Pausa correspondiente a Fiestas Patrias. | Sin sesión programada. |
@@ -23,16 +24,27 @@
 
 ## Secuencia formativa
 
-1. Los talleres construyen el problema, la comprensión del residuo y la posibilidad tecnológica.
-2. Los equipos desarrollan sus propuestas principalmente entre sesiones; las
+1. Los cuatro talleres construyen el problema, la comprensión del residuo, la
+   posibilidad tecnológica y una primera capa de software útil.
+2. El Taller 4 utiliza datos simulados para construir una hipótesis digital
+   provisional; las mentorías posteriores permiten validarla, ajustarla o reemplazarla.
+3. Los equipos desarrollan sus propuestas principalmente entre sesiones; las
    mentorías revisan, orientan y destraban esos avances sin reemplazar su trabajo.
-3. La Mentoría 4 incorpora el ensayo del pitch.
-4. El hito comunicacional prepara el evento final.
-5. El cierre interno consolida las evidencias y aprendizajes del programa.
+4. La Mentoría 4 incorpora el ensayo del pitch.
+5. El hito comunicacional prepara el evento final.
+6. El cierre interno consolida las evidencias y aprendizajes del programa.
+
+## Responsables principales
+
+- Talleres 1 y 2: Desarrollo Social.
+- Talleres 3 y 4: Ingeniería, Energía y Tecnología (I/E/T).
+- Mentorías 1 y 4: Desarrollo Social.
+- Mentorías 2 y 3: Ingeniería, Energía y Tecnología (I/E/T).
 
 ## Referencias visuales
 
-- Infografía vigente: `../infografias/infografia-cronograma-vigente-2026-gptimage.png`.
+- Infografía de lógica vigente: `../infografias/infografia-maestra-pseudocronograma-geogreen.png`.
+- Infografía de calendario: `../infografias/infografia-cronograma-vigente-2026-gptimage.png`.
 - PDF ejecutivo: `cronograma-geogreen-actualizado-2026.pdf`.
 
 Las versiones anteriores del calendario fueron retiradas del repositorio para evitar referencias

@@ -6,7 +6,7 @@ Esta carpeta mantiene una sola versión operativa del calendario de GeoGreen Esc
 
 - [`documentos/cronograma-vigente-2026.md`](documentos/cronograma-vigente-2026.md) — calendario operativo completo.
 - [`documentos/cronograma-geogreen-actualizado-2026.pdf`](documentos/cronograma-geogreen-actualizado-2026.pdf) — versión ejecutiva para compartir.
-- [`infografias/infografia-cronograma-vigente-2026-gptimage.png`](infografias/infografia-cronograma-vigente-2026-gptimage.png) — resumen visual vigente.
+- [`infografias/infografia-maestra-pseudocronograma-geogreen.png`](infografias/infografia-maestra-pseudocronograma-geogreen.png) — cronograma y lógica pedagógica visual vigentes.
 
 ## Calendario
 
@@ -17,6 +17,7 @@ Esta carpeta mantiene una sola versión operativa del calendario de GeoGreen Esc
 | Lunes 17 de agosto de 2026 | Taller 1: problema ambiental |
 | Martes 18 de agosto de 2026 | Taller 2: ciencia del reciclaje |
 | Lunes 24 de agosto de 2026 | Taller 3: sensores y GeoGreen |
+| Martes 25 de agosto de 2026 | Taller 4: del dato a la acción |
 | Lunes 31 de agosto de 2026 | Mentoría 1 |
 | Lunes 7 de septiembre de 2026 | Mentoría 2 |
 | Semana del 14 de septiembre de 2026 | Sin actividades por Fiestas Patrias |
@@ -28,11 +29,17 @@ Esta carpeta mantiene una sola versión operativa del calendario de GeoGreen Esc
 
 ## Documentos complementarios
 
+- `documentos/anexo-operativo-talleres-y-mentorias-geogreen-2026.pdf` — explica
+  la distribución en dos bloques de 90 minutos y detalla el propósito, trabajo
+  central y producto de los cuatro talleres y las cuatro mentorías.
 - `documentos/lineamientos-transversales-equipos-entregables-geogreen.*` — progresión, responsables y productos por etapa.
 - `documentos/talleres-y-mentorias-geogreen.*` — propósito y metodología de talleres, mentorías y cierre.
 
 Las propuestas se desarrollan principalmente entre sesiones. Las mentorías son
 instancias de revisión, orientación y desbloqueo; el trabajo sigue perteneciendo
 a los equipos.
+
+Los Talleres 1 y 2 son responsabilidad de Desarrollo Social. Los Talleres 3 y 4
+son responsabilidad de Ingeniería, Energía y Tecnología (I/E/T).
 
 Las propuestas de calendario anteriores fueron retiradas para evitar confusiones.
