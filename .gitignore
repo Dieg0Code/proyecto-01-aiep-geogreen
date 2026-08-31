@@ -48,3 +48,7 @@ Thumbs.db
 # Entregables comprimidos para enviar (no versionar; GitHub se queja con binarios grandes)
 /entregables/
 *.rar
+
+# Renders y montajes de revision de PPT (regenerables, no versionar)
+**/ppt/rendered-*/
+**/ppt/montage-*.jpg
