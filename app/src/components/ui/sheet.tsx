@@ -18,11 +18,11 @@ export function Sheet({ open, onOpenChange, children, className }: SheetProps) {
         <Dialog.Content
           className={cn(
             'fixed inset-y-0 right-0 z-[1001] flex w-full flex-col bg-paper shadow-float outline-none animate-slide-in-right',
-            'sm:max-w-[26rem]',
+            'sm:max-w-[32rem]',
             className,
           )}
         >
-          <Dialog.Close className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full text-slate transition-colors hover:bg-soft-neutral hover:text-ink">
+          <Dialog.Close className="focus-ring absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-md border border-white/15 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20">
             <X size={18} />
             <span className="sr-only">Cerrar</span>
           </Dialog.Close>
@@ -33,5 +33,10 @@ export function Sheet({ open, onOpenChange, children, className }: SheetProps) {
   )
 }
 
-export const SheetTitle = Dialog.Title
-export const SheetDescription = Dialog.Description
+export function SheetTitle(props: Dialog.DialogTitleProps) {
+  return <Dialog.Title {...props} />
+}
+
+export function SheetDescription(props: Dialog.DialogDescriptionProps) {
+  return <Dialog.Description {...props} />
+}

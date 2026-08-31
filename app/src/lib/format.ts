@@ -1,18 +1,30 @@
-import { formatDistanceToNowStrict, format } from 'date-fns'
-import { es } from 'date-fns/locale'
+const relativo = new Intl.RelativeTimeFormat('es-CL', { numeric: 'auto', style: 'long' })
+const hora = new Intl.DateTimeFormat('es-CL', { hour: '2-digit', minute: '2-digit', hour12: false })
+const fechaHoraFmt = new Intl.DateTimeFormat('es-CL', {
+  day: 'numeric',
+  month: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+})
 
-/** "hace 3 min", "hace 2 h" — en español. */
+/** Distancia temporal breve en español, sin dependencias de formato externas. */
 export function tiempoRelativo(iso: string): string {
-  return `hace ${formatDistanceToNowStrict(new Date(iso), { locale: es })}`
+  const segundos = Math.round((new Date(iso).getTime() - Date.now()) / 1000)
+  if (Math.abs(segundos) < 45) return 'ahora'
+  const minutos = Math.round(segundos / 60)
+  if (Math.abs(minutos) < 60) return relativo.format(minutos, 'minute')
+  const horas = Math.round(minutos / 60)
+  if (Math.abs(horas) < 24) return relativo.format(horas, 'hour')
+  return relativo.format(Math.round(horas / 24), 'day')
 }
 
-/** Hora corta para ejes/etiquetas: "14:30". */
 export function horaCorta(iso: string): string {
-  return format(new Date(iso), 'HH:mm')
+  return hora.format(new Date(iso))
 }
 
 export function fechaHora(iso: string): string {
-  return format(new Date(iso), "d MMM, HH:mm", { locale: es })
+  return fechaHoraFmt.format(new Date(iso)).replace('.', '')
 }
 
 export function pct(n: number): string {

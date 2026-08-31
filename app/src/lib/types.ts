@@ -6,8 +6,12 @@ export interface Contenedor {
   id: string
   nombre: string
   sector: string
+  /** Dirección o referencia pública verificable del punto. */
+  direccion: string
   lat: number
   lon: number
+  /** Objeto cartográfico usado para verificar la ubicación. */
+  osmUrl: string
 }
 
 /** Lectura de telemetría que envía el dispositivo. */

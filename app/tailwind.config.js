@@ -6,18 +6,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#F8F3EC',
-        navy: '#102A43',
-        'navy-soft': '#284B75',
+        paper: '#F4F6F7',
+        navy: '#071D33',
+        'navy-soft': '#153A59',
         red: '#D62027',
-        'red-pale': '#F8E4E5',
-        ink: '#243B53',
-        slate: '#52606D',
-        guide: '#96A3B2',
-        line: '#D8CFC4',
-        'soft-blue': '#E6EEF7',
-        'soft-neutral': '#EDE6DA',
-        mist: '#EEF2F6',
+        'red-pale': '#FBEAEC',
+        ink: '#183247',
+        slate: '#5D7182',
+        guide: '#91A0AC',
+        line: '#DCE3E8',
+        'soft-blue': '#E8F1F6',
+        'soft-neutral': '#EDF1F3',
+        mist: '#F8FAFB',
+        cyan: '#1EAFC2',
+        'cyan-soft': '#E4F6F8',
         gold: '#E0BC5A',
         'gold-soft': '#FBF3DE',
         // Semáforo de llenado (calza con el dispositivo: umbrales 40 / 80)
@@ -27,16 +29,16 @@ export default {
         rojo: '#D62027',
       },
       fontFamily: {
-        sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'Consolas', 'monospace'],
+        sans: ['"Segoe UI Variable"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        mono: ['"Cascadia Mono"', 'Consolas', 'monospace'],
       },
       borderRadius: {
-        xl: '0.875rem',
-        '2xl': '1.25rem',
+        xl: '0.375rem',
+        '2xl': '0.625rem',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(16, 42, 67, 0.04), 0 8px 24px -12px rgba(16, 42, 67, 0.18)',
-        float: '0 12px 40px -12px rgba(16, 42, 67, 0.28)',
+        card: '0 1px 2px rgba(7, 29, 51, 0.05), 0 5px 18px -14px rgba(7, 29, 51, 0.26)',
+        float: '0 18px 42px -20px rgba(7, 29, 51, 0.42)',
       },
       keyframes: {
         'fade-up': {

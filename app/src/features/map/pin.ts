@@ -17,8 +17,8 @@ export function makePin(llenado: number, offline: boolean, selected: boolean) {
   return L.divIcon({
     className: 'gg-pin-wrap',
     html: `<div class="${cls}" style="--c:${hex};position:relative"><i></i></div>`,
-    iconSize: [24, 24],
-    iconAnchor: [12, 24],
-    popupAnchor: [0, -24],
+    iconSize: [22, 22],
+    iconAnchor: [11, 11],
+    popupAnchor: [0, -13],
   })
 }

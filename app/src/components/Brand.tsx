@@ -1,17 +1,25 @@
-import { Leaf } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { GeoGreenMark } from './ProductGlyphs'
 
 /** Logotipo propio de GeoGreen (sin marca AIEP, según guía visual interna). */
-export function Brand({ compact = false, className }: { compact?: boolean; className?: string }) {
+export function Brand({
+  compact = false,
+  inverted = false,
+  className,
+}: {
+  compact?: boolean
+  inverted?: boolean
+  className?: string
+}) {
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy text-verde shadow-card">
-        <Leaf size={18} strokeWidth={2.4} />
+      <span className={cn('grid h-7 w-7 place-items-center', inverted ? 'text-white' : 'text-navy')}>
+        <GeoGreenMark />
       </span>
       {!compact && (
-        <span className="text-lg font-extrabold tracking-tight">
-          <span className="text-navy">Geo</span>
-          <span className="text-verde">Green</span>
+        <span className="text-base font-semibold tracking-[-0.025em]">
+          <span className={inverted ? 'text-white' : 'text-navy'}>Geo</span>
+          <span className={inverted ? 'text-white' : 'text-navy'}>Green</span>
         </span>
       )}
     </div>

@@ -20,8 +20,8 @@ export default defineConfig({
         scope: '/',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#F8F3EC',
-        theme_color: '#102A43',
+        background_color: '#F4F6F7',
+        theme_color: '#071D33',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -34,16 +34,16 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // El basemap de OpenStreetMap/CARTO se cachea para que el mapa funcione offline.
+        cleanupOutdatedCaches: true,
+        // Se cachean solo las teselas recorridas por el usuario. La nueva versión
+        // evita reutilizar el cache del proveedor CARTO que ahora exige API key.
         runtimeCaching: [
           {
-            urlPattern: ({ url }) =>
-              url.hostname.includes('basemaps.cartocdn.com') ||
-              url.hostname.includes('tile.openstreetmap.org'),
-            handler: 'CacheFirst',
+            urlPattern: ({ url }) => url.hostname.endsWith('tile.openstreetmap.org'),
+            handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'map-tiles',
-              expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheName: 'map-tiles-v2',
+              expiration: { maxEntries: 240, maxAgeSeconds: 60 * 60 * 24 * 7 },
             },
           },
         ],

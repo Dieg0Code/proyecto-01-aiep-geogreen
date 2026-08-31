@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Route, Truck, X } from 'lucide-react'
 import { useContenedores } from '@/hooks/useTelemetry'
@@ -12,21 +12,20 @@ import {
 import { calcularVRP } from '@/lib/routing'
 import { cn } from '@/lib/utils'
 import { Brand } from '@/components/Brand'
+import { RouteGlyph, TelemetryTrace } from '@/components/ProductGlyphs'
 import { Button } from '@/components/ui/button'
 import { KpiBar } from '@/components/KpiBar'
-import { ContainerDetail } from '@/components/ContainerDetail'
+import { LazyContainerDetail } from '@/components/LazyContainerDetail'
 import { Sheet, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 import { MapView } from './MapView'
 import { RouteLayer } from './RouteLayer'
 
 function LiveDot() {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate">
-      <span className="relative flex h-2 w-2">
-        <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-verde" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-verde" />
-      </span>
-      En vivo
+    <span className="inline-flex items-center gap-2 text-xs text-slate">
+      <TelemetryTrace className="hidden text-navy sm:block" />
+      <span className="h-1.5 w-1.5 rounded-full bg-verde" />
+      Conectado
     </span>
   )
 }
@@ -46,7 +45,12 @@ export function MapPage() {
   const [alcance, setAlcance] = useState<AlcanceRuta>('medios')
   const [camiones, setCamiones] = useState(1)
 
-  const now = Date.now()
+  const [now, setNow] = useState(() => Date.now())
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 30_000)
+    return () => window.clearInterval(timer)
+  }, [])
   const resumen = useMemo(() => resumirFlota(contenedores, now), [contenedores, now])
   const visibles = useMemo(
     () => contenedores.filter((c) => pasaFiltro(c, filtro, now)),
@@ -76,25 +80,28 @@ export function MapPage() {
       </MapView>
 
       {/* Overlay superior */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-[800] p-3 sm:p-4">
-        <div className="pointer-events-auto mx-auto max-w-5xl">
-          <div className="rounded-2xl border border-line/70 bg-paper/85 p-2.5 shadow-card backdrop-blur-md">
-            <div className="mb-2.5 flex items-center justify-between px-1">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[800]">
+        <div className="pointer-events-auto border-b border-line bg-white/96 shadow-card backdrop-blur-md">
+            <div className="flex h-14 items-center justify-between px-4 sm:px-5">
               <div className="md:hidden">
                 <Brand />
               </div>
-              <h1 className="hidden text-sm font-semibold text-navy md:block">
-                Monitoreo de contenedores · Osorno
-              </h1>
-              <LiveDot />
+              <div className="hidden items-baseline gap-3 md:flex">
+                <h1 className="text-sm font-semibold text-navy">Red de contenedores</h1>
+                <span className="text-xs text-guide">Osorno, Los Lagos</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div>
+                  <LiveDot />
+                </div>
+              </div>
             </div>
             <KpiBar resumen={resumen} filtro={filtro} onFiltro={setFiltro} />
-          </div>
         </div>
       </div>
 
       {/* Leyenda */}
-      <div className="absolute bottom-16 left-3 z-[800] rounded-xl border border-line/70 bg-paper/85 px-3 py-2 shadow-card backdrop-blur-md md:bottom-4">
+      <div className="absolute bottom-16 left-3 z-[800] border border-line bg-white/94 px-3 py-2 shadow-card backdrop-blur-md md:bottom-4">
         <div className="flex flex-wrap gap-x-3 gap-y-1">
           {LEYENDA.map((l) => (
             <span key={l.label} className="flex items-center gap-1.5 text-xs font-medium text-slate">
@@ -115,28 +122,27 @@ export function MapPage() {
                 setFiltro('todos')
                 setRutaActiva(true)
               }}
-              className="shadow-float"
+              className="h-10 rounded-md border border-white/10 px-4 shadow-float"
             >
-              <Route size={16} />
+              <RouteGlyph />
               Planificar retiro
-              <span className="ml-0.5 rounded-full bg-paper/20 px-1.5 py-0.5 font-mono text-xs">
+              <span className="ml-0.5 border-l border-white/20 pl-2 font-mono text-xs">
                 {paraRetiro.length}
               </span>
             </Button>
           ) : (
-            <span className="rounded-xl border border-line/70 bg-paper/85 px-3 py-2 text-xs font-medium text-slate shadow-card backdrop-blur-md">
+            <span className="rounded-md border border-line bg-white/92 px-3 py-2 text-xs text-slate shadow-card backdrop-blur-md">
               Sin retiros pendientes
             </span>
           )
         ) : (
-          <div className="w-64 rounded-2xl border border-line/70 bg-paper/90 p-3.5 shadow-float backdrop-blur-md animate-fade-up">
+          <div className="w-[18rem] overflow-hidden rounded-lg border border-line bg-white/96 shadow-float backdrop-blur-xl animate-fade-up">
+            <div className="p-4">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2.5">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy text-paper">
-                  <Route size={17} />
-                </span>
+                <Route size={17} className="text-navy" />
                 <div>
-                  <p className="text-sm font-semibold leading-tight text-navy">Ruta de retiro</p>
+                  <p className="text-sm font-bold leading-tight text-navy">Operación de retiro</p>
                   {calculando && !sol ? (
                     <p className="text-xs text-slate">Optimizando ruta…</p>
                   ) : sol ? (
@@ -155,7 +161,7 @@ export function MapPage() {
               </div>
               <button
                 onClick={() => setRutaActiva(false)}
-                className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-slate transition-colors hover:bg-soft-neutral hover:text-ink"
+                className="focus-ring grid h-8 w-8 shrink-0 place-items-center text-slate transition-colors hover:bg-soft-neutral hover:text-ink"
               >
                 <X size={15} />
                 <span className="sr-only">Cerrar ruta</span>
@@ -163,10 +169,10 @@ export function MapPage() {
             </div>
 
             {/* Alcance */}
-            <p className="mt-3 mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-slate">
+            <p className="mt-4 mb-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-slate">
               Incluir
             </p>
-            <div className="flex rounded-lg border border-line/70 bg-white/60 p-0.5">
+            <div className="flex rounded-lg border border-line bg-mist p-0.5">
               {([
                 ['llenos', 'Llenos'],
                 ['medios', '+ Medios'],
@@ -186,10 +192,10 @@ export function MapPage() {
             </div>
 
             {/* Camiones */}
-            <p className="mt-3 mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-slate">
+            <p className="mt-3 mb-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-slate">
               Camiones
             </p>
-            <div className="flex rounded-lg border border-line/70 bg-white/60 p-0.5">
+            <div className="flex rounded-lg border border-line bg-mist p-0.5">
               {[1, 2, 3].map((k) => (
                 <button
                   key={k}
@@ -219,11 +225,12 @@ export function MapPage() {
               </ul>
             )}
 
-            <p className="mt-2.5 border-t border-line/60 pt-2 text-[0.7rem] leading-relaxed text-guide">
+            <p className="mt-3 border-t border-line pt-2.5 text-[0.7rem] leading-relaxed text-slate">
               {sol?.aproximada
-                ? 'Ruta aproximada (sin conexión al servicio de ruteo).'
-                : 'Optimizado por calles desde el Vertedero Curaco, respetando sentidos; cada camión parte y vuelve a la base.'}
+                ? 'Recorrido estimado desde la base operacional.'
+                : 'Ruta optimizada por calles desde el Vertedero Curaco; cada camión parte y regresa a la base.'}
             </p>
+            </div>
           </div>
         )}
       </div>
@@ -234,7 +241,7 @@ export function MapPage() {
         <SheetDescription className="sr-only">
           Nivel de llenado, batería, señal e histórico del contenedor seleccionado.
         </SheetDescription>
-        {selectedId && <ContainerDetail id={selectedId} />}
+        {selectedId && <LazyContainerDetail id={selectedId} />}
       </Sheet>
     </div>
   )

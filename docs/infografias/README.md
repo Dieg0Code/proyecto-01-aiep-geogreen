@@ -9,6 +9,13 @@ Esta carpeta reúne infografías de apoyo que no pertenecen a un taller específ
 - `infografia-devolucion-y-cierre-geogreen-gptimage.png`: devolución y cierre.
 - `infografia-roles-equipo-geogreen-gptimage.png`: seis responsabilidades
   persistentes; el archivo `.md` contiguo conserva el prompt y la revisión.
+- `infografia-roles-equipo-geogreen-operativa-gptimage.png`: versión operativa
+  para consulta de los equipos; detalla acciones y el resultado verificable de
+  cada responsabilidad. El archivo `.prompt.md` contiguo conserva el contenido
+  validado y la dirección visual.
+- `roles-equipo/`: colección de seis infografías verticales, una por cada
+  responsabilidad del equipo, con misión, acciones, evidencias y aporte en la
+  presentación.
 - `infografia-ruta-desarrollo-social-geogreen-gptimage.png`: visión general de
   los tres momentos liderados por Desarrollo Social, su articulación con los
   talleres técnicos, su libertad metodológica y la continuidad obligatoria de

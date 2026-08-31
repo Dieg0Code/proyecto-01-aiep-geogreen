@@ -1,6 +1,6 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import L from 'leaflet'
-import { Marker, Polyline } from 'react-leaflet'
+import { Marker, Polyline, useMap } from 'react-leaflet'
 import type { LatLon } from '@/lib/geo'
 import { COLORES_CAMION, PUNTO_PARTIDA } from '@/lib/ruta'
 import type { RutaCamion } from '@/lib/routing'
@@ -29,6 +29,19 @@ interface RouteLayerProps {
 }
 
 export function RouteLayer({ rutas, aproximada, inicio = PUNTO_PARTIDA, onSelect }: RouteLayerProps) {
+  const map = useMap()
+
+  useEffect(() => {
+    const puntos = rutas.flatMap((ruta) => ruta.geometria)
+    if (puntos.length === 0) return
+    map.fitBounds(L.latLngBounds(puntos), {
+      paddingTopLeft: [32, 132],
+      paddingBottomRight: [320, 48],
+      maxZoom: 14,
+      animate: true,
+    })
+  }, [map, rutas])
+
   return (
     <>
       {rutas.map((ruta, ri) => {
@@ -48,6 +61,17 @@ export function RouteLayer({ rutas, aproximada, inicio = PUNTO_PARTIDA, onSelect
                 lineCap: 'round',
                 lineJoin: 'round',
                 ...(aproximada ? { dashArray: '2 9' } : {}),
+              }}
+            />
+            <Polyline
+              positions={ruta.geometria}
+              pathOptions={{
+                color: '#FFFFFF',
+                weight: 1.5,
+                opacity: 0.9,
+                dashArray: '2 11',
+                lineCap: 'round',
+                className: 'gg-route-flow',
               }}
             />
             {ruta.paradas.map((p) => (

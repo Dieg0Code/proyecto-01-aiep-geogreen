@@ -1,5 +1,5 @@
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { AttributionControl, MapContainer, Marker, TileLayer } from 'react-leaflet'
 import type { ContenedorConLectura } from '@/lib/types'
 import { estaOffline } from '@/lib/status'
 import { OSORNO_CENTER } from '@/lib/telemetry'
@@ -17,17 +17,22 @@ export function MapView({ contenedores, selectedId, onSelect, now, children }: M
   return (
     <MapContainer
       center={OSORNO_CENTER}
-      zoom={13}
+      zoom={14}
       minZoom={11}
       zoomControl={false}
       className="h-full w-full"
       attributionControl={false}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        subdomains="abcd"
-        maxZoom={20}
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        subdomains="abc"
+        maxZoom={19}
+        keepBuffer={1}
+        updateWhenIdle
+        className="gg-basemap"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       />
+      <AttributionControl position="bottomright" prefix={false} />
       {contenedores.map((c) => (
         <Marker
           key={c.id}

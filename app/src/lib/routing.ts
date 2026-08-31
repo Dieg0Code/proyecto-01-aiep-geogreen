@@ -38,13 +38,27 @@ export interface OpcionesVRP {
   inicio?: LatLon
 }
 
-async function fetchJSON(url: string): Promise<any> {
+interface OsrmTableResponse {
+  code?: string
+  durations?: number[][]
+}
+
+interface OsrmRouteResponse {
+  code?: string
+  routes?: Array<{
+    geometry: { coordinates: [number, number][] }
+    distance: number
+    duration: number
+  }>
+}
+
+async function fetchJSON<T>(url: string): Promise<T> {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS)
   try {
     const res = await fetch(url, { signal: ctrl.signal })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    return await res.json()
+    return (await res.json()) as T
   } finally {
     clearTimeout(timer)
   }
@@ -55,7 +69,7 @@ const toCoords = (pts: LatLon[]) => pts.map(([lat, lon]) => `${lon},${lat}`).joi
 /** Matriz de tiempos de manejo (segundos) entre todos los puntos (índice 0 = base). */
 async function tablaOSRM(coords: LatLon[]): Promise<number[][]> {
   const url = `${OSRM_BASE}/table/v1/driving/${toCoords(coords)}?annotations=duration`
-  const data = await fetchJSON(url)
+  const data = await fetchJSON<OsrmTableResponse>(url)
   if (data.code !== 'Ok' || !data.durations) throw new Error('OSRM table')
   return data.durations as number[][]
 }
@@ -65,7 +79,7 @@ async function geometriaDe(
   secuencia: LatLon[],
 ): Promise<{ geometria: LatLon[]; distanciaKm: number; duracionMin: number }> {
   const url = `${OSRM_BASE}/route/v1/driving/${toCoords(secuencia)}?overview=full&geometries=geojson`
-  const data = await fetchJSON(url)
+  const data = await fetchJSON<OsrmRouteResponse>(url)
   const r = data.routes?.[0]
   if (data.code !== 'Ok' || !r) throw new Error('OSRM route')
   return {

@@ -10,7 +10,7 @@ georreferenciado en un mapa real de Osorno, con su batería, señal y alertas.
 - **Vite + React + TypeScript**
 - **Tailwind CSS** con design system propio (paleta institucional AIEP, ver
   `tailwind.config.js` — espejo de `../tools/slides-system/theme/tokens.js`)
-- **react-leaflet** + tiles CARTO Positron (OpenStreetMap, sin API key)
+- **react-leaflet** + teselas estándar de OpenStreetMap, con tratamiento visual GeoGreen y sin API key
 - **Recharts** (gráfico histórico) · **lucide-react** (iconos)
 - **@tanstack/react-query** (refresco "en vivo")
 - **vite-plugin-pwa** (instalable, offline)

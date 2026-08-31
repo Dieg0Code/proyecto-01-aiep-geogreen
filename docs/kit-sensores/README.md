@@ -1,7 +1,7 @@
-# Kit de 45 sensores — Manual de identificación
+# Kits de sensores — Manuales de identificación
 
-Documento de referencia para **identificar físicamente** cada módulo del "Kit de 45
-sensores compatibles con Arduino" (caja GALF) que llegó sin manual. Una ficha por módulo
+Documentos de referencia para **identificar físicamente** los módulos de los kits de 45
+y 37 sensores compatibles con Arduino. Una ficha por módulo
 con: nombre, **etiqueta serigrafiada en la placa** (ej. `KY-018`), qué hace, voltaje y tipo
 de señal, cómo reconocerlo a simple vista, pinout, foto real incrustada y enlace a más fotos.
 Los módulos útiles para el prototipo GeoGreen llevan el badge **GeoGreen**.
@@ -10,6 +10,9 @@ Los módulos útiles para el prototipo GeoGreen llevan el badge **GeoGreen**.
 
 - `kit-45-sensores-identificacion.tex` — fuente LaTeX (motor XeTeX / `tectonic`).
 - `kit-45-sensores-identificacion.pdf` — PDF final (10 páginas, 45 fichas).
+- `kit-mci-37-modulos-identificacion.tex` — fuente del catálogo del kit MCI, SKU
+  `MCI05260` (26 sensores + 11 actuadores).
+- `kit-mci-37-modulos-identificacion.pdf` — PDF final del kit MCI, con 37 fichas.
 - `assets/` — fotos de cada módulo (`ky-001.jpg` … `ky-040.jpg`, más `hc-sr04.jpg`,
   `mpu6050.jpg`, `ds1302.jpg`, `sd-reader.jpg`, `mb-102.jpg`, `mp1584en.jpg`,
   `soil-moisture.jpg`, `water-level.jpg`).
@@ -18,6 +21,7 @@ Los módulos útiles para el prototipo GeoGreen llevan el badge **GeoGreen**.
 
 ```bash
 tectonic kit-45-sensores-identificacion.tex
+tectonic kit-mci-37-modulos-identificacion.tex
 ```
 
 Cada ficha usa la macro `\ficha`. Si falta una imagen en `assets/`, la ficha muestra un

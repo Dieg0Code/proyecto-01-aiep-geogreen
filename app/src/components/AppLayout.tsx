@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { Map, List, Bell, RefreshCw } from 'lucide-react'
+import { Bell, Boxes, Map, RefreshCw } from 'lucide-react'
 import { useAlertas, useContenedores } from '@/hooks/useTelemetry'
 import { tiempoRelativo } from '@/lib/format'
 import { cn } from '@/lib/utils'
@@ -7,7 +7,7 @@ import { Brand } from './Brand'
 
 const NAV = [
   { to: '/', label: 'Mapa', icon: Map, end: true },
-  { to: '/lista', label: 'Lista', icon: List, end: false },
+  { to: '/lista', label: 'Contenedores', icon: Boxes, end: false },
   { to: '/alertas', label: 'Alertas', icon: Bell, end: false },
 ] as const
 
@@ -19,9 +19,12 @@ export function AppLayout() {
   return (
     <div className="flex h-full">
       {/* Sidebar — desktop */}
-      <aside className="hidden w-60 shrink-0 flex-col border-r border-line/70 bg-white/50 px-4 py-6 md:flex">
-        <Brand className="px-2" />
-        <nav className="mt-8 flex flex-col gap-1">
+      <aside className="hidden w-48 shrink-0 flex-col bg-navy text-white md:flex">
+        <div className="border-b border-white/10 px-5 py-[1.15rem]">
+          <Brand inverted />
+          <p className="mt-1.5 pl-[2.35rem] text-[0.6rem] font-medium uppercase tracking-[0.16em] text-white/38">Osorno</p>
+        </div>
+        <nav className="mt-5 flex flex-col">
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -29,15 +32,17 @@ export function AppLayout() {
               end={end}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
-                  isActive ? 'bg-navy text-paper shadow-card' : 'text-slate hover:bg-soft-neutral hover:text-ink',
+                  'focus-ring relative flex h-11 items-center gap-3 border-l-2 px-[1.15rem] text-sm transition-colors focus-visible:ring-offset-navy',
+                  isActive
+                    ? 'border-white bg-white/8 font-semibold text-white'
+                    : 'border-transparent font-normal text-white/55 hover:bg-white/5 hover:text-white/85',
                 )
               }
             >
               <Icon size={18} />
               {label}
               {to === '/alertas' && nAlertas > 0 && (
-                <span className="ml-auto grid h-5 min-w-5 place-items-center rounded-full bg-red px-1.5 text-xs font-bold text-white">
+                <span className="ml-auto grid h-5 min-w-5 place-items-center rounded-sm bg-red px-1.5 font-mono text-[0.65rem] font-semibold text-white">
                   {nAlertas}
                 </span>
               )}
@@ -45,10 +50,15 @@ export function AppLayout() {
           ))}
         </nav>
         {dataUpdatedAt > 0 && (
-          <p className="mt-auto flex items-center gap-1.5 px-2 text-xs text-guide">
-            <RefreshCw size={12} />
-            Actualizado {tiempoRelativo(new Date(dataUpdatedAt).toISOString())}
-          </p>
+          <div className="mx-5 mt-auto border-t border-white/10 py-4">
+            <p className="flex items-center gap-2 text-xs text-white/65">
+              <span className="h-1.5 w-1.5 rounded-full bg-verde" /> Sistema conectado
+            </p>
+            <p className="mt-1.5 flex items-center gap-1.5 text-[0.66rem] text-white/35">
+              <RefreshCw size={11} />
+              Actualizado {tiempoRelativo(new Date(dataUpdatedAt).toISOString())}
+            </p>
+          </div>
         )}
       </aside>
 
@@ -57,7 +67,7 @@ export function AppLayout() {
         <Outlet />
 
         {/* Bottom nav — móvil */}
-        <nav className="absolute inset-x-0 bottom-0 z-[900] flex border-t border-line/70 bg-paper/95 backdrop-blur-sm md:hidden">
+        <nav className="absolute inset-x-0 bottom-0 z-[900] flex border-t border-line bg-white/95 shadow-[0_-8px_30px_-18px_rgba(7,29,51,0.32)] backdrop-blur-md md:hidden">
           {NAV.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -65,7 +75,7 @@ export function AppLayout() {
               end={end}
               className={({ isActive }) =>
                 cn(
-                  'relative flex flex-1 flex-col items-center gap-0.5 py-2.5 text-xs font-medium transition-colors',
+                  'focus-ring relative flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 text-xs font-medium transition-colors',
                   isActive ? 'text-navy' : 'text-slate',
                 )
               }
